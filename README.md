@@ -4,6 +4,8 @@ Last updated: 2026-11-02
 
 ## Implemented procurement prototype
 
+Batch 2 adds lineage-based splits, seeded task generation, an observable agent runner, replay-verified training admission/export, and an offline smoke experiment. [Batch 2 evidence](evidence/batch2.md) includes plans, reports, raw logs and screenshots for issues #7–#11. Run `python scripts/run_smoke.py --help` for the experiment interface. All case-level output belongs in an external private directory; only sanitized aggregate reports are public. The scripted optimizer is an integration baseline, not an evaluated language model.
+
 The first implementation batch covers issues #2–#6: ten synthetic reference cases, versioned schemas, an independent checker, a bounded exact reference solver and heuristic, and a resettable procurement environment. Practitioner review remains pending. The exact solver is for small reference problems, not production-scale allocation.
 
 Run locally with Python 3.12:

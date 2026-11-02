@@ -1,8 +1,14 @@
 # Progress
 
 Last updated: 2026-11-02  
-Current stage: Research and product definition.  
-Implementation status: First procurement prototype implemented locally and prepared for PR review; issues remain open pending acceptance.
+Current stage: Offline dataset pipeline implementation and verification.  
+Implementation status: Procurement foundations merged; dataset pipeline batch prepared for review.
+
+## Latest goal: dataset pipeline
+
+PR #15 was merged; issues #2–#6 are now closed with acceptance evidence and pending practitioner-review status preserved. The next batch implements issues #7–#11: lineage/private boundaries, generation, agent runner, admission/export and an offline 100-case smoke experiment. See [batch 2 proof](evidence/batch2.md).
+
+This batch remains subject to PR acceptance. No paid model runs or fine-tuning have occurred. The scripted visible-input optimizer exercises the complete episode pipeline; its success is not a claim about LLM capability. Case-level experiment artifacts and sealed inputs remain outside this public repository.
 
 ## Implementation batch: issues #2–#6
 

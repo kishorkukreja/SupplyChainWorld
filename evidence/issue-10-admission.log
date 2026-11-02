@@ -1,0 +1,12 @@
+test_clean_export_and_loss (test_admission.AdmissionTests.test_clean_export_and_loss) ... ok
+test_diagnosis_and_no_agent_repair (test_admission.AdmissionTests.test_diagnosis_and_no_agent_repair) ... ok
+test_injected_observation_and_replay_rejected (test_admission.AdmissionTests.test_injected_observation_and_replay_rejected) ... ok
+test_mixed_split_same_lineage_rejected (test_admission.AdmissionTests.test_mixed_split_same_lineage_rejected) ... ok
+test_protected_duplicate_and_record_tamper (test_admission.AdmissionTests.test_protected_duplicate_and_record_tamper) ... ok
+test_repair_cannot_drop_demand (test_admission.AdmissionTests.test_repair_cannot_drop_demand) ... ok
+test_wrong_solution_and_split (test_admission.AdmissionTests.test_wrong_solution_and_split) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.035s
+
+OK

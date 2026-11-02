@@ -1,0 +1,3 @@
+# Issue 7 plan
+
+Implement specification §§4,8–9 against existing Task/World contracts. Allocate source/template/ancestor groups before variant expansion; reject cross-split joins. Detect cross-split ID-insensitive business duplicates, conservative structural overlap, and text similarity for explicit review. Keep sealed instances outside the repository, expose an allowlisted task view, and reject evaluation/development training exports. Validate adversarial path access, metadata leakage, deterministic assignment and overlap adjudication offline. Structural detection is deliberately conservative and semantic text matching is a review heuristic, not an embedding guarantee.
