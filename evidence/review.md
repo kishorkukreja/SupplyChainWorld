@@ -1,0 +1,13 @@
+# Independent review and screenshot provenance
+
+Reviewed 2026-11-02 against `spec.md`, `roadmap.md`, the supplier-allocation playbook, all ten public synthetic reference fixtures, contracts, checker, solver tests, and environment implementation/tests.
+
+The independent command `PYTHONPATH=src python3 scripts/review_evidence.py` passed. It validates every world, accepts every expected submission, rejects every known wrong submission, checks the absence of practitioner signoff, submits/replays/verifies/resets all ten examples through the environment, and adds a two-item single-supplier fixed-charge check. Its correct total is `1 + 1 + 5 = 7`; both checker and reference solver agree, and the doubled fee total `12` is rejected. This review found permissive boolean qualification parsing; foundation changed it to `StrictBool` and added an adversarial test before final capture.
+
+The integrated suite passed **26 tests**, including invalid solver-limit handling. Per-issue evidence is linked in [the evidence index](index.html): #2 reference cases, #3 contracts, #4 independent verification, #5 solvers, #6 environment, plus the integrated suite and independent review.
+
+Each PNG in `screenshots/` is a real local Chromium screenshot of its corresponding rendered command-output report. The `.log` contains the actual captured stdout/stderr; the `.json` records the exact command, exit status, UTC capture time and SHA-256 of those log bytes; the `.html` provides the readable report. These are execution evidence reports, not screenshots of an implemented product UI. Screenshot capture uses installed Playwright and `/usr/bin/chromium`; managed sandbox socket restrictions required approved escalation, and local HTML was inserted with `set_content` because browser policy blocks `file:` navigation. No AI image generation was used.
+
+Reproduce a capture with `python3 scripts/capture_evidence.py LABEL -- COMMAND ARGS` from the repository root. Use only commands producing public sanitized output. Playwright and Chromium are optional evidence tooling, not package runtime dependencies. Captures are historical snapshots; rerun them after changing the relevant code.
+
+Limitations: arithmetic checks do not establish practitioner endorsement. These small synthetic tests do not demonstrate production optimization scale, paid-model performance, training improvement, or operating-system process isolation. The environment is an in-process typed tool boundary; future adapters must preserve that boundary and the private evaluation storage rules. Infeasibility verification currently supports capacity certificates, rather than arbitrary solver-derived infeasibility claims. Issues #7 onward remain separate downstream work.

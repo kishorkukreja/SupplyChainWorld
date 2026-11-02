@@ -1,0 +1,21 @@
+{
+  "label": "issue-6-environment",
+  "captured_at": "2026-11-02T01:24:04.508569+00:00",
+  "command": [
+    "env",
+    "PYTHONPATH=src",
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_environment.py",
+    "-v"
+  ],
+  "cwd": "/workspace/SupplyChainWorld",
+  "exit_code": 0,
+  "output_sha256": "5c347632338227d5687996b8874cf77f5ac83a4fd67969c83321cfb30aedc689",
+  "capture_kind": "Chromium screenshot of command evidence report"
+}

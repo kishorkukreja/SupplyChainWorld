@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<title>SupplyChainWorld evidence — integrated-suite</title>
+<style>body{margin:40px;background:#f3f6fa;color:#102339;font:17px system-ui}h1{font-size:28px}pre{background:#102339;color:#edf4ff;padding:24px;white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.6 monospace}.meta{line-height:1.7}code{font-family:monospace}</style>
+<h1>SupplyChainWorld — integrated-suite</h1>
+<p>Actual command evidence report. This screenshot shows captured output, not a product interface.</p>
+<div class="meta">UTC: 2026-11-02T01:24:51.648279+00:00<br>
+Command: <code>env PYTHONPATH=src python3 -m unittest discover -s tests -v</code><br>
+Exit code: <strong>0</strong><br>
+Output SHA-256: <code>5caa44ed99b05f18aa7b47ff2b76e5b8971a0a03e660bf555bd254929cca97bf</code></div>
+<pre>test_artifact_and_query_consistency_and_sanitization (test_environment.EnvironmentTests.test_artifact_and_query_consistency_and_sanitization) ... ok
+test_award_termination_reset_and_replay (test_environment.EnvironmentTests.test_award_termination_reset_and_replay) ... ok
+test_duplicate_request_and_replay_tampering (test_environment.EnvironmentTests.test_duplicate_request_and_replay_tampering) ... ok
+test_explicit_missing_field_clarification_and_exception (test_environment.EnvironmentTests.test_explicit_missing_field_clarification_and_exception) ... ok
+test_infeasible_exception_is_recorded_without_oracle (test_environment.EnvironmentTests.test_infeasible_exception_is_recorded_without_oracle) ... ok
+test_invalid_actions_never_mutate (test_environment.EnvironmentTests.test_invalid_actions_never_mutate) ... ok
+test_sessions_and_returned_values_are_isolated (test_environment.EnvironmentTests.test_sessions_and_returned_values_are_isolated) ... ok
+test_all_ten_hand_results_and_wrong_submissions (test_reference_cases.ReferenceCases.test_all_ten_hand_results_and_wrong_submissions) ... ok
+test_exact_money_and_json_roundtrip (test_schemas.SchemaTests.test_exact_money_and_json_roundtrip) ... ok
+test_invalid_worlds (test_schemas.SchemaTests.test_invalid_worlds) ... ok
+test_manifest_lineage_leakage (test_schemas.SchemaTests.test_manifest_lineage_leakage) ... ok
+test_missing_commercial_term_is_representable (test_schemas.SchemaTests.test_missing_commercial_term_is_representable) ... ok
+test_result_exclusive_payload (test_schemas.SchemaTests.test_result_exclusive_payload) ... ok
+test_submission_discrimination_and_duplicates (test_schemas.SchemaTests.test_submission_discrimination_and_duplicates) ... ok
+test_fixed_fee_and_supplier_rounding (test_solvers.SolverTests.test_fixed_fee_and_supplier_rounding) ... ok
+test_heuristic_is_feasible_not_optimal_and_can_fail (test_solvers.SolverTests.test_heuristic_is_feasible_not_optimal_and_can_fail) ... ok
+test_invalid_limits_report_error (test_solvers.SolverTests.test_invalid_limits_report_error) ... ok
+test_ten_hand_worked_cases (test_solvers.SolverTests.test_ten_hand_worked_cases) ... ok
+test_ties_and_zero_spend (test_solvers.SolverTests.test_ties_and_zero_spend) ... ok
+test_timeout_is_unresolved (test_solvers.SolverTests.test_timeout_is_unresolved) ... ok
+test_timeout_keeps_incumbent_without_optimal_claim (test_solvers.SolverTests.test_timeout_keeps_incumbent_without_optimal_claim) ... ok
+test_id_relabel_and_zero_cost (test_verification.VerificationTests.test_id_relabel_and_zero_cost) ... ok
+test_malformed_world_and_blank_award_evidence (test_verification.VerificationTests.test_malformed_world_and_blank_award_evidence) ... ok
+test_reference_and_wrong_cases (test_verification.VerificationTests.test_reference_and_wrong_cases) ... ok
+test_supplier_rounding_fixed_fee_and_tie (test_verification.VerificationTests.test_supplier_rounding_fixed_fee_and_tie) ... ok
+test_units_duplicates_fractional_and_fake_infeasibility (test_verification.VerificationTests.test_units_duplicates_fractional_and_fake_infeasibility) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 0.024s
+
+OK
+</pre></html>

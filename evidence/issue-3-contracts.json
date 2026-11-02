@@ -1,0 +1,21 @@
+{
+  "label": "issue-3-contracts",
+  "captured_at": "2026-11-02T01:23:38.403282+00:00",
+  "command": [
+    "env",
+    "PYTHONPATH=src",
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_schemas.py",
+    "-v"
+  ],
+  "cwd": "/workspace/SupplyChainWorld",
+  "exit_code": 0,
+  "output_sha256": "6c5337aa67291106f8b0b63483f71d25b37e63a78e4ff5e3827344f7db35422e",
+  "capture_kind": "Chromium screenshot of command evidence report"
+}

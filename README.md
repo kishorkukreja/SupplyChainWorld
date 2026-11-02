@@ -2,6 +2,21 @@
 
 Last updated: 2026-11-02
 
+## Implemented procurement prototype
+
+The first implementation batch covers issues #2–#6: ten synthetic reference cases, versioned schemas, an independent checker, a bounded exact reference solver and heuristic, and a resettable procurement environment. Practitioner review remains pending. The exact solver is for small reference problems, not production-scale allocation.
+
+Run locally with Python 3.12:
+
+```sh
+python -m pip install -e .
+python -m unittest discover -s tests -v
+```
+
+For a source-only run with the pinned Pydantic dependency already installed, use `PYTHONPATH=src python -m unittest discover -s tests -v`.
+
+See [execution evidence](evidence/README.md) for per-issue plans, raw results and real screenshots. CI configuration is included; its remote execution must be checked on the PR.
+
 ## Documents
 
 - [Implementation specification](spec.md): first executable supplier-allocation milestone and technical contracts.

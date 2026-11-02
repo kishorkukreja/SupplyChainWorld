@@ -1,0 +1,10 @@
+test_id_relabel_and_zero_cost (test_verification.VerificationTests.test_id_relabel_and_zero_cost) ... ok
+test_malformed_world_and_blank_award_evidence (test_verification.VerificationTests.test_malformed_world_and_blank_award_evidence) ... ok
+test_reference_and_wrong_cases (test_verification.VerificationTests.test_reference_and_wrong_cases) ... ok
+test_supplier_rounding_fixed_fee_and_tie (test_verification.VerificationTests.test_supplier_rounding_fixed_fee_and_tie) ... ok
+test_units_duplicates_fractional_and_fake_infeasibility (test_verification.VerificationTests.test_units_duplicates_fractional_and_fake_infeasibility) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.064s
+
+OK

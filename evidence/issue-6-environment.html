@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<title>SupplyChainWorld evidence — issue-6-environment</title>
+<style>body{margin:40px;background:#f3f6fa;color:#102339;font:17px system-ui}h1{font-size:28px}pre{background:#102339;color:#edf4ff;padding:24px;white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.6 monospace}.meta{line-height:1.7}code{font-family:monospace}</style>
+<h1>SupplyChainWorld — issue-6-environment</h1>
+<p>Actual command evidence report. This screenshot shows captured output, not a product interface.</p>
+<div class="meta">UTC: 2026-11-02T01:24:04.508569+00:00<br>
+Command: <code>env PYTHONPATH=src python3 -m unittest discover -s tests -p test_environment.py -v</code><br>
+Exit code: <strong>0</strong><br>
+Output SHA-256: <code>5c347632338227d5687996b8874cf77f5ac83a4fd67969c83321cfb30aedc689</code></div>
+<pre>test_artifact_and_query_consistency_and_sanitization (test_environment.EnvironmentTests.test_artifact_and_query_consistency_and_sanitization) ... ok
+test_award_termination_reset_and_replay (test_environment.EnvironmentTests.test_award_termination_reset_and_replay) ... ok
+test_duplicate_request_and_replay_tampering (test_environment.EnvironmentTests.test_duplicate_request_and_replay_tampering) ... ok
+test_explicit_missing_field_clarification_and_exception (test_environment.EnvironmentTests.test_explicit_missing_field_clarification_and_exception) ... ok
+test_infeasible_exception_is_recorded_without_oracle (test_environment.EnvironmentTests.test_infeasible_exception_is_recorded_without_oracle) ... ok
+test_invalid_actions_never_mutate (test_environment.EnvironmentTests.test_invalid_actions_never_mutate) ... ok
+test_sessions_and_returned_values_are_isolated (test_environment.EnvironmentTests.test_sessions_and_returned_values_are_isolated) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.007s
+
+OK
+</pre></html>

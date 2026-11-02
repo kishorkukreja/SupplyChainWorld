@@ -1,0 +1,21 @@
+{
+  "label": "issue-4-verification",
+  "captured_at": "2026-11-02T01:24:02.971927+00:00",
+  "command": [
+    "env",
+    "PYTHONPATH=src",
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_verification.py",
+    "-v"
+  ],
+  "cwd": "/workspace/SupplyChainWorld",
+  "exit_code": 0,
+  "output_sha256": "f53154c319b4618d51b935c4295a43199c137379cc061adfa734f0497203e0c0",
+  "capture_kind": "Chromium screenshot of command evidence report"
+}

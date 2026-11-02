@@ -1,0 +1,14 @@
+{
+  "label": "independent-review",
+  "captured_at": "2026-11-02T01:24:22.031794+00:00",
+  "command": [
+    "env",
+    "PYTHONPATH=src",
+    "python3",
+    "scripts/review_evidence.py"
+  ],
+  "cwd": "/workspace/SupplyChainWorld",
+  "exit_code": 0,
+  "output_sha256": "b6f8a796ed3ed61a264f4ead7ab033158cf989141e4dfe2ec90054742b17daae",
+  "capture_kind": "Chromium screenshot of command evidence report"
+}

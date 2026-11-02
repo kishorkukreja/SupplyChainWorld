@@ -2,7 +2,13 @@
 
 Last updated: 2026-11-02  
 Current stage: Research and product definition.  
-Implementation status: Not started.
+Implementation status: First procurement prototype implemented locally and prepared for PR review; issues remain open pending acceptance.
+
+## Implementation batch: issues #2–#6
+
+GPT-6.1 Sol subagents produced the reference cases/playbook, schemas/package/CI, independent checker, small-instance exact solver/heuristic, and procurement environment. A separate agent captured actual screenshots and independent review evidence. See [proof of work](evidence/README.md).
+
+The integrated local suite passes 26 tests as of this batch. Remote CI has not yet been verified. Practitioner review remains pending. Issues #7–#14 are not implemented by this batch; no dataset production, paid model run, or fine-tuning has occurred. Next work after review is #7 lineage/private-boundary controls, then #8/#9 as their prerequisites are accepted.
 
 ## Latest planning update
 

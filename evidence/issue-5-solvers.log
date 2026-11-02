@@ -1,0 +1,12 @@
+test_fixed_fee_and_supplier_rounding (test_solvers.SolverTests.test_fixed_fee_and_supplier_rounding) ... ok
+test_heuristic_is_feasible_not_optimal_and_can_fail (test_solvers.SolverTests.test_heuristic_is_feasible_not_optimal_and_can_fail) ... ok
+test_invalid_limits_report_error (test_solvers.SolverTests.test_invalid_limits_report_error) ... ok
+test_ten_hand_worked_cases (test_solvers.SolverTests.test_ten_hand_worked_cases) ... ok
+test_ties_and_zero_spend (test_solvers.SolverTests.test_ties_and_zero_spend) ... ok
+test_timeout_is_unresolved (test_solvers.SolverTests.test_timeout_is_unresolved) ... ok
+test_timeout_keeps_incumbent_without_optimal_claim (test_solvers.SolverTests.test_timeout_keeps_incumbent_without_optimal_claim) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.005s
+
+OK
