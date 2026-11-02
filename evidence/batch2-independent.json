@@ -1,0 +1,12 @@
+{
+  "label": "batch2-independent",
+  "captured_at": "2026-11-02T01:49:31.723218+00:00",
+  "command": [
+    "python3",
+    "scripts/review_batch2.py"
+  ],
+  "cwd": "/workspace/SupplyChainWorld",
+  "exit_code": 0,
+  "output_sha256": "f72ae3556d47f867b0aae7bcdb1a36b73a8fba331d63a230bc2325a87f8d7ed3",
+  "capture_kind": "Chromium screenshot of command evidence report"
+}

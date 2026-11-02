@@ -1,0 +1,10 @@
+test_agent_view_and_training_boundary (test_lineage.LineageTests.test_agent_view_and_training_boundary) ... ok
+test_determinism_ancestry_and_conflicting_assignments (test_lineage.LineageTests.test_determinism_ancestry_and_conflicting_assignments) ... ok
+test_overlap_survives_renaming_and_numeric_variants (test_lineage.LineageTests.test_overlap_survives_renaming_and_numeric_variants) ... ok
+test_private_store_denies_repository_paths_traversal_and_symlinks (test_lineage.LineageTests.test_private_store_denies_repository_paths_traversal_and_symlinks) ... ok
+test_semantic_review_requires_named_reason_and_explicit_allow (test_lineage.LineageTests.test_semantic_review_requires_named_reason_and_explicit_allow) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.002s
+
+OK

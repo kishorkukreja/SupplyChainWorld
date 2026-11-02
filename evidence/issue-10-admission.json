@@ -1,0 +1,19 @@
+{
+  "label": "issue-10-admission",
+  "captured_at": "2026-11-02T01:49:01.561759+00:00",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_admission.py",
+    "-v"
+  ],
+  "cwd": "/workspace/SupplyChainWorld",
+  "exit_code": 0,
+  "output_sha256": "0ff60af865a4f802d150617569b870a8d7864f1c7a9f9f6b49448a690c38921c",
+  "capture_kind": "Chromium screenshot of command evidence report"
+}

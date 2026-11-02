@@ -1,0 +1,12 @@
+test_bounded_rejections_are_counted (test_generation.GenerationTests.test_bounded_rejections_are_counted) ... ok
+test_every_variant_and_outcome_independently_checked (test_generation.GenerationTests.test_every_variant_and_outcome_independently_checked) ... ok
+test_excess_is_required_and_budget_is_binding (test_generation.GenerationTests.test_excess_is_required_and_budget_is_binding) ... ok
+test_forged_cross_split_ancestry_and_eval_public_bundle_rejected (test_generation.GenerationTests.test_forged_cross_split_ancestry_and_eval_public_bundle_rejected) ... ok
+test_invalid_options_fail_explicitly (test_generation.GenerationTests.test_invalid_options_fail_explicitly) ... ok
+test_repeatability_and_private_boundary (test_generation.GenerationTests.test_repeatability_and_private_boundary) ... ok
+test_smoke_population_is_split_clean_and_complete (test_generation.GenerationTests.test_smoke_population_is_split_clean_and_complete) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.111s
+
+OK
