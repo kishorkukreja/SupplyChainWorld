@@ -1,0 +1,91 @@
+{
+  "case_id": "ref-09",
+  "purpose": "missing commercial term",
+  "request": "Allocate component purchases for missing commercial term; minimize landed cost subject to visible policy, or submit a supported exception.",
+  "world": {
+    "schema_version": "1.0",
+    "world_id": "ref-09",
+    "seed": 9,
+    "currency": "USD",
+    "calendar": "gregorian",
+    "as_of": "2026-11-02",
+    "items": [
+      {
+        "item_id": "component",
+        "unit": "each",
+        "demand": 4,
+        "due_date": "2026-11-10",
+        "excess_allowance": 0
+      }
+    ],
+    "stock": [],
+    "inbound": [],
+    "suppliers": [
+      {
+        "supplier_id": "A",
+        "fixed_charge": "0.00"
+      }
+    ],
+    "quotes": [
+      {
+        "supplier_id": "A",
+        "item_id": "component",
+        "unit_price": "1.00",
+        "variable_freight": null,
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09"
+      }
+    ],
+    "constraints": {
+      "budget": "100.00",
+      "concentration_limit": null
+    },
+    "visibility": {
+      "classification": "public_synthetic"
+    }
+  },
+  "expected": {
+    "submission": {
+      "kind": "clarification",
+      "field": "quotes.A.component.variable_freight",
+      "evidence": [
+        "Freight is missing; no cost or budget claim can be supported."
+      ]
+    },
+    "optimal_cost": null,
+    "calculation": "Unknown variable freight prevents landed cost calculation. Request that field; response policy is escalation with no fabricated term.",
+    "clarification_policy": "record_and_escalate"
+  },
+  "known_wrong": [
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "A",
+            "item_id": "component",
+            "quantity": 4
+          }
+        ],
+        "claimed_total_cost": "4.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ]
+      },
+      "reason": "guessed missing freight"
+    }
+  ],
+  "review": {
+    "status": "arithmetic_checked_practitioner_pending",
+    "practitioner_signoff": false,
+    "required_review": [
+      "procurement rules and business realism"
+    ],
+    "source": "entirely synthetic; no external business records"
+  }
+}

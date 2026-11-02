@@ -1,0 +1,21 @@
+{
+  "label": "issue-5-solvers",
+  "captured_at": "2026-11-02T01:24:50.867140+00:00",
+  "command": [
+    "env",
+    "PYTHONPATH=src",
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_solvers.py",
+    "-v"
+  ],
+  "cwd": "/workspace/SupplyChainWorld",
+  "exit_code": 0,
+  "output_sha256": "85bfd3603dd2eeddf43b926f4f08d91fdc19f9f093cd50215133027e73be422d",
+  "capture_kind": "Chromium screenshot of command evidence report"
+}

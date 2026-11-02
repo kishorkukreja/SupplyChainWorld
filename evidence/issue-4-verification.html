@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<title>SupplyChainWorld evidence — issue-4-verification</title>
+<style>body{margin:40px;background:#f3f6fa;color:#102339;font:17px system-ui}h1{font-size:28px}pre{background:#102339;color:#edf4ff;padding:24px;white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.6 monospace}.meta{line-height:1.7}code{font-family:monospace}</style>
+<h1>SupplyChainWorld — issue-4-verification</h1>
+<p>Actual command evidence report. This screenshot shows captured output, not a product interface.</p>
+<div class="meta">UTC: 2026-11-02T01:24:02.971927+00:00<br>
+Command: <code>env PYTHONPATH=src python3 -m unittest discover -s tests -p test_verification.py -v</code><br>
+Exit code: <strong>0</strong><br>
+Output SHA-256: <code>f53154c319b4618d51b935c4295a43199c137379cc061adfa734f0497203e0c0</code></div>
+<pre>test_id_relabel_and_zero_cost (test_verification.VerificationTests.test_id_relabel_and_zero_cost) ... ok
+test_malformed_world_and_blank_award_evidence (test_verification.VerificationTests.test_malformed_world_and_blank_award_evidence) ... ok
+test_reference_and_wrong_cases (test_verification.VerificationTests.test_reference_and_wrong_cases) ... ok
+test_supplier_rounding_fixed_fee_and_tie (test_verification.VerificationTests.test_supplier_rounding_fixed_fee_and_tie) ... ok
+test_units_duplicates_fractional_and_fake_infeasibility (test_verification.VerificationTests.test_units_duplicates_fractional_and_fake_infeasibility) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.059s
+
+OK
+</pre></html>

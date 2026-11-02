@@ -1,0 +1,119 @@
+{
+  "case_id": "ref-03",
+  "purpose": "MOQ and order multiple",
+  "request": "Allocate component purchases for MOQ and order multiple; minimize landed cost subject to visible policy, or submit a supported exception.",
+  "world": {
+    "schema_version": "1.0",
+    "world_id": "ref-03",
+    "seed": 3,
+    "currency": "USD",
+    "calendar": "gregorian",
+    "as_of": "2026-11-02",
+    "items": [
+      {
+        "item_id": "component",
+        "unit": "each",
+        "demand": 5,
+        "due_date": "2026-11-10",
+        "excess_allowance": 0
+      }
+    ],
+    "stock": [],
+    "inbound": [],
+    "suppliers": [
+      {
+        "supplier_id": "A",
+        "fixed_charge": "0.00"
+      },
+      {
+        "supplier_id": "B",
+        "fixed_charge": "0.00"
+      }
+    ],
+    "quotes": [
+      {
+        "supplier_id": "A",
+        "item_id": "component",
+        "unit_price": "1.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 3,
+        "multiple": 2,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09"
+      },
+      {
+        "supplier_id": "B",
+        "item_id": "component",
+        "unit_price": "2.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09"
+      }
+    ],
+    "constraints": {
+      "budget": "100.00",
+      "concentration_limit": null
+    },
+    "visibility": {
+      "classification": "public_synthetic"
+    }
+  },
+  "expected": {
+    "submission": {
+      "kind": "award",
+      "allocations": [
+        {
+          "supplier_id": "A",
+          "item_id": "component",
+          "quantity": 4
+        },
+        {
+          "supplier_id": "B",
+          "item_id": "component",
+          "quantity": 1
+        }
+      ],
+      "claimed_total_cost": "6.00",
+      "evidence": [
+        "Visible quotation and policy records"
+      ]
+    },
+    "optimal_cost": "6.00",
+    "calculation": "A positive quantity must be >=3 and divisible by 2: at most 4 with no excess; residual 1 from B costs 4+2=6."
+  },
+  "known_wrong": [
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "A",
+            "item_id": "component",
+            "quantity": 5
+          }
+        ],
+        "claimed_total_cost": "5.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ]
+      },
+      "reason": "order multiple"
+    }
+  ],
+  "review": {
+    "status": "arithmetic_checked_practitioner_pending",
+    "practitioner_signoff": false,
+    "required_review": [
+      "procurement rules and business realism"
+    ],
+    "source": "entirely synthetic; no external business records"
+  }
+}

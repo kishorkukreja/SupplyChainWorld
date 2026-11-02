@@ -1,0 +1,19 @@
+{
+  "label": "integrated-suite",
+  "captured_at": "2026-11-02T01:24:51.648279+00:00",
+  "command": [
+    "env",
+    "PYTHONPATH=src",
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "cwd": "/workspace/SupplyChainWorld",
+  "exit_code": 0,
+  "output_sha256": "5caa44ed99b05f18aa7b47ff2b76e5b8971a0a03e660bf555bd254929cca97bf",
+  "capture_kind": "Chromium screenshot of command evidence report"
+}

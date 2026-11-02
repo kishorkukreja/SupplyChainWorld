@@ -1,0 +1,14 @@
+ref-01: schema valid; expected accepted; known wrong rejected; practitioner review pending
+ref-02: schema valid; expected accepted; known wrong rejected; practitioner review pending
+ref-03: schema valid; expected accepted; known wrong rejected; practitioner review pending
+ref-04: schema valid; expected accepted; known wrong rejected; practitioner review pending
+ref-05: schema valid; expected accepted; known wrong rejected; practitioner review pending
+ref-06: schema valid; expected accepted; known wrong rejected; practitioner review pending
+ref-07: schema valid; expected accepted; known wrong rejected; practitioner review pending
+ref-08: schema valid; expected accepted; known wrong rejected; practitioner review pending
+ref-09: schema valid; expected accepted; known wrong rejected; practitioner review pending
+ref-10: schema valid; expected accepted; known wrong rejected; practitioner review pending
+Multi-item fixed charge: 1 + 1 + 5 = 7; doubled fee 12 rejected
+All 10 expected submissions recorded, replayed, independently verified and reset through environment.
+Reference solver independently agrees with multi-item total 7.00.
+Independent review completed: public synthetic cases only; no practitioner endorsement or environment/privacy guarantee.

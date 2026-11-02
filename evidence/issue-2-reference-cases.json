@@ -1,0 +1,19 @@
+{
+  "label": "issue-2-reference-cases",
+  "captured_at": "2026-11-02T01:23:39.893344+00:00",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_reference_cases.py",
+    "-v"
+  ],
+  "cwd": "/workspace/SupplyChainWorld",
+  "exit_code": 0,
+  "output_sha256": "93cdcf557eae14fed5bf4c0e3c3fe253d7c788916a53f9165031d6899018da33",
+  "capture_kind": "Chromium screenshot of command evidence report"
+}

@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<title>SupplyChainWorld evidence — issue-5-solvers</title>
+<style>body{margin:40px;background:#f3f6fa;color:#102339;font:17px system-ui}h1{font-size:28px}pre{background:#102339;color:#edf4ff;padding:24px;white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.6 monospace}.meta{line-height:1.7}code{font-family:monospace}</style>
+<h1>SupplyChainWorld — issue-5-solvers</h1>
+<p>Actual command evidence report. This screenshot shows captured output, not a product interface.</p>
+<div class="meta">UTC: 2026-11-02T01:24:50.867140+00:00<br>
+Command: <code>env PYTHONPATH=src python3 -m unittest discover -s tests -p test_solvers.py -v</code><br>
+Exit code: <strong>0</strong><br>
+Output SHA-256: <code>85bfd3603dd2eeddf43b926f4f08d91fdc19f9f093cd50215133027e73be422d</code></div>
+<pre>test_fixed_fee_and_supplier_rounding (test_solvers.SolverTests.test_fixed_fee_and_supplier_rounding) ... ok
+test_heuristic_is_feasible_not_optimal_and_can_fail (test_solvers.SolverTests.test_heuristic_is_feasible_not_optimal_and_can_fail) ... ok
+test_invalid_limits_report_error (test_solvers.SolverTests.test_invalid_limits_report_error) ... ok
+test_ten_hand_worked_cases (test_solvers.SolverTests.test_ten_hand_worked_cases) ... ok
+test_ties_and_zero_spend (test_solvers.SolverTests.test_ties_and_zero_spend) ... ok
+test_timeout_is_unresolved (test_solvers.SolverTests.test_timeout_is_unresolved) ... ok
+test_timeout_keeps_incumbent_without_optimal_claim (test_solvers.SolverTests.test_timeout_keeps_incumbent_without_optimal_claim) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.005s
+
+OK
+</pre></html>

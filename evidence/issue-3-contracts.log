@@ -1,0 +1,11 @@
+test_exact_money_and_json_roundtrip (test_schemas.SchemaTests.test_exact_money_and_json_roundtrip) ... ok
+test_invalid_worlds (test_schemas.SchemaTests.test_invalid_worlds) ... ok
+test_manifest_lineage_leakage (test_schemas.SchemaTests.test_manifest_lineage_leakage) ... ok
+test_missing_commercial_term_is_representable (test_schemas.SchemaTests.test_missing_commercial_term_is_representable) ... ok
+test_result_exclusive_payload (test_schemas.SchemaTests.test_result_exclusive_payload) ... ok
+test_submission_discrimination_and_duplicates (test_schemas.SchemaTests.test_submission_discrimination_and_duplicates) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+OK

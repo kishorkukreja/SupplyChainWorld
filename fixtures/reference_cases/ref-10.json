@@ -1,0 +1,111 @@
+{
+  "case_id": "ref-10",
+  "purpose": "infeasible capacity",
+  "request": "Allocate component purchases for infeasible capacity; minimize landed cost subject to visible policy, or submit a supported exception.",
+  "world": {
+    "schema_version": "1.0",
+    "world_id": "ref-10",
+    "seed": 10,
+    "currency": "USD",
+    "calendar": "gregorian",
+    "as_of": "2026-11-02",
+    "items": [
+      {
+        "item_id": "component",
+        "unit": "each",
+        "demand": 4,
+        "due_date": "2026-11-10",
+        "excess_allowance": 0
+      }
+    ],
+    "stock": [],
+    "inbound": [],
+    "suppliers": [
+      {
+        "supplier_id": "A",
+        "fixed_charge": "0.00"
+      },
+      {
+        "supplier_id": "B",
+        "fixed_charge": "0.00"
+      }
+    ],
+    "quotes": [
+      {
+        "supplier_id": "A",
+        "item_id": "component",
+        "unit_price": "1.00",
+        "variable_freight": "0.00",
+        "capacity": 2,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09"
+      },
+      {
+        "supplier_id": "B",
+        "item_id": "component",
+        "unit_price": "2.00",
+        "variable_freight": "0.00",
+        "capacity": 1,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09"
+      }
+    ],
+    "constraints": {
+      "budget": "100.00",
+      "concentration_limit": null
+    },
+    "visibility": {
+      "classification": "public_synthetic"
+    }
+  },
+  "expected": {
+    "submission": {
+      "kind": "infeasible",
+      "evidence": [
+        "Eligible capacity 2+1=3 is less than net requirement 4."
+      ]
+    },
+    "optimal_cost": null,
+    "calculation": "Total eligible capacity is 3; demand 4. Exhaustive enumeration has no feasible awards."
+  },
+  "known_wrong": [
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "A",
+            "item_id": "component",
+            "quantity": 3
+          },
+          {
+            "supplier_id": "B",
+            "item_id": "component",
+            "quantity": 1
+          }
+        ],
+        "claimed_total_cost": "5.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ]
+      },
+      "reason": "capacity breach"
+    }
+  ],
+  "review": {
+    "status": "arithmetic_checked_practitioner_pending",
+    "practitioner_signoff": false,
+    "required_review": [
+      "procurement rules and business realism"
+    ],
+    "source": "entirely synthetic; no external business records"
+  }
+}
