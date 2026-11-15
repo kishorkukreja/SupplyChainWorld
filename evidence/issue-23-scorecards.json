@@ -1,0 +1,54 @@
+{
+  "s01-five-day": {
+    "maintain": {
+      "delivered_on_time": 4,
+      "delivered_total": 12,
+      "ending_components": 0,
+      "incremental_spend": 0,
+      "service_penalties": 120,
+      "comparison_cost": 120
+    },
+    "expedite": {
+      "delivered_on_time": 12,
+      "delivered_total": 12,
+      "ending_components": 0,
+      "incremental_spend": 24,
+      "service_penalties": 0,
+      "comparison_cost": 24
+    },
+    "alternate": {
+      "delivered_on_time": 12,
+      "delivered_total": 12,
+      "ending_components": 8,
+      "incremental_spend": 40,
+      "service_penalties": 0,
+      "comparison_cost": 40
+    }
+  },
+  "s01-fifteen-day-late-events": {
+    "maintain": {
+      "delivered_on_time": 4,
+      "delivered_total": 12,
+      "ending_components": 0,
+      "incremental_spend": 0,
+      "service_penalties": 200,
+      "comparison_cost": 200
+    },
+    "expedite": {
+      "delivered_on_time": 12,
+      "delivered_total": 12,
+      "ending_components": 0,
+      "incremental_spend": 24,
+      "service_penalties": 0,
+      "comparison_cost": 24
+    },
+    "alternate": {
+      "delivered_on_time": 12,
+      "delivered_total": 12,
+      "ending_components": 8,
+      "incremental_spend": 40,
+      "service_penalties": 0,
+      "comparison_cost": 40
+    }
+  }
+}
