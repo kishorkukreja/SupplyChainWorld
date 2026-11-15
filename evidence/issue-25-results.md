@@ -10,7 +10,7 @@ Checks: component and finished-goods conservation and non-negative stock compute
 
 Hand-worked per-day ledgers are in [`fixtures/dynamic/verifier-hand-ledgers.json`](../fixtures/dynamic/verifier-hand-ledgers.json) for the five-day and fifteen-day fixtures under maintain/expedite/alternate; the verifier's derived ledger equals them day by day (costs 120/24/40 and 200/24/40). Other tests cover short horizons (2 days, and 9 days of the fifteen-day fixture), truncated records, no-disruption operation, a hand-driven slower-production episode that is feasible but costlier, legal rejected commands, and the adversarial cases: premature receipt (including a day-12 receipt claimed on day 11), extra or missing receipt, production over capacity, without material and beyond the order, duplicate recovery commitment and duplicate release, late, premature and over-budget recovery, incorrect scorecard and penalty, tampered states/shipments/phases/arrival dates/deleted closes, forged `passed` flags, and a simulator whose penalty rate was sabotaged (its own scorecard says 60, the verifier derives 120 and rejects it).
 
-Actual local command: `PYTHONPATH=src python -m unittest discover -s tests -v` under Python 3.13.18. All 60 tests passed (39 existing, 21 new). See [raw output](issue-25-tests.log).
+Actual local command: `PYTHONPATH=src python -m unittest discover -s tests -v` under Python 3.13.18. All 91 tests passed (70 existing on current main, 21 new). See [raw output](issue-25-tests.log).
 
 ## Not claimed
 
