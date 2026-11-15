@@ -1,0 +1,19 @@
+{
+  "label": "issue-9-runner",
+  "captured_at": "2026-11-02T01:48:54.933954+00:00",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_runner.py",
+    "-v"
+  ],
+  "cwd": "/workspace/SupplyChainWorld",
+  "exit_code": 0,
+  "output_sha256": "c729fbc9374edf95f38eb64eb9e01119f347ab0a79c6b1d8beb315105b085927",
+  "capture_kind": "Chromium screenshot of command evidence report"
+}

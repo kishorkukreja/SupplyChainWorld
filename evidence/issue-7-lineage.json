@@ -1,0 +1,19 @@
+{
+  "label": "issue-7-lineage",
+  "captured_at": "2026-11-02T01:48:37.467854+00:00",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_lineage.py",
+    "-v"
+  ],
+  "cwd": "/workspace/SupplyChainWorld",
+  "exit_code": 0,
+  "output_sha256": "7f2d67fa6a10e6cd932df715744b599085c921a2203ce97b52cb68e5ba751681",
+  "capture_kind": "Chromium screenshot of command evidence report"
+}

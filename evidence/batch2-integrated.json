@@ -1,0 +1,17 @@
+{
+  "label": "batch2-integrated",
+  "captured_at": "2026-11-02T01:49:14.783509+00:00",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "cwd": "/workspace/SupplyChainWorld",
+  "exit_code": 0,
+  "output_sha256": "222298c68da8043afea0a6b87910cc1c3e5a02f61f1bfa8c1f1c5b0f79108c81",
+  "capture_kind": "Chromium screenshot of command evidence report"
+}

@@ -1,0 +1,19 @@
+{
+  "label": "issue-8-generation",
+  "captured_at": "2026-11-02T01:48:49.246170+00:00",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_generation.py",
+    "-v"
+  ],
+  "cwd": "/workspace/SupplyChainWorld",
+  "exit_code": 0,
+  "output_sha256": "5d8dc42fa765ad9f320a6842b80cbf5966ec2eb88ee315ab6e5c65448cd60330",
+  "capture_kind": "Chromium screenshot of command evidence report"
+}

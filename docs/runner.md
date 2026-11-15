@@ -1,0 +1,13 @@
+# Observable offline runner
+
+`run_episode(env, adapter, config=RunnerConfig(), run_id='run', seed=0)` resets an episode and returns `RunnerResult`. An adapter implements `next_action(observation, history) -> Decision(tool_name, arguments)`. It receives JSON copies of the current public observation and actual prior action/result pairs, including typed tool errors. No environment, original world, task, expected outcome or reference answer is passed to it. This is an application boundary for trusted adapters, not a Python security sandbox for malicious code.
+
+`OfflineVisibleAgent` is the declared `visible-records-exhaustive-optimizer-v1` baseline. It reads requirements, inventory, suppliers, quotes and policy through actual environment calls, reconstructs a validated world exclusively from those returned records and uses the bounded enumerator. A missing commercial term triggers an actual clarification request before exception submission. Unavailable reads or unresolved solver outcomes produce adapter failure instead of fabricated success. This is an optimizer baseline rather than evidence of model performance.
+
+The fixed manifest records model ID (provider unavailable), explicit zero cost ceiling, prompt, memory policy, no-retry policy, action/time budgets, metadata and seed. Each call gets a deterministic unique request ID. Credential-bearing metadata keys are redacted; raw adapter exception text is omitted. Do not put credentials in prompts or business records: those observable inputs must remain faithful for replay. Runner supports no paid provider calls. Custom adapters are responsible for their own implementation and must not issue paid calls under this offline manifest.
+
+`termination_reason` distinguishes `submitted`, `tool_limit`, `timeout`, `adapter_error` and `infrastructure_error`. A `Trajectory` exists only after a real successful submission. Partial records remain on `RunnerResult`; the runner does not invent a submission to satisfy the existing trajectory schema. The timeout is cooperative: checks bracket adapter calls but do not forcibly interrupt Python code already running. The optimizer additionally uses its own finite search budget.
+
+`replay_run(env, result)` resets the supplied environment using the recorded task ID and seed, compares every initial/post-action observation and result (including tool errors), and reconciles a successful trajectory and final submission. Infrastructure failures cannot generally replay and therefore cannot be admitted. `result_hash` hashes the fixed manifest and observable interaction without elapsed wall-clock noise.
+
+Run checks with `PYTHONPATH=src python -m unittest discover -s tests -p test_runner.py -v`.

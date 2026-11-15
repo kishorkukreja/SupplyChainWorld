@@ -1,0 +1,12 @@
+{
+  "label": "issue-11-smoke",
+  "captured_at": "2026-11-02T01:49:25.004504+00:00",
+  "command": [
+    "python3",
+    "scripts/run_smoke.py"
+  ],
+  "cwd": "/workspace/SupplyChainWorld",
+  "exit_code": 0,
+  "output_sha256": "98d5b72434190b0e75447b0969291e507a3c0b2418c710a6baa622478da51e9c",
+  "capture_kind": "Chromium screenshot of command evidence report"
+}

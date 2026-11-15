@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<title>SupplyChainWorld evidence — batch2-independent</title>
+<style>body{margin:40px;background:#f3f6fa;color:#102339;font:17px system-ui}h1{font-size:28px}pre{background:#102339;color:#edf4ff;padding:24px;white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.6 monospace}.meta{line-height:1.7}code{font-family:monospace}</style>
+<h1>SupplyChainWorld — batch2-independent</h1>
+<p>Actual command evidence report. This screenshot shows captured output, not a product interface.</p>
+<div class="meta">UTC: 2026-11-02T01:49:31.723218+00:00<br>
+Command: <code>python3 scripts/review_batch2.py</code><br>
+Exit code: <strong>0</strong><br>
+Output SHA-256: <code>f72ae3556d47f867b0aae7bcdb1a36b73a8fba331d63a230bc2325a87f8d7ed3</code></div>
+<pre>Independent integration review: boundary, split, checker and tamper regressions only.
+No generated world, private expected answer or trajectory contents are printed.
+test_admission_rejects_injected_answer_and_eval_has_no_record (test_batch2_integration.Batch2Integration.test_admission_rejects_injected_answer_and_eval_has_no_record) ... ok
+test_ancestor_cannot_cross_split_and_eval_cannot_export (test_batch2_integration.Batch2Integration.test_ancestor_cannot_cross_split_and_eval_cannot_export) ... ok
+test_registry_rejects_forged_split (test_batch2_integration.Batch2Integration.test_registry_rejects_forged_split) ... ok
+test_replay_rejects_changed_result (test_batch2_integration.Batch2Integration.test_replay_rejects_changed_result) ... ok
+test_replay_rejects_extra_observation (test_batch2_integration.Batch2Integration.test_replay_rejects_extra_observation) ... ok
+test_supplied_population_assignments_reject_shared_ancestor (test_batch2_integration.Batch2Integration.test_supplied_population_assignments_reject_shared_ancestor) ... ok
+test_visible_optimizer_replays_and_independent_checker_accepts (test_batch2_integration.Batch2Integration.test_visible_optimizer_replays_and_independent_checker_accepts) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.013s
+
+OK
+</pre></html>
