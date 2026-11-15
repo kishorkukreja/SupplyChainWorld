@@ -5,6 +5,12 @@ Status: **Proposal for review; no issue bodies, issue states, implementation bra
 
 Read the [vision](../../vision.md), [alignment audit](../audits/2026-11-15-alignment-audit.md) and [dynamic acceptance scenario](../acceptance/dynamic-supplier-delay-v0.1.md). The latest instruction authorizes preparing this review package, not implementing another milestone.
 
+## Scenario hierarchy and technical work
+
+The [scenario map](../acceptance/scenario-map.md) links end-to-end business scenarios to their subscenarios. S01 supplier delay is the first detailed proposal. The user additionally requested S02 direct-material buying, S03 S&OP plan-to-action and S04 production-plan-to-schedule-to-manufacture-to-plan-comparison coverage; those are outlines to refine. DYN01–DYN05 below enable S01 and are mapped to S01.1–S01.6 there. They do not claim to implement S02–S04.
+
+Preserve the broader scenario hierarchy when editing issues: technical completion alone cannot accept a parent scenario, and future upstream/downstream chains must share actual business state.
+
 ## 1. Decision sequence
 
 1. Review and revise the concrete acceptance scenario.

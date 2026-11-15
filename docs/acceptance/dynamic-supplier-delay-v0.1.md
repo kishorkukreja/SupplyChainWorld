@@ -5,6 +5,8 @@ Status: **Proposal for user review. Not an approved implementation specification
 
 This is the first proposed observable demonstration of the [vision](../../vision.md), following the [alignment audit](../audits/2026-11-15-alignment-audit.md). It is intentionally small. Passing it demonstrates one dynamic episode, not a realistic general supply-chain benchmark or a useful training corpus.
 
+For the shared-world hierarchy, linked subscenarios and future direct-material, S&OP and production-execution chains, see the [scenario map](scenario-map.md). This remains the first detailed proposal; adding future outlines does not expand this fixture's acceptance scope.
+
 ## 1. Behavior to demonstrate
 
 A manufacturer operates for five simulated days. A supplier delay threatens a customer delivery. The agent discovers the delay, chooses a recovery action, releases production over multiple days, observes actual receipts/completions, and sees the resulting service, inventory and costs.
