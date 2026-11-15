@@ -1,0 +1,18 @@
+test_completed_episode_cannot_be_advanced_or_acted_upon (test_dynamic.OperationalWorldTests.test_completed_episode_cannot_be_advanced_or_acted_upon) ... ok
+test_deterministic_reset_and_detached_observations (test_dynamic.OperationalWorldTests.test_deterministic_reset_and_detached_observations) ... ok
+test_invalid_commands_do_not_change_operational_state (test_dynamic.OperationalWorldTests.test_invalid_commands_do_not_change_operational_state) ... ok
+test_invalid_horizon_rejected (test_dynamic.OperationalWorldTests.test_invalid_horizon_rejected) ... ok
+test_late_recovery_and_early_scorecard_rejected (test_dynamic.OperationalWorldTests.test_late_recovery_and_early_scorecard_rejected) ... ok
+test_long_horizon_assesses_backlog_and_receives_once (test_dynamic.OperationalWorldTests.test_long_horizon_assesses_backlog_and_receives_once) ... ok
+test_three_policies_match_hand_worked_ledger (test_dynamic.OperationalWorldTests.test_three_policies_match_hand_worked_ledger) ... ok
+test_variable_horizons_advance_exactly_and_reset (test_dynamic.OperationalWorldTests.test_variable_horizons_advance_exactly_and_reset) ... ok
+test_no_disruption_normal_operations (test_scenario_fixtures.ScenarioFixtureTests.test_no_disruption_normal_operations) ... ok
+test_no_hidden_future_notice_or_policy_oracle (test_scenario_fixtures.ScenarioFixtureTests.test_no_hidden_future_notice_or_policy_oracle) ... ok
+test_policy_ledgers_and_actual_event_days (test_scenario_fixtures.ScenarioFixtureTests.test_policy_ledgers_and_actual_event_days) ... ok
+test_reproducible_full_trace (test_scenario_fixtures.ScenarioFixtureTests.test_reproducible_full_trace) ... ok
+test_versions_validation_and_initial_opening (test_scenario_fixtures.ScenarioFixtureTests.test_versions_validation_and_initial_opening) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.033s
+
+OK
