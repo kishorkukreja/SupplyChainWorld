@@ -19,6 +19,10 @@ For a source-only run with the pinned Pydantic dependency already installed, use
 
 See [execution evidence](evidence/README.md) for per-issue plans, raw results and real screenshots. CI configuration is included; its remote execution must be checked on the PR.
 
+## Static pipeline review
+
+PR #16 contains a static procurement generation, runner, replay and training-export prototype. Its 100-case smoke and 60 train-format exports are engineering evidence only. It does not execute a dynamic supply-chain timeline. [Review its historical evidence](evidence/batch2.md) alongside the [current scenario map](docs/acceptance/scenario-map.md) and the [alignment audit](docs/audits/2026-11-15-alignment-audit.md).
+
 ## Documents
 
 - [Implementation specification](spec.md): first executable supplier-allocation milestone and technical contracts.

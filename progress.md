@@ -1,5 +1,9 @@
 # Progress
 
+## PR #16 reconciliation — 2026-11-15
+
+PR #16 has been updated with the current main vision, alignment audit and scenario map. Its static pipeline and 100-case report remain historical engineering evidence; the PR remains open for review. Dynamic milestone work is tracked separately in issues #22–#26. No dynamic episode, practitioner signoff, paid model evaluation or fine-tuning gain is claimed by this PR.
+
 ## Authoritative status correction — 2026-11-15
 
 Current activity: requirements-alignment audit and vision publication only. Further implementation and collection are paused pending reconciliation.

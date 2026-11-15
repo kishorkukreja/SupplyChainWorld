@@ -1,0 +1,91 @@
+{
+  "actions": 634,
+  "admission_counts": {
+    "accepted": 100
+  },
+  "admission_rejections": {},
+  "checker_accepted": 100,
+  "critical_overlap_count": 0,
+  "expected_outcome_counts": {
+    "award": 34,
+    "clarification": 34,
+    "infeasible": 32
+  },
+  "experiment": "offline-smoke-v1",
+  "frozen_manifest_sha256": "67830aed77484c2f6c4c18f798ee53fa7479f1860a1b6e5680150f0050c15f42",
+  "generation_attempted": 100,
+  "generation_rejections": {},
+  "heuristic_status_counts": {
+    "clarification_required": 34,
+    "error": 33,
+    "feasible": 33
+  },
+  "instances": 100,
+  "interpretation": "Deterministic offline software integration and baselines; no model quality claim.",
+  "negative_probe_results": [
+    {
+      "accepted": false,
+      "reasons": [
+        "artifact_hashes"
+      ]
+    },
+    {
+      "accepted": false,
+      "reasons": [
+        "artifact_hashes"
+      ]
+    },
+    {
+      "accepted": false,
+      "reasons": [
+        "artifact_hashes"
+      ]
+    }
+  ],
+  "overlap_flags": {},
+  "overlap_reviewed": 0,
+  "reference_status_counts": {
+    "clarification_required": 34,
+    "infeasible": 32,
+    "optimal": 34
+  },
+  "replayed": 100,
+  "split_counts": {
+    "development": 20,
+    "evaluation": 20,
+    "train": 60
+  },
+  "termination_counts": {
+    "submitted": 100
+  },
+  "training_export": {
+    "accepted_count": 60,
+    "dataset_version": "smoke-v1",
+    "filtering_reasons": {
+      "protected_split": 40
+    },
+    "rejected_count": 40
+  },
+  "usage": {
+    "cost_usd": "0.00",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "provider_calls": 0
+  },
+  "variation_counts": {
+    "award": 34,
+    "budget": 12,
+    "capacity": 100,
+    "clarification": 34,
+    "concentration": 12,
+    "eligibility": 100,
+    "excess": 12,
+    "fixed_freight": 12,
+    "infeasible": 32,
+    "inventory": 13,
+    "moq": 13,
+    "multi_item": 100,
+    "timing": 13
+  }
+}
+

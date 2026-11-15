@@ -1,6 +1,6 @@
 # Issue 6 verification results
 
-Implemented `src/supplychainworld/environment.py` and `tests/test_environment.py` against the agreed issue 3 typed contracts. The issue 6 execution plan is [../issue-6-plan.md](../issue-6-plan.md).
+Implemented `src/supplychainworld/environment.py` and `tests/test_environment.py` against the agreed issue 3 typed contracts. The issue 6 execution plan is [issue-6-plan.md](issue-6-plan.md).
 
 Executed offline on 2026-11-02:
 
