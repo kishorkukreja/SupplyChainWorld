@@ -1,0 +1,112 @@
+{
+  "status": "passed",
+  "verification_kind": "document arithmetic and coverage checks; not a simulator run",
+  "policies": {
+    "maintain": {
+      "receipts": [
+        0,
+        0,
+        0,
+        8,
+        0
+      ],
+      "production": [
+        4,
+        0,
+        0,
+        4,
+        4
+      ],
+      "shipments": [
+        0,
+        0,
+        4,
+        4,
+        4
+      ],
+      "backlog": [
+        8,
+        4,
+        0
+      ],
+      "spend": 0,
+      "expected_end_c": 0,
+      "expected_cost": 120
+    },
+    "expedite": {
+      "receipts": [
+        0,
+        8,
+        0,
+        0,
+        0
+      ],
+      "production": [
+        4,
+        4,
+        4,
+        0,
+        0
+      ],
+      "shipments": [
+        0,
+        0,
+        12,
+        0,
+        0
+      ],
+      "backlog": [
+        0,
+        0,
+        0
+      ],
+      "spend": 24,
+      "expected_end_c": 0,
+      "expected_cost": 24
+    },
+    "alternate": {
+      "receipts": [
+        0,
+        8,
+        0,
+        8,
+        0
+      ],
+      "production": [
+        4,
+        4,
+        4,
+        0,
+        0
+      ],
+      "shipments": [
+        0,
+        0,
+        12,
+        0,
+        0
+      ],
+      "backlog": [
+        0,
+        0,
+        0
+      ],
+      "spend": 40,
+      "expected_end_c": 8,
+      "expected_cost": 40
+    }
+  },
+  "checked": [
+    "five-day component and finished-product balances",
+    "daily production capacity",
+    "shipping dates",
+    "day3/4/5 backlog",
+    "budget and incremental cost",
+    "18 existing issue dispositions",
+    "five proposed work packages",
+    "nine acceptance gates"
+  ],
+  "implementation_started": false,
+  "issues_modified": false,
+  "pr16_merged": false
+}

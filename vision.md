@@ -1,61 +1,75 @@
-# Vision
+# SupplyChainWorld vision
 
-Last updated: 2026-11-02  
-Status: Initial project vision; implementation choices remain proposals in the [PRD](PRD.md).
+Updated: 2026-11-15
+Status: User intent restated after an alignment audit. Detailed simulator design and acceptance scenario still require review.
 
-## Purpose
+## Purpose and the two products
 
-Develop models that can perform useful supply-chain work, and establish a reliable way to measure their competence as new models become available.
+Create realistic, verifiable supply-chain experiences that support:
+1. A high-quality training corpus for fine-tuning supply-chain models, potentially reaching approximately 500,000 useful examples if evidence justifies that scale.
+2. An independent supply-chain benchmark in which new models operate in configured environments and are graded on their behavior and business outcomes.
 
-The project should connect language understanding with evidence, business rules, operational tools, and measurable outcomes. A model should be able to interpret a request, find the relevant facts, calculate or plan, act within its authority, and explain its decision. When information is missing or a plan is infeasible, it should recognize that and respond appropriately.
+Initial business context confirmed by the user: discrete manufacturing and distribution. Broader coverage includes sourcing, procurement, planning, inventory, manufacturing, quality, sustainability, logistics, customer service, resilience, contracts and related functions.
 
-## Two complementary products
+The original request was research first: investigate WorkFactory and related task/environment/solver methods, establish what is valid and realistic, and then plan implementation. Later conversation explicitly confirmed world-building, situations and simulation as the intended mechanism. Do not rewrite the original request as a demand for a particular simulator architecture.
 
-### Supply-chain training corpus
+## Required approach
 
-Produce realistic, verified demonstrations for fine-tuning supply-chain models. Each example should represent meaningful work in a defined environment, with supporting evidence, observable actions, and a checked result.
+**World → executable environment → situation → actions and observations over time → simulated consequences → independent verification → training experience or benchmark result.**
 
-An eventual corpus of approximately 500,000 examples is a possibility, not a fixed commitment. Scale should follow demonstrated improvements on unseen tasks, diversity, quality, and sustainable production cost.
+- **World:** Coherent business entities and relationships: suppliers, materials/products, facilities, inventory, orders, commitments, resources and commercial rules. The initial world can be small.
+- **Environment:** Executable transition rules and tools. Actions can change business state; the environment determines valid actions, information visibility, timing and consequences.
+- **Situation:** A grounded problem introduced into that world, such as a supplier delay threatening a production or customer commitment.
+- **Simulation:** Time advances and scheduled events occur. Inventory, arrivals, material consumption, capacity, demand or commitments evolve under explicit assumptions.
+- **Agent experience:** The agent inspects permitted evidence, chooses actions, observes consequences and adjusts. It may clarify or escalate when warranted.
+- **Verification:** Independent checks establish conservation, feasibility, permissions, costs, service and other relevant outcomes throughout the episode.
+- **Dataset/benchmark:** Record the observable interaction with provenance. Admit verified demonstrations to training, and keep independent evaluation situations separate.
 
-### Supply-chain evaluation benchmark
+Analytical and static tasks may be useful supporting components. They do not, by themselves, demonstrate the dynamic world and situation lifecycle above.
 
-Provide a repeatable way to run new models in controlled environments and grade their work. Evaluate correct execution, business outcomes, constraints, evidence, uncertainty handling, reliability, and cost.
+## Training and evaluation
 
-Maintain independent evaluation content so that training gains can be distinguished from familiarity with the dataset. Publish or distribute benchmark assets only under an explicitly chosen release policy. Planning documents and the execution backlog live in the public SupplyChainWorld repository; sealed evaluation cases and answers must remain private.
+Training examples should be grounded in valid situations and verified outcomes, with source and generator provenance. Solvers, heuristics, teacher agents and practitioner review have complementary roles. A teacher must use only information available to the eventual model; hidden future events and grader answers must not leak into demonstrations.
 
-## Initial focus and broader ambition
+Benchmark tasks must run under declared environment versions, visibility boundaries, tool access and budgets. Report operational outcomes, constraint violations, uncertainty handling, reliability and cost. Distinguish model capability from the capabilities supplied by a solver or harness.
 
-The confirmed initial context is **discrete manufacturing and distribution**.
+A simulator that is internally consistent is not automatically representative of real supply-chain work. Record assumptions and actual practitioner-review status. A high synthetic acceptance rate is not evidence of generalization or learning value.
 
-The proposed pilot covers supplier award allocation, inventory replenishment, purchase-to-pay exceptions, and disruption replanning. These workflows expose dependencies among sourcing, inventory, production, logistics, contracts, quality, and customer commitments.
+## Required next demonstration
 
-The broader ambition includes sourcing, procurement, planning, inventory, manufacturing, quality, sustainability, logistics, customer service, resilience, contracts, and other supply-chain functions. Expansion should preserve operational depth rather than adding superficial topic coverage.
+Before further teacher-corpus collection or expanding the product scope, demonstrate one bounded dynamic situation end to end:
+- Inspect a small initial manufacturer/supplier/inventory/order world.
+- Introduce a disruption at a defined point in simulated time.
+- Allow an agent to take a valid operational action.
+- Advance time and apply delayed consequences.
+- Show changed inventory, commitments, production or service outcomes.
+- Compare with a declared baseline under the same exogenous conditions.
+- Independently verify and replay the complete episode.
+- Inspect the experience that would be eligible for training or evaluation.
 
-## Guiding principles
+The exact entities, horizon, actions, disruption and business metrics are not yet agreed. Any numerical example or scenario offered during planning is a proposal, not an approved requirement.
 
-1. **Ground work in evidence.** Use practitioner knowledge, documented rules, authentic source material where permitted, and clearly identified synthetic facts.
-2. **Make the world coherent.** Generate related documents and system records from consistent structured business state.
-3. **Verify independently.** Teacher completion and solver success are insufficient without checking the actual business requirements.
-4. **Preserve legitimate uncertainty.** Clarification, escalation, and justified infeasibility findings can be correct outcomes.
-5. **Evaluate consequences.** Check actions, state changes, and operational outcomes alongside written deliverables.
-6. **Protect measurement integrity.** Separate training and evaluation lineages, control run configurations, and disclose benchmark versions and limitations.
-7. **Scale with evidence.** Expand only when quality, transfer, coverage, and economics justify it.
+## Current reality
 
-## What success looks like
+The repository contains a static, single-period supplier-allocation prototype. Its tools retrieve evidence and record a recommendation or exception. They do not execute purchases or advance a supply-chain timeline.
 
-- Fine-tuning improves performance on independently constructed, unseen supply-chain work.
-- Experts recognize the scenarios and solutions as operationally plausible.
-- Graders reject convincing but incorrect answers and accept alternative valid solutions.
-- Model comparisons can be reproduced and explained through task-level evidence.
-- The corpus and benchmark reveal capability gaps across functions and operating conditions.
-- Generation and evaluation costs are measured and support a defensible scale decision.
+PR #15 is merged. PR #16 is open as of this update and contains additional generation/runner/export infrastructure. Its recorded offline smoke experiment reported 100 static episodes and 60 train-split exports from a scripted visible-input optimizer. These are engineering test demonstrations, not an accepted domain corpus, dynamic simulation evidence or measured fine-tuning gains.
 
-## Boundaries
+Useful code can be retained and adapted after review. Do not infer alignment from issue completion, passing tests, screenshots, a repository name or the presence of a field named simulated_time.
 
-The initial project concerns synthetic or controlled environments, not autonomous operation of live supply-chain systems. It does not assume a complete enterprise digital twin, universal industry coverage, or that one aggregate score can capture all dimensions of competence.
+## Alignment rules for future work
 
-## Supporting documents
+1. Read this file and the latest audit before proposing or starting work.
+2. Map each milestone and issue to a user requirement and an observable acceptance behavior.
+3. Identify the assumptions being introduced and the requirements being deferred. Do not silently replace operational simulation with a static exercise.
+4. Separate user-confirmed decisions, assistant proposals, implemented behavior, verified behavior, practitioner review and measured model improvement.
+5. Show evidence for the goal as well as evidence that the code satisfies its local specification.
+6. Treat changes to the core workflow or milestone sequence as explicit, reviewable scope decisions.
+7. Preserve historical work and findings; do not relabel static records as dynamic experiences.
+8. Follow the user's current instruction. At this stage the authorized work is the audit and vision publication; further implementation is paused pending reconciliation.
 
-- [Research summary](research/2026-11-02-research-summary.md): methodological basis and source links.
-- [PRD](PRD.md): proposed requirements, delivery phases, and acceptance gates.
-- [Progress](progress.md): completed work, current state, decisions, and next action.
+## Documents and authority
+
+[Alignment audit](docs/audits/2026-11-15-alignment-audit.md) records findings and proposed dispositions of existing issues. The existing [PRD](PRD.md), [specification](spec.md), [roadmap](roadmap.md) and GitHub issue sequence contain unreconciled historical assumptions. They are not authority to resume the old sequence automatically.
+
+If documents conflict, surface the conflict against the user's latest instruction. This vision records intent; it does not retroactively approve a new technical architecture or authorize bulk generation, paid calls, merging PR #16 or training.
