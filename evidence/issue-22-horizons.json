@@ -1,0 +1,53 @@
+{
+  "10": {
+    "scorecard": {
+      "delivered_on_time": 0,
+      "delivered_total": 0,
+      "ending_components": 12,
+      "incremental_spend": 0,
+      "service_penalties": 960,
+      "comparison_cost": 960
+    },
+    "closed_days": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "receipt_count": 1
+  },
+  "15": {
+    "scorecard": {
+      "delivered_on_time": 0,
+      "delivered_total": 0,
+      "ending_components": 12,
+      "incremental_spend": 0,
+      "service_penalties": 1560,
+      "comparison_cost": 1560
+    },
+    "closed_days": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "receipt_count": 1
+  }
+}

@@ -1,0 +1,405 @@
+{
+  "maintain": {
+    "scorecard": {
+      "delivered_on_time": 4,
+      "delivered_total": 12,
+      "ending_components": 0,
+      "incremental_spend": 0,
+      "service_penalties": 120,
+      "comparison_cost": 120
+    },
+    "day_closes": [
+      {
+        "day": 1,
+        "state": {
+          "day": 1,
+          "horizon_days": 5,
+          "phase": "action",
+          "component_on_hand": 0,
+          "finished_on_hand": 4,
+          "produced_total": 4,
+          "delivered_total": 0,
+          "primary_arrival_day": 4,
+          "primary_received": false,
+          "alternate_arrival_day": null,
+          "alternate_received": false,
+          "recovery": "maintain",
+          "incremental_spend": 0,
+          "penalties": 0,
+          "scheduled_production": null,
+          "notices": [
+            "Primary PO delayed from day 2 to day 4"
+          ]
+        }
+      },
+      {
+        "day": 2,
+        "state": {
+          "day": 2,
+          "horizon_days": 5,
+          "phase": "action",
+          "component_on_hand": 0,
+          "finished_on_hand": 4,
+          "produced_total": 4,
+          "delivered_total": 0,
+          "primary_arrival_day": 4,
+          "primary_received": false,
+          "alternate_arrival_day": null,
+          "alternate_received": false,
+          "recovery": "maintain",
+          "incremental_spend": 0,
+          "penalties": 0,
+          "scheduled_production": null,
+          "notices": [
+            "Primary PO delayed from day 2 to day 4"
+          ]
+        }
+      },
+      {
+        "day": 3,
+        "state": {
+          "day": 3,
+          "horizon_days": 5,
+          "phase": "action",
+          "component_on_hand": 0,
+          "finished_on_hand": 0,
+          "produced_total": 4,
+          "delivered_total": 4,
+          "primary_arrival_day": 4,
+          "primary_received": false,
+          "alternate_arrival_day": null,
+          "alternate_received": false,
+          "recovery": "maintain",
+          "incremental_spend": 0,
+          "penalties": 80,
+          "scheduled_production": null,
+          "notices": [
+            "Primary PO delayed from day 2 to day 4"
+          ]
+        }
+      },
+      {
+        "day": 4,
+        "state": {
+          "day": 4,
+          "horizon_days": 5,
+          "phase": "action",
+          "component_on_hand": 4,
+          "finished_on_hand": 0,
+          "produced_total": 8,
+          "delivered_total": 8,
+          "primary_arrival_day": 4,
+          "primary_received": true,
+          "alternate_arrival_day": null,
+          "alternate_received": false,
+          "recovery": "maintain",
+          "incremental_spend": 0,
+          "penalties": 120,
+          "scheduled_production": null,
+          "notices": [
+            "Primary PO delayed from day 2 to day 4"
+          ]
+        }
+      },
+      {
+        "day": 5,
+        "state": {
+          "day": 5,
+          "horizon_days": 5,
+          "phase": "action",
+          "component_on_hand": 0,
+          "finished_on_hand": 0,
+          "produced_total": 12,
+          "delivered_total": 12,
+          "primary_arrival_day": 4,
+          "primary_received": true,
+          "alternate_arrival_day": null,
+          "alternate_received": false,
+          "recovery": "maintain",
+          "incremental_spend": 0,
+          "penalties": 120,
+          "scheduled_production": null,
+          "notices": [
+            "Primary PO delayed from day 2 to day 4"
+          ]
+        }
+      }
+    ],
+    "receipts": [
+      {
+        "order": "primary",
+        "quantity": 8
+      }
+    ]
+  },
+  "expedite": {
+    "scorecard": {
+      "delivered_on_time": 12,
+      "delivered_total": 12,
+      "ending_components": 0,
+      "incremental_spend": 24,
+      "service_penalties": 0,
+      "comparison_cost": 24
+    },
+    "day_closes": [
+      {
+        "day": 1,
+        "state": {
+          "day": 1,
+          "horizon_days": 5,
+          "phase": "action",
+          "component_on_hand": 0,
+          "finished_on_hand": 4,
+          "produced_total": 4,
+          "delivered_total": 0,
+          "primary_arrival_day": 2,
+          "primary_received": false,
+          "alternate_arrival_day": null,
+          "alternate_received": false,
+          "recovery": "expedite",
+          "incremental_spend": 24,
+          "penalties": 0,
+          "scheduled_production": null,
+          "notices": [
+            "Primary PO delayed from day 2 to day 4"
+          ]
+        }
+      },
+      {
+        "day": 2,
+        "state": {
+          "day": 2,
+          "horizon_days": 5,
+          "phase": "action",
+          "component_on_hand": 4,
+          "finished_on_hand": 8,
+          "produced_total": 8,
+          "delivered_total": 0,
+          "primary_arrival_day": 2,
+          "primary_received": true,
+          "alternate_arrival_day": null,
+          "alternate_received": false,
+          "recovery": "expedite",
+          "incremental_spend": 24,
+          "penalties": 0,
+          "scheduled_production": null,
+          "notices": [
+            "Primary PO delayed from day 2 to day 4"
+          ]
+        }
+      },
+      {
+        "day": 3,
+        "state": {
+          "day": 3,
+          "horizon_days": 5,
+          "phase": "action",
+          "component_on_hand": 0,
+          "finished_on_hand": 0,
+          "produced_total": 12,
+          "delivered_total": 12,
+          "primary_arrival_day": 2,
+          "primary_received": true,
+          "alternate_arrival_day": null,
+          "alternate_received": false,
+          "recovery": "expedite",
+          "incremental_spend": 24,
+          "penalties": 0,
+          "scheduled_production": null,
+          "notices": [
+            "Primary PO delayed from day 2 to day 4"
+          ]
+        }
+      },
+      {
+        "day": 4,
+        "state": {
+          "day": 4,
+          "horizon_days": 5,
+          "phase": "action",
+          "component_on_hand": 0,
+          "finished_on_hand": 0,
+          "produced_total": 12,
+          "delivered_total": 12,
+          "primary_arrival_day": 2,
+          "primary_received": true,
+          "alternate_arrival_day": null,
+          "alternate_received": false,
+          "recovery": "expedite",
+          "incremental_spend": 24,
+          "penalties": 0,
+          "scheduled_production": null,
+          "notices": [
+            "Primary PO delayed from day 2 to day 4"
+          ]
+        }
+      },
+      {
+        "day": 5,
+        "state": {
+          "day": 5,
+          "horizon_days": 5,
+          "phase": "action",
+          "component_on_hand": 0,
+          "finished_on_hand": 0,
+          "produced_total": 12,
+          "delivered_total": 12,
+          "primary_arrival_day": 2,
+          "primary_received": true,
+          "alternate_arrival_day": null,
+          "alternate_received": false,
+          "recovery": "expedite",
+          "incremental_spend": 24,
+          "penalties": 0,
+          "scheduled_production": null,
+          "notices": [
+            "Primary PO delayed from day 2 to day 4"
+          ]
+        }
+      }
+    ],
+    "receipts": [
+      {
+        "order": "primary",
+        "quantity": 8
+      }
+    ]
+  },
+  "alternate": {
+    "scorecard": {
+      "delivered_on_time": 12,
+      "delivered_total": 12,
+      "ending_components": 8,
+      "incremental_spend": 40,
+      "service_penalties": 0,
+      "comparison_cost": 40
+    },
+    "day_closes": [
+      {
+        "day": 1,
+        "state": {
+          "day": 1,
+          "horizon_days": 5,
+          "phase": "action",
+          "component_on_hand": 0,
+          "finished_on_hand": 4,
+          "produced_total": 4,
+          "delivered_total": 0,
+          "primary_arrival_day": 4,
+          "primary_received": false,
+          "alternate_arrival_day": 2,
+          "alternate_received": false,
+          "recovery": "alternate",
+          "incremental_spend": 40,
+          "penalties": 0,
+          "scheduled_production": null,
+          "notices": [
+            "Primary PO delayed from day 2 to day 4"
+          ]
+        }
+      },
+      {
+        "day": 2,
+        "state": {
+          "day": 2,
+          "horizon_days": 5,
+          "phase": "action",
+          "component_on_hand": 4,
+          "finished_on_hand": 8,
+          "produced_total": 8,
+          "delivered_total": 0,
+          "primary_arrival_day": 4,
+          "primary_received": false,
+          "alternate_arrival_day": 2,
+          "alternate_received": true,
+          "recovery": "alternate",
+          "incremental_spend": 40,
+          "penalties": 0,
+          "scheduled_production": null,
+          "notices": [
+            "Primary PO delayed from day 2 to day 4"
+          ]
+        }
+      },
+      {
+        "day": 3,
+        "state": {
+          "day": 3,
+          "horizon_days": 5,
+          "phase": "action",
+          "component_on_hand": 0,
+          "finished_on_hand": 0,
+          "produced_total": 12,
+          "delivered_total": 12,
+          "primary_arrival_day": 4,
+          "primary_received": false,
+          "alternate_arrival_day": 2,
+          "alternate_received": true,
+          "recovery": "alternate",
+          "incremental_spend": 40,
+          "penalties": 0,
+          "scheduled_production": null,
+          "notices": [
+            "Primary PO delayed from day 2 to day 4"
+          ]
+        }
+      },
+      {
+        "day": 4,
+        "state": {
+          "day": 4,
+          "horizon_days": 5,
+          "phase": "action",
+          "component_on_hand": 8,
+          "finished_on_hand": 0,
+          "produced_total": 12,
+          "delivered_total": 12,
+          "primary_arrival_day": 4,
+          "primary_received": true,
+          "alternate_arrival_day": 2,
+          "alternate_received": true,
+          "recovery": "alternate",
+          "incremental_spend": 40,
+          "penalties": 0,
+          "scheduled_production": null,
+          "notices": [
+            "Primary PO delayed from day 2 to day 4"
+          ]
+        }
+      },
+      {
+        "day": 5,
+        "state": {
+          "day": 5,
+          "horizon_days": 5,
+          "phase": "action",
+          "component_on_hand": 8,
+          "finished_on_hand": 0,
+          "produced_total": 12,
+          "delivered_total": 12,
+          "primary_arrival_day": 4,
+          "primary_received": true,
+          "alternate_arrival_day": 2,
+          "alternate_received": true,
+          "recovery": "alternate",
+          "incremental_spend": 40,
+          "penalties": 0,
+          "scheduled_production": null,
+          "notices": [
+            "Primary PO delayed from day 2 to day 4"
+          ]
+        }
+      }
+    ],
+    "receipts": [
+      {
+        "order": "alternate",
+        "quantity": 8
+      },
+      {
+        "order": "primary",
+        "quantity": 8
+      }
+    ]
+  }
+}
