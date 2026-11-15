@@ -1,0 +1,7 @@
+command: PYTHONPATH=src python scripts/run_dynamic_demo.py --out evidence/issue-26
+s01-five-day maintain: attempts=11 transcript_reproduced=True state_sequence_identical=True scorecard_identical=True
+s01-five-day expedite: attempts=11 transcript_reproduced=True state_sequence_identical=True scorecard_identical=True
+s01-five-day alternate: attempts=11 transcript_reproduced=True state_sequence_identical=True scorecard_identical=True
+s01-fifteen-day-late-events maintain: attempts=31 transcript_reproduced=True state_sequence_identical=True scorecard_identical=True
+s01-fifteen-day-late-events expedite: attempts=31 transcript_reproduced=True state_sequence_identical=True scorecard_identical=True
+s01-fifteen-day-late-events alternate: attempts=31 transcript_reproduced=True state_sequence_identical=True scorecard_identical=True

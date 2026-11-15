@@ -23,6 +23,10 @@ See [execution evidence](evidence/README.md) for per-issue plans, raw results an
 
 PR #16 contains a static procurement generation, runner, replay and training-export prototype. Its 100-case smoke and 60 train-format exports are engineering evidence only. It does not execute a dynamic supply-chain timeline. [Review its historical evidence](evidence/batch2.md) alongside the [current scenario map](docs/acceptance/scenario-map.md) and the [alignment audit](docs/audits/2026-11-15-alignment-audit.md).
 
+## Dynamic S01 demonstration (issue #26)
+
+[Gate report](evidence/issue-26/gate-report.md), [timeline](evidence/issue-26/timeline.txt), [state ledger](evidence/issue-26/state-ledger.csv), [scorecard](evidence/issue-26/scorecard.md), [independent checks](evidence/issue-26/checks.json), [replay log](evidence/issue-26/replay.log) and [one observable experience record](evidence/issue-26/experience-record.md) exist for the supplier-delay scenario at 5 and 15 days. Regenerate with `PYTHONPATH=src python scripts/run_dynamic_demo.py --out evidence/issue-26`. Three scripted (non-LLM) baselines run through the tool runner, are checked by the independent verifier and replay identically. This is one synthetic scenario with unreviewed assumptions: no practitioner review, no model-ability, generalization or training-improvement claim. The earlier caveats above still apply.
+
 ## Documents
 
 - [Implementation specification](spec.md): first executable supplier-allocation milestone and technical contracts.

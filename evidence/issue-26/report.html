@@ -1,0 +1,93 @@
+<!doctype html><html><head><meta charset="utf-8"><title>S01 demo packet</title><style>body{font:14px/1.4 sans-serif;margin:24px;max-width:1500px}table{border-collapse:collapse;font-size:12px}td,th{border:1px solid #888;padding:3px 6px}pre{background:#f4f4f4;padding:10px;white-space:pre-wrap;font-size:12px}</style></head><body><h1>S01 supplier-delay demonstration packet</h1><p>Scripted baselines on synthetic fixtures. No LLM, no practitioner review.</p><h2>Scorecard</h2><table><tr><th>fixture</th><th>policy</th><th>delivered_on_time</th><th>delivered_total</th><th>ending_components</th><th>incremental_spend</th><th>service_penalties</th><th>comparison_cost</th><th>verifier_feasible</th><th>verifier_comparison_cost</th><th>replay_reproduced</th></tr><tr><td>s01-five-day</td><td>maintain</td><td>4</td><td>12</td><td>0</td><td>0</td><td>120</td><td>120</td><td>True</td><td>120</td><td>True</td></tr><tr><td>s01-five-day</td><td>expedite</td><td>12</td><td>12</td><td>0</td><td>24</td><td>0</td><td>24</td><td>True</td><td>24</td><td>True</td></tr><tr><td>s01-five-day</td><td>alternate</td><td>12</td><td>12</td><td>8</td><td>40</td><td>0</td><td>40</td><td>True</td><td>40</td><td>True</td></tr><tr><td>s01-fifteen-day-late-events</td><td>maintain</td><td>4</td><td>12</td><td>0</td><td>0</td><td>200</td><td>200</td><td>True</td><td>200</td><td>True</td></tr><tr><td>s01-fifteen-day-late-events</td><td>expedite</td><td>12</td><td>12</td><td>0</td><td>24</td><td>0</td><td>24</td><td>True</td><td>24</td><td>True</td></tr><tr><td>s01-fifteen-day-late-events</td><td>alternate</td><td>12</td><td>12</td><td>8</td><td>40</td><td>0</td><td>40</td><td>True</td><td>40</td><td>True</td></tr></table><h2>Gate report</h2><pre># Issue #26 end-to-end gate report (S01 supplier delay, DYN05)
+
+Regenerate: `PYTHONPATH=src python scripts/run_dynamic_demo.py --out evidence/issue-26`. Output is deterministic.
+
+## Gate table
+
+| Gate | Status | Evidence |
+|---|---|---|
+| G1 Coherent initial world | Evidence produced, unreviewed | Initial observation (state, rules, tools, schema/runtime version, scenario id) recorded per episode in transcripts.json; visibility boundary is enforced by the runner view and tested in test_agent_runner and test_dynamic_demo. |
+| G2 Actual time progression | Evidence produced, unreviewed | Every episode logs day_open then day_close for each day 1..horizon (5 and 15) and ends with episode_complete; see timeline.txt. |
+| G3 Executed disruption and recovery | Evidence produced, unreviewed | Notice appears on the configured day only; maintain receives the primary PO late, expedite moves the same PO earlier, alternate creates a separate receipt while the original PO still arrives late. |
+| G4 Consequential state changes | Evidence produced, unreviewed | Independent per-day ledger (received, produced, shipped, stock, delivered, penalty, spend) equals the hand-worked ledgers for all 6 episodes and passes conservation checks. |
+| G5 Baseline differences | Evidence produced, unreviewed | Same initial world and disruption per fixture. The 5-day scorecards equal the acceptance-document tables (cost 120/24/40, on time 4/12/12, ending components 0/0/8). The 15-day results equal separately hand-worked ledgers (200/24/40), which have no document table and no practitioner review. |
+| G6 Independent checking | Evidence produced, unreviewed | dynamic_verifier re-derives each episode from commands (never imports the simulator; AST test in test_dynamic_verifier). All 6 episodes feasible; 5 corruption cases per episode rejected or ignored as expected (forged scorecard, premature receipt, overproduction, deleted close, forged passed flags). |
+| G7 Failure behavior | Evidence produced (tools) plus unit-test evidence (verifier), unreviewed | Demonstrated through the tool interface: hidden-state probe, overcapacity release, duplicate recovery, duplicate release, late recovery, production without material; each rejection leaves state unchanged and stays auditable. Premature receipt, extra receipt, over-budget recovery and beyond-order production are proven at verifier level by unit tests (test_dynamic_verifier), not through the agent tools, because receipts are simulator-driven and the exclusive recovery choices cannot exceed the budget in this fixture. |
+| G8 Replay and data | Evidence produced, unreviewed | Each transcript replays from recorded calls on a fresh world with identical state sequence and scorecard. One observable experience record (15-day expedite) is published and passes the private-answer scan. |
+| G9 Honest demonstration | Partial: labels and limits stated; practitioner review pending | Labels and limitations are published in gate-report.md. Screenshots are attached only if actually captured. Practitioner review has not occurred, so this gate cannot be called passed. |
+
+&quot;Evidence produced&quot; means the automated checks in this packet came out as stated on synthetic fixtures. It does not mean practitioner-approved.
+
+## Implemented, tested, practitioner-reviewed
+
+- Implemented: deterministic S01 world (#22), three scripted baselines (#23), tool/runner layer with replayable transcripts (#24), independent verifier (#25), and this demonstration composer (`src/supplychainworld/dynamic_demo.py`, `scripts/run_dynamic_demo.py`) for a 5-day and a 15-day fixture.
+- Tested: unit tests for each component plus `tests/test_dynamic_demo.py` (packet gates, replay, no-leak scan, determinism). Raw output in `evidence/issue-26/tests.log`.
+- Practitioner-reviewed: nothing. Zero assumptions have been reviewed.
+
+## Unresolved / needs practitioner review
+
+- All fixture quantities, prices, the penalty schedule (assessed at closes on and after the due day), no holding cost, and exclusive recovery choice are unreviewed engineering assumptions. No practitioner has reviewed them.
+- The 15-day fixture (notice day 6, due day 10, delayed arrival day 12) has hand-worked ledgers but no practitioner-confirmed expected outcome and no table in the acceptance document.
+- Whether penalizing an undelivered unit at every close from the due day (rather than once, or per elapsed day) reflects real contracts is unresolved.
+- Whether the alternate supplier should deliver at once, and whether surplus components (8 left at day 5) carry cost, is unresolved.
+- Premature/extra receipt and over-budget recovery rejection is shown at verifier level, not through agent tools; no hostile-agent sandbox exists (the runner boundary is for well-behaved in-process policies).
+- Scripted policies read the same visible view an LLM would, but no LLM was run. The demonstration says nothing about model ability.
+
+## Not claimed
+
+- No model ability, generalization or training improvement. One synthetic scenario family with scripted policies.
+- No paid model call, bulk teacher data, fine-tuning or live ERP write.
+- Expedite being cheapest here is a property of this fixture, not an optimal-policy claim; the alternate policy is valid but costlier.
+
+Screenshot: real headless Chrome capture of the rendered packet at `evidence/screenshots/issue-26-demo-packet.png`.
+
+## Files
+
+- `timeline.txt`, `timeline.html`: chronological agent actions and world events per episode.
+- `state-ledger.csv`, `state-ledger.json`: before/after state per day per episode.
+- `scorecard.json`, `scorecard.md`: three-policy comparison for both horizons.
+- `checks.json`: independent verifier results, corruption cases and rejection probes.
+- `replay.json`, `replay.log`: replay command and results.
+- `experience-record.json`, `experience-record.md`: one observable record (15-day expedite) without private answers.
+- `transcripts.json`: full runner transcripts for all six episodes.
+</pre><h2>Timeline (5-day expedite excerpt)</h2><pre>S01 supplier-delay timeline (scripted baselines, synthetic fixtures, no LLM)
+
+=== s01-five-day / expedite (horizon 5 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 notice original_day=2, revised_day=4
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=expedite) -&gt; accepted
+      day 1 recovery choice=expedite
+#02 day 1 agent calls release_production(quantity=4) -&gt; accepted
+      day 1 release quantity=4
+#03 day 1 agent calls advance_day() -&gt; accepted
+      day 1 day_close produced=4, shipped=0
+      day 2 receipt order=primary, quantity=8
+      day 2 opening_before_notice
+      day 2 day_open
+#04 day 2 agent calls release_production(quantity=4) -&gt; accepted
+      day 2 release quantity=4
+#05 day 2 agent calls advance_day() -&gt; accepted
+      day 2 day_close produced=4, shipped=0
+      day 3 opening_before_notice
+      day 3 day_open
+#06 day 3 agent calls release_production(quantity=4) -&gt; accepted
+      day 3 release quantity=4
+#07 day 3 agent calls advance_day() -&gt; accepted
+      day 3 day_close produced=4, shipped=12
+      day 4 opening_before_notice
+      day 4 day_open
+#08 day 4 agent calls release_production(quantity=0) -&gt; accepted
+      day 4 release quantity=0
+#09 day 4 agent calls advance_day() -&gt; accepted
+      day 4 day_close produced=0, shipped=0
+      day 5 opening_before_notice
+      day 5 day_open
+#10 day 5 agent calls release_production(quantity=0) -&gt; accepted
+      day 5 release quantity=0
+#11 day 5 agent calls advance_day() -&gt; accepted
+      day 5 day_close produced=0, shipped=0
+      day 5 episode_complete comparison_cost=24
+final scorecard: {&quot;delivered_on_time&quot;: 12, &quot;delivered_total&quot;: 12, &quot;ending_components&quot;: 0, &quot;incremental_spend&quot;: 24, &quot;service_penalties&quot;: 0, &quot;comparison_cost&quot;: 24}
+</pre></body></html>
