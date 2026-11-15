@@ -1,5 +1,7 @@
 # Execution roadmap
 
+> **Alignment audit — 2026-11-15:** This document describes the historical static procurement scope and has not yet been reconciled with the user's dynamic world/situation intent. Read [vision.md](vision.md) and the [alignment audit](docs/audits/2026-11-15-alignment-audit.md) before using it to authorize further work. Implementation and collection are paused pending reconciliation.
+
 Last updated: 2026-11-02
 
 [Milestone epic #1](https://github.com/kishorkukreja/SupplyChainWorld/issues/1) tracks the first verified supplier-allocation environment. [spec.md](spec.md) is its implementation baseline; [PRD.md](PRD.md) retains the broader product scope.

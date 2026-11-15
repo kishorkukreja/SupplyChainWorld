@@ -1,5 +1,18 @@
 # Progress
 
+## Authoritative status correction — 2026-11-15
+
+Current activity: requirements-alignment audit and vision publication only. Further implementation and collection are paused pending reconciliation.
+
+- PR #15 is merged; issues #2–#6 closed for the scoped static prototype.
+- PR #16 remains open and unmerged; issues #7–#11 implemented there, not yet merged.
+- The historical report records 57 tests, 100 static scripted-agent episodes and 60 train-format exports. This audit did not rerun that private experiment or recover its original private files.
+- No evolving supply-chain time/event simulation, practitioner signoff, real-LLM evaluation or fine-tuning gain is established.
+- Issues #12–#14 and #17–#20 remain open. Their next-step sequence needs reconciliation with the dynamic demonstration gap; no issue bodies or states were changed by this audit.
+- Next action: review [the audit](docs/audits/2026-11-15-alignment-audit.md) and agree one observable dynamic acceptance scenario before changing the implementation plan.
+
+The sections below are preserved historical records. Their contradictory “not started”/“implemented” statements and old next actions are superseded by this status correction, not erased.
+
 Last updated: 2026-11-02  
 Current stage: Research and product definition.  
 Implementation status: First procurement prototype implemented locally and prepared for PR review; issues remain open pending acceptance.
