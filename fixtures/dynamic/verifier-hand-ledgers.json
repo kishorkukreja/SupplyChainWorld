@@ -1,0 +1,58 @@
+{
+  "basis": "Hand-worked per-day ledgers for issue #25, derived from the written rules in docs/acceptance/dynamic-supplier-delay-v0.1.md, never from simulator output. Arrays are indexed by day 1..N. Synthetic, unreviewed by practitioners.",
+  "s01-five-day": {
+    "maintain": {
+      "received": [0,0,0,8,0], "produced": [4,0,0,4,4], "shipped": [0,0,4,4,4],
+      "components_close": [0,0,0,4,0], "finished_close": [4,4,0,0,0],
+      "delivered_total": [0,0,4,8,12], "penalty_total": [0,0,80,120,120], "spend_total": [0,0,0,0,0],
+      "undelivered_assessed": [null,null,8,4,0], "comparison_cost": 120, "on_time": 4
+    },
+    "expedite": {
+      "received": [0,8,0,0,0], "produced": [4,4,4,0,0], "shipped": [0,0,12,0,0],
+      "components_close": [0,4,0,0,0], "finished_close": [4,8,0,0,0],
+      "delivered_total": [0,0,12,12,12], "penalty_total": [0,0,0,0,0], "spend_total": [24,24,24,24,24],
+      "undelivered_assessed": [null,null,0,0,0], "comparison_cost": 24, "on_time": 12
+    },
+    "alternate": {
+      "received": [0,8,0,8,0], "produced": [4,4,4,0,0], "shipped": [0,0,12,0,0],
+      "components_close": [0,4,0,8,8], "finished_close": [4,8,0,0,0],
+      "delivered_total": [0,0,12,12,12], "penalty_total": [0,0,0,0,0], "spend_total": [40,40,40,40,40],
+      "undelivered_assessed": [null,null,0,0,0], "comparison_cost": 40, "on_time": 12
+    }
+  },
+  "s01-fifteen-day-late-events": {
+    "maintain": {
+      "received": [0,0,0,0,0,0,0,0,0,0,0,8,0,0,0], "produced": [4,0,0,0,0,0,0,0,0,0,0,4,4,0,0],
+      "shipped": [0,0,0,0,0,0,0,0,0,4,0,4,4,0,0],
+      "components_close": [0,0,0,0,0,0,0,0,0,0,0,4,0,0,0],
+      "finished_close": [4,4,4,4,4,4,4,4,4,0,0,0,0,0,0],
+      "delivered_total": [0,0,0,0,0,0,0,0,0,4,4,8,12,12,12],
+      "penalty_total": [0,0,0,0,0,0,0,0,0,80,160,200,200,200,200],
+      "spend_total": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      "undelivered_assessed": [null,null,null,null,null,null,null,null,null,8,8,4,0,0,0],
+      "comparison_cost": 200, "on_time": 4
+    },
+    "expedite": {
+      "received": [0,0,0,0,0,0,0,8,0,0,0,0,0,0,0], "produced": [4,0,0,0,0,0,0,4,4,0,0,0,0,0,0],
+      "shipped": [0,0,0,0,0,0,0,0,0,12,0,0,0,0,0],
+      "components_close": [0,0,0,0,0,0,0,4,0,0,0,0,0,0,0],
+      "finished_close": [4,4,4,4,4,4,4,8,12,0,0,0,0,0,0],
+      "delivered_total": [0,0,0,0,0,0,0,0,0,12,12,12,12,12,12],
+      "penalty_total": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      "spend_total": [0,0,0,0,0,24,24,24,24,24,24,24,24,24,24],
+      "undelivered_assessed": [null,null,null,null,null,null,null,null,null,0,0,0,0,0,0],
+      "comparison_cost": 24, "on_time": 12
+    },
+    "alternate": {
+      "received": [0,0,0,0,0,0,0,8,0,0,0,8,0,0,0], "produced": [4,0,0,0,0,0,0,4,4,0,0,0,0,0,0],
+      "shipped": [0,0,0,0,0,0,0,0,0,12,0,0,0,0,0],
+      "components_close": [0,0,0,0,0,0,0,4,0,0,0,8,8,8,8],
+      "finished_close": [4,4,4,4,4,4,4,8,12,0,0,0,0,0,0],
+      "delivered_total": [0,0,0,0,0,0,0,0,0,12,12,12,12,12,12],
+      "penalty_total": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      "spend_total": [0,0,0,0,0,40,40,40,40,40,40,40,40,40,40],
+      "undelivered_assessed": [null,null,null,null,null,null,null,null,null,0,0,0,0,0,0],
+      "comparison_cost": 40, "on_time": 12
+    }
+  }
+}
