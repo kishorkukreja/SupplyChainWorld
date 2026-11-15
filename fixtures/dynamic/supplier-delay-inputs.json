@@ -1,0 +1,14 @@
+{
+  "fixtures": [
+    {
+      "fixture_id": "s01-five-day",
+      "horizon_days": 5,
+      "scenario": {"scenario_id": "fixture-five", "schema_version": "1.0", "runtime_version": "1.0", "opening_components": 4, "order_quantity": 12, "daily_capacity": 4, "order_due_day": 3, "primary_quantity": 8, "initially_promised_day": 2, "delay_notice_day": 1, "delayed_arrival_day": 4, "recovery_deadline_day": 1, "expedited_arrival_day": 2, "alternate_arrival_day": 2, "alternate_quantity": 8, "expedite_cost": 24, "alternate_cost": 40, "recovery_budget": 40, "daily_backlog_penalty": 10}
+    },
+    {
+      "fixture_id": "s01-fifteen-day-late-events",
+      "horizon_days": 15,
+      "scenario": {"scenario_id": "fixture-fifteen", "schema_version": "1.0", "runtime_version": "1.0", "opening_components": 4, "order_quantity": 12, "daily_capacity": 4, "order_due_day": 10, "primary_quantity": 8, "initially_promised_day": 8, "delay_notice_day": 6, "delayed_arrival_day": 12, "recovery_deadline_day": 6, "expedited_arrival_day": 8, "alternate_arrival_day": 8, "alternate_quantity": 8, "expedite_cost": 24, "alternate_cost": 40, "recovery_budget": 40, "daily_backlog_penalty": 10}
+    }
+  ]
+}

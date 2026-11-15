@@ -7,6 +7,8 @@ This is the first proposed observable demonstration of the [vision](../../vision
 
 For the shared-world hierarchy, linked subscenarios and future direct-material, S&OP and production-execution chains, see the [scenario map](scenario-map.md). This remains the first detailed proposal; adding future outlines does not expand this fixture's acceptance scope.
 
+**Horizon clarification:** The five days below define this one illustrative fixture, not a product limit. The world must support scenario-defined horizons such as 10 or 15 days, with events, decisions, costs and evaluation evaluated across the specified horizon. Longer examples need their own explicit expected outcomes; do not assume every scenario uses this fixture's event dates.
+
 ## 1. Behavior to demonstrate
 
 A manufacturer operates for five simulated days. A supplier delay threatens a customer delivery. The agent discovers the delay, chooses a recovery action, releases production over multiple days, observes actual receipts/completions, and sees the resulting service, inventory and costs.

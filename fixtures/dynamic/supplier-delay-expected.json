@@ -1,0 +1,21 @@
+{
+  "basis": "Hand-calculated from the event order in docs/acceptance/dynamic-supplier-delay-v0.1.md. Penalty is assessed at each close on and after the due day. This is a test oracle, never an agent observation.",
+  "fixtures": {
+    "s01-five-day": {
+      "event_days": {"notice": 1, "maintain_primary_receipt": 4, "expedite_primary_receipt": 2, "alternate_receipt": 2, "alternate_primary_receipt": 4, "due": 3},
+      "policies": {
+        "maintain": {"production": [4,0,0,4,4], "shipments": [0,0,4,4,4], "components": [0,0,0,4,0], "backlog_on_assessment": [8,4,0], "on_time": 4, "delivered": 12, "spend": 0, "penalties": 120, "cost": 120},
+        "expedite": {"production": [4,4,4,0,0], "shipments": [0,0,12,0,0], "components": [0,4,0,0,0], "backlog_on_assessment": [0,0,0], "on_time": 12, "delivered": 12, "spend": 24, "penalties": 0, "cost": 24},
+        "alternate": {"production": [4,4,4,0,0], "shipments": [0,0,12,0,0], "components": [0,4,0,8,8], "backlog_on_assessment": [0,0,0], "on_time": 12, "delivered": 12, "spend": 40, "penalties": 0, "cost": 40}
+      }
+    },
+    "s01-fifteen-day-late-events": {
+      "event_days": {"notice": 6, "maintain_primary_receipt": 12, "expedite_primary_receipt": 8, "alternate_receipt": 8, "alternate_primary_receipt": 12, "due": 10},
+      "policies": {
+        "maintain": {"production": [4,0,0,0,0,0,0,0,0,0,0,4,4,0,0], "shipments": [0,0,0,0,0,0,0,0,0,4,0,4,4,0,0], "components": [0,0,0,0,0,0,0,0,0,0,0,4,0,0,0], "backlog_on_assessment": [8,8,4,0,0,0], "on_time": 4, "delivered": 12, "spend": 0, "penalties": 200, "cost": 200},
+        "expedite": {"production": [4,0,0,0,0,0,0,4,4,0,0,0,0,0,0], "shipments": [0,0,0,0,0,0,0,0,0,12,0,0,0,0,0], "components": [0,0,0,0,0,0,0,4,0,0,0,0,0,0,0], "backlog_on_assessment": [0,0,0,0,0,0], "on_time": 12, "delivered": 12, "spend": 24, "penalties": 0, "cost": 24},
+        "alternate": {"production": [4,0,0,0,0,0,0,4,4,0,0,0,0,0,0], "shipments": [0,0,0,0,0,0,0,0,0,12,0,0,0,0,0], "components": [0,0,0,0,0,0,0,4,0,0,0,8,8,8,8], "backlog_on_assessment": [0,0,0,0,0,0], "on_time": 12, "delivered": 12, "spend": 40, "penalties": 0, "cost": 40}
+      }
+    }
+  }
+}
