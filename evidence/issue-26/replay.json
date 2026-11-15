@@ -1,0 +1,58 @@
+{
+ "command": "PYTHONPATH=src python scripts/run_dynamic_demo.py --out evidence/issue-26",
+ "method": "Recorded tool calls re-driven through a fresh ObservableRunner and world; views, outcomes, state changes, final state and scorecard must match exactly. The replayed world history is also compared and re-verified.",
+ "episodes": {
+  "s01-five-day": {
+   "maintain": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 11
+   },
+   "expedite": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 11
+   },
+   "alternate": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 11
+   }
+  },
+  "s01-fifteen-day-late-events": {
+   "maintain": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 31
+   },
+   "expedite": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 31
+   },
+   "alternate": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 31
+   }
+  }
+ }
+}

@@ -1,5 +1,9 @@
 # Progress
 
+## S01 dynamic demonstration evidence (issue #26) - 2026-11-15
+
+A deterministic demonstration packet now exists under `evidence/issue-26/`: three scripted baselines on the 5-day and 15-day fixtures, run through the observable tool runner, independently verified and replayed from transcripts, with timeline, state ledger, scorecard, checks, one observable experience record and a G1-G9 gate report. Automated checks support G1-G8 on synthetic fixtures; G9 is partial because no practitioner has reviewed any assumption. This is not a model-ability, generalization or training-improvement claim, and the caveats below remain in force.
+
 ## PR #16 reconciliation — 2026-11-15
 
 PR #16 has been updated with the current main vision, alignment audit and scenario map. Its static pipeline and 100-case report remain historical engineering evidence; the PR remains open for review. Dynamic milestone work is tracked separately in issues #22–#26. No dynamic episode, practitioner signoff, paid model evaluation or fine-tuning gain is claimed by this PR.

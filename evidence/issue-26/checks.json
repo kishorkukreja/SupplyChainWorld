@@ -1,0 +1,760 @@
+{
+ "note": "Verifier results re-derived from recorded commands; self-reported pass flags are ignored.",
+ "episodes": {
+  "s01-five-day": {
+   "maintain": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "metrics": {
+     "days_closed": 5,
+     "horizon_days": 5,
+     "notice_day": 1,
+     "primary_receipt_day": 4,
+     "alternate_receipt_day": null,
+     "delivered_on_time": 4,
+     "due_day_observed": true,
+     "delivered_total": 12,
+     "undelivered_at_end": 0,
+     "ending_components": 0,
+     "penalty_assessments": [
+      8,
+      4,
+      0
+     ]
+    },
+    "outcome": {
+     "incremental_spend": 0,
+     "service_penalties": 120,
+     "comparison_cost": 120,
+     "recovery": "maintain",
+     "note": "Quality is reported separately; a feasible episode may still be costly."
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_code": "scorecard_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_code": "receipt_timing_or_quantity",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "overproduction claimed",
+      "feasible": false,
+      "codes": [
+       "finished_goods_conservation",
+       "ledger_mismatch"
+      ],
+      "expected_code": "ledger_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "insufficient_material",
+       "ledger_mismatch",
+       "receipt_timing_or_quantity",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_code": "ledger_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "expedite": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "metrics": {
+     "days_closed": 5,
+     "horizon_days": 5,
+     "notice_day": 1,
+     "primary_receipt_day": 2,
+     "alternate_receipt_day": null,
+     "delivered_on_time": 12,
+     "due_day_observed": true,
+     "delivered_total": 12,
+     "undelivered_at_end": 0,
+     "ending_components": 0,
+     "penalty_assessments": [
+      0,
+      0,
+      0
+     ]
+    },
+    "outcome": {
+     "incremental_spend": 24,
+     "service_penalties": 0,
+     "comparison_cost": 24,
+     "recovery": "expedite",
+     "note": "Quality is reported separately; a feasible episode may still be costly."
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_code": "scorecard_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_code": "receipt_timing_or_quantity",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "overproduction claimed",
+      "feasible": false,
+      "codes": [
+       "finished_goods_conservation",
+       "ledger_mismatch"
+      ],
+      "expected_code": "ledger_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_code": "ledger_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "alternate": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "metrics": {
+     "days_closed": 5,
+     "horizon_days": 5,
+     "notice_day": 1,
+     "primary_receipt_day": 4,
+     "alternate_receipt_day": 2,
+     "delivered_on_time": 12,
+     "due_day_observed": true,
+     "delivered_total": 12,
+     "undelivered_at_end": 0,
+     "ending_components": 8,
+     "penalty_assessments": [
+      0,
+      0,
+      0
+     ]
+    },
+    "outcome": {
+     "incremental_spend": 40,
+     "service_penalties": 0,
+     "comparison_cost": 40,
+     "recovery": "alternate",
+     "note": "Quality is reported separately; a feasible episode may still be costly."
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_code": "scorecard_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_code": "receipt_timing_or_quantity",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "overproduction claimed",
+      "feasible": false,
+      "codes": [
+       "finished_goods_conservation",
+       "ledger_mismatch"
+      ],
+      "expected_code": "ledger_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "receipt_timing_or_quantity",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_code": "ledger_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   }
+  },
+  "s01-fifteen-day-late-events": {
+   "maintain": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "metrics": {
+     "days_closed": 15,
+     "horizon_days": 15,
+     "notice_day": 6,
+     "primary_receipt_day": 12,
+     "alternate_receipt_day": null,
+     "delivered_on_time": 4,
+     "due_day_observed": true,
+     "delivered_total": 12,
+     "undelivered_at_end": 0,
+     "ending_components": 0,
+     "penalty_assessments": [
+      8,
+      8,
+      4,
+      0,
+      0,
+      0
+     ]
+    },
+    "outcome": {
+     "incremental_spend": 0,
+     "service_penalties": 200,
+     "comparison_cost": 200,
+     "recovery": "maintain",
+     "note": "Quality is reported separately; a feasible episode may still be costly."
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_code": "scorecard_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_code": "receipt_timing_or_quantity",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "overproduction claimed",
+      "feasible": false,
+      "codes": [
+       "finished_goods_conservation",
+       "ledger_mismatch"
+      ],
+      "expected_code": "ledger_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "insufficient_material",
+       "ledger_mismatch",
+       "premature_recovery",
+       "receipt_timing_or_quantity",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_code": "ledger_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "expedite": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "metrics": {
+     "days_closed": 15,
+     "horizon_days": 15,
+     "notice_day": 6,
+     "primary_receipt_day": 8,
+     "alternate_receipt_day": null,
+     "delivered_on_time": 12,
+     "due_day_observed": true,
+     "delivered_total": 12,
+     "undelivered_at_end": 0,
+     "ending_components": 0,
+     "penalty_assessments": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "outcome": {
+     "incremental_spend": 24,
+     "service_penalties": 0,
+     "comparison_cost": 24,
+     "recovery": "expedite",
+     "note": "Quality is reported separately; a feasible episode may still be costly."
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_code": "scorecard_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_code": "receipt_timing_or_quantity",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "overproduction claimed",
+      "feasible": false,
+      "codes": [
+       "finished_goods_conservation",
+       "ledger_mismatch"
+      ],
+      "expected_code": "ledger_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "insufficient_material",
+       "ledger_mismatch",
+       "premature_recovery",
+       "receipt_timing_or_quantity",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_code": "ledger_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "alternate": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "metrics": {
+     "days_closed": 15,
+     "horizon_days": 15,
+     "notice_day": 6,
+     "primary_receipt_day": 12,
+     "alternate_receipt_day": 8,
+     "delivered_on_time": 12,
+     "due_day_observed": true,
+     "delivered_total": 12,
+     "undelivered_at_end": 0,
+     "ending_components": 8,
+     "penalty_assessments": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "outcome": {
+     "incremental_spend": 40,
+     "service_penalties": 0,
+     "comparison_cost": 40,
+     "recovery": "alternate",
+     "note": "Quality is reported separately; a feasible episode may still be costly."
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_code": "scorecard_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_code": "receipt_timing_or_quantity",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "overproduction claimed",
+      "feasible": false,
+      "codes": [
+       "finished_goods_conservation",
+       "ledger_mismatch"
+      ],
+      "expected_code": "ledger_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "insufficient_material",
+       "ledger_mismatch",
+       "premature_recovery",
+       "receipt_timing_or_quantity",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_code": "ledger_mismatch",
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   }
+  }
+ },
+ "rejection_probes": [
+  {
+   "run": "expedite path: hidden-state probe, overcapacity, duplicate commitments",
+   "attempts": [
+    {
+     "seq": 1,
+     "day": 1,
+     "tool": "read_scenario",
+     "arguments": {},
+     "accepted": false,
+     "category": "hidden_state",
+     "reason": "tool would expose hidden scenario or future state",
+     "state_changes": {}
+    },
+    {
+     "seq": 2,
+     "day": 1,
+     "tool": "release_production",
+     "arguments": {
+      "quantity": 9
+     },
+     "accepted": false,
+     "category": "invalid_action",
+     "reason": "capacity or available material exceeded",
+     "state_changes": {}
+    },
+    {
+     "seq": 3,
+     "day": 1,
+     "tool": "commit_recovery",
+     "arguments": {
+      "choice": "expedite"
+     },
+     "accepted": true,
+     "category": null,
+     "reason": null,
+     "state_changes": {
+      "primary_arrival_day": [
+       4,
+       2
+      ],
+      "recovery": [
+       null,
+       "expedite"
+      ],
+      "incremental_spend": [
+       0,
+       24
+      ]
+     }
+    },
+    {
+     "seq": 4,
+     "day": 1,
+     "tool": "commit_recovery",
+     "arguments": {
+      "choice": "alternate"
+     },
+     "accepted": false,
+     "category": "repeated_commitment",
+     "reason": "recovery already committed",
+     "state_changes": {}
+    },
+    {
+     "seq": 5,
+     "day": 1,
+     "tool": "release_production",
+     "arguments": {
+      "quantity": 4
+     },
+     "accepted": true,
+     "category": null,
+     "reason": null,
+     "state_changes": {
+      "scheduled_production": [
+       null,
+       4
+      ]
+     }
+    },
+    {
+     "seq": 6,
+     "day": 1,
+     "tool": "release_production",
+     "arguments": {
+      "quantity": 4
+     },
+     "accepted": false,
+     "category": "repeated_commitment",
+     "reason": "daily production already released",
+     "state_changes": {}
+    },
+    {
+     "seq": 7,
+     "day": 1,
+     "tool": "advance_day",
+     "arguments": {},
+     "accepted": true,
+     "category": null,
+     "reason": null,
+     "state_changes": {
+      "day": [
+       1,
+       2
+      ],
+      "component_on_hand": [
+       4,
+       8
+      ],
+      "finished_on_hand": [
+       0,
+       4
+      ],
+      "produced_total": [
+       0,
+       4
+      ],
+      "primary_received": [
+       false,
+       true
+      ],
+      "scheduled_production": [
+       4,
+       null
+      ]
+     }
+    }
+   ],
+   "rejected_count": 4,
+   "rejections_left_state_unchanged": true,
+   "rejections_audited": true,
+   "verifier_feasible": true,
+   "verifier_codes": []
+  },
+  {
+   "run": "maintain path: late recovery and production without material",
+   "attempts": [
+    {
+     "seq": 1,
+     "day": 1,
+     "tool": "release_production",
+     "arguments": {
+      "quantity": 4
+     },
+     "accepted": true,
+     "category": null,
+     "reason": null,
+     "state_changes": {
+      "scheduled_production": [
+       null,
+       4
+      ]
+     }
+    },
+    {
+     "seq": 2,
+     "day": 1,
+     "tool": "advance_day",
+     "arguments": {},
+     "accepted": true,
+     "category": null,
+     "reason": null,
+     "state_changes": {
+      "day": [
+       1,
+       2
+      ],
+      "component_on_hand": [
+       4,
+       0
+      ],
+      "finished_on_hand": [
+       0,
+       4
+      ],
+      "produced_total": [
+       0,
+       4
+      ],
+      "scheduled_production": [
+       4,
+       null
+      ]
+     }
+    },
+    {
+     "seq": 3,
+     "day": 2,
+     "tool": "commit_recovery",
+     "arguments": {
+      "choice": "expedite"
+     },
+     "accepted": false,
+     "category": "deadline",
+     "reason": "recovery unavailable or deadline has passed",
+     "state_changes": {}
+    },
+    {
+     "seq": 4,
+     "day": 2,
+     "tool": "release_production",
+     "arguments": {
+      "quantity": 4
+     },
+     "accepted": false,
+     "category": "invalid_action",
+     "reason": "capacity or available material exceeded",
+     "state_changes": {}
+    },
+    {
+     "seq": 5,
+     "day": 2,
+     "tool": "advance_day",
+     "arguments": {},
+     "accepted": true,
+     "category": null,
+     "reason": null,
+     "state_changes": {
+      "day": [
+       2,
+       3
+      ]
+     }
+    }
+   ],
+   "rejected_count": 2,
+   "rejections_left_state_unchanged": true,
+   "rejections_audited": true,
+   "verifier_feasible": true,
+   "verifier_codes": []
+  }
+ ]
+}

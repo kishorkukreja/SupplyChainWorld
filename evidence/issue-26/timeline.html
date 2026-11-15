@@ -1,0 +1,418 @@
+<!doctype html><meta charset="utf-8"><title>S01 timeline</title><pre style="font:12px monospace">S01 supplier-delay timeline (scripted baselines, synthetic fixtures, no LLM)
+
+=== s01-five-day / maintain (horizon 5 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 notice original_day=2, revised_day=4
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=maintain) -&gt; accepted
+      day 1 recovery choice=maintain
+#02 day 1 agent calls release_production(quantity=4) -&gt; accepted
+      day 1 release quantity=4
+#03 day 1 agent calls advance_day() -&gt; accepted
+      day 1 day_close produced=4, shipped=0
+      day 2 opening_before_notice
+      day 2 day_open
+#04 day 2 agent calls release_production(quantity=0) -&gt; accepted
+      day 2 release quantity=0
+#05 day 2 agent calls advance_day() -&gt; accepted
+      day 2 day_close produced=0, shipped=0
+      day 3 opening_before_notice
+      day 3 day_open
+#06 day 3 agent calls release_production(quantity=0) -&gt; accepted
+      day 3 release quantity=0
+#07 day 3 agent calls advance_day() -&gt; accepted
+      day 3 day_close produced=0, shipped=4
+      day 4 receipt order=primary, quantity=8
+      day 4 opening_before_notice
+      day 4 day_open
+#08 day 4 agent calls release_production(quantity=4) -&gt; accepted
+      day 4 release quantity=4
+#09 day 4 agent calls advance_day() -&gt; accepted
+      day 4 day_close produced=4, shipped=4
+      day 5 opening_before_notice
+      day 5 day_open
+#10 day 5 agent calls release_production(quantity=4) -&gt; accepted
+      day 5 release quantity=4
+#11 day 5 agent calls advance_day() -&gt; accepted
+      day 5 day_close produced=4, shipped=4
+      day 5 episode_complete comparison_cost=120
+final scorecard: {&quot;delivered_on_time&quot;: 4, &quot;delivered_total&quot;: 12, &quot;ending_components&quot;: 0, &quot;incremental_spend&quot;: 0, &quot;service_penalties&quot;: 120, &quot;comparison_cost&quot;: 120}
+
+=== s01-five-day / expedite (horizon 5 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 notice original_day=2, revised_day=4
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=expedite) -&gt; accepted
+      day 1 recovery choice=expedite
+#02 day 1 agent calls release_production(quantity=4) -&gt; accepted
+      day 1 release quantity=4
+#03 day 1 agent calls advance_day() -&gt; accepted
+      day 1 day_close produced=4, shipped=0
+      day 2 receipt order=primary, quantity=8
+      day 2 opening_before_notice
+      day 2 day_open
+#04 day 2 agent calls release_production(quantity=4) -&gt; accepted
+      day 2 release quantity=4
+#05 day 2 agent calls advance_day() -&gt; accepted
+      day 2 day_close produced=4, shipped=0
+      day 3 opening_before_notice
+      day 3 day_open
+#06 day 3 agent calls release_production(quantity=4) -&gt; accepted
+      day 3 release quantity=4
+#07 day 3 agent calls advance_day() -&gt; accepted
+      day 3 day_close produced=4, shipped=12
+      day 4 opening_before_notice
+      day 4 day_open
+#08 day 4 agent calls release_production(quantity=0) -&gt; accepted
+      day 4 release quantity=0
+#09 day 4 agent calls advance_day() -&gt; accepted
+      day 4 day_close produced=0, shipped=0
+      day 5 opening_before_notice
+      day 5 day_open
+#10 day 5 agent calls release_production(quantity=0) -&gt; accepted
+      day 5 release quantity=0
+#11 day 5 agent calls advance_day() -&gt; accepted
+      day 5 day_close produced=0, shipped=0
+      day 5 episode_complete comparison_cost=24
+final scorecard: {&quot;delivered_on_time&quot;: 12, &quot;delivered_total&quot;: 12, &quot;ending_components&quot;: 0, &quot;incremental_spend&quot;: 24, &quot;service_penalties&quot;: 0, &quot;comparison_cost&quot;: 24}
+
+=== s01-five-day / alternate (horizon 5 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 notice original_day=2, revised_day=4
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=alternate) -&gt; accepted
+      day 1 recovery choice=alternate
+#02 day 1 agent calls release_production(quantity=4) -&gt; accepted
+      day 1 release quantity=4
+#03 day 1 agent calls advance_day() -&gt; accepted
+      day 1 day_close produced=4, shipped=0
+      day 2 receipt order=alternate, quantity=8
+      day 2 opening_before_notice
+      day 2 day_open
+#04 day 2 agent calls release_production(quantity=4) -&gt; accepted
+      day 2 release quantity=4
+#05 day 2 agent calls advance_day() -&gt; accepted
+      day 2 day_close produced=4, shipped=0
+      day 3 opening_before_notice
+      day 3 day_open
+#06 day 3 agent calls release_production(quantity=4) -&gt; accepted
+      day 3 release quantity=4
+#07 day 3 agent calls advance_day() -&gt; accepted
+      day 3 day_close produced=4, shipped=12
+      day 4 receipt order=primary, quantity=8
+      day 4 opening_before_notice
+      day 4 day_open
+#08 day 4 agent calls release_production(quantity=0) -&gt; accepted
+      day 4 release quantity=0
+#09 day 4 agent calls advance_day() -&gt; accepted
+      day 4 day_close produced=0, shipped=0
+      day 5 opening_before_notice
+      day 5 day_open
+#10 day 5 agent calls release_production(quantity=0) -&gt; accepted
+      day 5 release quantity=0
+#11 day 5 agent calls advance_day() -&gt; accepted
+      day 5 day_close produced=0, shipped=0
+      day 5 episode_complete comparison_cost=40
+final scorecard: {&quot;delivered_on_time&quot;: 12, &quot;delivered_total&quot;: 12, &quot;ending_components&quot;: 8, &quot;incremental_spend&quot;: 40, &quot;service_penalties&quot;: 0, &quot;comparison_cost&quot;: 40}
+
+=== s01-fifteen-day-late-events / maintain (horizon 15 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 day_open
+#01 day 1 agent calls release_production(quantity=4) -&gt; accepted
+      day 1 release quantity=4
+#02 day 1 agent calls advance_day() -&gt; accepted
+      day 1 day_close produced=4, shipped=0
+      day 2 opening_before_notice
+      day 2 day_open
+#03 day 2 agent calls release_production(quantity=0) -&gt; accepted
+      day 2 release quantity=0
+#04 day 2 agent calls advance_day() -&gt; accepted
+      day 2 day_close produced=0, shipped=0
+      day 3 opening_before_notice
+      day 3 day_open
+#05 day 3 agent calls release_production(quantity=0) -&gt; accepted
+      day 3 release quantity=0
+#06 day 3 agent calls advance_day() -&gt; accepted
+      day 3 day_close produced=0, shipped=0
+      day 4 opening_before_notice
+      day 4 day_open
+#07 day 4 agent calls release_production(quantity=0) -&gt; accepted
+      day 4 release quantity=0
+#08 day 4 agent calls advance_day() -&gt; accepted
+      day 4 day_close produced=0, shipped=0
+      day 5 opening_before_notice
+      day 5 day_open
+#09 day 5 agent calls release_production(quantity=0) -&gt; accepted
+      day 5 release quantity=0
+#10 day 5 agent calls advance_day() -&gt; accepted
+      day 5 day_close produced=0, shipped=0
+      day 6 opening_before_notice
+      day 6 notice original_day=8, revised_day=12
+      day 6 day_open
+#11 day 6 agent calls commit_recovery(choice=maintain) -&gt; accepted
+      day 6 recovery choice=maintain
+#12 day 6 agent calls release_production(quantity=0) -&gt; accepted
+      day 6 release quantity=0
+#13 day 6 agent calls advance_day() -&gt; accepted
+      day 6 day_close produced=0, shipped=0
+      day 7 opening_before_notice
+      day 7 day_open
+#14 day 7 agent calls release_production(quantity=0) -&gt; accepted
+      day 7 release quantity=0
+#15 day 7 agent calls advance_day() -&gt; accepted
+      day 7 day_close produced=0, shipped=0
+      day 8 opening_before_notice
+      day 8 day_open
+#16 day 8 agent calls release_production(quantity=0) -&gt; accepted
+      day 8 release quantity=0
+#17 day 8 agent calls advance_day() -&gt; accepted
+      day 8 day_close produced=0, shipped=0
+      day 9 opening_before_notice
+      day 9 day_open
+#18 day 9 agent calls release_production(quantity=0) -&gt; accepted
+      day 9 release quantity=0
+#19 day 9 agent calls advance_day() -&gt; accepted
+      day 9 day_close produced=0, shipped=0
+      day 10 opening_before_notice
+      day 10 day_open
+#20 day 10 agent calls release_production(quantity=0) -&gt; accepted
+      day 10 release quantity=0
+#21 day 10 agent calls advance_day() -&gt; accepted
+      day 10 day_close produced=0, shipped=4
+      day 11 opening_before_notice
+      day 11 day_open
+#22 day 11 agent calls release_production(quantity=0) -&gt; accepted
+      day 11 release quantity=0
+#23 day 11 agent calls advance_day() -&gt; accepted
+      day 11 day_close produced=0, shipped=0
+      day 12 receipt order=primary, quantity=8
+      day 12 opening_before_notice
+      day 12 day_open
+#24 day 12 agent calls release_production(quantity=4) -&gt; accepted
+      day 12 release quantity=4
+#25 day 12 agent calls advance_day() -&gt; accepted
+      day 12 day_close produced=4, shipped=4
+      day 13 opening_before_notice
+      day 13 day_open
+#26 day 13 agent calls release_production(quantity=4) -&gt; accepted
+      day 13 release quantity=4
+#27 day 13 agent calls advance_day() -&gt; accepted
+      day 13 day_close produced=4, shipped=4
+      day 14 opening_before_notice
+      day 14 day_open
+#28 day 14 agent calls release_production(quantity=0) -&gt; accepted
+      day 14 release quantity=0
+#29 day 14 agent calls advance_day() -&gt; accepted
+      day 14 day_close produced=0, shipped=0
+      day 15 opening_before_notice
+      day 15 day_open
+#30 day 15 agent calls release_production(quantity=0) -&gt; accepted
+      day 15 release quantity=0
+#31 day 15 agent calls advance_day() -&gt; accepted
+      day 15 day_close produced=0, shipped=0
+      day 15 episode_complete comparison_cost=200
+final scorecard: {&quot;delivered_on_time&quot;: 4, &quot;delivered_total&quot;: 12, &quot;ending_components&quot;: 0, &quot;incremental_spend&quot;: 0, &quot;service_penalties&quot;: 200, &quot;comparison_cost&quot;: 200}
+
+=== s01-fifteen-day-late-events / expedite (horizon 15 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 day_open
+#01 day 1 agent calls release_production(quantity=4) -&gt; accepted
+      day 1 release quantity=4
+#02 day 1 agent calls advance_day() -&gt; accepted
+      day 1 day_close produced=4, shipped=0
+      day 2 opening_before_notice
+      day 2 day_open
+#03 day 2 agent calls release_production(quantity=0) -&gt; accepted
+      day 2 release quantity=0
+#04 day 2 agent calls advance_day() -&gt; accepted
+      day 2 day_close produced=0, shipped=0
+      day 3 opening_before_notice
+      day 3 day_open
+#05 day 3 agent calls release_production(quantity=0) -&gt; accepted
+      day 3 release quantity=0
+#06 day 3 agent calls advance_day() -&gt; accepted
+      day 3 day_close produced=0, shipped=0
+      day 4 opening_before_notice
+      day 4 day_open
+#07 day 4 agent calls release_production(quantity=0) -&gt; accepted
+      day 4 release quantity=0
+#08 day 4 agent calls advance_day() -&gt; accepted
+      day 4 day_close produced=0, shipped=0
+      day 5 opening_before_notice
+      day 5 day_open
+#09 day 5 agent calls release_production(quantity=0) -&gt; accepted
+      day 5 release quantity=0
+#10 day 5 agent calls advance_day() -&gt; accepted
+      day 5 day_close produced=0, shipped=0
+      day 6 opening_before_notice
+      day 6 notice original_day=8, revised_day=12
+      day 6 day_open
+#11 day 6 agent calls commit_recovery(choice=expedite) -&gt; accepted
+      day 6 recovery choice=expedite
+#12 day 6 agent calls release_production(quantity=0) -&gt; accepted
+      day 6 release quantity=0
+#13 day 6 agent calls advance_day() -&gt; accepted
+      day 6 day_close produced=0, shipped=0
+      day 7 opening_before_notice
+      day 7 day_open
+#14 day 7 agent calls release_production(quantity=0) -&gt; accepted
+      day 7 release quantity=0
+#15 day 7 agent calls advance_day() -&gt; accepted
+      day 7 day_close produced=0, shipped=0
+      day 8 receipt order=primary, quantity=8
+      day 8 opening_before_notice
+      day 8 day_open
+#16 day 8 agent calls release_production(quantity=4) -&gt; accepted
+      day 8 release quantity=4
+#17 day 8 agent calls advance_day() -&gt; accepted
+      day 8 day_close produced=4, shipped=0
+      day 9 opening_before_notice
+      day 9 day_open
+#18 day 9 agent calls release_production(quantity=4) -&gt; accepted
+      day 9 release quantity=4
+#19 day 9 agent calls advance_day() -&gt; accepted
+      day 9 day_close produced=4, shipped=0
+      day 10 opening_before_notice
+      day 10 day_open
+#20 day 10 agent calls release_production(quantity=0) -&gt; accepted
+      day 10 release quantity=0
+#21 day 10 agent calls advance_day() -&gt; accepted
+      day 10 day_close produced=0, shipped=12
+      day 11 opening_before_notice
+      day 11 day_open
+#22 day 11 agent calls release_production(quantity=0) -&gt; accepted
+      day 11 release quantity=0
+#23 day 11 agent calls advance_day() -&gt; accepted
+      day 11 day_close produced=0, shipped=0
+      day 12 opening_before_notice
+      day 12 day_open
+#24 day 12 agent calls release_production(quantity=0) -&gt; accepted
+      day 12 release quantity=0
+#25 day 12 agent calls advance_day() -&gt; accepted
+      day 12 day_close produced=0, shipped=0
+      day 13 opening_before_notice
+      day 13 day_open
+#26 day 13 agent calls release_production(quantity=0) -&gt; accepted
+      day 13 release quantity=0
+#27 day 13 agent calls advance_day() -&gt; accepted
+      day 13 day_close produced=0, shipped=0
+      day 14 opening_before_notice
+      day 14 day_open
+#28 day 14 agent calls release_production(quantity=0) -&gt; accepted
+      day 14 release quantity=0
+#29 day 14 agent calls advance_day() -&gt; accepted
+      day 14 day_close produced=0, shipped=0
+      day 15 opening_before_notice
+      day 15 day_open
+#30 day 15 agent calls release_production(quantity=0) -&gt; accepted
+      day 15 release quantity=0
+#31 day 15 agent calls advance_day() -&gt; accepted
+      day 15 day_close produced=0, shipped=0
+      day 15 episode_complete comparison_cost=24
+final scorecard: {&quot;delivered_on_time&quot;: 12, &quot;delivered_total&quot;: 12, &quot;ending_components&quot;: 0, &quot;incremental_spend&quot;: 24, &quot;service_penalties&quot;: 0, &quot;comparison_cost&quot;: 24}
+
+=== s01-fifteen-day-late-events / alternate (horizon 15 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 day_open
+#01 day 1 agent calls release_production(quantity=4) -&gt; accepted
+      day 1 release quantity=4
+#02 day 1 agent calls advance_day() -&gt; accepted
+      day 1 day_close produced=4, shipped=0
+      day 2 opening_before_notice
+      day 2 day_open
+#03 day 2 agent calls release_production(quantity=0) -&gt; accepted
+      day 2 release quantity=0
+#04 day 2 agent calls advance_day() -&gt; accepted
+      day 2 day_close produced=0, shipped=0
+      day 3 opening_before_notice
+      day 3 day_open
+#05 day 3 agent calls release_production(quantity=0) -&gt; accepted
+      day 3 release quantity=0
+#06 day 3 agent calls advance_day() -&gt; accepted
+      day 3 day_close produced=0, shipped=0
+      day 4 opening_before_notice
+      day 4 day_open
+#07 day 4 agent calls release_production(quantity=0) -&gt; accepted
+      day 4 release quantity=0
+#08 day 4 agent calls advance_day() -&gt; accepted
+      day 4 day_close produced=0, shipped=0
+      day 5 opening_before_notice
+      day 5 day_open
+#09 day 5 agent calls release_production(quantity=0) -&gt; accepted
+      day 5 release quantity=0
+#10 day 5 agent calls advance_day() -&gt; accepted
+      day 5 day_close produced=0, shipped=0
+      day 6 opening_before_notice
+      day 6 notice original_day=8, revised_day=12
+      day 6 day_open
+#11 day 6 agent calls commit_recovery(choice=alternate) -&gt; accepted
+      day 6 recovery choice=alternate
+#12 day 6 agent calls release_production(quantity=0) -&gt; accepted
+      day 6 release quantity=0
+#13 day 6 agent calls advance_day() -&gt; accepted
+      day 6 day_close produced=0, shipped=0
+      day 7 opening_before_notice
+      day 7 day_open
+#14 day 7 agent calls release_production(quantity=0) -&gt; accepted
+      day 7 release quantity=0
+#15 day 7 agent calls advance_day() -&gt; accepted
+      day 7 day_close produced=0, shipped=0
+      day 8 receipt order=alternate, quantity=8
+      day 8 opening_before_notice
+      day 8 day_open
+#16 day 8 agent calls release_production(quantity=4) -&gt; accepted
+      day 8 release quantity=4
+#17 day 8 agent calls advance_day() -&gt; accepted
+      day 8 day_close produced=4, shipped=0
+      day 9 opening_before_notice
+      day 9 day_open
+#18 day 9 agent calls release_production(quantity=4) -&gt; accepted
+      day 9 release quantity=4
+#19 day 9 agent calls advance_day() -&gt; accepted
+      day 9 day_close produced=4, shipped=0
+      day 10 opening_before_notice
+      day 10 day_open
+#20 day 10 agent calls release_production(quantity=0) -&gt; accepted
+      day 10 release quantity=0
+#21 day 10 agent calls advance_day() -&gt; accepted
+      day 10 day_close produced=0, shipped=12
+      day 11 opening_before_notice
+      day 11 day_open
+#22 day 11 agent calls release_production(quantity=0) -&gt; accepted
+      day 11 release quantity=0
+#23 day 11 agent calls advance_day() -&gt; accepted
+      day 11 day_close produced=0, shipped=0
+      day 12 receipt order=primary, quantity=8
+      day 12 opening_before_notice
+      day 12 day_open
+#24 day 12 agent calls release_production(quantity=0) -&gt; accepted
+      day 12 release quantity=0
+#25 day 12 agent calls advance_day() -&gt; accepted
+      day 12 day_close produced=0, shipped=0
+      day 13 opening_before_notice
+      day 13 day_open
+#26 day 13 agent calls release_production(quantity=0) -&gt; accepted
+      day 13 release quantity=0
+#27 day 13 agent calls advance_day() -&gt; accepted
+      day 13 day_close produced=0, shipped=0
+      day 14 opening_before_notice
+      day 14 day_open
+#28 day 14 agent calls release_production(quantity=0) -&gt; accepted
+      day 14 release quantity=0
+#29 day 14 agent calls advance_day() -&gt; accepted
+      day 14 day_close produced=0, shipped=0
+      day 15 opening_before_notice
+      day 15 day_open
+#30 day 15 agent calls release_production(quantity=0) -&gt; accepted
+      day 15 release quantity=0
+#31 day 15 agent calls advance_day() -&gt; accepted
+      day 15 day_close produced=0, shipped=0
+      day 15 episode_complete comparison_cost=40
+final scorecard: {&quot;delivered_on_time&quot;: 12, &quot;delivered_total&quot;: 12, &quot;ending_components&quot;: 8, &quot;incremental_spend&quot;: 40, &quot;service_penalties&quot;: 0, &quot;comparison_cost&quot;: 40}
+</pre>
