@@ -19,11 +19,11 @@ Implementation issues own technical work that enables these behaviors. They are 
 | S02 | Direct-material requirement to buying and usable receipt | Explicit user-requested topic; outline below | A justified purchase becomes a confirmed PO, received material and production-usable stock |
 | S03 | S&OP plan to approved operating actions and feedback | Explicit user-requested topic; outline below | A balanced approved plan creates linked purchasing/production actions, then actuals feed the next planning decision |
 | S04 | Production plan to schedule to manufacture to comparison against plan | Explicit user-requested topic; outline below | A feasible schedule executes against material/resources; observed output and deviations reconcile to the original plan |
-| S05 | Unexpected demand increase | Earlier assistant-proposed future topic; not a committed milestone | Inventory/capacity allocation responds to changed demand with measurable service/cost effects |
-| S06 | Quality hold on material | Earlier assistant-proposed future topic; not a committed milestone | Affected lots are contained, production impact is assessed and recovery preserves traceability |
-| S07 | Transport disruption | Earlier assistant-proposed future topic; not a committed milestone | Rerouting/allocation changes deliveries and customer commitments under explicit transport constraints |
+| S05 | Unexpected demand increase | User-confirmed future scenario; implementation sequence not committed | Inventory/capacity allocation responds to changed demand with measurable service/cost effects |
+| S06 | Quality hold on material | User-confirmed future scenario; implementation sequence not committed | Affected lots are contained, production impact is assessed and recovery preserves traceability |
+| S07 | Transport disruption | User-confirmed future scenario; implementation sequence not committed | Rerouting/allocation changes deliveries and customer commitments under explicit transport constraints |
 
-Only S01 currently has numeric acceptance tables. S02–S04 are outlines to refine, not approved executable specifications. S05–S07 remain brief future candidates.
+Only S01 currently has numeric acceptance tables. S02–S04 are outlines to refine, not approved executable specifications. S05–S07 are confirmed future scenarios, with detailed design still to be developed.
 
 ## 3. Shared world and links
 
