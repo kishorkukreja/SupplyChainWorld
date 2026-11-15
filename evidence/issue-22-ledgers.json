@@ -13,6 +13,7 @@
         "day": 1,
         "state": {
           "day": 1,
+          "horizon_days": 5,
           "phase": "action",
           "component_on_hand": 0,
           "finished_on_hand": 4,
@@ -35,6 +36,7 @@
         "day": 2,
         "state": {
           "day": 2,
+          "horizon_days": 5,
           "phase": "action",
           "component_on_hand": 0,
           "finished_on_hand": 4,
@@ -57,6 +59,7 @@
         "day": 3,
         "state": {
           "day": 3,
+          "horizon_days": 5,
           "phase": "action",
           "component_on_hand": 0,
           "finished_on_hand": 0,
@@ -79,6 +82,7 @@
         "day": 4,
         "state": {
           "day": 4,
+          "horizon_days": 5,
           "phase": "action",
           "component_on_hand": 4,
           "finished_on_hand": 0,
@@ -101,6 +105,7 @@
         "day": 5,
         "state": {
           "day": 5,
+          "horizon_days": 5,
           "phase": "action",
           "component_on_hand": 0,
           "finished_on_hand": 0,
@@ -141,6 +146,7 @@
         "day": 1,
         "state": {
           "day": 1,
+          "horizon_days": 5,
           "phase": "action",
           "component_on_hand": 0,
           "finished_on_hand": 4,
@@ -163,6 +169,7 @@
         "day": 2,
         "state": {
           "day": 2,
+          "horizon_days": 5,
           "phase": "action",
           "component_on_hand": 4,
           "finished_on_hand": 8,
@@ -185,6 +192,7 @@
         "day": 3,
         "state": {
           "day": 3,
+          "horizon_days": 5,
           "phase": "action",
           "component_on_hand": 0,
           "finished_on_hand": 0,
@@ -207,6 +215,7 @@
         "day": 4,
         "state": {
           "day": 4,
+          "horizon_days": 5,
           "phase": "action",
           "component_on_hand": 0,
           "finished_on_hand": 0,
@@ -229,6 +238,7 @@
         "day": 5,
         "state": {
           "day": 5,
+          "horizon_days": 5,
           "phase": "action",
           "component_on_hand": 0,
           "finished_on_hand": 0,
@@ -269,6 +279,7 @@
         "day": 1,
         "state": {
           "day": 1,
+          "horizon_days": 5,
           "phase": "action",
           "component_on_hand": 0,
           "finished_on_hand": 4,
@@ -291,6 +302,7 @@
         "day": 2,
         "state": {
           "day": 2,
+          "horizon_days": 5,
           "phase": "action",
           "component_on_hand": 4,
           "finished_on_hand": 8,
@@ -313,6 +325,7 @@
         "day": 3,
         "state": {
           "day": 3,
+          "horizon_days": 5,
           "phase": "action",
           "component_on_hand": 0,
           "finished_on_hand": 0,
@@ -335,6 +348,7 @@
         "day": 4,
         "state": {
           "day": 4,
+          "horizon_days": 5,
           "phase": "action",
           "component_on_hand": 8,
           "finished_on_hand": 0,
@@ -357,6 +371,7 @@
         "day": 5,
         "state": {
           "day": 5,
+          "horizon_days": 5,
           "phase": "action",
           "component_on_hand": 8,
           "finished_on_hand": 0,

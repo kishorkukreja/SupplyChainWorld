@@ -1,10 +1,13 @@
 test_completed_episode_cannot_be_advanced_or_acted_upon (test_dynamic.OperationalWorldTests.test_completed_episode_cannot_be_advanced_or_acted_upon) ... ok
 test_deterministic_reset_and_detached_observations (test_dynamic.OperationalWorldTests.test_deterministic_reset_and_detached_observations) ... ok
 test_invalid_commands_do_not_change_operational_state (test_dynamic.OperationalWorldTests.test_invalid_commands_do_not_change_operational_state) ... ok
+test_invalid_horizon_rejected (test_dynamic.OperationalWorldTests.test_invalid_horizon_rejected) ... ok
 test_late_recovery_and_early_scorecard_rejected (test_dynamic.OperationalWorldTests.test_late_recovery_and_early_scorecard_rejected) ... ok
+test_long_horizon_assesses_backlog_and_receives_once (test_dynamic.OperationalWorldTests.test_long_horizon_assesses_backlog_and_receives_once) ... ok
 test_three_policies_match_hand_worked_ledger (test_dynamic.OperationalWorldTests.test_three_policies_match_hand_worked_ledger) ... ok
+test_variable_horizons_advance_exactly_and_reset (test_dynamic.OperationalWorldTests.test_variable_horizons_advance_exactly_and_reset) ... ok
 
 ----------------------------------------------------------------------
-Ran 5 tests in 0.005s
+Ran 8 tests in 0.010s
 
 OK

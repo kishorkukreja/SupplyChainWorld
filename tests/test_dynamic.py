@@ -81,6 +81,39 @@ class OperationalWorldTests(unittest.TestCase):
         self.assertFalse(w.release_production(0)['accepted'])
         self.assertEqual(w.snapshot(), before)
 
+    def test_variable_horizons_advance_exactly_and_reset(self):
+        for horizon in (1, 2, 5, 10, 15):
+            with self.subTest(horizon=horizon):
+                w = OperationalWorld(horizon_days=horizon)
+                self.assertEqual(w.snapshot()['horizon_days'], horizon)
+                for day in range(1, horizon + 1):
+                    self.assertEqual(w.snapshot()['day'], day)
+                    w.close_day()
+                self.assertEqual(w.snapshot()['phase'], 'complete')
+                self.assertEqual(w.snapshot()['day'], horizon)
+                self.assertEqual(len([e for e in w.history() if e['kind'] == 'day_close']), horizon)
+                self.assertFalse(w.close_day()['accepted'])
+                self.assertEqual(w.reset()['horizon_days'], horizon)
+                if horizon < 3:
+                    for _ in range(horizon):
+                        w.close_day()
+                    self.assertIsNone(w.scorecard()['delivered_on_time'])
+
+    def test_long_horizon_assesses_backlog_and_receives_once(self):
+        for horizon in (10, 15):
+            with self.subTest(horizon=horizon):
+                w = OperationalWorld(horizon_days=horizon)
+                for _ in range(horizon):
+                    w.close_day()
+                self.assertEqual(w.scorecard()['service_penalties'], 12 * 10 * (horizon - 2))
+                self.assertEqual(w.snapshot()['component_on_hand'], 12)
+                self.assertEqual(len([e for e in w.history() if e['kind'] == 'receipt']), 1)
+
+    def test_invalid_horizon_rejected(self):
+        for invalid in (0, -1, 1.5, True, '10', None):
+            with self.subTest(horizon=invalid), self.assertRaises(ValueError):
+                OperationalWorld(horizon_days=invalid)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -13,6 +13,7 @@ Recovery = Literal['maintain', 'expedite', 'alternate']
 @dataclass
 class State:
     day: int = 1
+    horizon_days: int = 5
     phase: str = 'action'
     component_on_hand: int = 4
     finished_on_hand: int = 0
@@ -41,11 +42,14 @@ class OperationalWorld:
     alternate_quantity = 8
     recovery_budget = 40
 
-    def __init__(self):
+    def __init__(self, horizon_days: int = 5):
+        if type(horizon_days) is not int or horizon_days < 1:
+            raise ValueError('horizon_days must be a positive integer')
+        self._horizon_days = horizon_days
         self.reset()
 
     def reset(self):
-        self._state = State()
+        self._state = State(horizon_days=self._horizon_days)
         self._history = []
         # Opening day 1: the initially promised day-2 order is delayed to day 4.
         self._state.notices.append('Primary PO delayed from day 2 to day 4')
@@ -121,7 +125,7 @@ class OperationalWorld:
             s.delivered_total += shipped
             s.penalties += 10 * (self.required - s.delivered_total)
         self._record('day_close', {'produced': quantity, 'shipped': shipped}, True)
-        if s.day == 5:
+        if s.day == self._horizon_days:
             s.phase = 'complete'
             self._record('episode_complete', {'comparison_cost': s.incremental_spend + s.penalties}, True)
             return self.snapshot()
@@ -145,8 +149,8 @@ class OperationalWorld:
         s = self._state
         if s.phase != 'complete':
             raise ValueError('scorecard requires completed episode')
-        close3 = next(e for e in self._history if e['kind'] == 'day_close' and e['day'] == 3)
-        return {'delivered_on_time': close3['state']['delivered_total'],
+        close3 = next((e for e in self._history if e['kind'] == 'day_close' and e['day'] == 3), None)
+        return {'delivered_on_time': close3['state']['delivered_total'] if close3 else None,
                 'delivered_total': s.delivered_total, 'ending_components': s.component_on_hand,
                 'incremental_spend': s.incremental_spend, 'service_penalties': s.penalties,
                 'comparison_cost': s.incremental_spend + s.penalties}
