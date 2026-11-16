@@ -118,8 +118,8 @@ class ConfigTests(unittest.TestCase):
         cfg = json.loads((ROOT / 'config/llm_roster.json').read_text())
         self.assertEqual(cfg['spend_policy']['approved_monetary_ceiling_usd'], 0.0)
         d = cfg['roles']['decision_system1']
-        self.assertEqual((d['kind'], d['status'], d['model_id']), ('scorer', 'configured', 'respan/span-01-lite'))
-        self.assertIn('unverified', d['connectivity'])
+        self.assertEqual((d['kind'], d['status'], d['model_id']), ('scorer', 'verified: noul-only via /api/alpha/decisions', 'respan/span-01-lite'))
+        self.assertIn('verified live', d['connectivity'])
         for name, role in cfg['roles'].items():
             self.assertEqual(role['kind'], 'scorer' if name == 'decision_system1' else 'actor')
         for m in cfg['connectivity_check_roster']:
