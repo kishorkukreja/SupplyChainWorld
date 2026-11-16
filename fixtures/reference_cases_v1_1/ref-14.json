@@ -1,0 +1,336 @@
+{
+  "case_id": "ref-14",
+  "rules_version": "1.1",
+  "purpose": "per-item share concentration",
+  "rules_exercised": [
+    "A2"
+  ],
+  "request": "Allocate component purchases for per-item share concentration; minimize landed cost subject to visible policy (rules 1.1), or submit a supported exception.",
+  "world": {
+    "schema_version": "1.1",
+    "world_id": "ref-14",
+    "seed": 14,
+    "currency": "USD",
+    "calendar": "gregorian",
+    "as_of": "2026-11-02",
+    "items": [
+      {
+        "item_id": "P",
+        "unit": "each",
+        "demand": 4,
+        "due_date": "2026-11-10",
+        "excess_allowance": 0,
+        "safety_stock": 0,
+        "critical": false,
+        "moq_excess_allowed": false,
+        "max_excess": null
+      },
+      {
+        "item_id": "Q",
+        "unit": "each",
+        "demand": 2,
+        "due_date": "2026-11-10",
+        "excess_allowance": 0,
+        "safety_stock": 0,
+        "critical": false,
+        "moq_excess_allowed": false,
+        "max_excess": null
+      }
+    ],
+    "stock": [],
+    "inbound": [],
+    "suppliers": [
+      {
+        "supplier_id": "A",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": null
+      },
+      {
+        "supplier_id": "B",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": null
+      },
+      {
+        "supplier_id": "C",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": null
+      }
+    ],
+    "quotes": [
+      {
+        "supplier_id": "A",
+        "item_id": "P",
+        "unit_price": "1.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "A",
+        "item_id": "Q",
+        "unit_price": "1.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "B",
+        "item_id": "P",
+        "unit_price": "2.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "B",
+        "item_id": "Q",
+        "unit_price": "2.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "C",
+        "item_id": "P",
+        "unit_price": "2.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "C",
+        "item_id": "Q",
+        "unit_price": "2.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      }
+    ],
+    "constraints": {
+      "budget": "100.00",
+      "concentration": [
+        {
+          "measure": "per_item_share",
+          "limit": "0.50",
+          "item_ids": null
+        }
+      ],
+      "approval_limit": null
+    },
+    "policy": {
+      "late_inbound_tolerance_days": 0,
+      "late_inbound_credit": "0",
+      "cost_tolerance_abs": "0",
+      "cost_tolerance_pct": "0"
+    },
+    "visibility": {
+      "classification": "public_synthetic"
+    }
+  },
+  "expected": {
+    "submission": {
+      "kind": "award",
+      "allocations": [
+        {
+          "supplier_id": "A",
+          "item_id": "P",
+          "quantity": 2
+        },
+        {
+          "supplier_id": "B",
+          "item_id": "P",
+          "quantity": 2
+        },
+        {
+          "supplier_id": "A",
+          "item_id": "Q",
+          "quantity": 1
+        },
+        {
+          "supplier_id": "B",
+          "item_id": "Q",
+          "quantity": 1
+        }
+      ],
+      "claimed_total_cost": "9.00",
+      "evidence": [
+        "Visible quotation and policy records"
+      ],
+      "flags": [],
+      "clarification_requests": []
+    },
+    "optimal_cost": "9.00",
+    "calculation": "Per-item limit 0.50: no supplier may supply more than half of any single item. P (4): A<=2; Q (2): A<=1. Cheapest: A takes the maximum (P2, Q1 = 3.00); the remaining P2, Q1 go to B or C at 2.00 each: 6.00. Total 9.00.",
+    "expected_outcome": "award",
+    "valid_alternatives": [
+      {
+        "submission": {
+          "kind": "award",
+          "allocations": [
+            {
+              "supplier_id": "A",
+              "item_id": "P",
+              "quantity": 2
+            },
+            {
+              "supplier_id": "C",
+              "item_id": "P",
+              "quantity": 2
+            },
+            {
+              "supplier_id": "A",
+              "item_id": "Q",
+              "quantity": 1
+            },
+            {
+              "supplier_id": "C",
+              "item_id": "Q",
+              "quantity": 1
+            }
+          ],
+          "claimed_total_cost": "9.00",
+          "evidence": [
+            "Visible quotation and policy records"
+          ],
+          "flags": [],
+          "clarification_requests": []
+        },
+        "status": "optimal",
+        "cost": "9.00",
+        "note": "C in place of B ties"
+      },
+      {
+        "submission": {
+          "kind": "award",
+          "allocations": [
+            {
+              "supplier_id": "A",
+              "item_id": "P",
+              "quantity": 2
+            },
+            {
+              "supplier_id": "B",
+              "item_id": "P",
+              "quantity": 2
+            },
+            {
+              "supplier_id": "A",
+              "item_id": "Q",
+              "quantity": 1
+            },
+            {
+              "supplier_id": "C",
+              "item_id": "Q",
+              "quantity": 1
+            }
+          ],
+          "claimed_total_cost": "9.00",
+          "evidence": [
+            "Visible quotation and policy records"
+          ],
+          "flags": [],
+          "clarification_requests": []
+        },
+        "status": "optimal",
+        "cost": "9.00",
+        "note": "mixed remainder ties"
+      }
+    ]
+  },
+  "known_wrong": [
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "A",
+            "item_id": "P",
+            "quantity": 2
+          },
+          {
+            "supplier_id": "B",
+            "item_id": "P",
+            "quantity": 2
+          },
+          {
+            "supplier_id": "A",
+            "item_id": "Q",
+            "quantity": 2
+          }
+        ],
+        "claimed_total_cost": "8.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [],
+        "clarification_requests": []
+      },
+      "reason": "A supplies 100% of item Q"
+    }
+  ],
+  "review": {
+    "status": "arithmetic_checked_practitioner_pending",
+    "practitioner_signoff": false,
+    "reviewed_by_practitioner": false,
+    "awaiting_re_review": true,
+    "values_status": "PROVISIONAL, needs practitioner value",
+    "required_review": [
+      "every numeric policy value and procurement convention in this case"
+    ],
+    "source": "entirely synthetic; no external business records; owner-practitioner review is not independent"
+  }
+}

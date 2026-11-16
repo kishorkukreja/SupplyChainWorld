@@ -1,0 +1,226 @@
+{
+  "case_id": "ref-01",
+  "rules_version": "1.1",
+  "purpose": "basic valid award with safety stock and late-inbound credit",
+  "rules_exercised": [
+    "A1"
+  ],
+  "request": "Allocate component purchases for basic valid award with safety stock and late-inbound credit; minimize landed cost subject to visible policy (rules 1.1), or submit a supported exception.",
+  "world": {
+    "schema_version": "1.1",
+    "world_id": "ref-01",
+    "seed": 1,
+    "currency": "USD",
+    "calendar": "gregorian",
+    "as_of": "2026-11-02",
+    "items": [
+      {
+        "item_id": "component",
+        "unit": "each",
+        "demand": 10,
+        "due_date": "2026-11-10",
+        "excess_allowance": 0,
+        "safety_stock": 3,
+        "critical": false,
+        "moq_excess_allowed": false,
+        "max_excess": null
+      }
+    ],
+    "stock": [
+      {
+        "item_id": "component",
+        "quantity": 2,
+        "status": "usable"
+      },
+      {
+        "item_id": "component",
+        "quantity": 50,
+        "status": "held"
+      }
+    ],
+    "inbound": [
+      {
+        "item_id": "component",
+        "quantity": 1,
+        "arrival_date": "2026-11-09",
+        "status": "committed"
+      },
+      {
+        "item_id": "component",
+        "quantity": 4,
+        "arrival_date": "2026-11-12",
+        "status": "committed"
+      },
+      {
+        "item_id": "component",
+        "quantity": 50,
+        "arrival_date": "2026-11-14",
+        "status": "committed"
+      }
+    ],
+    "suppliers": [
+      {
+        "supplier_id": "A",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": "0.90"
+      },
+      {
+        "supplier_id": "B",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": "0.95"
+      }
+    ],
+    "quotes": [
+      {
+        "supplier_id": "A",
+        "item_id": "component",
+        "unit_price": "2.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "B",
+        "item_id": "component",
+        "unit_price": "3.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      }
+    ],
+    "constraints": {
+      "budget": "100.00",
+      "concentration": [],
+      "approval_limit": null
+    },
+    "policy": {
+      "late_inbound_tolerance_days": 2,
+      "late_inbound_credit": "0.50",
+      "cost_tolerance_abs": "0",
+      "cost_tolerance_pct": "0.01"
+    },
+    "visibility": {
+      "classification": "public_synthetic"
+    }
+  },
+  "expected": {
+    "submission": {
+      "kind": "award",
+      "allocations": [
+        {
+          "supplier_id": "A",
+          "item_id": "component",
+          "quantity": 8
+        }
+      ],
+      "claimed_total_cost": "16.00",
+      "evidence": [
+        "Visible quotation and policy records"
+      ],
+      "flags": [],
+      "clarification_requests": []
+    },
+    "optimal_cost": "16.00",
+    "calculation": "Net = 10 demand + 3 safety - 2 usable - 1 on-time inbound - floor(4*0.50)=2 late credit (2 days late, inside the 2-day window) = 8; the 50 held units and the 50 units 4 days late earn nothing. A: 8*2.00 = 16.00; B: 24.00; mixed awards only add cost.",
+    "expected_outcome": "award",
+    "valid_alternatives": [
+      {
+        "submission": {
+          "kind": "award",
+          "allocations": [
+            {
+              "supplier_id": "A",
+              "item_id": "component",
+              "quantity": 7
+            },
+            {
+              "supplier_id": "B",
+              "item_id": "component",
+              "quantity": 1
+            }
+          ],
+          "claimed_total_cost": "17.00",
+          "evidence": [
+            "Visible quotation and policy records"
+          ],
+          "flags": [],
+          "clarification_requests": []
+        },
+        "status": "suboptimal",
+        "cost": "17.00",
+        "note": "feasible mix; gap 1.00 = 6.25% exceeds the provisional 1% band"
+      }
+    ]
+  },
+  "known_wrong": [
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "A",
+            "item_id": "component",
+            "quantity": 7
+          }
+        ],
+        "claimed_total_cost": "14.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [],
+        "clarification_requests": []
+      },
+      "reason": "v1.0 net (10-2-1=7) ignores safety stock and late credit: 7 < net 8"
+    },
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "A",
+            "item_id": "component",
+            "quantity": 10
+          }
+        ],
+        "claimed_total_cost": "20.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [],
+        "clarification_requests": []
+      },
+      "reason": "ignores late credit: 10 exceeds net 8, no excess allowance"
+    }
+  ],
+  "review": {
+    "status": "arithmetic_checked_practitioner_pending",
+    "practitioner_signoff": false,
+    "reviewed_by_practitioner": false,
+    "awaiting_re_review": true,
+    "values_status": "PROVISIONAL, needs practitioner value",
+    "required_review": [
+      "every numeric policy value and procurement convention in this case"
+    ],
+    "source": "entirely synthetic; no external business records; owner-practitioner review is not independent"
+  }
+}
