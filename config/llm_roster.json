@@ -17,22 +17,60 @@
   "roles": {
     "decision_system1": {
       "kind": "scorer",
-      "status": "configured",
+      "status": "verified: noul-only via /api/alpha/decisions",
       "model_id": "respan/span-01-lite",
       "free_basis": "verified_zero_pricing",
-      "verified_pricing": {"prompt": "0", "completion": "0"},
+      "verified_pricing": {
+        "prompt": "0",
+        "completion": "0"
+      },
       "verified_via": "OpenRouter /api/v1/models/respan/span-01-lite/endpoints on 2026-11-15",
       "modality": "text->decisions",
       "supported_parameters": [],
       "context_length": 0,
-      "connectivity": "not attempted, request format unverified",
-      "note": "Behavior-scoring model (per-behavior probabilities). Not a chat or tool-calling actor: never routed through ObservableRunner. Originally requested perplexity/pplx-decider-v1.3:free does not exist on OpenRouter; replaced by the owner with this model."
+      "connectivity": "verified live 2026-11-16 (one call returned a noul probability, cost 0); client: src/supplychainworld/decisions_client.py",
+      "note": "Behavior-scoring model (per-behavior probabilities). Scorer only: not a chat or tool-calling actor and never acts through ObservableRunner. Originally requested perplexity/pplx-decider-v1.3:free does not exist on OpenRouter; replaced by the owner with this model.",
+      "endpoint": "https://openrouter.ai/api/alpha/decisions",
+      "verified_request_shape": {
+        "method": "POST",
+        "body": {
+          "model": "respan/span-01-lite",
+          "state": "<plain text context>",
+          "questions": {
+            "<key>": {
+              "type": "noul",
+              "instructions": "<yes/no question>",
+              "criteria": {
+                "true": "<when true>",
+                "false": "<when false>"
+              }
+            }
+          }
+        },
+        "response": {
+          "answers": {
+            "<key>": {
+              "type": "noul",
+              "noul": "<float 0..1, probability of true>"
+            }
+          },
+          "usage": {
+            "input_tokens": "int",
+            "output_tokens": "int",
+            "cost": "number"
+          }
+        }
+      },
+      "limitation": "Respan accepts only type \"noul\" questions (instructions and criteria plain strings; criteria is an object with \"true\" and \"false\" keys). Choice questions return 400. chat/completions returns 400 for this model. Endpoint is alpha so shapes may change. Routing is built client-side from independent yes/no scores; probabilities do not sum to 1."
     },
     "general_reasoning": {
       "kind": "actor",
       "status": "verified",
       "model_id": "nvidia/nemotron-3-ultra-550b-a55b:free",
-      "also_verified": ["baidu/ernie-5.5-flash-preview:free", "thinkingmachines/inkling-2-small:free"]
+      "also_verified": [
+        "baidu/ernie-5.5-flash-preview:free",
+        "thinkingmachines/inkling-2-small:free"
+      ]
     },
     "code": {
       "kind": "actor",

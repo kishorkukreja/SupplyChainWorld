@@ -1,0 +1,87 @@
+{
+  "schema": "decisions-connectivity-1",
+  "run_at_utc": "2026-11-16T00:14:46Z",
+  "endpoint": "https://openrouter.ai/api/alpha/decisions",
+  "model": "respan/span-01-lite",
+  "max_live_requests": 3,
+  "note": "Connectivity and response-shape check only. Three calls are not an evaluation of accuracy.",
+  "credential_env_var_present": true,
+  "state_text_sent": "Day 2 of 5 at a small plant. The supplier shipment of component C is late by 2 days. Stock of component C is 40 units and daily use is 20 units. A recovery order can be committed today.",
+  "route_options_sent": {
+    "wait": "Take no action and wait for the late shipment.",
+    "recover": "Commit the recovery order today.",
+    "cancel": "Cancel the affected production for the week."
+  },
+  "client_summary": {
+    "model": "respan/span-01-lite",
+    "http_requests": 3,
+    "successful_calls": 3,
+    "usage_total": {
+      "input_tokens": 1185,
+      "output_tokens": 0
+    },
+    "total_cost_usd": 0.0,
+    "unknown_cost_calls": 0
+  },
+  "results": {
+    "yes_no": {
+      "status": "ok",
+      "latency_ms": 2052.4,
+      "result": {
+        "probability": 0.3061428,
+        "answer": false,
+        "threshold": 0.5,
+        "usage": {
+          "input_tokens": 196,
+          "output_tokens": 0,
+          "cost": 0.0
+        },
+        "cost_usd": 0.0,
+        "retries": 0
+      }
+    },
+    "ask_many": {
+      "status": "ok",
+      "latency_ms": 922.0,
+      "result": {
+        "answers": {
+          "late": 0.9998741,
+          "recovery_open": 0.99615926
+        },
+        "usage": {
+          "input_tokens": 374,
+          "output_tokens": 0,
+          "cost": 0.0
+        },
+        "cost_usd": 0.0,
+        "retries": 0,
+        "returned_model": "respan/span-01-lite-20260925"
+      }
+    },
+    "route": {
+      "status": "ok",
+      "latency_ms": 796.1,
+      "result": {
+        "probabilities": {
+          "wait": 0.090004064,
+          "recover": 0.9366835,
+          "cancel": 0.07550646
+        },
+        "argmax": "recover",
+        "choice": "recover",
+        "top_two_gap": 0.8466794360000001,
+        "ambiguous": false,
+        "threshold": 0.5,
+        "margin": 0.1,
+        "probabilities_sum_to_one": false,
+        "usage": {
+          "input_tokens": 615,
+          "output_tokens": 0,
+          "cost": 0.0
+        },
+        "cost_usd": 0.0,
+        "retries": 0
+      }
+    }
+  }
+}
