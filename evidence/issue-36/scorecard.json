@@ -1,0 +1,1745 @@
+{
+ "banner": "ALL NUMBERS PROVISIONAL, needs practitioner value. Scripted policies, synthetic scenarios, no LLM, practitioner-reviewed: no.",
+ "full_scorecards": {
+  "s02-sudden-5d": {
+   "maintain": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 0,
+     "service_penalties": 120,
+     "salvage_credit": 0,
+     "net_cost": 120
+    },
+    "service": {
+     "otif_orders_met": 0,
+     "orders_total": 1,
+     "on_time_units": 4,
+     "ordered_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 12,
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "ordered": 12,
+       "otif": false,
+       "on_time_units": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 12,
+       "days_short": 2,
+       "penalty": 120
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 0,
+       "ordered": 12,
+       "on_time_units": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 12,
+       "penalties": 120
+      }
+     },
+     "priority_weighted_unit_days_late": 36
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 0,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 0,
+     "primary_reliance_pct": 100,
+     "recovery_commitments": 0,
+     "unused_recovery_budget": 40
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   },
+   "expedite_on_alert": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 24,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 24
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 1,
+     "on_time_units": 12,
+     "ordered_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "ordered": 12,
+       "otif": true,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     },
+     "priority_weighted_unit_days_late": 0
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 0,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 0,
+     "primary_reliance_pct": 100,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 16
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   },
+   "alternate_on_alert": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 40,
+     "service_penalties": 0,
+     "salvage_credit": 16,
+     "net_cost": 24
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 1,
+     "on_time_units": 12,
+     "ordered_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "ordered": 12,
+       "otif": true,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     },
+     "priority_weighted_unit_days_late": 0
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 8,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 2,
+     "primary_reliance_pct": 50,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 0
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   },
+   "combo_on_alert": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 32,
+     "service_penalties": 0,
+     "salvage_credit": 8,
+     "net_cost": 24
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 1,
+     "on_time_units": 12,
+     "ordered_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "ordered": 12,
+       "otif": true,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     },
+     "priority_weighted_unit_days_late": 0
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 4,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 1,
+     "primary_reliance_pct": 66,
+     "recovery_commitments": 2,
+     "unused_recovery_budget": 8
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   },
+   "staged_revisit": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 28,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 28
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 1,
+     "on_time_units": 12,
+     "ordered_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "ordered": 12,
+       "otif": true,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     },
+     "priority_weighted_unit_days_late": 0
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 0,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 0,
+     "primary_reliance_pct": 100,
+     "recovery_commitments": 2,
+     "unused_recovery_budget": 12
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   }
+  },
+  "s02-warned-delayed-10d": {
+   "maintain": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 0,
+     "service_penalties": 50,
+     "salvage_credit": 0,
+     "net_cost": 50
+    },
+    "service": {
+     "otif_orders_met": 0,
+     "orders_total": 1,
+     "on_time_units": 4,
+     "ordered_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 20,
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "ordered": 12,
+       "otif": false,
+       "on_time_units": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 20,
+       "days_short": 3,
+       "penalty": 50
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 0,
+       "ordered": 12,
+       "on_time_units": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 20,
+       "penalties": 50
+      }
+     },
+     "priority_weighted_unit_days_late": 60
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 0,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 0,
+     "primary_reliance_pct": 100,
+     "recovery_commitments": 0,
+     "unused_recovery_budget": 40
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   },
+   "expedite_on_alert": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 24,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 24
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 1,
+     "on_time_units": 12,
+     "ordered_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "ordered": 12,
+       "otif": true,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     },
+     "priority_weighted_unit_days_late": 0
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 0,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 0,
+     "primary_reliance_pct": 100,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 16
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   },
+   "alternate_on_alert": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 40,
+     "service_penalties": 0,
+     "salvage_credit": 16,
+     "net_cost": 24
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 1,
+     "on_time_units": 12,
+     "ordered_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "ordered": 12,
+       "otif": true,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     },
+     "priority_weighted_unit_days_late": 0
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 8,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 2,
+     "primary_reliance_pct": 50,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 0
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   },
+   "combo_on_alert": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 32,
+     "service_penalties": 0,
+     "salvage_credit": 8,
+     "net_cost": 24
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 1,
+     "on_time_units": 12,
+     "ordered_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "ordered": 12,
+       "otif": true,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     },
+     "priority_weighted_unit_days_late": 0
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 4,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 1,
+     "primary_reliance_pct": 66,
+     "recovery_commitments": 2,
+     "unused_recovery_budget": 8
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   },
+   "staged_revisit": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 28,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 28
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 1,
+     "on_time_units": 12,
+     "ordered_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "ordered": 12,
+       "otif": true,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     },
+     "priority_weighted_unit_days_late": 0
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 0,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 0,
+     "primary_reliance_pct": 100,
+     "recovery_commitments": 2,
+     "unused_recovery_budget": 12
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   }
+  },
+  "s02-warned-no-delay-10d": {
+   "maintain": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 0,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 0
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 1,
+     "on_time_units": 12,
+     "ordered_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "ordered": 12,
+       "otif": true,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     },
+     "priority_weighted_unit_days_late": 0
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 0,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 0,
+     "primary_reliance_pct": 100,
+     "recovery_commitments": 0,
+     "unused_recovery_budget": 40
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   },
+   "expedite_on_alert": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 24,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 24
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 1,
+     "on_time_units": 12,
+     "ordered_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "ordered": 12,
+       "otif": true,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     },
+     "priority_weighted_unit_days_late": 0
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 0,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 0,
+     "primary_reliance_pct": 100,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 16
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   },
+   "alternate_on_alert": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 40,
+     "service_penalties": 0,
+     "salvage_credit": 16,
+     "net_cost": 24
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 1,
+     "on_time_units": 12,
+     "ordered_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "ordered": 12,
+       "otif": true,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     },
+     "priority_weighted_unit_days_late": 0
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 8,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 2,
+     "primary_reliance_pct": 50,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 0
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   },
+   "combo_on_alert": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 32,
+     "service_penalties": 0,
+     "salvage_credit": 8,
+     "net_cost": 24
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 1,
+     "on_time_units": 12,
+     "ordered_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "ordered": 12,
+       "otif": true,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     },
+     "priority_weighted_unit_days_late": 0
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 4,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 1,
+     "primary_reliance_pct": 66,
+     "recovery_commitments": 2,
+     "unused_recovery_budget": 8
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   },
+   "staged_revisit": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 12,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 12
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 1,
+     "on_time_units": 12,
+     "ordered_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "ordered": 12,
+       "otif": true,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     },
+     "priority_weighted_unit_days_late": 0
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 0,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 0,
+     "primary_reliance_pct": 100,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 28
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   }
+  },
+  "s02-multitier-cancel-10d": {
+   "maintain": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 0,
+     "service_penalties": 72,
+     "salvage_credit": 8,
+     "net_cost": 64
+    },
+    "service": {
+     "otif_orders_met": 0,
+     "orders_total": 2,
+     "on_time_units": 4,
+     "ordered_units": 16,
+     "delivered_total": 8,
+     "cancelled_units": 8,
+     "unit_days_late": 32,
+     "orders": [
+      {
+       "order_id": "K1",
+       "tier": "key",
+       "ordered": 8,
+       "otif": false,
+       "on_time_units": 4,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 8,
+       "days_short": 2,
+       "penalty": 24
+      },
+      {
+       "order_id": "S1",
+       "tier": "standard",
+       "ordered": 8,
+       "otif": false,
+       "on_time_units": 0,
+       "delivered": 0,
+       "cancelled": 8,
+       "unit_days_late": 24,
+       "days_short": 3,
+       "penalty": 48
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 0,
+       "ordered": 8,
+       "on_time_units": 4,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 8,
+       "penalties": 24
+      },
+      "standard": {
+       "orders": 1,
+       "otif_orders_met": 0,
+       "ordered": 8,
+       "on_time_units": 0,
+       "delivered": 0,
+       "cancelled": 8,
+       "unit_days_late": 24,
+       "penalties": 48
+      }
+     },
+     "priority_weighted_unit_days_late": 48
+    },
+    "downstream": {
+     "cancelled_units": 8,
+     "cancelled_order_value": 160,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 4,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 1,
+     "primary_reliance_pct": 100,
+     "recovery_commitments": 0,
+     "unused_recovery_budget": 40
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   },
+   "expedite_on_alert": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 24,
+     "service_penalties": 24,
+     "salvage_credit": 0,
+     "net_cost": 48
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 2,
+     "on_time_units": 12,
+     "ordered_units": 16,
+     "delivered_total": 12,
+     "cancelled_units": 4,
+     "unit_days_late": 12,
+     "orders": [
+      {
+       "order_id": "K1",
+       "tier": "key",
+       "ordered": 8,
+       "otif": true,
+       "on_time_units": 8,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      },
+      {
+       "order_id": "S1",
+       "tier": "standard",
+       "ordered": 8,
+       "otif": false,
+       "on_time_units": 4,
+       "delivered": 4,
+       "cancelled": 4,
+       "unit_days_late": 12,
+       "days_short": 3,
+       "penalty": 24
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 8,
+       "on_time_units": 8,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      },
+      "standard": {
+       "orders": 1,
+       "otif_orders_met": 0,
+       "ordered": 8,
+       "on_time_units": 4,
+       "delivered": 4,
+       "cancelled": 4,
+       "unit_days_late": 12,
+       "penalties": 24
+      }
+     },
+     "priority_weighted_unit_days_late": 12
+    },
+    "downstream": {
+     "cancelled_units": 4,
+     "cancelled_order_value": 80,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 0,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 0,
+     "primary_reliance_pct": 100,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 16
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   },
+   "alternate_on_alert": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 40,
+     "service_penalties": 24,
+     "salvage_credit": 8,
+     "net_cost": 56
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 2,
+     "on_time_units": 8,
+     "ordered_units": 16,
+     "delivered_total": 16,
+     "cancelled_units": 0,
+     "unit_days_late": 12,
+     "orders": [
+      {
+       "order_id": "K1",
+       "tier": "key",
+       "ordered": 8,
+       "otif": true,
+       "on_time_units": 8,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      },
+      {
+       "order_id": "S1",
+       "tier": "standard",
+       "ordered": 8,
+       "otif": false,
+       "on_time_units": 0,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 12,
+       "days_short": 2,
+       "penalty": 24
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 8,
+       "on_time_units": 8,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      },
+      "standard": {
+       "orders": 1,
+       "otif_orders_met": 0,
+       "ordered": 8,
+       "on_time_units": 0,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 12,
+       "penalties": 24
+      }
+     },
+     "priority_weighted_unit_days_late": 12
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 4,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 1,
+     "primary_reliance_pct": 50,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 0
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   },
+   "combo_on_alert": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 32,
+     "service_penalties": 16,
+     "salvage_credit": 0,
+     "net_cost": 48
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 2,
+     "on_time_units": 12,
+     "ordered_units": 16,
+     "delivered_total": 16,
+     "cancelled_units": 0,
+     "unit_days_late": 8,
+     "orders": [
+      {
+       "order_id": "K1",
+       "tier": "key",
+       "ordered": 8,
+       "otif": true,
+       "on_time_units": 8,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      },
+      {
+       "order_id": "S1",
+       "tier": "standard",
+       "ordered": 8,
+       "otif": false,
+       "on_time_units": 4,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 8,
+       "days_short": 2,
+       "penalty": 16
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 8,
+       "on_time_units": 8,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      },
+      "standard": {
+       "orders": 1,
+       "otif_orders_met": 0,
+       "ordered": 8,
+       "on_time_units": 4,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 8,
+       "penalties": 16
+      }
+     },
+     "priority_weighted_unit_days_late": 8
+    },
+    "downstream": {
+     "cancelled_units": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 0,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 0,
+     "primary_reliance_pct": 66,
+     "recovery_commitments": 2,
+     "unused_recovery_budget": 8
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   },
+   "staged_revisit": {
+    "schema": "dyn-scorecard-2",
+    "cost": {
+     "recovery_spend": 28,
+     "service_penalties": 24,
+     "salvage_credit": 0,
+     "net_cost": 52
+    },
+    "service": {
+     "otif_orders_met": 1,
+     "orders_total": 2,
+     "on_time_units": 12,
+     "ordered_units": 16,
+     "delivered_total": 12,
+     "cancelled_units": 4,
+     "unit_days_late": 12,
+     "orders": [
+      {
+       "order_id": "K1",
+       "tier": "key",
+       "ordered": 8,
+       "otif": true,
+       "on_time_units": 8,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "penalty": 0
+      },
+      {
+       "order_id": "S1",
+       "tier": "standard",
+       "ordered": 8,
+       "otif": false,
+       "on_time_units": 4,
+       "delivered": 4,
+       "cancelled": 4,
+       "unit_days_late": 12,
+       "days_short": 3,
+       "penalty": 24
+      }
+     ]
+    },
+    "tier_impact": {
+     "by_tier": {
+      "key": {
+       "orders": 1,
+       "otif_orders_met": 1,
+       "ordered": 8,
+       "on_time_units": 8,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      },
+      "standard": {
+       "orders": 1,
+       "otif_orders_met": 0,
+       "ordered": 8,
+       "on_time_units": 4,
+       "delivered": 4,
+       "cancelled": 4,
+       "unit_days_late": 12,
+       "penalties": 24
+      }
+     },
+     "priority_weighted_unit_days_late": 12
+    },
+    "downstream": {
+     "cancelled_units": 4,
+     "cancelled_order_value": 80,
+     "undelivered_at_end": 0
+    },
+    "supply_risk": {
+     "ending_components": 0,
+     "pending_inbound_units": 0,
+     "ending_cover_days_floor": 0,
+     "primary_reliance_pct": 100,
+     "recovery_commitments": 2,
+     "unused_recovery_budget": 12
+    },
+    "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+   }
+  }
+ },
+ "flat": [
+  {
+   "fixture": "s02-sudden-5d",
+   "policy": "maintain",
+   "net_cost": 120,
+   "recovery_spend": 0,
+   "service_penalties": 120,
+   "otif_orders_met": 0,
+   "on_time_units": 4,
+   "unit_days_late": 12,
+   "priority_weighted_unit_days_late": 36,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 100,
+   "ending_cover_days_floor": 0,
+   "salvage_credit": 0,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-sudden-5d",
+   "policy": "expedite_on_alert",
+   "net_cost": 24,
+   "recovery_spend": 24,
+   "service_penalties": 0,
+   "otif_orders_met": 1,
+   "on_time_units": 12,
+   "unit_days_late": 0,
+   "priority_weighted_unit_days_late": 0,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 100,
+   "ending_cover_days_floor": 0,
+   "salvage_credit": 0,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-sudden-5d",
+   "policy": "alternate_on_alert",
+   "net_cost": 24,
+   "recovery_spend": 40,
+   "service_penalties": 0,
+   "otif_orders_met": 1,
+   "on_time_units": 12,
+   "unit_days_late": 0,
+   "priority_weighted_unit_days_late": 0,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 50,
+   "ending_cover_days_floor": 2,
+   "salvage_credit": 16,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-sudden-5d",
+   "policy": "combo_on_alert",
+   "net_cost": 24,
+   "recovery_spend": 32,
+   "service_penalties": 0,
+   "otif_orders_met": 1,
+   "on_time_units": 12,
+   "unit_days_late": 0,
+   "priority_weighted_unit_days_late": 0,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 66,
+   "ending_cover_days_floor": 1,
+   "salvage_credit": 8,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-sudden-5d",
+   "policy": "staged_revisit",
+   "net_cost": 28,
+   "recovery_spend": 28,
+   "service_penalties": 0,
+   "otif_orders_met": 1,
+   "on_time_units": 12,
+   "unit_days_late": 0,
+   "priority_weighted_unit_days_late": 0,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 100,
+   "ending_cover_days_floor": 0,
+   "salvage_credit": 0,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-warned-delayed-10d",
+   "policy": "maintain",
+   "net_cost": 50,
+   "recovery_spend": 0,
+   "service_penalties": 50,
+   "otif_orders_met": 0,
+   "on_time_units": 4,
+   "unit_days_late": 20,
+   "priority_weighted_unit_days_late": 60,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 100,
+   "ending_cover_days_floor": 0,
+   "salvage_credit": 0,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-warned-delayed-10d",
+   "policy": "expedite_on_alert",
+   "net_cost": 24,
+   "recovery_spend": 24,
+   "service_penalties": 0,
+   "otif_orders_met": 1,
+   "on_time_units": 12,
+   "unit_days_late": 0,
+   "priority_weighted_unit_days_late": 0,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 100,
+   "ending_cover_days_floor": 0,
+   "salvage_credit": 0,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-warned-delayed-10d",
+   "policy": "alternate_on_alert",
+   "net_cost": 24,
+   "recovery_spend": 40,
+   "service_penalties": 0,
+   "otif_orders_met": 1,
+   "on_time_units": 12,
+   "unit_days_late": 0,
+   "priority_weighted_unit_days_late": 0,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 50,
+   "ending_cover_days_floor": 2,
+   "salvage_credit": 16,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-warned-delayed-10d",
+   "policy": "combo_on_alert",
+   "net_cost": 24,
+   "recovery_spend": 32,
+   "service_penalties": 0,
+   "otif_orders_met": 1,
+   "on_time_units": 12,
+   "unit_days_late": 0,
+   "priority_weighted_unit_days_late": 0,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 66,
+   "ending_cover_days_floor": 1,
+   "salvage_credit": 8,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-warned-delayed-10d",
+   "policy": "staged_revisit",
+   "net_cost": 28,
+   "recovery_spend": 28,
+   "service_penalties": 0,
+   "otif_orders_met": 1,
+   "on_time_units": 12,
+   "unit_days_late": 0,
+   "priority_weighted_unit_days_late": 0,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 100,
+   "ending_cover_days_floor": 0,
+   "salvage_credit": 0,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-warned-no-delay-10d",
+   "policy": "maintain",
+   "net_cost": 0,
+   "recovery_spend": 0,
+   "service_penalties": 0,
+   "otif_orders_met": 1,
+   "on_time_units": 12,
+   "unit_days_late": 0,
+   "priority_weighted_unit_days_late": 0,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 100,
+   "ending_cover_days_floor": 0,
+   "salvage_credit": 0,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-warned-no-delay-10d",
+   "policy": "expedite_on_alert",
+   "net_cost": 24,
+   "recovery_spend": 24,
+   "service_penalties": 0,
+   "otif_orders_met": 1,
+   "on_time_units": 12,
+   "unit_days_late": 0,
+   "priority_weighted_unit_days_late": 0,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 100,
+   "ending_cover_days_floor": 0,
+   "salvage_credit": 0,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-warned-no-delay-10d",
+   "policy": "alternate_on_alert",
+   "net_cost": 24,
+   "recovery_spend": 40,
+   "service_penalties": 0,
+   "otif_orders_met": 1,
+   "on_time_units": 12,
+   "unit_days_late": 0,
+   "priority_weighted_unit_days_late": 0,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 50,
+   "ending_cover_days_floor": 2,
+   "salvage_credit": 16,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-warned-no-delay-10d",
+   "policy": "combo_on_alert",
+   "net_cost": 24,
+   "recovery_spend": 32,
+   "service_penalties": 0,
+   "otif_orders_met": 1,
+   "on_time_units": 12,
+   "unit_days_late": 0,
+   "priority_weighted_unit_days_late": 0,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 66,
+   "ending_cover_days_floor": 1,
+   "salvage_credit": 8,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-warned-no-delay-10d",
+   "policy": "staged_revisit",
+   "net_cost": 12,
+   "recovery_spend": 12,
+   "service_penalties": 0,
+   "otif_orders_met": 1,
+   "on_time_units": 12,
+   "unit_days_late": 0,
+   "priority_weighted_unit_days_late": 0,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 100,
+   "ending_cover_days_floor": 0,
+   "salvage_credit": 0,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-multitier-cancel-10d",
+   "policy": "maintain",
+   "net_cost": 64,
+   "recovery_spend": 0,
+   "service_penalties": 72,
+   "otif_orders_met": 0,
+   "on_time_units": 4,
+   "unit_days_late": 32,
+   "priority_weighted_unit_days_late": 48,
+   "cancelled_order_value": 160,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 100,
+   "ending_cover_days_floor": 1,
+   "salvage_credit": 8,
+   "cancelled_units": 8,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-multitier-cancel-10d",
+   "policy": "expedite_on_alert",
+   "net_cost": 48,
+   "recovery_spend": 24,
+   "service_penalties": 24,
+   "otif_orders_met": 1,
+   "on_time_units": 12,
+   "unit_days_late": 12,
+   "priority_weighted_unit_days_late": 12,
+   "cancelled_order_value": 80,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 100,
+   "ending_cover_days_floor": 0,
+   "salvage_credit": 0,
+   "cancelled_units": 4,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-multitier-cancel-10d",
+   "policy": "alternate_on_alert",
+   "net_cost": 56,
+   "recovery_spend": 40,
+   "service_penalties": 24,
+   "otif_orders_met": 1,
+   "on_time_units": 8,
+   "unit_days_late": 12,
+   "priority_weighted_unit_days_late": 12,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 50,
+   "ending_cover_days_floor": 1,
+   "salvage_credit": 8,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-multitier-cancel-10d",
+   "policy": "combo_on_alert",
+   "net_cost": 48,
+   "recovery_spend": 32,
+   "service_penalties": 16,
+   "otif_orders_met": 1,
+   "on_time_units": 12,
+   "unit_days_late": 8,
+   "priority_weighted_unit_days_late": 8,
+   "cancelled_order_value": 0,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 66,
+   "ending_cover_days_floor": 0,
+   "salvage_credit": 0,
+   "cancelled_units": 0,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  },
+  {
+   "fixture": "s02-multitier-cancel-10d",
+   "policy": "staged_revisit",
+   "net_cost": 52,
+   "recovery_spend": 28,
+   "service_penalties": 24,
+   "otif_orders_met": 1,
+   "on_time_units": 12,
+   "unit_days_late": 12,
+   "priority_weighted_unit_days_late": 12,
+   "cancelled_order_value": 80,
+   "pending_inbound_units": 0,
+   "primary_reliance_pct": 100,
+   "ending_cover_days_floor": 0,
+   "salvage_credit": 0,
+   "cancelled_units": 4,
+   "verifier_feasible": true,
+   "matches_hand_ledger": true,
+   "replay_reproduced": true
+  }
+ ]
+}

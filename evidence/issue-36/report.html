@@ -1,0 +1,100 @@
+<!doctype html><html><head><meta charset="utf-8"><title>S01 v0.2 packet</title><style>body{font:14px/1.4 sans-serif;margin:24px}pre{background:#f4f4f4;padding:10px;white-space:pre-wrap;font-size:12px}</style></head><body><h1>S01 v0.2 family demonstration packet</h1><p>ALL NUMBERS PROVISIONAL, needs practitioner value. Scripted policies, synthetic scenarios, no LLM, practitioner-reviewed: no.</p><h2>Comparison</h2><pre># Per-metric comparison (no overall winner is declared)
+
+ALL NUMBERS PROVISIONAL, needs practitioner value. Scripted policies, synthetic scenarios, no LLM, practitioner-reviewed: no.
+
+Each table shows one scenario. &quot;Best here&quot; marks the policy (or tie) that is best on that metric alone.
+Cost, service, tier impact, downstream impact and supply risk are never combined into one number.
+
+## s02-sudden-5d
+
+| metric | dimension | better | maintain | expedite_on_alert | alternate_on_alert | combo_on_alert | staged_revisit | best here |
+|---|---|---|---|---|---|---|---|---|
+| net_cost | cost | lower | 120 | 24 | 24 | 24 | 28 | alternate_on_alert, combo_on_alert, expedite_on_alert |
+| recovery_spend | cost | lower | 0 | 24 | 40 | 32 | 28 | maintain |
+| service_penalties | cost | lower | 120 | 0 | 0 | 0 | 0 | alternate_on_alert, combo_on_alert, expedite_on_alert, staged_revisit |
+| otif_orders_met | service | higher | 0 | 1 | 1 | 1 | 1 | alternate_on_alert, combo_on_alert, expedite_on_alert, staged_revisit |
+| on_time_units | service | higher | 4 | 12 | 12 | 12 | 12 | alternate_on_alert, combo_on_alert, expedite_on_alert, staged_revisit |
+| unit_days_late | service | lower | 12 | 0 | 0 | 0 | 0 | alternate_on_alert, combo_on_alert, expedite_on_alert, staged_revisit |
+| priority_weighted_unit_days_late | tier impact | lower | 36 | 0 | 0 | 0 | 0 | alternate_on_alert, combo_on_alert, expedite_on_alert, staged_revisit |
+| cancelled_order_value | downstream impact | lower | 0 | 0 | 0 | 0 | 0 | alternate_on_alert, combo_on_alert, expedite_on_alert, maintain, staged_revisit |
+| pending_inbound_units | supply risk | lower | 0 | 0 | 0 | 0 | 0 | alternate_on_alert, combo_on_alert, expedite_on_alert, maintain, staged_revisit |
+| primary_reliance_pct | supply risk | lower | 100 | 100 | 50 | 66 | 100 | alternate_on_alert |
+| ending_cover_days_floor | supply risk | higher | 0 | 0 | 2 | 1 | 0 | alternate_on_alert |
+
+Best on every metric: none. No policy is best on every metric; different metrics favour different policies. No overall winner is declared. Weighing cost against service, tier, downstream and supply-risk impact is a practitioner decision.
+
+## s02-warned-delayed-10d
+
+| metric | dimension | better | maintain | expedite_on_alert | alternate_on_alert | combo_on_alert | staged_revisit | best here |
+|---|---|---|---|---|---|---|---|---|
+| net_cost | cost | lower | 50 | 24 | 24 | 24 | 28 | alternate_on_alert, combo_on_alert, expedite_on_alert |
+| recovery_spend | cost | lower | 0 | 24 | 40 | 32 | 28 | maintain |
+| service_penalties | cost | lower | 50 | 0 | 0 | 0 | 0 | alternate_on_alert, combo_on_alert, expedite_on_alert, staged_revisit |
+| otif_orders_met | service | higher | 0 | 1 | 1 | 1 | 1 | alternate_on_alert, combo_on_alert, expedite_on_alert, staged_revisit |
+| on_time_units | service | higher | 4 | 12 | 12 | 12 | 12 | alternate_on_alert, combo_on_alert, expedite_on_alert, staged_revisit |
+| unit_days_late | service | lower | 20 | 0 | 0 | 0 | 0 | alternate_on_alert, combo_on_alert, expedite_on_alert, staged_revisit |
+| priority_weighted_unit_days_late | tier impact | lower | 60 | 0 | 0 | 0 | 0 | alternate_on_alert, combo_on_alert, expedite_on_alert, staged_revisit |
+| cancelled_order_value | downstream impact | lower | 0 | 0 | 0 | 0 | 0 | alternate_on_alert, combo_on_alert, expedite_on_alert, maintain, staged_revisit |
+| pending_inbound_units | supply risk | lower | 0 | 0 | 0 | 0 | 0 | alternate_on_alert, combo_on_alert, expedite_on_alert, maintain, staged_revisit |
+| primary_reliance_pct | supply risk | lower | 100 | 100 | 50 | 66 | 100 | alternate_on_alert |
+| ending_cover_days_floor | supply risk | higher | 0 | 0 | 2 | 1 | 0 | alternate_on_alert |
+
+Best on every metric: none. No policy is best on every metric; different metrics favour different policies. No overall winner is declared. Weighing cost against service, tier, downstream and supply-risk impact is a practitioner decision.
+
+## s02-warned-no-delay-10d
+
+| metric | dimension | better | maintain | expedite_on_alert | alternate_on_alert | combo_on_alert | staged_revisit | best here |
+|---|---|---|---|---|---|---|---|---|
+| net_cost | cost | lower | 0 | 24 | 24 | 24 | 12 | maintain |
+| recovery_spend | cost | lower | 0 | 24 | 40 | 32 | 12 | maintain |
+| service_penalties | cost | lower | 0 | 0 | 0 | 0 | 0 | alternate_on_alert, combo_on_alert, expedite_on_alert, maintain, staged_revisit |
+| otif_orders_met | service | higher | 1 | 1 | 1 | 1 | 1 | alternate_on_alert, combo_on_alert, expedite_on_alert, maintain, staged_revisit |
+| on_time_units | service | higher | 12 | 12 | 12 | 12 | 12 | alternate_on_alert, combo_on_alert, expedite_on_alert, maintain, staged_revisit |
+| unit_days_late | service | lower | 0 | 0 | 0 | 0 | 0 | alternate_on_alert, combo_on_alert, expedite_on_alert, maintain, staged_revisit |
+| priority_weighted_unit_days_late | tier impact | lower | 0 | 0 | 0 | 0 | 0 | alternate_on_alert, combo_on_alert, expedite_on_alert, maintain, staged_revisit |
+| cancelled_order_value | downstream impact | lower | 0 | 0 | 0 | 0 | 0 | alternate_on_alert, combo_on_alert, expedite_on_alert, maintain, staged_revisit |
+| pending_inbound_units | supply risk | lower | 0 | 0 | 0 | 0 | 0 | alternate_on_alert, combo_on_alert, expedite_on_alert, maintain, staged_revisit |
+| primary_reliance_pct | supply risk | lower | 100 | 100 | 50 | 66 | 100 | alternate_on_alert |
+| ending_cover_days_floor | supply risk | higher | 0 | 0 | 2 | 1 | 0 | alternate_on_alert |
+
+Best on every metric: none. No policy is best on every metric; different metrics favour different policies. No overall winner is declared. Weighing cost against service, tier, downstream and supply-risk impact is a practitioner decision.
+
+## s02-multitier-cancel-10d
+
+| metric | dimension | better | maintain | expedite_on_alert | alternate_on_alert | combo_on_alert | staged_revisit | best here |
+|---|---|---|---|---|---|---|---|---|
+| net_cost | cost | lower | 64 | 48 | 56 | 48 | 52 | combo_on_alert, expedite_on_alert |
+| recovery_spend | cost | lower | 0 | 24 | 40 | 32 | 28 | maintain |
+| service_penalties | cost | lower | 72 | 24 | 24 | 16 | 24 | combo_on_alert |
+| otif_orders_met | service | higher | 0 | 1 | 1 | 1 | 1 | alternate_on_alert, combo_on_alert, expedite_on_alert, staged_revisit |
+| on_time_units | service | higher | 4 | 12 | 8 | 12 | 12 | combo_on_alert, expedite_on_alert, staged_revisit |
+| unit_days_late | service | lower | 32 | 12 | 12 | 8 | 12 | combo_on_alert |
+| priority_weighted_unit_days_late | tier impact | lower | 48 | 12 | 12 | 8 | 12 | combo_on_alert |
+| cancelled_order_value | downstream impact | lower | 160 | 80 | 0 | 0 | 80 | alternate_on_alert, combo_on_alert |
+| pending_inbound_units | supply risk | lower | 0 | 0 | 0 | 0 | 0 | alternate_on_alert, combo_on_alert, expedite_on_alert, maintain, staged_revisit |
+| primary_reliance_pct | supply risk | lower | 100 | 100 | 50 | 66 | 100 | alternate_on_alert |
+| ending_cover_days_floor | supply risk | higher | 1 | 0 | 1 | 0 | 0 | alternate_on_alert, maintain |
+
+Best on every metric: none. No policy is best on every metric; different metrics favour different policies. No overall winner is declared. Weighing cost against service, tier, downstream and supply-risk impact is a practitioner decision.
+</pre><h2>Gates</h2><pre># Issue #36 gate report (S01 v0.2 family)
+
+ALL NUMBERS PROVISIONAL, needs practitioner value. Scripted policies, synthetic scenarios, no LLM, practitioner-reviewed: no.
+
+Regenerate: `PYTHONPATH=src python scripts/run_dynamic_demo_v2.py --out evidence/issue-36`. Output is deterministic.
+
+| Gate | Status | Evidence |
+|---|---|---|
+| G1 Coherent initial world | Evidence produced, unreviewed | Initial observation (state, contract terms by order, tier rules, salvage rate, budget, tool definitions, schema/runtime version) recorded per episode in transcripts.json. |
+| G2 Actual time progression | Evidence produced, unreviewed | Every episode logs day_open then day_close for each day 1..horizon (5 and 10) and ends with episode_complete. |
+| G3 Executed disruption, signal and recovery | Evidence produced, unreviewed | Sudden scenarios show only a firm notice; warned scenarios show a possible-delay signal first and a firm notice later that either confirms a delay or confirms on-time arrival. Commitments change lot timing and create distinct lots (see timeline.txt). |
+| G4 Consequential state changes (hand ledgers) | Evidence produced, unreviewed | Independent per-day ledger equals the hand-worked ledgers for all 20 episodes (received, produced, shipped, stock, delivered, penalties, spend, cancellations) and passes conservation checks. |
+| G5 Per-metric scorecards (hand metrics) | Evidence produced, unreviewed | Per-metric scorecards (cost, service, tier impact, downstream, supply risk) equal the hand-worked per-episode metrics. Same initial world and disruption per scenario across the five declared policies. |
+| G6 Independent checking | Evidence produced, unreviewed | dynamic_verifier_v2 re-derives each episode from commands and imports no simulator code (AST test). Corruption cases per episode: forged scorecard, premature receipt, wrong penalty, deleted close, duplicate commitment, over-budget combination, leaked signal (warned scenarios), forged pass flags. |
+| G7 Failure behavior | Evidence produced, unreviewed | Through the tool interface: hidden-state probe, duplicate action id, over-budget combination, overcapacity, duplicate release, closed offer window, exhausted expedite units, production without material. Each rejection leaves state unchanged and stays auditable. Premature receipt, wrong penalty and leaked signals are proven at verifier level. |
+| G8 Replay and no-leak | Evidence produced, unreviewed | Each transcript replays from recorded calls with identical state sequence and scorecard. All observations in all 20 episodes pass the private-answer and outcome-leak scan; warned-and-delayed and warned-and-no-delay episodes are observation-identical until the firm notice. |
+| G9 Honest demonstration | Partial: labels stated; practitioner re-review pending | Labels and limitations published. Practitioner re-review has not occurred (reviewed: no); the gate cannot be called passed. |
+
+Implemented: yes. Tested: yes (automated, synthetic fixtures). Practitioner-reviewed: no; the repair awaits re-review.
+
+No model-ability claim. No overall best policy is declared. The warned scenarios use an authored hint value that is not calibrated.
+</pre></body></html>

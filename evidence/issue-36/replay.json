@@ -1,0 +1,174 @@
+{
+ "command": "PYTHONPATH=src python scripts/run_dynamic_demo_v2.py --out evidence/issue-36",
+ "method": "Recorded tool calls re-driven through a fresh ObservableRunnerV2 and world; views, outcomes, state changes, final state and scorecard must match exactly. The replayed history is also compared and re-verified.",
+ "episodes": {
+  "s02-sudden-5d": {
+   "maintain": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 10
+   },
+   "expedite_on_alert": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 11
+   },
+   "alternate_on_alert": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 11
+   },
+   "combo_on_alert": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 12
+   },
+   "staged_revisit": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 12
+   }
+  },
+  "s02-warned-delayed-10d": {
+   "maintain": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 20
+   },
+   "expedite_on_alert": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 21
+   },
+   "alternate_on_alert": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 21
+   },
+   "combo_on_alert": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 22
+   },
+   "staged_revisit": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 22
+   }
+  },
+  "s02-warned-no-delay-10d": {
+   "maintain": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 20
+   },
+   "expedite_on_alert": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 21
+   },
+   "alternate_on_alert": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 21
+   },
+   "combo_on_alert": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 22
+   },
+   "staged_revisit": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 21
+   }
+  },
+  "s02-multitier-cancel-10d": {
+   "maintain": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 20
+   },
+   "expedite_on_alert": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 21
+   },
+   "alternate_on_alert": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 21
+   },
+   "combo_on_alert": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 22
+   },
+   "staged_revisit": {
+    "transcript_reproduced": true,
+    "differences": [],
+    "state_sequence_identical": true,
+    "replayed_scorecard_identical": true,
+    "replayed_history_feasible": true,
+    "attempts": 22
+   }
+  }
+ }
+}
