@@ -1,0 +1,1264 @@
+S01 v0.2 timeline. ALL NUMBERS PROVISIONAL, needs practitioner value. Scripted policies, synthetic scenarios, no LLM, practitioner-reviewed: no.
+
+=== s02-sudden-5d / maintain (horizon 5 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 notice kind=delay_confirmed, original_day=2, revised_day=4
+  day 1 day_open
+#01 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#02 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 opening_before_notice
+      day 2 day_open
+#03 day 2 agent calls release_production(quantity=0) -> accepted
+      day 2 release quantity=0
+#04 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 opening_before_notice
+      day 3 day_open
+#05 day 3 agent calls release_production(quantity=0) -> accepted
+      day 3 release quantity=0
+#06 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=0, shipped=4, shipments={'O1': 4}, penalties={'O1': 80}, cancelled={}
+      day 4 receipt lot=primary, source=primary, quantity=8
+      day 4 opening_before_notice
+      day 4 day_open
+#07 day 4 agent calls release_production(quantity=4) -> accepted
+      day 4 release quantity=4
+#08 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=4, shipped=4, shipments={'O1': 4}, penalties={'O1': 40}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#09 day 5 agent calls release_production(quantity=4) -> accepted
+      day 5 release quantity=4
+#10 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=4, shipped=4, shipments={'O1': 4}, penalties={}, cancelled={}
+      day 5 episode_complete salvage_credit=0, net_cost=120
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 0, "service_penalties": 120, "salvage_credit": 0, "net_cost": 120}, "service": {"otif_orders_met": 0, "orders_total": 1, "on_time_units": 4, "ordered_units": 12, "delivered_total": 12, "cancelled_units": 0, "unit_days_late": 12, "orders": [{"order_id": "O1", "tier": "key", "ordered": 12, "otif": false, "on_time_units": 4, "delivered": 12, "cancelled": 0, "unit_days_late": 12, "days_short": 2, "penalty": 120}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 0, "ordered": 12, "on_time_units": 4, "delivered": 12, "cancelled": 0, "unit_days_late": 12, "penalties": 120}}, "priority_weighted_unit_days_late": 36}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 0, "pending_inbound_units": 0, "ending_cover_days_floor": 0, "primary_reliance_pct": 100, "recovery_commitments": 0, "unused_recovery_budget": 40}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-sudden-5d / expedite_on_alert (horizon 5 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 notice kind=delay_confirmed, original_day=2, revised_day=4
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=expedite,quantity=8) -> accepted
+      day 1 recovery choice=expedite, quantity=8, commit_id=c1
+#02 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#03 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 receipt lot=primary, source=primary, quantity=8
+      day 2 opening_before_notice
+      day 2 day_open
+#04 day 2 agent calls release_production(quantity=4) -> accepted
+      day 2 release quantity=4
+#05 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 opening_before_notice
+      day 3 day_open
+#06 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#07 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=12, shipments={'O1': 12}, penalties={}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#08 day 4 agent calls release_production(quantity=0) -> accepted
+      day 4 release quantity=0
+#09 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#10 day 5 agent calls release_production(quantity=0) -> accepted
+      day 5 release quantity=0
+#11 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 5 episode_complete salvage_credit=0, net_cost=24
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 24, "service_penalties": 0, "salvage_credit": 0, "net_cost": 24}, "service": {"otif_orders_met": 1, "orders_total": 1, "on_time_units": 12, "ordered_units": 12, "delivered_total": 12, "cancelled_units": 0, "unit_days_late": 0, "orders": [{"order_id": "O1", "tier": "key", "ordered": 12, "otif": true, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 12, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "penalties": 0}}, "priority_weighted_unit_days_late": 0}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 0, "pending_inbound_units": 0, "ending_cover_days_floor": 0, "primary_reliance_pct": 100, "recovery_commitments": 1, "unused_recovery_budget": 16}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-sudden-5d / alternate_on_alert (horizon 5 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 notice kind=delay_confirmed, original_day=2, revised_day=4
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=alternate,quantity=8) -> accepted
+      day 1 recovery choice=alternate, quantity=8, commit_id=c1
+#02 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#03 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 receipt lot=alt1, source=alternate, quantity=8
+      day 2 opening_before_notice
+      day 2 day_open
+#04 day 2 agent calls release_production(quantity=4) -> accepted
+      day 2 release quantity=4
+#05 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 opening_before_notice
+      day 3 day_open
+#06 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#07 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=12, shipments={'O1': 12}, penalties={}, cancelled={}
+      day 4 receipt lot=primary, source=primary, quantity=8
+      day 4 opening_before_notice
+      day 4 day_open
+#08 day 4 agent calls release_production(quantity=0) -> accepted
+      day 4 release quantity=0
+#09 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#10 day 5 agent calls release_production(quantity=0) -> accepted
+      day 5 release quantity=0
+#11 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 5 episode_complete salvage_credit=16, net_cost=24
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 40, "service_penalties": 0, "salvage_credit": 16, "net_cost": 24}, "service": {"otif_orders_met": 1, "orders_total": 1, "on_time_units": 12, "ordered_units": 12, "delivered_total": 12, "cancelled_units": 0, "unit_days_late": 0, "orders": [{"order_id": "O1", "tier": "key", "ordered": 12, "otif": true, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 12, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "penalties": 0}}, "priority_weighted_unit_days_late": 0}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 8, "pending_inbound_units": 0, "ending_cover_days_floor": 2, "primary_reliance_pct": 50, "recovery_commitments": 1, "unused_recovery_budget": 0}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-sudden-5d / combo_on_alert (horizon 5 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 notice kind=delay_confirmed, original_day=2, revised_day=4
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=expedite,quantity=4) -> accepted
+      day 1 recovery choice=expedite, quantity=4, commit_id=c1
+#02 day 1 agent calls commit_recovery(choice=alternate,quantity=4) -> accepted
+      day 1 recovery choice=alternate, quantity=4, commit_id=c2
+#03 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#04 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 receipt lot=exp1, source=primary, quantity=4
+      day 2 receipt lot=alt1, source=alternate, quantity=4
+      day 2 opening_before_notice
+      day 2 day_open
+#05 day 2 agent calls release_production(quantity=4) -> accepted
+      day 2 release quantity=4
+#06 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 opening_before_notice
+      day 3 day_open
+#07 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#08 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=12, shipments={'O1': 12}, penalties={}, cancelled={}
+      day 4 receipt lot=primary, source=primary, quantity=4
+      day 4 opening_before_notice
+      day 4 day_open
+#09 day 4 agent calls release_production(quantity=0) -> accepted
+      day 4 release quantity=0
+#10 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#11 day 5 agent calls release_production(quantity=0) -> accepted
+      day 5 release quantity=0
+#12 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 5 episode_complete salvage_credit=8, net_cost=24
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 32, "service_penalties": 0, "salvage_credit": 8, "net_cost": 24}, "service": {"otif_orders_met": 1, "orders_total": 1, "on_time_units": 12, "ordered_units": 12, "delivered_total": 12, "cancelled_units": 0, "unit_days_late": 0, "orders": [{"order_id": "O1", "tier": "key", "ordered": 12, "otif": true, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 12, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "penalties": 0}}, "priority_weighted_unit_days_late": 0}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 4, "pending_inbound_units": 0, "ending_cover_days_floor": 1, "primary_reliance_pct": 66, "recovery_commitments": 2, "unused_recovery_budget": 8}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-sudden-5d / staged_revisit (horizon 5 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 notice kind=delay_confirmed, original_day=2, revised_day=4
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=expedite,quantity=4) -> accepted
+      day 1 recovery choice=expedite, quantity=4, commit_id=c1
+#02 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#03 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 receipt lot=exp1, source=primary, quantity=4
+      day 2 opening_before_notice
+      day 2 day_open
+#04 day 2 agent calls commit_recovery(choice=expedite,quantity=4) -> accepted
+      day 2 recovery choice=expedite, quantity=4, commit_id=c2
+#05 day 2 agent calls release_production(quantity=4) -> accepted
+      day 2 release quantity=4
+#06 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 receipt lot=primary, source=primary, quantity=4
+      day 3 opening_before_notice
+      day 3 day_open
+#07 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#08 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=12, shipments={'O1': 12}, penalties={}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#09 day 4 agent calls release_production(quantity=0) -> accepted
+      day 4 release quantity=0
+#10 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#11 day 5 agent calls release_production(quantity=0) -> accepted
+      day 5 release quantity=0
+#12 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 5 episode_complete salvage_credit=0, net_cost=28
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 28, "service_penalties": 0, "salvage_credit": 0, "net_cost": 28}, "service": {"otif_orders_met": 1, "orders_total": 1, "on_time_units": 12, "ordered_units": 12, "delivered_total": 12, "cancelled_units": 0, "unit_days_late": 0, "orders": [{"order_id": "O1", "tier": "key", "ordered": 12, "otif": true, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 12, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "penalties": 0}}, "priority_weighted_unit_days_late": 0}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 0, "pending_inbound_units": 0, "ending_cover_days_floor": 0, "primary_reliance_pct": 100, "recovery_commitments": 2, "unused_recovery_budget": 12}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-warned-delayed-10d / maintain (horizon 10 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 signal hint_pct=60
+  day 1 day_open
+#01 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#02 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 opening_before_notice
+      day 2 notice kind=delay_confirmed, original_day=3, revised_day=6
+      day 2 day_open
+#03 day 2 agent calls release_production(quantity=0) -> accepted
+      day 2 release quantity=0
+#04 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 opening_before_notice
+      day 3 day_open
+#05 day 3 agent calls release_production(quantity=0) -> accepted
+      day 3 release quantity=0
+#06 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#07 day 4 agent calls release_production(quantity=0) -> accepted
+      day 4 release quantity=0
+#08 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=0, shipped=4, shipments={'O1': 4}, penalties={'O1': 20}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#09 day 5 agent calls release_production(quantity=0) -> accepted
+      day 5 release quantity=0
+#10 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=0, shipped=0, shipments={}, penalties={'O1': 20}, cancelled={}
+      day 6 receipt lot=primary, source=primary, quantity=8
+      day 6 opening_before_notice
+      day 6 day_open
+#11 day 6 agent calls release_production(quantity=4) -> accepted
+      day 6 release quantity=4
+#12 day 6 agent calls advance_day() -> accepted
+      day 6 day_close produced=4, shipped=4, shipments={'O1': 4}, penalties={'O1': 10}, cancelled={}
+      day 7 opening_before_notice
+      day 7 day_open
+#13 day 7 agent calls release_production(quantity=4) -> accepted
+      day 7 release quantity=4
+#14 day 7 agent calls advance_day() -> accepted
+      day 7 day_close produced=4, shipped=4, shipments={'O1': 4}, penalties={}, cancelled={}
+      day 8 opening_before_notice
+      day 8 day_open
+#15 day 8 agent calls release_production(quantity=0) -> accepted
+      day 8 release quantity=0
+#16 day 8 agent calls advance_day() -> accepted
+      day 8 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 9 opening_before_notice
+      day 9 day_open
+#17 day 9 agent calls release_production(quantity=0) -> accepted
+      day 9 release quantity=0
+#18 day 9 agent calls advance_day() -> accepted
+      day 9 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 opening_before_notice
+      day 10 day_open
+#19 day 10 agent calls release_production(quantity=0) -> accepted
+      day 10 release quantity=0
+#20 day 10 agent calls advance_day() -> accepted
+      day 10 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 episode_complete salvage_credit=0, net_cost=50
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 0, "service_penalties": 50, "salvage_credit": 0, "net_cost": 50}, "service": {"otif_orders_met": 0, "orders_total": 1, "on_time_units": 4, "ordered_units": 12, "delivered_total": 12, "cancelled_units": 0, "unit_days_late": 20, "orders": [{"order_id": "O1", "tier": "key", "ordered": 12, "otif": false, "on_time_units": 4, "delivered": 12, "cancelled": 0, "unit_days_late": 20, "days_short": 3, "penalty": 50}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 0, "ordered": 12, "on_time_units": 4, "delivered": 12, "cancelled": 0, "unit_days_late": 20, "penalties": 50}}, "priority_weighted_unit_days_late": 60}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 0, "pending_inbound_units": 0, "ending_cover_days_floor": 0, "primary_reliance_pct": 100, "recovery_commitments": 0, "unused_recovery_budget": 40}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-warned-delayed-10d / expedite_on_alert (horizon 10 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 signal hint_pct=60
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=expedite,quantity=8) -> accepted
+      day 1 recovery choice=expedite, quantity=8, commit_id=c1
+#02 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#03 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 receipt lot=primary, source=primary, quantity=8
+      day 2 opening_before_notice
+      day 2 notice kind=delay_confirmed, original_day=3, revised_day=6
+      day 2 day_open
+#04 day 2 agent calls release_production(quantity=4) -> accepted
+      day 2 release quantity=4
+#05 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 opening_before_notice
+      day 3 day_open
+#06 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#07 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#08 day 4 agent calls release_production(quantity=0) -> accepted
+      day 4 release quantity=0
+#09 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=0, shipped=12, shipments={'O1': 12}, penalties={}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#10 day 5 agent calls release_production(quantity=0) -> accepted
+      day 5 release quantity=0
+#11 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 6 opening_before_notice
+      day 6 day_open
+#12 day 6 agent calls release_production(quantity=0) -> accepted
+      day 6 release quantity=0
+#13 day 6 agent calls advance_day() -> accepted
+      day 6 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 7 opening_before_notice
+      day 7 day_open
+#14 day 7 agent calls release_production(quantity=0) -> accepted
+      day 7 release quantity=0
+#15 day 7 agent calls advance_day() -> accepted
+      day 7 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 8 opening_before_notice
+      day 8 day_open
+#16 day 8 agent calls release_production(quantity=0) -> accepted
+      day 8 release quantity=0
+#17 day 8 agent calls advance_day() -> accepted
+      day 8 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 9 opening_before_notice
+      day 9 day_open
+#18 day 9 agent calls release_production(quantity=0) -> accepted
+      day 9 release quantity=0
+#19 day 9 agent calls advance_day() -> accepted
+      day 9 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 opening_before_notice
+      day 10 day_open
+#20 day 10 agent calls release_production(quantity=0) -> accepted
+      day 10 release quantity=0
+#21 day 10 agent calls advance_day() -> accepted
+      day 10 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 episode_complete salvage_credit=0, net_cost=24
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 24, "service_penalties": 0, "salvage_credit": 0, "net_cost": 24}, "service": {"otif_orders_met": 1, "orders_total": 1, "on_time_units": 12, "ordered_units": 12, "delivered_total": 12, "cancelled_units": 0, "unit_days_late": 0, "orders": [{"order_id": "O1", "tier": "key", "ordered": 12, "otif": true, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 12, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "penalties": 0}}, "priority_weighted_unit_days_late": 0}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 0, "pending_inbound_units": 0, "ending_cover_days_floor": 0, "primary_reliance_pct": 100, "recovery_commitments": 1, "unused_recovery_budget": 16}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-warned-delayed-10d / alternate_on_alert (horizon 10 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 signal hint_pct=60
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=alternate,quantity=8) -> accepted
+      day 1 recovery choice=alternate, quantity=8, commit_id=c1
+#02 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#03 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 opening_before_notice
+      day 2 notice kind=delay_confirmed, original_day=3, revised_day=6
+      day 2 day_open
+#04 day 2 agent calls release_production(quantity=0) -> accepted
+      day 2 release quantity=0
+#05 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 receipt lot=alt1, source=alternate, quantity=8
+      day 3 opening_before_notice
+      day 3 day_open
+#06 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#07 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#08 day 4 agent calls release_production(quantity=4) -> accepted
+      day 4 release quantity=4
+#09 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=4, shipped=12, shipments={'O1': 12}, penalties={}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#10 day 5 agent calls release_production(quantity=0) -> accepted
+      day 5 release quantity=0
+#11 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 6 receipt lot=primary, source=primary, quantity=8
+      day 6 opening_before_notice
+      day 6 day_open
+#12 day 6 agent calls release_production(quantity=0) -> accepted
+      day 6 release quantity=0
+#13 day 6 agent calls advance_day() -> accepted
+      day 6 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 7 opening_before_notice
+      day 7 day_open
+#14 day 7 agent calls release_production(quantity=0) -> accepted
+      day 7 release quantity=0
+#15 day 7 agent calls advance_day() -> accepted
+      day 7 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 8 opening_before_notice
+      day 8 day_open
+#16 day 8 agent calls release_production(quantity=0) -> accepted
+      day 8 release quantity=0
+#17 day 8 agent calls advance_day() -> accepted
+      day 8 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 9 opening_before_notice
+      day 9 day_open
+#18 day 9 agent calls release_production(quantity=0) -> accepted
+      day 9 release quantity=0
+#19 day 9 agent calls advance_day() -> accepted
+      day 9 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 opening_before_notice
+      day 10 day_open
+#20 day 10 agent calls release_production(quantity=0) -> accepted
+      day 10 release quantity=0
+#21 day 10 agent calls advance_day() -> accepted
+      day 10 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 episode_complete salvage_credit=16, net_cost=24
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 40, "service_penalties": 0, "salvage_credit": 16, "net_cost": 24}, "service": {"otif_orders_met": 1, "orders_total": 1, "on_time_units": 12, "ordered_units": 12, "delivered_total": 12, "cancelled_units": 0, "unit_days_late": 0, "orders": [{"order_id": "O1", "tier": "key", "ordered": 12, "otif": true, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 12, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "penalties": 0}}, "priority_weighted_unit_days_late": 0}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 8, "pending_inbound_units": 0, "ending_cover_days_floor": 2, "primary_reliance_pct": 50, "recovery_commitments": 1, "unused_recovery_budget": 0}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-warned-delayed-10d / combo_on_alert (horizon 10 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 signal hint_pct=60
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=expedite,quantity=4) -> accepted
+      day 1 recovery choice=expedite, quantity=4, commit_id=c1
+#02 day 1 agent calls commit_recovery(choice=alternate,quantity=4) -> accepted
+      day 1 recovery choice=alternate, quantity=4, commit_id=c2
+#03 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#04 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 receipt lot=exp1, source=primary, quantity=4
+      day 2 opening_before_notice
+      day 2 notice kind=delay_confirmed, original_day=3, revised_day=6
+      day 2 day_open
+#05 day 2 agent calls release_production(quantity=4) -> accepted
+      day 2 release quantity=4
+#06 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 receipt lot=alt1, source=alternate, quantity=4
+      day 3 opening_before_notice
+      day 3 day_open
+#07 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#08 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#09 day 4 agent calls release_production(quantity=0) -> accepted
+      day 4 release quantity=0
+#10 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=0, shipped=12, shipments={'O1': 12}, penalties={}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#11 day 5 agent calls release_production(quantity=0) -> accepted
+      day 5 release quantity=0
+#12 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 6 receipt lot=primary, source=primary, quantity=4
+      day 6 opening_before_notice
+      day 6 day_open
+#13 day 6 agent calls release_production(quantity=0) -> accepted
+      day 6 release quantity=0
+#14 day 6 agent calls advance_day() -> accepted
+      day 6 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 7 opening_before_notice
+      day 7 day_open
+#15 day 7 agent calls release_production(quantity=0) -> accepted
+      day 7 release quantity=0
+#16 day 7 agent calls advance_day() -> accepted
+      day 7 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 8 opening_before_notice
+      day 8 day_open
+#17 day 8 agent calls release_production(quantity=0) -> accepted
+      day 8 release quantity=0
+#18 day 8 agent calls advance_day() -> accepted
+      day 8 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 9 opening_before_notice
+      day 9 day_open
+#19 day 9 agent calls release_production(quantity=0) -> accepted
+      day 9 release quantity=0
+#20 day 9 agent calls advance_day() -> accepted
+      day 9 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 opening_before_notice
+      day 10 day_open
+#21 day 10 agent calls release_production(quantity=0) -> accepted
+      day 10 release quantity=0
+#22 day 10 agent calls advance_day() -> accepted
+      day 10 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 episode_complete salvage_credit=8, net_cost=24
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 32, "service_penalties": 0, "salvage_credit": 8, "net_cost": 24}, "service": {"otif_orders_met": 1, "orders_total": 1, "on_time_units": 12, "ordered_units": 12, "delivered_total": 12, "cancelled_units": 0, "unit_days_late": 0, "orders": [{"order_id": "O1", "tier": "key", "ordered": 12, "otif": true, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 12, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "penalties": 0}}, "priority_weighted_unit_days_late": 0}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 4, "pending_inbound_units": 0, "ending_cover_days_floor": 1, "primary_reliance_pct": 66, "recovery_commitments": 2, "unused_recovery_budget": 8}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-warned-delayed-10d / staged_revisit (horizon 10 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 signal hint_pct=60
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=expedite,quantity=4) -> accepted
+      day 1 recovery choice=expedite, quantity=4, commit_id=c1
+#02 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#03 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 receipt lot=exp1, source=primary, quantity=4
+      day 2 opening_before_notice
+      day 2 notice kind=delay_confirmed, original_day=3, revised_day=6
+      day 2 day_open
+#04 day 2 agent calls commit_recovery(choice=expedite,quantity=4) -> accepted
+      day 2 recovery choice=expedite, quantity=4, commit_id=c2
+#05 day 2 agent calls release_production(quantity=4) -> accepted
+      day 2 release quantity=4
+#06 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 receipt lot=primary, source=primary, quantity=4
+      day 3 opening_before_notice
+      day 3 day_open
+#07 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#08 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#09 day 4 agent calls release_production(quantity=0) -> accepted
+      day 4 release quantity=0
+#10 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=0, shipped=12, shipments={'O1': 12}, penalties={}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#11 day 5 agent calls release_production(quantity=0) -> accepted
+      day 5 release quantity=0
+#12 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 6 opening_before_notice
+      day 6 day_open
+#13 day 6 agent calls release_production(quantity=0) -> accepted
+      day 6 release quantity=0
+#14 day 6 agent calls advance_day() -> accepted
+      day 6 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 7 opening_before_notice
+      day 7 day_open
+#15 day 7 agent calls release_production(quantity=0) -> accepted
+      day 7 release quantity=0
+#16 day 7 agent calls advance_day() -> accepted
+      day 7 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 8 opening_before_notice
+      day 8 day_open
+#17 day 8 agent calls release_production(quantity=0) -> accepted
+      day 8 release quantity=0
+#18 day 8 agent calls advance_day() -> accepted
+      day 8 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 9 opening_before_notice
+      day 9 day_open
+#19 day 9 agent calls release_production(quantity=0) -> accepted
+      day 9 release quantity=0
+#20 day 9 agent calls advance_day() -> accepted
+      day 9 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 opening_before_notice
+      day 10 day_open
+#21 day 10 agent calls release_production(quantity=0) -> accepted
+      day 10 release quantity=0
+#22 day 10 agent calls advance_day() -> accepted
+      day 10 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 episode_complete salvage_credit=0, net_cost=28
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 28, "service_penalties": 0, "salvage_credit": 0, "net_cost": 28}, "service": {"otif_orders_met": 1, "orders_total": 1, "on_time_units": 12, "ordered_units": 12, "delivered_total": 12, "cancelled_units": 0, "unit_days_late": 0, "orders": [{"order_id": "O1", "tier": "key", "ordered": 12, "otif": true, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 12, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "penalties": 0}}, "priority_weighted_unit_days_late": 0}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 0, "pending_inbound_units": 0, "ending_cover_days_floor": 0, "primary_reliance_pct": 100, "recovery_commitments": 2, "unused_recovery_budget": 12}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-warned-no-delay-10d / maintain (horizon 10 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 signal hint_pct=60
+  day 1 day_open
+#01 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#02 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 opening_before_notice
+      day 2 notice kind=on_time_confirmed, promised_day=3
+      day 2 day_open
+#03 day 2 agent calls release_production(quantity=0) -> accepted
+      day 2 release quantity=0
+#04 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 receipt lot=primary, source=primary, quantity=8
+      day 3 opening_before_notice
+      day 3 day_open
+#05 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#06 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#07 day 4 agent calls release_production(quantity=4) -> accepted
+      day 4 release quantity=4
+#08 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=4, shipped=12, shipments={'O1': 12}, penalties={}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#09 day 5 agent calls release_production(quantity=0) -> accepted
+      day 5 release quantity=0
+#10 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 6 opening_before_notice
+      day 6 day_open
+#11 day 6 agent calls release_production(quantity=0) -> accepted
+      day 6 release quantity=0
+#12 day 6 agent calls advance_day() -> accepted
+      day 6 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 7 opening_before_notice
+      day 7 day_open
+#13 day 7 agent calls release_production(quantity=0) -> accepted
+      day 7 release quantity=0
+#14 day 7 agent calls advance_day() -> accepted
+      day 7 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 8 opening_before_notice
+      day 8 day_open
+#15 day 8 agent calls release_production(quantity=0) -> accepted
+      day 8 release quantity=0
+#16 day 8 agent calls advance_day() -> accepted
+      day 8 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 9 opening_before_notice
+      day 9 day_open
+#17 day 9 agent calls release_production(quantity=0) -> accepted
+      day 9 release quantity=0
+#18 day 9 agent calls advance_day() -> accepted
+      day 9 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 opening_before_notice
+      day 10 day_open
+#19 day 10 agent calls release_production(quantity=0) -> accepted
+      day 10 release quantity=0
+#20 day 10 agent calls advance_day() -> accepted
+      day 10 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 episode_complete salvage_credit=0, net_cost=0
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 0, "service_penalties": 0, "salvage_credit": 0, "net_cost": 0}, "service": {"otif_orders_met": 1, "orders_total": 1, "on_time_units": 12, "ordered_units": 12, "delivered_total": 12, "cancelled_units": 0, "unit_days_late": 0, "orders": [{"order_id": "O1", "tier": "key", "ordered": 12, "otif": true, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 12, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "penalties": 0}}, "priority_weighted_unit_days_late": 0}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 0, "pending_inbound_units": 0, "ending_cover_days_floor": 0, "primary_reliance_pct": 100, "recovery_commitments": 0, "unused_recovery_budget": 40}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-warned-no-delay-10d / expedite_on_alert (horizon 10 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 signal hint_pct=60
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=expedite,quantity=8) -> accepted
+      day 1 recovery choice=expedite, quantity=8, commit_id=c1
+#02 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#03 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 receipt lot=primary, source=primary, quantity=8
+      day 2 opening_before_notice
+      day 2 notice kind=on_time_confirmed, promised_day=3
+      day 2 day_open
+#04 day 2 agent calls release_production(quantity=4) -> accepted
+      day 2 release quantity=4
+#05 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 opening_before_notice
+      day 3 day_open
+#06 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#07 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#08 day 4 agent calls release_production(quantity=0) -> accepted
+      day 4 release quantity=0
+#09 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=0, shipped=12, shipments={'O1': 12}, penalties={}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#10 day 5 agent calls release_production(quantity=0) -> accepted
+      day 5 release quantity=0
+#11 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 6 opening_before_notice
+      day 6 day_open
+#12 day 6 agent calls release_production(quantity=0) -> accepted
+      day 6 release quantity=0
+#13 day 6 agent calls advance_day() -> accepted
+      day 6 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 7 opening_before_notice
+      day 7 day_open
+#14 day 7 agent calls release_production(quantity=0) -> accepted
+      day 7 release quantity=0
+#15 day 7 agent calls advance_day() -> accepted
+      day 7 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 8 opening_before_notice
+      day 8 day_open
+#16 day 8 agent calls release_production(quantity=0) -> accepted
+      day 8 release quantity=0
+#17 day 8 agent calls advance_day() -> accepted
+      day 8 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 9 opening_before_notice
+      day 9 day_open
+#18 day 9 agent calls release_production(quantity=0) -> accepted
+      day 9 release quantity=0
+#19 day 9 agent calls advance_day() -> accepted
+      day 9 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 opening_before_notice
+      day 10 day_open
+#20 day 10 agent calls release_production(quantity=0) -> accepted
+      day 10 release quantity=0
+#21 day 10 agent calls advance_day() -> accepted
+      day 10 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 episode_complete salvage_credit=0, net_cost=24
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 24, "service_penalties": 0, "salvage_credit": 0, "net_cost": 24}, "service": {"otif_orders_met": 1, "orders_total": 1, "on_time_units": 12, "ordered_units": 12, "delivered_total": 12, "cancelled_units": 0, "unit_days_late": 0, "orders": [{"order_id": "O1", "tier": "key", "ordered": 12, "otif": true, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 12, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "penalties": 0}}, "priority_weighted_unit_days_late": 0}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 0, "pending_inbound_units": 0, "ending_cover_days_floor": 0, "primary_reliance_pct": 100, "recovery_commitments": 1, "unused_recovery_budget": 16}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-warned-no-delay-10d / alternate_on_alert (horizon 10 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 signal hint_pct=60
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=alternate,quantity=8) -> accepted
+      day 1 recovery choice=alternate, quantity=8, commit_id=c1
+#02 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#03 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 opening_before_notice
+      day 2 notice kind=on_time_confirmed, promised_day=3
+      day 2 day_open
+#04 day 2 agent calls release_production(quantity=0) -> accepted
+      day 2 release quantity=0
+#05 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 receipt lot=primary, source=primary, quantity=8
+      day 3 receipt lot=alt1, source=alternate, quantity=8
+      day 3 opening_before_notice
+      day 3 day_open
+#06 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#07 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#08 day 4 agent calls release_production(quantity=4) -> accepted
+      day 4 release quantity=4
+#09 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=4, shipped=12, shipments={'O1': 12}, penalties={}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#10 day 5 agent calls release_production(quantity=0) -> accepted
+      day 5 release quantity=0
+#11 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 6 opening_before_notice
+      day 6 day_open
+#12 day 6 agent calls release_production(quantity=0) -> accepted
+      day 6 release quantity=0
+#13 day 6 agent calls advance_day() -> accepted
+      day 6 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 7 opening_before_notice
+      day 7 day_open
+#14 day 7 agent calls release_production(quantity=0) -> accepted
+      day 7 release quantity=0
+#15 day 7 agent calls advance_day() -> accepted
+      day 7 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 8 opening_before_notice
+      day 8 day_open
+#16 day 8 agent calls release_production(quantity=0) -> accepted
+      day 8 release quantity=0
+#17 day 8 agent calls advance_day() -> accepted
+      day 8 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 9 opening_before_notice
+      day 9 day_open
+#18 day 9 agent calls release_production(quantity=0) -> accepted
+      day 9 release quantity=0
+#19 day 9 agent calls advance_day() -> accepted
+      day 9 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 opening_before_notice
+      day 10 day_open
+#20 day 10 agent calls release_production(quantity=0) -> accepted
+      day 10 release quantity=0
+#21 day 10 agent calls advance_day() -> accepted
+      day 10 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 episode_complete salvage_credit=16, net_cost=24
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 40, "service_penalties": 0, "salvage_credit": 16, "net_cost": 24}, "service": {"otif_orders_met": 1, "orders_total": 1, "on_time_units": 12, "ordered_units": 12, "delivered_total": 12, "cancelled_units": 0, "unit_days_late": 0, "orders": [{"order_id": "O1", "tier": "key", "ordered": 12, "otif": true, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 12, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "penalties": 0}}, "priority_weighted_unit_days_late": 0}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 8, "pending_inbound_units": 0, "ending_cover_days_floor": 2, "primary_reliance_pct": 50, "recovery_commitments": 1, "unused_recovery_budget": 0}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-warned-no-delay-10d / combo_on_alert (horizon 10 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 signal hint_pct=60
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=expedite,quantity=4) -> accepted
+      day 1 recovery choice=expedite, quantity=4, commit_id=c1
+#02 day 1 agent calls commit_recovery(choice=alternate,quantity=4) -> accepted
+      day 1 recovery choice=alternate, quantity=4, commit_id=c2
+#03 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#04 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 receipt lot=exp1, source=primary, quantity=4
+      day 2 opening_before_notice
+      day 2 notice kind=on_time_confirmed, promised_day=3
+      day 2 day_open
+#05 day 2 agent calls release_production(quantity=4) -> accepted
+      day 2 release quantity=4
+#06 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 receipt lot=primary, source=primary, quantity=4
+      day 3 receipt lot=alt1, source=alternate, quantity=4
+      day 3 opening_before_notice
+      day 3 day_open
+#07 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#08 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#09 day 4 agent calls release_production(quantity=0) -> accepted
+      day 4 release quantity=0
+#10 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=0, shipped=12, shipments={'O1': 12}, penalties={}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#11 day 5 agent calls release_production(quantity=0) -> accepted
+      day 5 release quantity=0
+#12 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 6 opening_before_notice
+      day 6 day_open
+#13 day 6 agent calls release_production(quantity=0) -> accepted
+      day 6 release quantity=0
+#14 day 6 agent calls advance_day() -> accepted
+      day 6 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 7 opening_before_notice
+      day 7 day_open
+#15 day 7 agent calls release_production(quantity=0) -> accepted
+      day 7 release quantity=0
+#16 day 7 agent calls advance_day() -> accepted
+      day 7 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 8 opening_before_notice
+      day 8 day_open
+#17 day 8 agent calls release_production(quantity=0) -> accepted
+      day 8 release quantity=0
+#18 day 8 agent calls advance_day() -> accepted
+      day 8 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 9 opening_before_notice
+      day 9 day_open
+#19 day 9 agent calls release_production(quantity=0) -> accepted
+      day 9 release quantity=0
+#20 day 9 agent calls advance_day() -> accepted
+      day 9 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 opening_before_notice
+      day 10 day_open
+#21 day 10 agent calls release_production(quantity=0) -> accepted
+      day 10 release quantity=0
+#22 day 10 agent calls advance_day() -> accepted
+      day 10 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 episode_complete salvage_credit=8, net_cost=24
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 32, "service_penalties": 0, "salvage_credit": 8, "net_cost": 24}, "service": {"otif_orders_met": 1, "orders_total": 1, "on_time_units": 12, "ordered_units": 12, "delivered_total": 12, "cancelled_units": 0, "unit_days_late": 0, "orders": [{"order_id": "O1", "tier": "key", "ordered": 12, "otif": true, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 12, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "penalties": 0}}, "priority_weighted_unit_days_late": 0}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 4, "pending_inbound_units": 0, "ending_cover_days_floor": 1, "primary_reliance_pct": 66, "recovery_commitments": 2, "unused_recovery_budget": 8}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-warned-no-delay-10d / staged_revisit (horizon 10 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 signal hint_pct=60
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=expedite,quantity=4) -> accepted
+      day 1 recovery choice=expedite, quantity=4, commit_id=c1
+#02 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#03 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 receipt lot=exp1, source=primary, quantity=4
+      day 2 opening_before_notice
+      day 2 notice kind=on_time_confirmed, promised_day=3
+      day 2 day_open
+#04 day 2 agent calls release_production(quantity=4) -> accepted
+      day 2 release quantity=4
+#05 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 receipt lot=primary, source=primary, quantity=4
+      day 3 opening_before_notice
+      day 3 day_open
+#06 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#07 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#08 day 4 agent calls release_production(quantity=0) -> accepted
+      day 4 release quantity=0
+#09 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=0, shipped=12, shipments={'O1': 12}, penalties={}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#10 day 5 agent calls release_production(quantity=0) -> accepted
+      day 5 release quantity=0
+#11 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 6 opening_before_notice
+      day 6 day_open
+#12 day 6 agent calls release_production(quantity=0) -> accepted
+      day 6 release quantity=0
+#13 day 6 agent calls advance_day() -> accepted
+      day 6 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 7 opening_before_notice
+      day 7 day_open
+#14 day 7 agent calls release_production(quantity=0) -> accepted
+      day 7 release quantity=0
+#15 day 7 agent calls advance_day() -> accepted
+      day 7 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 8 opening_before_notice
+      day 8 day_open
+#16 day 8 agent calls release_production(quantity=0) -> accepted
+      day 8 release quantity=0
+#17 day 8 agent calls advance_day() -> accepted
+      day 8 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 9 opening_before_notice
+      day 9 day_open
+#18 day 9 agent calls release_production(quantity=0) -> accepted
+      day 9 release quantity=0
+#19 day 9 agent calls advance_day() -> accepted
+      day 9 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 opening_before_notice
+      day 10 day_open
+#20 day 10 agent calls release_production(quantity=0) -> accepted
+      day 10 release quantity=0
+#21 day 10 agent calls advance_day() -> accepted
+      day 10 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 episode_complete salvage_credit=0, net_cost=12
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 12, "service_penalties": 0, "salvage_credit": 0, "net_cost": 12}, "service": {"otif_orders_met": 1, "orders_total": 1, "on_time_units": 12, "ordered_units": 12, "delivered_total": 12, "cancelled_units": 0, "unit_days_late": 0, "orders": [{"order_id": "O1", "tier": "key", "ordered": 12, "otif": true, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 12, "on_time_units": 12, "delivered": 12, "cancelled": 0, "unit_days_late": 0, "penalties": 0}}, "priority_weighted_unit_days_late": 0}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 0, "pending_inbound_units": 0, "ending_cover_days_floor": 0, "primary_reliance_pct": 100, "recovery_commitments": 1, "unused_recovery_budget": 28}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-multitier-cancel-10d / maintain (horizon 10 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 notice kind=delay_confirmed, original_day=2, revised_day=5
+  day 1 day_open
+#01 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#02 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 opening_before_notice
+      day 2 day_open
+#03 day 2 agent calls release_production(quantity=0) -> accepted
+      day 2 release quantity=0
+#04 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 opening_before_notice
+      day 3 day_open
+#05 day 3 agent calls release_production(quantity=0) -> accepted
+      day 3 release quantity=0
+#06 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=0, shipped=4, shipments={'K1': 4}, penalties={'K1': 24, 'S1': 16}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#07 day 4 agent calls release_production(quantity=0) -> accepted
+      day 4 release quantity=0
+#08 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=0, shipped=0, shipments={}, penalties={'S1': 16}, cancelled={}
+      day 5 receipt lot=primary, source=primary, quantity=8
+      day 5 opening_before_notice
+      day 5 day_open
+#09 day 5 agent calls release_production(quantity=4) -> accepted
+      day 5 release quantity=4
+#10 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=4, shipped=4, shipments={'K1': 4}, penalties={'S1': 16}, cancelled={'S1': 8}
+      day 6 opening_before_notice
+      day 6 day_open
+#11 day 6 agent calls release_production(quantity=0) -> accepted
+      day 6 release quantity=0
+#12 day 6 agent calls advance_day() -> accepted
+      day 6 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 7 opening_before_notice
+      day 7 day_open
+#13 day 7 agent calls release_production(quantity=0) -> accepted
+      day 7 release quantity=0
+#14 day 7 agent calls advance_day() -> accepted
+      day 7 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 8 opening_before_notice
+      day 8 day_open
+#15 day 8 agent calls release_production(quantity=0) -> accepted
+      day 8 release quantity=0
+#16 day 8 agent calls advance_day() -> accepted
+      day 8 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 9 opening_before_notice
+      day 9 day_open
+#17 day 9 agent calls release_production(quantity=0) -> accepted
+      day 9 release quantity=0
+#18 day 9 agent calls advance_day() -> accepted
+      day 9 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 opening_before_notice
+      day 10 day_open
+#19 day 10 agent calls release_production(quantity=0) -> accepted
+      day 10 release quantity=0
+#20 day 10 agent calls advance_day() -> accepted
+      day 10 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 episode_complete salvage_credit=8, net_cost=64
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 0, "service_penalties": 72, "salvage_credit": 8, "net_cost": 64}, "service": {"otif_orders_met": 0, "orders_total": 2, "on_time_units": 4, "ordered_units": 16, "delivered_total": 8, "cancelled_units": 8, "unit_days_late": 32, "orders": [{"order_id": "K1", "tier": "key", "ordered": 8, "otif": false, "on_time_units": 4, "delivered": 8, "cancelled": 0, "unit_days_late": 8, "days_short": 2, "penalty": 24}, {"order_id": "S1", "tier": "standard", "ordered": 8, "otif": false, "on_time_units": 0, "delivered": 0, "cancelled": 8, "unit_days_late": 24, "days_short": 3, "penalty": 48}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 0, "ordered": 8, "on_time_units": 4, "delivered": 8, "cancelled": 0, "unit_days_late": 8, "penalties": 24}, "standard": {"orders": 1, "otif_orders_met": 0, "ordered": 8, "on_time_units": 0, "delivered": 0, "cancelled": 8, "unit_days_late": 24, "penalties": 48}}, "priority_weighted_unit_days_late": 48}, "downstream": {"cancelled_units": 8, "cancelled_order_value": 160, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 4, "pending_inbound_units": 0, "ending_cover_days_floor": 1, "primary_reliance_pct": 100, "recovery_commitments": 0, "unused_recovery_budget": 40}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-multitier-cancel-10d / expedite_on_alert (horizon 10 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 notice kind=delay_confirmed, original_day=2, revised_day=5
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=expedite,quantity=8) -> accepted
+      day 1 recovery choice=expedite, quantity=8, commit_id=c1
+#02 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#03 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 receipt lot=primary, source=primary, quantity=8
+      day 2 opening_before_notice
+      day 2 day_open
+#04 day 2 agent calls release_production(quantity=4) -> accepted
+      day 2 release quantity=4
+#05 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 opening_before_notice
+      day 3 day_open
+#06 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#07 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=12, shipments={'K1': 8, 'S1': 4}, penalties={'S1': 8}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#08 day 4 agent calls release_production(quantity=0) -> accepted
+      day 4 release quantity=0
+#09 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=0, shipped=0, shipments={}, penalties={'S1': 8}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#10 day 5 agent calls release_production(quantity=0) -> accepted
+      day 5 release quantity=0
+#11 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=0, shipped=0, shipments={}, penalties={'S1': 8}, cancelled={'S1': 4}
+      day 6 opening_before_notice
+      day 6 day_open
+#12 day 6 agent calls release_production(quantity=0) -> accepted
+      day 6 release quantity=0
+#13 day 6 agent calls advance_day() -> accepted
+      day 6 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 7 opening_before_notice
+      day 7 day_open
+#14 day 7 agent calls release_production(quantity=0) -> accepted
+      day 7 release quantity=0
+#15 day 7 agent calls advance_day() -> accepted
+      day 7 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 8 opening_before_notice
+      day 8 day_open
+#16 day 8 agent calls release_production(quantity=0) -> accepted
+      day 8 release quantity=0
+#17 day 8 agent calls advance_day() -> accepted
+      day 8 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 9 opening_before_notice
+      day 9 day_open
+#18 day 9 agent calls release_production(quantity=0) -> accepted
+      day 9 release quantity=0
+#19 day 9 agent calls advance_day() -> accepted
+      day 9 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 opening_before_notice
+      day 10 day_open
+#20 day 10 agent calls release_production(quantity=0) -> accepted
+      day 10 release quantity=0
+#21 day 10 agent calls advance_day() -> accepted
+      day 10 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 episode_complete salvage_credit=0, net_cost=48
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 24, "service_penalties": 24, "salvage_credit": 0, "net_cost": 48}, "service": {"otif_orders_met": 1, "orders_total": 2, "on_time_units": 12, "ordered_units": 16, "delivered_total": 12, "cancelled_units": 4, "unit_days_late": 12, "orders": [{"order_id": "K1", "tier": "key", "ordered": 8, "otif": true, "on_time_units": 8, "delivered": 8, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}, {"order_id": "S1", "tier": "standard", "ordered": 8, "otif": false, "on_time_units": 4, "delivered": 4, "cancelled": 4, "unit_days_late": 12, "days_short": 3, "penalty": 24}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 8, "on_time_units": 8, "delivered": 8, "cancelled": 0, "unit_days_late": 0, "penalties": 0}, "standard": {"orders": 1, "otif_orders_met": 0, "ordered": 8, "on_time_units": 4, "delivered": 4, "cancelled": 4, "unit_days_late": 12, "penalties": 24}}, "priority_weighted_unit_days_late": 12}, "downstream": {"cancelled_units": 4, "cancelled_order_value": 80, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 0, "pending_inbound_units": 0, "ending_cover_days_floor": 0, "primary_reliance_pct": 100, "recovery_commitments": 1, "unused_recovery_budget": 16}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-multitier-cancel-10d / alternate_on_alert (horizon 10 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 notice kind=delay_confirmed, original_day=2, revised_day=5
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=alternate,quantity=8) -> accepted
+      day 1 recovery choice=alternate, quantity=8, commit_id=c1
+#02 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#03 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 opening_before_notice
+      day 2 day_open
+#04 day 2 agent calls release_production(quantity=0) -> accepted
+      day 2 release quantity=0
+#05 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 receipt lot=alt1, source=alternate, quantity=8
+      day 3 opening_before_notice
+      day 3 day_open
+#06 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#07 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=8, shipments={'K1': 8}, penalties={'S1': 16}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#08 day 4 agent calls release_production(quantity=4) -> accepted
+      day 4 release quantity=4
+#09 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=4, shipped=4, shipments={'S1': 4}, penalties={'S1': 8}, cancelled={}
+      day 5 receipt lot=primary, source=primary, quantity=8
+      day 5 opening_before_notice
+      day 5 day_open
+#10 day 5 agent calls release_production(quantity=4) -> accepted
+      day 5 release quantity=4
+#11 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=4, shipped=4, shipments={'S1': 4}, penalties={}, cancelled={}
+      day 6 opening_before_notice
+      day 6 day_open
+#12 day 6 agent calls release_production(quantity=0) -> accepted
+      day 6 release quantity=0
+#13 day 6 agent calls advance_day() -> accepted
+      day 6 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 7 opening_before_notice
+      day 7 day_open
+#14 day 7 agent calls release_production(quantity=0) -> accepted
+      day 7 release quantity=0
+#15 day 7 agent calls advance_day() -> accepted
+      day 7 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 8 opening_before_notice
+      day 8 day_open
+#16 day 8 agent calls release_production(quantity=0) -> accepted
+      day 8 release quantity=0
+#17 day 8 agent calls advance_day() -> accepted
+      day 8 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 9 opening_before_notice
+      day 9 day_open
+#18 day 9 agent calls release_production(quantity=0) -> accepted
+      day 9 release quantity=0
+#19 day 9 agent calls advance_day() -> accepted
+      day 9 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 opening_before_notice
+      day 10 day_open
+#20 day 10 agent calls release_production(quantity=0) -> accepted
+      day 10 release quantity=0
+#21 day 10 agent calls advance_day() -> accepted
+      day 10 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 episode_complete salvage_credit=8, net_cost=56
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 40, "service_penalties": 24, "salvage_credit": 8, "net_cost": 56}, "service": {"otif_orders_met": 1, "orders_total": 2, "on_time_units": 8, "ordered_units": 16, "delivered_total": 16, "cancelled_units": 0, "unit_days_late": 12, "orders": [{"order_id": "K1", "tier": "key", "ordered": 8, "otif": true, "on_time_units": 8, "delivered": 8, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}, {"order_id": "S1", "tier": "standard", "ordered": 8, "otif": false, "on_time_units": 0, "delivered": 8, "cancelled": 0, "unit_days_late": 12, "days_short": 2, "penalty": 24}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 8, "on_time_units": 8, "delivered": 8, "cancelled": 0, "unit_days_late": 0, "penalties": 0}, "standard": {"orders": 1, "otif_orders_met": 0, "ordered": 8, "on_time_units": 0, "delivered": 8, "cancelled": 0, "unit_days_late": 12, "penalties": 24}}, "priority_weighted_unit_days_late": 12}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 4, "pending_inbound_units": 0, "ending_cover_days_floor": 1, "primary_reliance_pct": 50, "recovery_commitments": 1, "unused_recovery_budget": 0}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-multitier-cancel-10d / combo_on_alert (horizon 10 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 notice kind=delay_confirmed, original_day=2, revised_day=5
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=expedite,quantity=4) -> accepted
+      day 1 recovery choice=expedite, quantity=4, commit_id=c1
+#02 day 1 agent calls commit_recovery(choice=alternate,quantity=4) -> accepted
+      day 1 recovery choice=alternate, quantity=4, commit_id=c2
+#03 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#04 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 receipt lot=exp1, source=primary, quantity=4
+      day 2 opening_before_notice
+      day 2 day_open
+#05 day 2 agent calls release_production(quantity=4) -> accepted
+      day 2 release quantity=4
+#06 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 receipt lot=alt1, source=alternate, quantity=4
+      day 3 opening_before_notice
+      day 3 day_open
+#07 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#08 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=12, shipments={'K1': 8, 'S1': 4}, penalties={'S1': 8}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#09 day 4 agent calls release_production(quantity=0) -> accepted
+      day 4 release quantity=0
+#10 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=0, shipped=0, shipments={}, penalties={'S1': 8}, cancelled={}
+      day 5 receipt lot=primary, source=primary, quantity=4
+      day 5 opening_before_notice
+      day 5 day_open
+#11 day 5 agent calls release_production(quantity=4) -> accepted
+      day 5 release quantity=4
+#12 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=4, shipped=4, shipments={'S1': 4}, penalties={}, cancelled={}
+      day 6 opening_before_notice
+      day 6 day_open
+#13 day 6 agent calls release_production(quantity=0) -> accepted
+      day 6 release quantity=0
+#14 day 6 agent calls advance_day() -> accepted
+      day 6 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 7 opening_before_notice
+      day 7 day_open
+#15 day 7 agent calls release_production(quantity=0) -> accepted
+      day 7 release quantity=0
+#16 day 7 agent calls advance_day() -> accepted
+      day 7 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 8 opening_before_notice
+      day 8 day_open
+#17 day 8 agent calls release_production(quantity=0) -> accepted
+      day 8 release quantity=0
+#18 day 8 agent calls advance_day() -> accepted
+      day 8 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 9 opening_before_notice
+      day 9 day_open
+#19 day 9 agent calls release_production(quantity=0) -> accepted
+      day 9 release quantity=0
+#20 day 9 agent calls advance_day() -> accepted
+      day 9 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 opening_before_notice
+      day 10 day_open
+#21 day 10 agent calls release_production(quantity=0) -> accepted
+      day 10 release quantity=0
+#22 day 10 agent calls advance_day() -> accepted
+      day 10 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 episode_complete salvage_credit=0, net_cost=48
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 32, "service_penalties": 16, "salvage_credit": 0, "net_cost": 48}, "service": {"otif_orders_met": 1, "orders_total": 2, "on_time_units": 12, "ordered_units": 16, "delivered_total": 16, "cancelled_units": 0, "unit_days_late": 8, "orders": [{"order_id": "K1", "tier": "key", "ordered": 8, "otif": true, "on_time_units": 8, "delivered": 8, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}, {"order_id": "S1", "tier": "standard", "ordered": 8, "otif": false, "on_time_units": 4, "delivered": 8, "cancelled": 0, "unit_days_late": 8, "days_short": 2, "penalty": 16}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 8, "on_time_units": 8, "delivered": 8, "cancelled": 0, "unit_days_late": 0, "penalties": 0}, "standard": {"orders": 1, "otif_orders_met": 0, "ordered": 8, "on_time_units": 4, "delivered": 8, "cancelled": 0, "unit_days_late": 8, "penalties": 16}}, "priority_weighted_unit_days_late": 8}, "downstream": {"cancelled_units": 0, "cancelled_order_value": 0, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 0, "pending_inbound_units": 0, "ending_cover_days_floor": 0, "primary_reliance_pct": 66, "recovery_commitments": 2, "unused_recovery_budget": 8}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+
+=== s02-multitier-cancel-10d / staged_revisit (horizon 10 days, status complete) ===
+initial events:
+  day 1 opening_before_notice
+  day 1 notice kind=delay_confirmed, original_day=2, revised_day=5
+  day 1 day_open
+#01 day 1 agent calls commit_recovery(choice=expedite,quantity=4) -> accepted
+      day 1 recovery choice=expedite, quantity=4, commit_id=c1
+#02 day 1 agent calls release_production(quantity=4) -> accepted
+      day 1 release quantity=4
+#03 day 1 agent calls advance_day() -> accepted
+      day 1 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 2 receipt lot=exp1, source=primary, quantity=4
+      day 2 opening_before_notice
+      day 2 day_open
+#04 day 2 agent calls commit_recovery(choice=expedite,quantity=4) -> accepted
+      day 2 recovery choice=expedite, quantity=4, commit_id=c2
+#05 day 2 agent calls release_production(quantity=4) -> accepted
+      day 2 release quantity=4
+#06 day 2 agent calls advance_day() -> accepted
+      day 2 day_close produced=4, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 3 receipt lot=primary, source=primary, quantity=4
+      day 3 opening_before_notice
+      day 3 day_open
+#07 day 3 agent calls release_production(quantity=4) -> accepted
+      day 3 release quantity=4
+#08 day 3 agent calls advance_day() -> accepted
+      day 3 day_close produced=4, shipped=12, shipments={'K1': 8, 'S1': 4}, penalties={'S1': 8}, cancelled={}
+      day 4 opening_before_notice
+      day 4 day_open
+#09 day 4 agent calls release_production(quantity=0) -> accepted
+      day 4 release quantity=0
+#10 day 4 agent calls advance_day() -> accepted
+      day 4 day_close produced=0, shipped=0, shipments={}, penalties={'S1': 8}, cancelled={}
+      day 5 opening_before_notice
+      day 5 day_open
+#11 day 5 agent calls release_production(quantity=0) -> accepted
+      day 5 release quantity=0
+#12 day 5 agent calls advance_day() -> accepted
+      day 5 day_close produced=0, shipped=0, shipments={}, penalties={'S1': 8}, cancelled={'S1': 4}
+      day 6 opening_before_notice
+      day 6 day_open
+#13 day 6 agent calls release_production(quantity=0) -> accepted
+      day 6 release quantity=0
+#14 day 6 agent calls advance_day() -> accepted
+      day 6 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 7 opening_before_notice
+      day 7 day_open
+#15 day 7 agent calls release_production(quantity=0) -> accepted
+      day 7 release quantity=0
+#16 day 7 agent calls advance_day() -> accepted
+      day 7 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 8 opening_before_notice
+      day 8 day_open
+#17 day 8 agent calls release_production(quantity=0) -> accepted
+      day 8 release quantity=0
+#18 day 8 agent calls advance_day() -> accepted
+      day 8 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 9 opening_before_notice
+      day 9 day_open
+#19 day 9 agent calls release_production(quantity=0) -> accepted
+      day 9 release quantity=0
+#20 day 9 agent calls advance_day() -> accepted
+      day 9 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 opening_before_notice
+      day 10 day_open
+#21 day 10 agent calls release_production(quantity=0) -> accepted
+      day 10 release quantity=0
+#22 day 10 agent calls advance_day() -> accepted
+      day 10 day_close produced=0, shipped=0, shipments={}, penalties={}, cancelled={}
+      day 10 episode_complete salvage_credit=0, net_cost=52
+final scorecard: {"schema": "dyn-scorecard-2", "cost": {"recovery_spend": 28, "service_penalties": 24, "salvage_credit": 0, "net_cost": 52}, "service": {"otif_orders_met": 1, "orders_total": 2, "on_time_units": 12, "ordered_units": 16, "delivered_total": 12, "cancelled_units": 4, "unit_days_late": 12, "orders": [{"order_id": "K1", "tier": "key", "ordered": 8, "otif": true, "on_time_units": 8, "delivered": 8, "cancelled": 0, "unit_days_late": 0, "days_short": 0, "penalty": 0}, {"order_id": "S1", "tier": "standard", "ordered": 8, "otif": false, "on_time_units": 4, "delivered": 4, "cancelled": 4, "unit_days_late": 12, "days_short": 3, "penalty": 24}]}, "tier_impact": {"by_tier": {"key": {"orders": 1, "otif_orders_met": 1, "ordered": 8, "on_time_units": 8, "delivered": 8, "cancelled": 0, "unit_days_late": 0, "penalties": 0}, "standard": {"orders": 1, "otif_orders_met": 0, "ordered": 8, "on_time_units": 4, "delivered": 4, "cancelled": 4, "unit_days_late": 12, "penalties": 24}}, "priority_weighted_unit_days_late": 12}, "downstream": {"cancelled_units": 4, "cancelled_order_value": 80, "undelivered_at_end": 0}, "supply_risk": {"ending_components": 0, "pending_inbound_units": 0, "ending_cover_days_floor": 0, "primary_reliance_pct": 100, "recovery_commitments": 2, "unused_recovery_budget": 12}, "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"}
+

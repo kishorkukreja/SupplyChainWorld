@@ -1,0 +1,5374 @@
+{
+ "schema": "dyn36-experience-2",
+ "scenario_id": "s02-warned-delayed-10d",
+ "horizon_days": 10,
+ "agent": "scripted baseline policy (not an LLM; carries no model-ability claim)",
+ "values_status": "PROVISIONAL, needs practitioner value; reviewed: no",
+ "tool_definitions": [
+  {
+   "name": "read_state",
+   "authority": "read",
+   "arguments": [
+    "section"
+   ],
+   "granted": true,
+   "advances_time": false,
+   "commits_resources": false
+  },
+  {
+   "name": "read_recovery_offers",
+   "authority": "read",
+   "arguments": [],
+   "granted": true,
+   "advances_time": false,
+   "commits_resources": false
+  },
+  {
+   "name": "read_scorecard",
+   "authority": "read",
+   "arguments": [],
+   "granted": true,
+   "advances_time": false,
+   "commits_resources": false,
+   "available_when": "episode complete"
+  },
+  {
+   "name": "commit_recovery",
+   "authority": "commit",
+   "arguments": [
+    "choice",
+    "quantity"
+   ],
+   "granted": true,
+   "advances_time": false,
+   "commits_resources": true,
+   "choices": [
+    "expedite",
+    "alternate"
+   ],
+   "repeatable": true,
+   "quantity_in_units": true,
+   "note": "each commitment needs its own action_id and executes once; price and arrival follow the rate card for the day"
+  },
+  {
+   "name": "release_production",
+   "authority": "commit",
+   "arguments": [
+    "quantity"
+   ],
+   "granted": true,
+   "advances_time": false,
+   "commits_resources": true,
+   "once_per_day": true
+  },
+  {
+   "name": "advance_day",
+   "authority": "advance",
+   "arguments": [],
+   "granted": true,
+   "advances_time": true,
+   "commits_resources": false
+  }
+ ],
+ "initial_observation": {
+  "clock": {
+   "current_day": 1,
+   "horizon_days": 10,
+   "days_remaining_after_today": 9,
+   "phase": "action",
+   "is_final_day": false,
+   "simulated_time": "day 1 of 10, action phase"
+  },
+  "state": {
+   "schema_version": "2.0",
+   "runtime_version": "2.0",
+   "scenario_id": "s02-warned-delayed-10d",
+   "day": 1,
+   "horizon_days": 10,
+   "phase": "action",
+   "component_on_hand": 4,
+   "finished_on_hand": 0,
+   "produced_total": 0,
+   "delivered_total": 0,
+   "cancelled_total": 0,
+   "lots": [
+    {
+     "lot_id": "primary",
+     "source": "primary",
+     "quantity": 8,
+     "arrival_day": 3,
+     "received": false,
+     "expedited": false
+    }
+   ],
+   "orders": [
+    {
+     "order_id": "O1",
+     "tier": "key",
+     "quantity": 12,
+     "due_day": 4,
+     "delivered": 0,
+     "cancelled": 0,
+     "status": "open",
+     "penalty_total": 0,
+     "unit_days_late": 0,
+     "days_short": 0,
+     "on_time_units": null
+    }
+   ],
+   "incremental_spend": 0,
+   "penalties": 0,
+   "salvage_credit": null,
+   "scheduled_production": null,
+   "commitments": [],
+   "signals": [
+    {
+     "day": 1,
+     "hint_pct": 60,
+     "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+    }
+   ],
+   "notices": [],
+   "open_demand": 12
+  },
+  "rules": {
+   "capacity": 4,
+   "recovery_budget": 40,
+   "salvage_per_component": 2,
+   "tiers": [
+    {
+     "tier": "key",
+     "weight": 3,
+     "on_shortfall": "backlog",
+     "cancel_day": null
+    }
+   ],
+   "orders": [
+    {
+     "order_id": "O1",
+     "tier": "key",
+     "quantity": 12,
+     "due_day": 4,
+     "unit_value": 25,
+     "penalty_type": "percent_of_value",
+     "penalty_rate": 10
+    }
+   ],
+   "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+   "recovery_offers": {
+    "budget_remaining": 40,
+    "expedite": {
+     "rate_card": [
+      [
+       1,
+       3,
+       2
+      ],
+      [
+       2,
+       4,
+       3
+      ],
+      [
+       3,
+       5,
+       4
+      ]
+     ],
+     "today": {
+      "unit_cost": 3,
+      "arrival_day": 2,
+      "max_units": 8
+     }
+    },
+    "alternate": {
+     "rate_card": [
+      [
+       1,
+       5,
+       3
+      ],
+      [
+       2,
+       6,
+       4
+      ],
+      [
+       3,
+       7,
+       5
+      ]
+     ],
+     "today": {
+      "unit_cost": 5,
+      "arrival_day": 3,
+      "max_units": 8
+     }
+    }
+   }
+  }
+ },
+ "steps": [
+  {
+   "seq": 1,
+   "day": 1,
+   "observation": {
+    "clock": {
+     "current_day": 1,
+     "horizon_days": 10,
+     "days_remaining_after_today": 9,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 1 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 1,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 4,
+     "finished_on_hand": 0,
+     "produced_total": 0,
+     "delivered_total": 0,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 8,
+       "arrival_day": 3,
+       "received": false,
+       "expedited": false
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 0,
+       "cancelled": 0,
+       "status": "open",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": null
+      }
+     ],
+     "incremental_spend": 0,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": null,
+     "commitments": [],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [],
+     "open_demand": 12
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 40,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": {
+        "unit_cost": 3,
+        "arrival_day": 2,
+        "max_units": 8
+       }
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": {
+        "unit_cost": 5,
+        "arrival_day": 3,
+        "max_units": 8
+       }
+      }
+     }
+    },
+    "last_outcome": null
+   },
+   "action": {
+    "tool": "commit_recovery",
+    "arguments": {
+     "choice": "expedite",
+     "quantity": 4
+    }
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "lots": [
+     [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 8,
+       "arrival_day": 3,
+       "received": false,
+       "expedited": false
+      }
+     ],
+     [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": false,
+       "expedited": false
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": false,
+       "expedited": true
+      }
+     ]
+    ],
+    "incremental_spend": [
+     0,
+     12
+    ],
+    "commitments": [
+     [],
+     [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      }
+     ]
+    ]
+   },
+   "events": [
+    {
+     "day": 1,
+     "kind": "recovery",
+     "details": {
+      "choice": "expedite",
+      "quantity": 4,
+      "commit_id": "c1"
+     },
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 2,
+   "day": 1,
+   "observation": {
+    "clock": {
+     "current_day": 1,
+     "horizon_days": 10,
+     "days_remaining_after_today": 9,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 1 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 1,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 4,
+     "finished_on_hand": 0,
+     "produced_total": 0,
+     "delivered_total": 0,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": false,
+       "expedited": false
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": false,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 0,
+       "cancelled": 0,
+       "status": "open",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": null
+      }
+     ],
+     "incremental_spend": 12,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": null,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [],
+     "open_demand": 12
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 28,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": {
+        "unit_cost": 3,
+        "arrival_day": 2,
+        "max_units": 4
+       }
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": {
+        "unit_cost": 5,
+        "arrival_day": 3,
+        "max_units": 8
+       }
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 1,
+     "tool": "commit_recovery",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "release_production",
+    "arguments": {
+     "quantity": 4
+    }
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "scheduled_production": [
+     null,
+     4
+    ]
+   },
+   "events": [
+    {
+     "day": 1,
+     "kind": "release",
+     "details": {
+      "quantity": 4
+     },
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 3,
+   "day": 1,
+   "observation": {
+    "clock": {
+     "current_day": 1,
+     "horizon_days": 10,
+     "days_remaining_after_today": 9,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 1 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 1,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 4,
+     "finished_on_hand": 0,
+     "produced_total": 0,
+     "delivered_total": 0,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": false,
+       "expedited": false
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": false,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 0,
+       "cancelled": 0,
+       "status": "open",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": null
+      }
+     ],
+     "incremental_spend": 12,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": 4,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [],
+     "open_demand": 12
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 28,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": {
+        "unit_cost": 3,
+        "arrival_day": 2,
+        "max_units": 4
+       }
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": {
+        "unit_cost": 5,
+        "arrival_day": 3,
+        "max_units": 8
+       }
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 2,
+     "tool": "release_production",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "advance_day",
+    "arguments": {}
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "day": [
+     1,
+     2
+    ],
+    "finished_on_hand": [
+     0,
+     4
+    ],
+    "produced_total": [
+     0,
+     4
+    ],
+    "lots": [
+     [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": false,
+       "expedited": false
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": false,
+       "expedited": true
+      }
+     ],
+     [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 6,
+       "received": false,
+       "expedited": false
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ]
+    ],
+    "scheduled_production": [
+     4,
+     null
+    ],
+    "notices": [
+     [],
+     [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ]
+    ]
+   },
+   "events": [
+    {
+     "day": 1,
+     "kind": "day_close",
+     "details": {
+      "produced": 4,
+      "shipped": 0,
+      "shipments": {},
+      "penalties": {},
+      "cancelled": {}
+     },
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 2,
+     "kind": "receipt",
+     "details": {
+      "lot": "exp1",
+      "source": "primary",
+      "quantity": 4
+     },
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 2,
+     "kind": "opening_before_notice",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 2,
+     "kind": "notice",
+     "details": {
+      "kind": "delay_confirmed",
+      "original_day": 3,
+      "revised_day": 6
+     },
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 2,
+     "kind": "day_open",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 4,
+   "day": 2,
+   "observation": {
+    "clock": {
+     "current_day": 2,
+     "horizon_days": 10,
+     "days_remaining_after_today": 8,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 2 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 2,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 4,
+     "finished_on_hand": 4,
+     "produced_total": 4,
+     "delivered_total": 0,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 6,
+       "received": false,
+       "expedited": false
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 0,
+       "cancelled": 0,
+       "status": "open",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": null
+      }
+     ],
+     "incremental_spend": 12,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": null,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 12
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 28,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": {
+        "unit_cost": 4,
+        "arrival_day": 3,
+        "max_units": 4
+       }
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": {
+        "unit_cost": 6,
+        "arrival_day": 4,
+        "max_units": 8
+       }
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 3,
+     "tool": "advance_day",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "commit_recovery",
+    "arguments": {
+     "choice": "expedite",
+     "quantity": 4
+    }
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "lots": [
+     [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 6,
+       "received": false,
+       "expedited": false
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": false,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ]
+    ],
+    "incremental_spend": [
+     12,
+     28
+    ],
+    "commitments": [
+     [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      }
+     ],
+     [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ]
+    ]
+   },
+   "events": [
+    {
+     "day": 2,
+     "kind": "recovery",
+     "details": {
+      "choice": "expedite",
+      "quantity": 4,
+      "commit_id": "c2"
+     },
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 5,
+   "day": 2,
+   "observation": {
+    "clock": {
+     "current_day": 2,
+     "horizon_days": 10,
+     "days_remaining_after_today": 8,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 2 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 2,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 4,
+     "finished_on_hand": 4,
+     "produced_total": 4,
+     "delivered_total": 0,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": false,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 0,
+       "cancelled": 0,
+       "status": "open",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": null
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": null,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 12
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": {
+        "unit_cost": 6,
+        "arrival_day": 4,
+        "max_units": 8
+       }
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 4,
+     "tool": "commit_recovery",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "release_production",
+    "arguments": {
+     "quantity": 4
+    }
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "scheduled_production": [
+     null,
+     4
+    ]
+   },
+   "events": [
+    {
+     "day": 2,
+     "kind": "release",
+     "details": {
+      "quantity": 4
+     },
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 6,
+   "day": 2,
+   "observation": {
+    "clock": {
+     "current_day": 2,
+     "horizon_days": 10,
+     "days_remaining_after_today": 8,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 2 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 2,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 4,
+     "finished_on_hand": 4,
+     "produced_total": 4,
+     "delivered_total": 0,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": false,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 0,
+       "cancelled": 0,
+       "status": "open",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": null
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": 4,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 12
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": {
+        "unit_cost": 6,
+        "arrival_day": 4,
+        "max_units": 8
+       }
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 5,
+     "tool": "release_production",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "advance_day",
+    "arguments": {}
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "day": [
+     2,
+     3
+    ],
+    "finished_on_hand": [
+     4,
+     8
+    ],
+    "produced_total": [
+     4,
+     8
+    ],
+    "lots": [
+     [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": false,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ]
+    ],
+    "scheduled_production": [
+     4,
+     null
+    ]
+   },
+   "events": [
+    {
+     "day": 2,
+     "kind": "day_close",
+     "details": {
+      "produced": 4,
+      "shipped": 0,
+      "shipments": {},
+      "penalties": {},
+      "cancelled": {}
+     },
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 3,
+     "kind": "receipt",
+     "details": {
+      "lot": "primary",
+      "source": "primary",
+      "quantity": 4
+     },
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 3,
+     "kind": "opening_before_notice",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 3,
+     "kind": "day_open",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 7,
+   "day": 3,
+   "observation": {
+    "clock": {
+     "current_day": 3,
+     "horizon_days": 10,
+     "days_remaining_after_today": 7,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 3 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 3,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 4,
+     "finished_on_hand": 8,
+     "produced_total": 8,
+     "delivered_total": 0,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 0,
+       "cancelled": 0,
+       "status": "open",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": null
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": null,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 12
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": {
+        "unit_cost": 7,
+        "arrival_day": 5,
+        "max_units": 8
+       }
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 6,
+     "tool": "advance_day",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "release_production",
+    "arguments": {
+     "quantity": 4
+    }
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "scheduled_production": [
+     null,
+     4
+    ]
+   },
+   "events": [
+    {
+     "day": 3,
+     "kind": "release",
+     "details": {
+      "quantity": 4
+     },
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 8,
+   "day": 3,
+   "observation": {
+    "clock": {
+     "current_day": 3,
+     "horizon_days": 10,
+     "days_remaining_after_today": 7,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 3 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 3,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 4,
+     "finished_on_hand": 8,
+     "produced_total": 8,
+     "delivered_total": 0,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 0,
+       "cancelled": 0,
+       "status": "open",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": null
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": 4,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 12
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": {
+        "unit_cost": 7,
+        "arrival_day": 5,
+        "max_units": 8
+       }
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 7,
+     "tool": "release_production",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "advance_day",
+    "arguments": {}
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "day": [
+     3,
+     4
+    ],
+    "component_on_hand": [
+     4,
+     0
+    ],
+    "finished_on_hand": [
+     8,
+     12
+    ],
+    "produced_total": [
+     8,
+     12
+    ],
+    "scheduled_production": [
+     4,
+     null
+    ]
+   },
+   "events": [
+    {
+     "day": 3,
+     "kind": "day_close",
+     "details": {
+      "produced": 4,
+      "shipped": 0,
+      "shipments": {},
+      "penalties": {},
+      "cancelled": {}
+     },
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 4,
+     "kind": "opening_before_notice",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 4,
+     "kind": "day_open",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 9,
+   "day": 4,
+   "observation": {
+    "clock": {
+     "current_day": 4,
+     "horizon_days": 10,
+     "days_remaining_after_today": 6,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 4 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 4,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 0,
+     "finished_on_hand": 12,
+     "produced_total": 12,
+     "delivered_total": 0,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 0,
+       "cancelled": 0,
+       "status": "open",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": null
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": null,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 12
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": null
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 8,
+     "tool": "advance_day",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "release_production",
+    "arguments": {
+     "quantity": 0
+    }
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "scheduled_production": [
+     null,
+     0
+    ]
+   },
+   "events": [
+    {
+     "day": 4,
+     "kind": "release",
+     "details": {
+      "quantity": 0
+     },
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 10,
+   "day": 4,
+   "observation": {
+    "clock": {
+     "current_day": 4,
+     "horizon_days": 10,
+     "days_remaining_after_today": 6,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 4 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 4,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 0,
+     "finished_on_hand": 12,
+     "produced_total": 12,
+     "delivered_total": 0,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 0,
+       "cancelled": 0,
+       "status": "open",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": null
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": 0,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 12
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": null
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 9,
+     "tool": "release_production",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "advance_day",
+    "arguments": {}
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "day": [
+     4,
+     5
+    ],
+    "finished_on_hand": [
+     12,
+     0
+    ],
+    "delivered_total": [
+     0,
+     12
+    ],
+    "orders": [
+     [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 0,
+       "cancelled": 0,
+       "status": "open",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": null
+      }
+     ],
+     [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "status": "complete",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": 12
+      }
+     ]
+    ],
+    "scheduled_production": [
+     0,
+     null
+    ],
+    "open_demand": [
+     12,
+     0
+    ]
+   },
+   "events": [
+    {
+     "day": 4,
+     "kind": "day_close",
+     "details": {
+      "produced": 0,
+      "shipped": 12,
+      "shipments": {
+       "O1": 12
+      },
+      "penalties": {},
+      "cancelled": {}
+     },
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 5,
+     "kind": "opening_before_notice",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 5,
+     "kind": "day_open",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 11,
+   "day": 5,
+   "observation": {
+    "clock": {
+     "current_day": 5,
+     "horizon_days": 10,
+     "days_remaining_after_today": 5,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 5 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 5,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 0,
+     "finished_on_hand": 0,
+     "produced_total": 12,
+     "delivered_total": 12,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "status": "complete",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": 12
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": null,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 0
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": null
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 10,
+     "tool": "advance_day",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "release_production",
+    "arguments": {
+     "quantity": 0
+    }
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "scheduled_production": [
+     null,
+     0
+    ]
+   },
+   "events": [
+    {
+     "day": 5,
+     "kind": "release",
+     "details": {
+      "quantity": 0
+     },
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 12,
+   "day": 5,
+   "observation": {
+    "clock": {
+     "current_day": 5,
+     "horizon_days": 10,
+     "days_remaining_after_today": 5,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 5 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 5,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 0,
+     "finished_on_hand": 0,
+     "produced_total": 12,
+     "delivered_total": 12,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "status": "complete",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": 12
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": 0,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 0
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": null
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 11,
+     "tool": "release_production",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "advance_day",
+    "arguments": {}
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "day": [
+     5,
+     6
+    ],
+    "scheduled_production": [
+     0,
+     null
+    ]
+   },
+   "events": [
+    {
+     "day": 5,
+     "kind": "day_close",
+     "details": {
+      "produced": 0,
+      "shipped": 0,
+      "shipments": {},
+      "penalties": {},
+      "cancelled": {}
+     },
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 6,
+     "kind": "opening_before_notice",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 6,
+     "kind": "day_open",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 13,
+   "day": 6,
+   "observation": {
+    "clock": {
+     "current_day": 6,
+     "horizon_days": 10,
+     "days_remaining_after_today": 4,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 6 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 6,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 0,
+     "finished_on_hand": 0,
+     "produced_total": 12,
+     "delivered_total": 12,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "status": "complete",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": 12
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": null,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 0
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": null
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 12,
+     "tool": "advance_day",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "release_production",
+    "arguments": {
+     "quantity": 0
+    }
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "scheduled_production": [
+     null,
+     0
+    ]
+   },
+   "events": [
+    {
+     "day": 6,
+     "kind": "release",
+     "details": {
+      "quantity": 0
+     },
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 14,
+   "day": 6,
+   "observation": {
+    "clock": {
+     "current_day": 6,
+     "horizon_days": 10,
+     "days_remaining_after_today": 4,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 6 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 6,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 0,
+     "finished_on_hand": 0,
+     "produced_total": 12,
+     "delivered_total": 12,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "status": "complete",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": 12
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": 0,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 0
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": null
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 13,
+     "tool": "release_production",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "advance_day",
+    "arguments": {}
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "day": [
+     6,
+     7
+    ],
+    "scheduled_production": [
+     0,
+     null
+    ]
+   },
+   "events": [
+    {
+     "day": 6,
+     "kind": "day_close",
+     "details": {
+      "produced": 0,
+      "shipped": 0,
+      "shipments": {},
+      "penalties": {},
+      "cancelled": {}
+     },
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 7,
+     "kind": "opening_before_notice",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 7,
+     "kind": "day_open",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 15,
+   "day": 7,
+   "observation": {
+    "clock": {
+     "current_day": 7,
+     "horizon_days": 10,
+     "days_remaining_after_today": 3,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 7 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 7,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 0,
+     "finished_on_hand": 0,
+     "produced_total": 12,
+     "delivered_total": 12,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "status": "complete",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": 12
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": null,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 0
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": null
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 14,
+     "tool": "advance_day",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "release_production",
+    "arguments": {
+     "quantity": 0
+    }
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "scheduled_production": [
+     null,
+     0
+    ]
+   },
+   "events": [
+    {
+     "day": 7,
+     "kind": "release",
+     "details": {
+      "quantity": 0
+     },
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 16,
+   "day": 7,
+   "observation": {
+    "clock": {
+     "current_day": 7,
+     "horizon_days": 10,
+     "days_remaining_after_today": 3,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 7 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 7,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 0,
+     "finished_on_hand": 0,
+     "produced_total": 12,
+     "delivered_total": 12,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "status": "complete",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": 12
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": 0,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 0
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": null
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 15,
+     "tool": "release_production",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "advance_day",
+    "arguments": {}
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "day": [
+     7,
+     8
+    ],
+    "scheduled_production": [
+     0,
+     null
+    ]
+   },
+   "events": [
+    {
+     "day": 7,
+     "kind": "day_close",
+     "details": {
+      "produced": 0,
+      "shipped": 0,
+      "shipments": {},
+      "penalties": {},
+      "cancelled": {}
+     },
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 8,
+     "kind": "opening_before_notice",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 8,
+     "kind": "day_open",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 17,
+   "day": 8,
+   "observation": {
+    "clock": {
+     "current_day": 8,
+     "horizon_days": 10,
+     "days_remaining_after_today": 2,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 8 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 8,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 0,
+     "finished_on_hand": 0,
+     "produced_total": 12,
+     "delivered_total": 12,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "status": "complete",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": 12
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": null,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 0
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": null
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 16,
+     "tool": "advance_day",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "release_production",
+    "arguments": {
+     "quantity": 0
+    }
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "scheduled_production": [
+     null,
+     0
+    ]
+   },
+   "events": [
+    {
+     "day": 8,
+     "kind": "release",
+     "details": {
+      "quantity": 0
+     },
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 18,
+   "day": 8,
+   "observation": {
+    "clock": {
+     "current_day": 8,
+     "horizon_days": 10,
+     "days_remaining_after_today": 2,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 8 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 8,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 0,
+     "finished_on_hand": 0,
+     "produced_total": 12,
+     "delivered_total": 12,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "status": "complete",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": 12
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": 0,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 0
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": null
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 17,
+     "tool": "release_production",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "advance_day",
+    "arguments": {}
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "day": [
+     8,
+     9
+    ],
+    "scheduled_production": [
+     0,
+     null
+    ]
+   },
+   "events": [
+    {
+     "day": 8,
+     "kind": "day_close",
+     "details": {
+      "produced": 0,
+      "shipped": 0,
+      "shipments": {},
+      "penalties": {},
+      "cancelled": {}
+     },
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 9,
+     "kind": "opening_before_notice",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 9,
+     "kind": "day_open",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 19,
+   "day": 9,
+   "observation": {
+    "clock": {
+     "current_day": 9,
+     "horizon_days": 10,
+     "days_remaining_after_today": 1,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 9 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 9,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 0,
+     "finished_on_hand": 0,
+     "produced_total": 12,
+     "delivered_total": 12,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "status": "complete",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": 12
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": null,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 0
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": null
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 18,
+     "tool": "advance_day",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "release_production",
+    "arguments": {
+     "quantity": 0
+    }
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "scheduled_production": [
+     null,
+     0
+    ]
+   },
+   "events": [
+    {
+     "day": 9,
+     "kind": "release",
+     "details": {
+      "quantity": 0
+     },
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 20,
+   "day": 9,
+   "observation": {
+    "clock": {
+     "current_day": 9,
+     "horizon_days": 10,
+     "days_remaining_after_today": 1,
+     "phase": "action",
+     "is_final_day": false,
+     "simulated_time": "day 9 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 9,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 0,
+     "finished_on_hand": 0,
+     "produced_total": 12,
+     "delivered_total": 12,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "status": "complete",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": 12
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": 0,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 0
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": null
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 19,
+     "tool": "release_production",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "advance_day",
+    "arguments": {}
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "day": [
+     9,
+     10
+    ],
+    "scheduled_production": [
+     0,
+     null
+    ]
+   },
+   "events": [
+    {
+     "day": 9,
+     "kind": "day_close",
+     "details": {
+      "produced": 0,
+      "shipped": 0,
+      "shipments": {},
+      "penalties": {},
+      "cancelled": {}
+     },
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 10,
+     "kind": "opening_before_notice",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 10,
+     "kind": "day_open",
+     "details": {},
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 21,
+   "day": 10,
+   "observation": {
+    "clock": {
+     "current_day": 10,
+     "horizon_days": 10,
+     "days_remaining_after_today": 0,
+     "phase": "action",
+     "is_final_day": true,
+     "simulated_time": "day 10 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 10,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 0,
+     "finished_on_hand": 0,
+     "produced_total": 12,
+     "delivered_total": 12,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "status": "complete",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": 12
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": null,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 0
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": null
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 20,
+     "tool": "advance_day",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "release_production",
+    "arguments": {
+     "quantity": 0
+    }
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "scheduled_production": [
+     null,
+     0
+    ]
+   },
+   "events": [
+    {
+     "day": 10,
+     "kind": "release",
+     "details": {
+      "quantity": 0
+     },
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "seq": 22,
+   "day": 10,
+   "observation": {
+    "clock": {
+     "current_day": 10,
+     "horizon_days": 10,
+     "days_remaining_after_today": 0,
+     "phase": "action",
+     "is_final_day": true,
+     "simulated_time": "day 10 of 10, action phase"
+    },
+    "state": {
+     "schema_version": "2.0",
+     "runtime_version": "2.0",
+     "scenario_id": "s02-warned-delayed-10d",
+     "day": 10,
+     "horizon_days": 10,
+     "phase": "action",
+     "component_on_hand": 0,
+     "finished_on_hand": 0,
+     "produced_total": 12,
+     "delivered_total": 12,
+     "cancelled_total": 0,
+     "lots": [
+      {
+       "lot_id": "primary",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 3,
+       "received": true,
+       "expedited": true
+      },
+      {
+       "lot_id": "exp1",
+       "source": "primary",
+       "quantity": 4,
+       "arrival_day": 2,
+       "received": true,
+       "expedited": true
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "status": "complete",
+       "penalty_total": 0,
+       "unit_days_late": 0,
+       "days_short": 0,
+       "on_time_units": 12
+      }
+     ],
+     "incremental_spend": 28,
+     "penalties": 0,
+     "salvage_credit": null,
+     "scheduled_production": 0,
+     "commitments": [
+      {
+       "commit_id": "c1",
+       "day": 1,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 3,
+       "cost": 12,
+       "arrival_day": 2,
+       "lot_id": "exp1"
+      },
+      {
+       "commit_id": "c2",
+       "day": 2,
+       "choice": "expedite",
+       "quantity": 4,
+       "unit_cost": 4,
+       "cost": 16,
+       "arrival_day": 3,
+       "lot_id": "primary"
+      }
+     ],
+     "signals": [
+      {
+       "day": 1,
+       "hint_pct": 60,
+       "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+      }
+     ],
+     "notices": [
+      {
+       "day": 2,
+       "kind": "delay_confirmed",
+       "original_day": 3,
+       "revised_day": 6,
+       "text": "Primary PO delayed from day 3 to day 6"
+      }
+     ],
+     "open_demand": 0
+    },
+    "rules": {
+     "capacity": 4,
+     "recovery_budget": 40,
+     "salvage_per_component": 2,
+     "tiers": [
+      {
+       "tier": "key",
+       "weight": 3,
+       "on_shortfall": "backlog",
+       "cancel_day": null
+      }
+     ],
+     "orders": [
+      {
+       "order_id": "O1",
+       "tier": "key",
+       "quantity": 12,
+       "due_day": 4,
+       "unit_value": 25,
+       "penalty_type": "percent_of_value",
+       "penalty_rate": 10
+      }
+     ],
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner",
+     "recovery_offers": {
+      "budget_remaining": 12,
+      "expedite": {
+       "rate_card": [
+        [
+         1,
+         3,
+         2
+        ],
+        [
+         2,
+         4,
+         3
+        ],
+        [
+         3,
+         5,
+         4
+        ]
+       ],
+       "today": null
+      },
+      "alternate": {
+       "rate_card": [
+        [
+         1,
+         5,
+         3
+        ],
+        [
+         2,
+         6,
+         4
+        ],
+        [
+         3,
+         7,
+         5
+        ]
+       ],
+       "today": null
+      }
+     }
+    },
+    "last_outcome": {
+     "seq": 21,
+     "tool": "release_production",
+     "accepted": true,
+     "category": null,
+     "reason": null
+    }
+   },
+   "action": {
+    "tool": "advance_day",
+    "arguments": {}
+   },
+   "outcome": {
+    "accepted": true,
+    "category": null,
+    "reason": null
+   },
+   "state_changes": {
+    "phase": [
+     "action",
+     "complete"
+    ],
+    "salvage_credit": [
+     null,
+     0
+    ],
+    "scheduled_production": [
+     0,
+     null
+    ]
+   },
+   "events": [
+    {
+     "day": 10,
+     "kind": "day_close",
+     "details": {
+      "produced": 0,
+      "shipped": 0,
+      "shipments": {},
+      "penalties": {},
+      "cancelled": {}
+     },
+     "accepted": true,
+     "reason": null
+    },
+    {
+     "day": 10,
+     "kind": "episode_complete",
+     "details": {
+      "salvage_credit": 0,
+      "net_cost": 28
+     },
+     "accepted": true,
+     "reason": null
+    }
+   ]
+  }
+ ],
+ "final_state": {
+  "schema_version": "2.0",
+  "runtime_version": "2.0",
+  "scenario_id": "s02-warned-delayed-10d",
+  "day": 10,
+  "horizon_days": 10,
+  "phase": "complete",
+  "component_on_hand": 0,
+  "finished_on_hand": 0,
+  "produced_total": 12,
+  "delivered_total": 12,
+  "cancelled_total": 0,
+  "lots": [
+   {
+    "lot_id": "primary",
+    "source": "primary",
+    "quantity": 4,
+    "arrival_day": 3,
+    "received": true,
+    "expedited": true
+   },
+   {
+    "lot_id": "exp1",
+    "source": "primary",
+    "quantity": 4,
+    "arrival_day": 2,
+    "received": true,
+    "expedited": true
+   }
+  ],
+  "orders": [
+   {
+    "order_id": "O1",
+    "tier": "key",
+    "quantity": 12,
+    "due_day": 4,
+    "delivered": 12,
+    "cancelled": 0,
+    "status": "complete",
+    "penalty_total": 0,
+    "unit_days_late": 0,
+    "days_short": 0,
+    "on_time_units": 12
+   }
+  ],
+  "incremental_spend": 28,
+  "penalties": 0,
+  "salvage_credit": 0,
+  "scheduled_production": null,
+  "commitments": [
+   {
+    "commit_id": "c1",
+    "day": 1,
+    "choice": "expedite",
+    "quantity": 4,
+    "unit_cost": 3,
+    "cost": 12,
+    "arrival_day": 2,
+    "lot_id": "exp1"
+   },
+   {
+    "commit_id": "c2",
+    "day": 2,
+    "choice": "expedite",
+    "quantity": 4,
+    "unit_cost": 4,
+    "cost": 16,
+    "arrival_day": 3,
+    "lot_id": "primary"
+   }
+  ],
+  "signals": [
+   {
+    "day": 1,
+    "hint_pct": 60,
+    "text": "Possible delay on the primary PO (probability-like hint, not a commitment)"
+   }
+  ],
+  "notices": [
+   {
+    "day": 2,
+    "kind": "delay_confirmed",
+    "original_day": 3,
+    "revised_day": 6,
+    "text": "Primary PO delayed from day 3 to day 6"
+   }
+  ],
+  "open_demand": 0
+ },
+ "final_scorecard": {
+  "schema": "dyn-scorecard-2",
+  "cost": {
+   "recovery_spend": 28,
+   "service_penalties": 0,
+   "salvage_credit": 0,
+   "net_cost": 28
+  },
+  "service": {
+   "otif_orders_met": 1,
+   "orders_total": 1,
+   "on_time_units": 12,
+   "ordered_units": 12,
+   "delivered_total": 12,
+   "cancelled_units": 0,
+   "unit_days_late": 0,
+   "orders": [
+    {
+     "order_id": "O1",
+     "tier": "key",
+     "ordered": 12,
+     "otif": true,
+     "on_time_units": 12,
+     "delivered": 12,
+     "cancelled": 0,
+     "unit_days_late": 0,
+     "days_short": 0,
+     "penalty": 0
+    }
+   ]
+  },
+  "tier_impact": {
+   "by_tier": {
+    "key": {
+     "orders": 1,
+     "otif_orders_met": 1,
+     "ordered": 12,
+     "on_time_units": 12,
+     "delivered": 12,
+     "cancelled": 0,
+     "unit_days_late": 0,
+     "penalties": 0
+    }
+   },
+   "priority_weighted_unit_days_late": 0
+  },
+  "downstream": {
+   "cancelled_units": 0,
+   "cancelled_order_value": 0,
+   "undelivered_at_end": 0
+  },
+  "supply_risk": {
+   "ending_components": 0,
+   "pending_inbound_units": 0,
+   "ending_cover_days_floor": 0,
+   "primary_reliance_pct": 100,
+   "recovery_commitments": 2,
+   "unused_recovery_budget": 12
+  },
+  "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+ }
+}

@@ -1,0 +1,4193 @@
+{
+ "note": "Verifier results re-derived from recorded commands; self-reported pass flags are ignored. ALL NUMBERS PROVISIONAL, needs practitioner value. Scripted policies, synthetic scenarios, no LLM, practitioner-reviewed: no.",
+ "episodes": {
+  "s02-sudden-5d": {
+   "maintain": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 0,
+      "service_penalties": 120,
+      "salvage_credit": 0,
+      "net_cost": 120
+     },
+     "service": {
+      "otif_orders_met": 0,
+      "orders_total": 1,
+      "on_time_units": 4,
+      "ordered_units": 12,
+      "delivered_total": 12,
+      "cancelled_units": 0,
+      "unit_days_late": 12,
+      "orders": [
+       {
+        "order_id": "O1",
+        "tier": "key",
+        "ordered": 12,
+        "otif": false,
+        "on_time_units": 4,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 12,
+        "days_short": 2,
+        "penalty": 120
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 0,
+        "ordered": 12,
+        "on_time_units": 4,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 12,
+        "penalties": 120
+       }
+      },
+      "priority_weighted_unit_days_late": 36
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 0,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 0,
+      "primary_reliance_pct": 100,
+      "recovery_commitments": 0,
+      "unused_recovery_budget": 40
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "insufficient_material",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "missing_event",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "expedite_on_alert": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 24,
+      "service_penalties": 0,
+      "salvage_credit": 0,
+      "net_cost": 24
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 1,
+      "on_time_units": 12,
+      "ordered_units": 12,
+      "delivered_total": 12,
+      "cancelled_units": 0,
+      "unit_days_late": 0,
+      "orders": [
+       {
+        "order_id": "O1",
+        "tier": "key",
+        "ordered": 12,
+        "otif": true,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 12,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       }
+      },
+      "priority_weighted_unit_days_late": 0
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 0,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 0,
+      "primary_reliance_pct": 100,
+      "recovery_commitments": 1,
+      "unused_recovery_budget": 16
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "missing_event",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "recovery_window_closed",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "alternate_on_alert": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 40,
+      "service_penalties": 0,
+      "salvage_credit": 16,
+      "net_cost": 24
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 1,
+      "on_time_units": 12,
+      "ordered_units": 12,
+      "delivered_total": 12,
+      "cancelled_units": 0,
+      "unit_days_late": 0,
+      "orders": [
+       {
+        "order_id": "O1",
+        "tier": "key",
+        "ordered": 12,
+        "otif": true,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 12,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       }
+      },
+      "priority_weighted_unit_days_late": 0
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 8,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 2,
+      "primary_reliance_pct": 50,
+      "recovery_commitments": 1,
+      "unused_recovery_budget": 0
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "alternate_exceeds_availability",
+       "duplicate_commitment",
+       "insufficient_material",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "receipt_timing_or_quantity",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "receipt_timing_or_quantity",
+       "scorecard_mismatch",
+       "spend_mismatch",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "combo_on_alert": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 32,
+      "service_penalties": 0,
+      "salvage_credit": 8,
+      "net_cost": 24
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 1,
+      "on_time_units": 12,
+      "ordered_units": 12,
+      "delivered_total": 12,
+      "cancelled_units": 0,
+      "unit_days_late": 0,
+      "orders": [
+       {
+        "order_id": "O1",
+        "tier": "key",
+        "ordered": 12,
+        "otif": true,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 12,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       }
+      },
+      "priority_weighted_unit_days_late": 0
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 4,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 1,
+      "primary_reliance_pct": 66,
+      "recovery_commitments": 2,
+      "unused_recovery_budget": 8
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "missing_event",
+       "receipt_timing_or_quantity",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "receipt_timing_or_quantity",
+       "recovery_window_closed",
+       "scorecard_mismatch",
+       "spend_mismatch",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "staged_revisit": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 28,
+      "service_penalties": 0,
+      "salvage_credit": 0,
+      "net_cost": 28
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 1,
+      "on_time_units": 12,
+      "ordered_units": 12,
+      "delivered_total": 12,
+      "cancelled_units": 0,
+      "unit_days_late": 0,
+      "orders": [
+       {
+        "order_id": "O1",
+        "tier": "key",
+        "ordered": 12,
+        "otif": true,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 12,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       }
+      },
+      "priority_weighted_unit_days_late": 0
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 0,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 0,
+      "primary_reliance_pct": 100,
+      "recovery_commitments": 2,
+      "unused_recovery_budget": 12
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "missing_event",
+       "receipt_timing_or_quantity",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "receipt_timing_or_quantity",
+       "recovery_window_closed",
+       "scorecard_mismatch",
+       "spend_mismatch",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   }
+  },
+  "s02-warned-delayed-10d": {
+   "maintain": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 0,
+      "service_penalties": 50,
+      "salvage_credit": 0,
+      "net_cost": 50
+     },
+     "service": {
+      "otif_orders_met": 0,
+      "orders_total": 1,
+      "on_time_units": 4,
+      "ordered_units": 12,
+      "delivered_total": 12,
+      "cancelled_units": 0,
+      "unit_days_late": 20,
+      "orders": [
+       {
+        "order_id": "O1",
+        "tier": "key",
+        "ordered": 12,
+        "otif": false,
+        "on_time_units": 4,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 20,
+        "days_short": 3,
+        "penalty": 50
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 0,
+        "ordered": 12,
+        "on_time_units": 4,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 20,
+        "penalties": 50
+       }
+      },
+      "priority_weighted_unit_days_late": 60
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 0,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 0,
+      "primary_reliance_pct": 100,
+      "recovery_commitments": 0,
+      "unused_recovery_budget": 40
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "insufficient_material",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "missing_event",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (event details)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (state text)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "expedite_on_alert": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 24,
+      "service_penalties": 0,
+      "salvage_credit": 0,
+      "net_cost": 24
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 1,
+      "on_time_units": 12,
+      "ordered_units": 12,
+      "delivered_total": 12,
+      "cancelled_units": 0,
+      "unit_days_late": 0,
+      "orders": [
+       {
+        "order_id": "O1",
+        "tier": "key",
+        "ordered": 12,
+        "otif": true,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 12,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       }
+      },
+      "priority_weighted_unit_days_late": 0
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 0,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 0,
+      "primary_reliance_pct": 100,
+      "recovery_commitments": 1,
+      "unused_recovery_budget": 16
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "missing_event",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "recovery_window_closed",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (event details)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (state text)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "alternate_on_alert": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 40,
+      "service_penalties": 0,
+      "salvage_credit": 16,
+      "net_cost": 24
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 1,
+      "on_time_units": 12,
+      "ordered_units": 12,
+      "delivered_total": 12,
+      "cancelled_units": 0,
+      "unit_days_late": 0,
+      "orders": [
+       {
+        "order_id": "O1",
+        "tier": "key",
+        "ordered": 12,
+        "otif": true,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 12,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       }
+      },
+      "priority_weighted_unit_days_late": 0
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 8,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 2,
+      "primary_reliance_pct": 50,
+      "recovery_commitments": 1,
+      "unused_recovery_budget": 0
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "alternate_exceeds_availability",
+       "duplicate_commitment",
+       "insufficient_material",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "receipt_timing_or_quantity",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "scorecard_mismatch",
+       "spend_mismatch",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (event details)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (state text)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "combo_on_alert": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 32,
+      "service_penalties": 0,
+      "salvage_credit": 8,
+      "net_cost": 24
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 1,
+      "on_time_units": 12,
+      "ordered_units": 12,
+      "delivered_total": 12,
+      "cancelled_units": 0,
+      "unit_days_late": 0,
+      "orders": [
+       {
+        "order_id": "O1",
+        "tier": "key",
+        "ordered": 12,
+        "otif": true,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 12,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       }
+      },
+      "priority_weighted_unit_days_late": 0
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 4,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 1,
+      "primary_reliance_pct": 66,
+      "recovery_commitments": 2,
+      "unused_recovery_budget": 8
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "missing_event",
+       "receipt_timing_or_quantity",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "receipt_timing_or_quantity",
+       "recovery_window_closed",
+       "scorecard_mismatch",
+       "spend_mismatch",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (event details)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (state text)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "staged_revisit": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 28,
+      "service_penalties": 0,
+      "salvage_credit": 0,
+      "net_cost": 28
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 1,
+      "on_time_units": 12,
+      "ordered_units": 12,
+      "delivered_total": 12,
+      "cancelled_units": 0,
+      "unit_days_late": 0,
+      "orders": [
+       {
+        "order_id": "O1",
+        "tier": "key",
+        "ordered": 12,
+        "otif": true,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 12,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       }
+      },
+      "priority_weighted_unit_days_late": 0
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 0,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 0,
+      "primary_reliance_pct": 100,
+      "recovery_commitments": 2,
+      "unused_recovery_budget": 12
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "missing_event",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "receipt_timing_or_quantity",
+       "recovery_window_closed",
+       "scorecard_mismatch",
+       "spend_mismatch",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (event details)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (state text)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   }
+  },
+  "s02-warned-no-delay-10d": {
+   "maintain": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 0,
+      "service_penalties": 0,
+      "salvage_credit": 0,
+      "net_cost": 0
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 1,
+      "on_time_units": 12,
+      "ordered_units": 12,
+      "delivered_total": 12,
+      "cancelled_units": 0,
+      "unit_days_late": 0,
+      "orders": [
+       {
+        "order_id": "O1",
+        "tier": "key",
+        "ordered": 12,
+        "otif": true,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 12,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       }
+      },
+      "priority_weighted_unit_days_late": 0
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 0,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 0,
+      "primary_reliance_pct": 100,
+      "recovery_commitments": 0,
+      "unused_recovery_budget": 40
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "missing_event",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (event details)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (state text)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "expedite_on_alert": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 24,
+      "service_penalties": 0,
+      "salvage_credit": 0,
+      "net_cost": 24
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 1,
+      "on_time_units": 12,
+      "ordered_units": 12,
+      "delivered_total": 12,
+      "cancelled_units": 0,
+      "unit_days_late": 0,
+      "orders": [
+       {
+        "order_id": "O1",
+        "tier": "key",
+        "ordered": 12,
+        "otif": true,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 12,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       }
+      },
+      "priority_weighted_unit_days_late": 0
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 0,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 0,
+      "primary_reliance_pct": 100,
+      "recovery_commitments": 1,
+      "unused_recovery_budget": 16
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "missing_event",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "recovery_window_closed",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (event details)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (state text)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "alternate_on_alert": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 40,
+      "service_penalties": 0,
+      "salvage_credit": 16,
+      "net_cost": 24
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 1,
+      "on_time_units": 12,
+      "ordered_units": 12,
+      "delivered_total": 12,
+      "cancelled_units": 0,
+      "unit_days_late": 0,
+      "orders": [
+       {
+        "order_id": "O1",
+        "tier": "key",
+        "ordered": 12,
+        "otif": true,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 12,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       }
+      },
+      "priority_weighted_unit_days_late": 0
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 8,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 2,
+      "primary_reliance_pct": 50,
+      "recovery_commitments": 1,
+      "unused_recovery_budget": 0
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "alternate_exceeds_availability",
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "receipt_timing_or_quantity",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "scorecard_mismatch",
+       "spend_mismatch",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (event details)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (state text)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "combo_on_alert": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 32,
+      "service_penalties": 0,
+      "salvage_credit": 8,
+      "net_cost": 24
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 1,
+      "on_time_units": 12,
+      "ordered_units": 12,
+      "delivered_total": 12,
+      "cancelled_units": 0,
+      "unit_days_late": 0,
+      "orders": [
+       {
+        "order_id": "O1",
+        "tier": "key",
+        "ordered": 12,
+        "otif": true,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 12,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       }
+      },
+      "priority_weighted_unit_days_late": 0
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 4,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 1,
+      "primary_reliance_pct": 66,
+      "recovery_commitments": 2,
+      "unused_recovery_budget": 8
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "missing_event",
+       "receipt_timing_or_quantity",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "receipt_timing_or_quantity",
+       "recovery_window_closed",
+       "scorecard_mismatch",
+       "spend_mismatch",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (event details)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (state text)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "staged_revisit": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 12,
+      "service_penalties": 0,
+      "salvage_credit": 0,
+      "net_cost": 12
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 1,
+      "on_time_units": 12,
+      "ordered_units": 12,
+      "delivered_total": 12,
+      "cancelled_units": 0,
+      "unit_days_late": 0,
+      "orders": [
+       {
+        "order_id": "O1",
+        "tier": "key",
+        "ordered": 12,
+        "otif": true,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 12,
+        "on_time_units": 12,
+        "delivered": 12,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       }
+      },
+      "priority_weighted_unit_days_late": 0
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 0,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 0,
+      "primary_reliance_pct": 100,
+      "recovery_commitments": 1,
+      "unused_recovery_budget": 28
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "missing_event",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "receipt_timing_or_quantity",
+       "recovery_window_closed",
+       "scorecard_mismatch",
+       "spend_mismatch",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (event details)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "early signal leaks the outcome (state text)",
+      "feasible": false,
+      "codes": [
+       "signal_leak"
+      ],
+      "expected_any_of": [
+       "signal_leak"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   }
+  },
+  "s02-multitier-cancel-10d": {
+   "maintain": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 0,
+      "service_penalties": 72,
+      "salvage_credit": 8,
+      "net_cost": 64
+     },
+     "service": {
+      "otif_orders_met": 0,
+      "orders_total": 2,
+      "on_time_units": 4,
+      "ordered_units": 16,
+      "delivered_total": 8,
+      "cancelled_units": 8,
+      "unit_days_late": 32,
+      "orders": [
+       {
+        "order_id": "K1",
+        "tier": "key",
+        "ordered": 8,
+        "otif": false,
+        "on_time_units": 4,
+        "delivered": 8,
+        "cancelled": 0,
+        "unit_days_late": 8,
+        "days_short": 2,
+        "penalty": 24
+       },
+       {
+        "order_id": "S1",
+        "tier": "standard",
+        "ordered": 8,
+        "otif": false,
+        "on_time_units": 0,
+        "delivered": 0,
+        "cancelled": 8,
+        "unit_days_late": 24,
+        "days_short": 3,
+        "penalty": 48
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 0,
+        "ordered": 8,
+        "on_time_units": 4,
+        "delivered": 8,
+        "cancelled": 0,
+        "unit_days_late": 8,
+        "penalties": 24
+       },
+       "standard": {
+        "orders": 1,
+        "otif_orders_met": 0,
+        "ordered": 8,
+        "on_time_units": 0,
+        "delivered": 0,
+        "cancelled": 8,
+        "unit_days_late": 24,
+        "penalties": 48
+       }
+      },
+      "priority_weighted_unit_days_late": 48
+     },
+     "downstream": {
+      "cancelled_units": 8,
+      "cancelled_order_value": 160,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 4,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 1,
+      "primary_reliance_pct": 100,
+      "recovery_commitments": 0,
+      "unused_recovery_budget": 40
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "insufficient_material",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "missing_event",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "expedite_on_alert": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 24,
+      "service_penalties": 24,
+      "salvage_credit": 0,
+      "net_cost": 48
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 2,
+      "on_time_units": 12,
+      "ordered_units": 16,
+      "delivered_total": 12,
+      "cancelled_units": 4,
+      "unit_days_late": 12,
+      "orders": [
+       {
+        "order_id": "K1",
+        "tier": "key",
+        "ordered": 8,
+        "otif": true,
+        "on_time_units": 8,
+        "delivered": 8,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       },
+       {
+        "order_id": "S1",
+        "tier": "standard",
+        "ordered": 8,
+        "otif": false,
+        "on_time_units": 4,
+        "delivered": 4,
+        "cancelled": 4,
+        "unit_days_late": 12,
+        "days_short": 3,
+        "penalty": 24
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 8,
+        "on_time_units": 8,
+        "delivered": 8,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       },
+       "standard": {
+        "orders": 1,
+        "otif_orders_met": 0,
+        "ordered": 8,
+        "on_time_units": 4,
+        "delivered": 4,
+        "cancelled": 4,
+        "unit_days_late": 12,
+        "penalties": 24
+       }
+      },
+      "priority_weighted_unit_days_late": 12
+     },
+     "downstream": {
+      "cancelled_units": 4,
+      "cancelled_order_value": 80,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 0,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 0,
+      "primary_reliance_pct": 100,
+      "recovery_commitments": 1,
+      "unused_recovery_budget": 16
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "missing_event",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "recovery_window_closed",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "alternate_on_alert": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 40,
+      "service_penalties": 24,
+      "salvage_credit": 8,
+      "net_cost": 56
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 2,
+      "on_time_units": 8,
+      "ordered_units": 16,
+      "delivered_total": 16,
+      "cancelled_units": 0,
+      "unit_days_late": 12,
+      "orders": [
+       {
+        "order_id": "K1",
+        "tier": "key",
+        "ordered": 8,
+        "otif": true,
+        "on_time_units": 8,
+        "delivered": 8,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       },
+       {
+        "order_id": "S1",
+        "tier": "standard",
+        "ordered": 8,
+        "otif": false,
+        "on_time_units": 0,
+        "delivered": 8,
+        "cancelled": 0,
+        "unit_days_late": 12,
+        "days_short": 2,
+        "penalty": 24
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 8,
+        "on_time_units": 8,
+        "delivered": 8,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       },
+       "standard": {
+        "orders": 1,
+        "otif_orders_met": 0,
+        "ordered": 8,
+        "on_time_units": 0,
+        "delivered": 8,
+        "cancelled": 0,
+        "unit_days_late": 12,
+        "penalties": 24
+       }
+      },
+      "priority_weighted_unit_days_late": 12
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 4,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 1,
+      "primary_reliance_pct": 50,
+      "recovery_commitments": 1,
+      "unused_recovery_budget": 0
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "alternate_exceeds_availability",
+       "duplicate_commitment",
+       "insufficient_material",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "receipt_timing_or_quantity",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "insufficient_material",
+       "ledger_mismatch",
+       "scorecard_mismatch",
+       "spend_mismatch",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "combo_on_alert": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 32,
+      "service_penalties": 16,
+      "salvage_credit": 0,
+      "net_cost": 48
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 2,
+      "on_time_units": 12,
+      "ordered_units": 16,
+      "delivered_total": 16,
+      "cancelled_units": 0,
+      "unit_days_late": 8,
+      "orders": [
+       {
+        "order_id": "K1",
+        "tier": "key",
+        "ordered": 8,
+        "otif": true,
+        "on_time_units": 8,
+        "delivered": 8,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       },
+       {
+        "order_id": "S1",
+        "tier": "standard",
+        "ordered": 8,
+        "otif": false,
+        "on_time_units": 4,
+        "delivered": 8,
+        "cancelled": 0,
+        "unit_days_late": 8,
+        "days_short": 2,
+        "penalty": 16
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 8,
+        "on_time_units": 8,
+        "delivered": 8,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       },
+       "standard": {
+        "orders": 1,
+        "otif_orders_met": 0,
+        "ordered": 8,
+        "on_time_units": 4,
+        "delivered": 8,
+        "cancelled": 0,
+        "unit_days_late": 8,
+        "penalties": 16
+       }
+      },
+      "priority_weighted_unit_days_late": 8
+     },
+     "downstream": {
+      "cancelled_units": 0,
+      "cancelled_order_value": 0,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 0,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 0,
+      "primary_reliance_pct": 66,
+      "recovery_commitments": 2,
+      "unused_recovery_budget": 8
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "missing_event",
+       "receipt_timing_or_quantity",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "insufficient_material",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "receipt_timing_or_quantity",
+       "recovery_window_closed",
+       "scorecard_mismatch",
+       "spend_mismatch",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   },
+   "staged_revisit": {
+    "feasible": true,
+    "complete": true,
+    "violations": [],
+    "matches_hand_worked": {
+     "ledger": true,
+     "metrics": true,
+     "tiers": true
+    },
+    "derived_scorecard": {
+     "schema": "dyn-scorecard-2",
+     "cost": {
+      "recovery_spend": 28,
+      "service_penalties": 24,
+      "salvage_credit": 0,
+      "net_cost": 52
+     },
+     "service": {
+      "otif_orders_met": 1,
+      "orders_total": 2,
+      "on_time_units": 12,
+      "ordered_units": 16,
+      "delivered_total": 12,
+      "cancelled_units": 4,
+      "unit_days_late": 12,
+      "orders": [
+       {
+        "order_id": "K1",
+        "tier": "key",
+        "ordered": 8,
+        "otif": true,
+        "on_time_units": 8,
+        "delivered": 8,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "days_short": 0,
+        "penalty": 0
+       },
+       {
+        "order_id": "S1",
+        "tier": "standard",
+        "ordered": 8,
+        "otif": false,
+        "on_time_units": 4,
+        "delivered": 4,
+        "cancelled": 4,
+        "unit_days_late": 12,
+        "days_short": 3,
+        "penalty": 24
+       }
+      ]
+     },
+     "tier_impact": {
+      "by_tier": {
+       "key": {
+        "orders": 1,
+        "otif_orders_met": 1,
+        "ordered": 8,
+        "on_time_units": 8,
+        "delivered": 8,
+        "cancelled": 0,
+        "unit_days_late": 0,
+        "penalties": 0
+       },
+       "standard": {
+        "orders": 1,
+        "otif_orders_met": 0,
+        "ordered": 8,
+        "on_time_units": 4,
+        "delivered": 4,
+        "cancelled": 4,
+        "unit_days_late": 12,
+        "penalties": 24
+       }
+      },
+      "priority_weighted_unit_days_late": 12
+     },
+     "downstream": {
+      "cancelled_units": 4,
+      "cancelled_order_value": 80,
+      "undelivered_at_end": 0
+     },
+     "supply_risk": {
+      "ending_components": 0,
+      "pending_inbound_units": 0,
+      "ending_cover_days_floor": 0,
+      "primary_reliance_pct": 100,
+      "recovery_commitments": 2,
+      "unused_recovery_budget": 12
+     },
+     "values_status": "PROVISIONAL, needs practitioner value; not reviewed by a practitioner"
+    },
+    "ignored_self_reports": [],
+    "corruption_cases": [
+     {
+      "case": "forged scorecard net cost",
+      "feasible": false,
+      "codes": [
+       "scorecard_mismatch"
+      ],
+      "expected_any_of": [
+       "scorecard_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "premature receipt",
+      "feasible": false,
+      "codes": [
+       "receipt_timing_or_quantity"
+      ],
+      "expected_any_of": [
+       "receipt_timing_or_quantity"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "wrong penalty claimed",
+      "feasible": false,
+      "codes": [
+       "penalty_mismatch"
+      ],
+      "expected_any_of": [
+       "penalty_mismatch"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "deleted day close",
+      "feasible": false,
+      "codes": [
+       "duplicate_release",
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "penalty_mismatch",
+       "scorecard_for_incomplete_episode",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "event_day_mismatch",
+       "ledger_mismatch",
+       "missing_event"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "duplicate commitment (same commit_id executed twice)",
+      "feasible": false,
+      "codes": [
+       "duplicate_commitment",
+       "ledger_mismatch",
+       "missing_event",
+       "scorecard_mismatch",
+       "spend_mismatch"
+      ],
+      "expected_any_of": [
+       "duplicate_commitment"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "over-budget combined recovery",
+      "feasible": false,
+      "codes": [
+       "budget_exceeded",
+       "ledger_mismatch",
+       "receipt_timing_or_quantity",
+       "recovery_window_closed",
+       "scorecard_mismatch",
+       "spend_mismatch",
+       "unexpected_event"
+      ],
+      "expected_any_of": [
+       "budget_exceeded"
+      ],
+      "rejected_as_expected": true
+     },
+     {
+      "case": "forged passed/verified flags",
+      "feasible": true,
+      "codes": [],
+      "ignored_self_reports": [
+       "passed",
+       "verified"
+      ],
+      "rejected_as_expected": true
+     }
+    ]
+   }
+  }
+ },
+ "rejection_probes": [
+  {
+   "run": "sudden 5d: hidden probe, duplicate action id, over-budget combination, overcapacity, duplicate release",
+   "attempts": [
+    {
+     "seq": 1,
+     "day": 1,
+     "tool": "read_scenario",
+     "arguments": {},
+     "accepted": false,
+     "category": "hidden_state",
+     "reason": "tool would expose hidden scenario or future state",
+     "state_changes": {}
+    },
+    {
+     "seq": 2,
+     "day": 1,
+     "tool": "commit_recovery",
+     "arguments": {
+      "choice": "expedite",
+      "quantity": 8
+     },
+     "accepted": true,
+     "category": null,
+     "reason": null,
+     "state_changes": {
+      "lots": [
+       [
+        {
+         "lot_id": "primary",
+         "source": "primary",
+         "quantity": 8,
+         "arrival_day": 4,
+         "received": false,
+         "expedited": false
+        }
+       ],
+       [
+        {
+         "lot_id": "primary",
+         "source": "primary",
+         "quantity": 8,
+         "arrival_day": 2,
+         "received": false,
+         "expedited": true
+        }
+       ]
+      ],
+      "incremental_spend": [
+       0,
+       24
+      ],
+      "commitments": [
+       [],
+       [
+        {
+         "commit_id": "a1",
+         "day": 1,
+         "choice": "expedite",
+         "quantity": 8,
+         "unit_cost": 3,
+         "cost": 24,
+         "arrival_day": 2,
+         "lot_id": "primary"
+        }
+       ]
+      ]
+     }
+    },
+    {
+     "seq": 3,
+     "day": 1,
+     "tool": "commit_recovery",
+     "arguments": {
+      "choice": "expedite",
+      "quantity": 8
+     },
+     "accepted": false,
+     "category": "repeated_commitment",
+     "reason": "action_id already used; commitments are not retried",
+     "state_changes": {}
+    },
+    {
+     "seq": 4,
+     "day": 1,
+     "tool": "commit_recovery",
+     "arguments": {
+      "choice": "alternate",
+      "quantity": 4
+     },
+     "accepted": false,
+     "category": "budget",
+     "reason": "recovery budget exceeded",
+     "state_changes": {}
+    },
+    {
+     "seq": 5,
+     "day": 1,
+     "tool": "commit_recovery",
+     "arguments": {
+      "choice": "expedite",
+      "quantity": 1
+     },
+     "accepted": false,
+     "category": "deadline",
+     "reason": "recovery offer window not open, closed or exhausted today",
+     "state_changes": {}
+    },
+    {
+     "seq": 6,
+     "day": 1,
+     "tool": "commit_recovery",
+     "arguments": {
+      "choice": "alternate",
+      "quantity": 3
+     },
+     "accepted": true,
+     "category": null,
+     "reason": null,
+     "state_changes": {
+      "lots": [
+       [
+        {
+         "lot_id": "primary",
+         "source": "primary",
+         "quantity": 8,
+         "arrival_day": 2,
+         "received": false,
+         "expedited": true
+        }
+       ],
+       [
+        {
+         "lot_id": "primary",
+         "source": "primary",
+         "quantity": 8,
+         "arrival_day": 2,
+         "received": false,
+         "expedited": true
+        },
+        {
+         "lot_id": "alt1",
+         "source": "alternate",
+         "quantity": 3,
+         "arrival_day": 2,
+         "received": false,
+         "expedited": false
+        }
+       ]
+      ],
+      "incremental_spend": [
+       24,
+       39
+      ],
+      "commitments": [
+       [
+        {
+         "commit_id": "a1",
+         "day": 1,
+         "choice": "expedite",
+         "quantity": 8,
+         "unit_cost": 3,
+         "cost": 24,
+         "arrival_day": 2,
+         "lot_id": "primary"
+        }
+       ],
+       [
+        {
+         "commit_id": "a1",
+         "day": 1,
+         "choice": "expedite",
+         "quantity": 8,
+         "unit_cost": 3,
+         "cost": 24,
+         "arrival_day": 2,
+         "lot_id": "primary"
+        },
+        {
+         "commit_id": "a4",
+         "day": 1,
+         "choice": "alternate",
+         "quantity": 3,
+         "unit_cost": 5,
+         "cost": 15,
+         "arrival_day": 2,
+         "lot_id": "alt1"
+        }
+       ]
+      ]
+     }
+    },
+    {
+     "seq": 7,
+     "day": 1,
+     "tool": "release_production",
+     "arguments": {
+      "quantity": 9
+     },
+     "accepted": false,
+     "category": "invalid_action",
+     "reason": "capacity or available material exceeded",
+     "state_changes": {}
+    },
+    {
+     "seq": 8,
+     "day": 1,
+     "tool": "release_production",
+     "arguments": {
+      "quantity": 4
+     },
+     "accepted": true,
+     "category": null,
+     "reason": null,
+     "state_changes": {
+      "scheduled_production": [
+       null,
+       4
+      ]
+     }
+    },
+    {
+     "seq": 9,
+     "day": 1,
+     "tool": "release_production",
+     "arguments": {
+      "quantity": 4
+     },
+     "accepted": false,
+     "category": "repeated_commitment",
+     "reason": "daily production already released",
+     "state_changes": {}
+    },
+    {
+     "seq": 10,
+     "day": 1,
+     "tool": "advance_day",
+     "arguments": {},
+     "accepted": true,
+     "category": null,
+     "reason": null,
+     "state_changes": {
+      "day": [
+       1,
+       2
+      ],
+      "component_on_hand": [
+       4,
+       11
+      ],
+      "finished_on_hand": [
+       0,
+       4
+      ],
+      "produced_total": [
+       0,
+       4
+      ],
+      "lots": [
+       [
+        {
+         "lot_id": "primary",
+         "source": "primary",
+         "quantity": 8,
+         "arrival_day": 2,
+         "received": false,
+         "expedited": true
+        },
+        {
+         "lot_id": "alt1",
+         "source": "alternate",
+         "quantity": 3,
+         "arrival_day": 2,
+         "received": false,
+         "expedited": false
+        }
+       ],
+       [
+        {
+         "lot_id": "primary",
+         "source": "primary",
+         "quantity": 8,
+         "arrival_day": 2,
+         "received": true,
+         "expedited": true
+        },
+        {
+         "lot_id": "alt1",
+         "source": "alternate",
+         "quantity": 3,
+         "arrival_day": 2,
+         "received": true,
+         "expedited": false
+        }
+       ]
+      ],
+      "scheduled_production": [
+       4,
+       null
+      ]
+     }
+    }
+   ],
+   "rejected_count": 6,
+   "rejections_left_state_unchanged": true,
+   "rejections_audited": true,
+   "verifier_feasible": true,
+   "verifier_codes": []
+  },
+  {
+   "run": "sudden 5d: window closed on day 3, expedite nothing left, production without material",
+   "attempts": [
+    {
+     "seq": 1,
+     "day": 1,
+     "tool": "release_production",
+     "arguments": {
+      "quantity": 4
+     },
+     "accepted": true,
+     "category": null,
+     "reason": null,
+     "state_changes": {
+      "scheduled_production": [
+       null,
+       4
+      ]
+     }
+    },
+    {
+     "seq": 2,
+     "day": 1,
+     "tool": "advance_day",
+     "arguments": {},
+     "accepted": true,
+     "category": null,
+     "reason": null,
+     "state_changes": {
+      "day": [
+       1,
+       2
+      ],
+      "component_on_hand": [
+       4,
+       0
+      ],
+      "finished_on_hand": [
+       0,
+       4
+      ],
+      "produced_total": [
+       0,
+       4
+      ],
+      "scheduled_production": [
+       4,
+       null
+      ]
+     }
+    },
+    {
+     "seq": 3,
+     "day": 2,
+     "tool": "release_production",
+     "arguments": {
+      "quantity": 4
+     },
+     "accepted": false,
+     "category": "invalid_action",
+     "reason": "capacity or available material exceeded",
+     "state_changes": {}
+    },
+    {
+     "seq": 4,
+     "day": 2,
+     "tool": "advance_day",
+     "arguments": {},
+     "accepted": true,
+     "category": null,
+     "reason": null,
+     "state_changes": {
+      "day": [
+       2,
+       3
+      ]
+     }
+    },
+    {
+     "seq": 5,
+     "day": 3,
+     "tool": "commit_recovery",
+     "arguments": {
+      "choice": "alternate",
+      "quantity": 2
+     },
+     "accepted": false,
+     "category": "deadline",
+     "reason": "recovery offer window not open, closed or exhausted today",
+     "state_changes": {}
+    },
+    {
+     "seq": 6,
+     "day": 3,
+     "tool": "release_production",
+     "arguments": {
+      "quantity": 4
+     },
+     "accepted": false,
+     "category": "invalid_action",
+     "reason": "capacity or available material exceeded",
+     "state_changes": {}
+    },
+    {
+     "seq": 7,
+     "day": 3,
+     "tool": "advance_day",
+     "arguments": {},
+     "accepted": true,
+     "category": null,
+     "reason": null,
+     "state_changes": {
+      "day": [
+       3,
+       4
+      ],
+      "component_on_hand": [
+       0,
+       8
+      ],
+      "finished_on_hand": [
+       4,
+       0
+      ],
+      "delivered_total": [
+       0,
+       4
+      ],
+      "lots": [
+       [
+        {
+         "lot_id": "primary",
+         "source": "primary",
+         "quantity": 8,
+         "arrival_day": 4,
+         "received": false,
+         "expedited": false
+        }
+       ],
+       [
+        {
+         "lot_id": "primary",
+         "source": "primary",
+         "quantity": 8,
+         "arrival_day": 4,
+         "received": true,
+         "expedited": false
+        }
+       ]
+      ],
+      "orders": [
+       [
+        {
+         "order_id": "O1",
+         "tier": "key",
+         "quantity": 12,
+         "due_day": 3,
+         "delivered": 0,
+         "cancelled": 0,
+         "status": "open",
+         "penalty_total": 0,
+         "unit_days_late": 0,
+         "days_short": 0,
+         "on_time_units": null
+        }
+       ],
+       [
+        {
+         "order_id": "O1",
+         "tier": "key",
+         "quantity": 12,
+         "due_day": 3,
+         "delivered": 4,
+         "cancelled": 0,
+         "status": "open",
+         "penalty_total": 80,
+         "unit_days_late": 8,
+         "days_short": 1,
+         "on_time_units": 4
+        }
+       ]
+      ],
+      "penalties": [
+       0,
+       80
+      ],
+      "open_demand": [
+       12,
+       8
+      ]
+     }
+    }
+   ],
+   "rejected_count": 3,
+   "rejections_left_state_unchanged": true,
+   "rejections_audited": true,
+   "verifier_feasible": true,
+   "verifier_codes": []
+  }
+ ],
+ "paired_signal_identical_until_firm_notice": {
+  "maintain": true,
+  "expedite_on_alert": true,
+  "alternate_on_alert": true,
+  "combo_on_alert": true,
+  "staged_revisit": true
+ },
+ "leak_scan": {
+  "experience_record": [],
+  "all_episodes": {}
+ }
+}
