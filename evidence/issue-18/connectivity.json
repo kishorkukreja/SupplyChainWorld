@@ -1,0 +1,122 @@
+{
+  "schema": "llm-connectivity-1",
+  "run_at_utc": "2026-11-15T23:59:09Z",
+  "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+  "note": "Connectivity and tool-call plumbing only. Not an evaluation of model ability.",
+  "credential_env_var_present": true,
+  "results": [
+    {
+      "role": "decision_system1",
+      "model": "respan/span-01-lite",
+      "status": "skipped",
+      "reason": "not attempted, request format unverified"
+    },
+    {
+      "model": "baidu/ernie-5.5-flash-preview:free",
+      "max_tokens": 64,
+      "max_retries": 1,
+      "status": "responded",
+      "http_requests": 1,
+      "retries": [],
+      "latency_ms": 1071.5,
+      "usage": {
+        "prompt_tokens": 112,
+        "completion_tokens": 22,
+        "total_tokens": 134,
+        "reported_cost_usd": 0.0
+      },
+      "cost_usd": 0.0,
+      "finish_reason": "tool_calls",
+      "tool_call_returned": true,
+      "tool_call_name": "ping",
+      "text_returned": false,
+      "returned_model": "baidu/ernie-5.5-flash-preview:free",
+      "roles": [
+        "general_reasoning"
+      ]
+    },
+    {
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "max_tokens": 64,
+      "max_retries": 1,
+      "status": "responded",
+      "http_requests": 1,
+      "retries": [],
+      "latency_ms": 1075.2,
+      "usage": {
+        "prompt_tokens": 284,
+        "completion_tokens": 44,
+        "total_tokens": 328,
+        "reported_cost_usd": 0.0
+      },
+      "cost_usd": 0.0,
+      "finish_reason": "tool_calls",
+      "tool_call_returned": true,
+      "tool_call_name": "ping",
+      "text_returned": false,
+      "returned_model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "roles": [
+        "general_reasoning"
+      ]
+    },
+    {
+      "model": "thinkingmachines/inkling-2-small:free",
+      "max_tokens": 64,
+      "max_retries": 1,
+      "status": "failed",
+      "error_class": "provider_error",
+      "error": "HTTP 403: thinkingmachines/inkling-2-small:free is only available on agentic harnesses. Try plugging it into a coding agent or productivity app listed on https://openrouter.ai/apps",
+      "roles": [
+        "general_reasoning"
+      ]
+    },
+    {
+      "model": "cohere/north-mini-code:free",
+      "max_tokens": 64,
+      "max_retries": 1,
+      "status": "responded",
+      "http_requests": 1,
+      "retries": [],
+      "latency_ms": 544.4,
+      "usage": {
+        "prompt_tokens": 43,
+        "completion_tokens": 55,
+        "total_tokens": 98,
+        "reported_cost_usd": 0.0
+      },
+      "cost_usd": 0.0,
+      "finish_reason": "length",
+      "tool_call_returned": false,
+      "tool_call_name": null,
+      "text_returned": false,
+      "returned_model": "cohere/north-mini-code:free",
+      "roles": [
+        "code"
+      ]
+    },
+    {
+      "model": "nvidia/nemotron-3.5-super-vl:free",
+      "max_tokens": 64,
+      "max_retries": 1,
+      "status": "responded",
+      "http_requests": 1,
+      "retries": [],
+      "latency_ms": 688.8,
+      "usage": {
+        "prompt_tokens": 284,
+        "completion_tokens": 57,
+        "total_tokens": 341,
+        "reported_cost_usd": 0.0
+      },
+      "cost_usd": 0.0,
+      "finish_reason": "tool_calls",
+      "tool_call_returned": true,
+      "tool_call_name": "ping",
+      "text_returned": false,
+      "returned_model": "nvidia/nemotron-3.5-super-vl:free",
+      "roles": [
+        "multimedia"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2080 @@
+{
+  "schema": "llm-live-episode-1",
+  "label": "connectivity/diagnostic run only, not an evaluation",
+  "run_at_utc": "2026-11-16T00:00:04Z",
+  "fixture_id": "s01-five-day",
+  "manifest": {
+    "schema": "llm-run-manifest-1",
+    "provider": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "model": "baidu/ernie-5.5-flash-preview:free",
+    "system_prompt": "You operate a small manufacturing plant through tools, one simulated day at a time. Each message shows you the current visible state, visible rules and the outcome of your last tool call. Use only that information. Call exactly one tool per reply and do not reply in prose. State is already included after every call, so avoid unnecessary read calls. Time only moves when you call advance_day. Resource commitments (commit_recovery, release_production) cannot be undone and some have deadlines shown in the rules. Keep acting until the episode phase is complete.",
+    "tool_schemas": [
+      {
+        "type": "function",
+        "function": {
+          "name": "read_state",
+          "description": "Read the visible plant state (optionally one section). Does not advance time.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "section": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "clock",
+                  "state",
+                  "rules"
+                ],
+                "description": "which part of the visible view to read"
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "read_recovery_offers",
+          "description": "Read currently visible supply recovery offers, if any. Does not advance time.",
+          "parameters": {
+            "type": "object",
+            "properties": {},
+            "required": [],
+            "additionalProperties": false
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "read_scorecard",
+          "description": "Read the scorecard. Only available once the episode is complete.",
+          "parameters": {
+            "type": "object",
+            "properties": {},
+            "required": [],
+            "additionalProperties": false
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "commit_recovery",
+          "description": "Irreversibly commit to one supply recovery option (once only, before its deadline).",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "choice": {
+                "type": "string",
+                "enum": [
+                  "maintain",
+                  "expedite",
+                  "alternate"
+                ],
+                "description": "recovery option to commit"
+              }
+            },
+            "required": [
+              "choice"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "release_production",
+          "description": "Release production for today (once per day, within capacity and material on hand).",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "quantity": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "units of finished goods to release today"
+              }
+            },
+            "required": [
+              "quantity"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "advance_day",
+          "description": "Close today and advance simulated time by one day.",
+          "parameters": {
+            "type": "object",
+            "properties": {},
+            "required": [],
+            "additionalProperties": false
+          }
+        }
+      }
+    ],
+    "request_parameters": {
+      "temperature": 0.0,
+      "max_tokens": 2048,
+      "tool_choice": "auto",
+      "parallel_tool_calls": false
+    },
+    "memory_policy": {
+      "kind": "rolling_window",
+      "window_exchanges": 8,
+      "cross_episode_memory": false,
+      "description": "system prompt plus the initial observation plus the last N tool exchanges; each tool result is the current visible view and last outcome"
+    },
+    "retry_policy": {
+      "retry_on": [
+        "http_429",
+        "http_5xx",
+        "network_error"
+      ],
+      "max_retries": 2,
+      "backoff": "exponential",
+      "base_seconds": 1.0,
+      "cap_seconds": 20.0,
+      "honors_retry_after_up_to_cap": true,
+      "no_retry_on": [
+        "4xx other than 429",
+        "refusal",
+        "context limit"
+      ]
+    },
+    "timeout_seconds": 60.0,
+    "limits": {
+      "max_model_calls": 12,
+      "max_total_tokens": 60000,
+      "max_context_tokens": null,
+      "max_nudges_for_non_tool_replies": 2
+    },
+    "spend": {
+      "cost_ceiling_usd": 0.0,
+      "free_only": true,
+      "free_basis": "id_suffix",
+      "verified_pricing": null,
+      "cost_rule": "0 only for confirmed ':free' model with usage present; otherwise 'unknown'"
+    },
+    "credential": {
+      "env_var": "OPENROUTER_API_KEY",
+      "logged": false
+    },
+    "manifest_sha256": "bbbb87353102cffe3175e9071c51d19dee45f07563d3f821fce05b15f2b5c8d9"
+  },
+  "runner_status": "complete",
+  "episode_complete": true,
+  "telemetry": {
+    "schema": "llm-telemetry-1",
+    "model": "baidu/ernie-5.5-flash-preview:free",
+    "model_calls": 9,
+    "http_requests": 9,
+    "retries": 0,
+    "usage_complete": true,
+    "calls_with_usage": 9,
+    "prompt_tokens": 21974,
+    "completion_tokens": 1056,
+    "total_tokens": 23030,
+    "latency_ms_total": 12801.8,
+    "cost_usd": 0.0,
+    "cost_ceiling_usd": 0.0,
+    "stop_reason": null,
+    "failure": null,
+    "calls": [
+      {
+        "seq": 1,
+        "status": "ok",
+        "http_status": 200,
+        "http_requests": 1,
+        "retries": [],
+        "latency_ms": 5241.6,
+        "total_latency_ms": 5241.7,
+        "usage": {
+          "prompt_tokens": 930,
+          "completion_tokens": 879,
+          "total_tokens": 1809,
+          "reported_cost_usd": 0.0
+        },
+        "cost_usd": 0.0,
+        "finish_reason": "tool_calls",
+        "returned_model": "baidu/ernie-5.5-flash-preview:free",
+        "tool_calls_returned": 1,
+        "tool": "commit_recovery"
+      },
+      {
+        "seq": 2,
+        "status": "ok",
+        "http_status": 200,
+        "http_requests": 1,
+        "retries": [],
+        "latency_ms": 744.2,
+        "total_latency_ms": 744.2,
+        "usage": {
+          "prompt_tokens": 1313,
+          "completion_tokens": 24,
+          "total_tokens": 1337,
+          "reported_cost_usd": 0.0
+        },
+        "cost_usd": 0.0,
+        "finish_reason": "tool_calls",
+        "returned_model": "baidu/ernie-5.5-flash-preview:free",
+        "tool_calls_returned": 1,
+        "tool": "release_production"
+      },
+      {
+        "seq": 3,
+        "status": "ok",
+        "http_status": 200,
+        "http_requests": 1,
+        "retries": [],
+        "latency_ms": 1032.7,
+        "total_latency_ms": 1032.7,
+        "usage": {
+          "prompt_tokens": 1695,
+          "completion_tokens": 14,
+          "total_tokens": 1709,
+          "reported_cost_usd": 0.0
+        },
+        "cost_usd": 0.0,
+        "finish_reason": "tool_calls",
+        "returned_model": "baidu/ernie-5.5-flash-preview:free",
+        "tool_calls_returned": 1,
+        "tool": "advance_day"
+      },
+      {
+        "seq": 4,
+        "status": "ok",
+        "http_status": 200,
+        "http_requests": 1,
+        "retries": [],
+        "latency_ms": 955.2,
+        "total_latency_ms": 955.2,
+        "usage": {
+          "prompt_tokens": 2065,
+          "completion_tokens": 24,
+          "total_tokens": 2089,
+          "reported_cost_usd": 0.0
+        },
+        "cost_usd": 0.0,
+        "finish_reason": "tool_calls",
+        "returned_model": "baidu/ernie-5.5-flash-preview:free",
+        "tool_calls_returned": 1,
+        "tool": "release_production"
+      },
+      {
+        "seq": 5,
+        "status": "ok",
+        "http_status": 200,
+        "http_requests": 1,
+        "retries": [],
+        "latency_ms": 868.2,
+        "total_latency_ms": 868.2,
+        "usage": {
+          "prompt_tokens": 2447,
+          "completion_tokens": 14,
+          "total_tokens": 2461,
+          "reported_cost_usd": 0.0
+        },
+        "cost_usd": 0.0,
+        "finish_reason": "tool_calls",
+        "returned_model": "baidu/ernie-5.5-flash-preview:free",
+        "tool_calls_returned": 1,
+        "tool": "advance_day"
+      },
+      {
+        "seq": 6,
+        "status": "ok",
+        "http_status": 200,
+        "http_requests": 1,
+        "retries": [],
+        "latency_ms": 1022.3,
+        "total_latency_ms": 1022.3,
+        "usage": {
+          "prompt_tokens": 2817,
+          "completion_tokens": 24,
+          "total_tokens": 2841,
+          "reported_cost_usd": 0.0
+        },
+        "cost_usd": 0.0,
+        "finish_reason": "tool_calls",
+        "returned_model": "baidu/ernie-5.5-flash-preview:free",
+        "tool_calls_returned": 1,
+        "tool": "release_production"
+      },
+      {
+        "seq": 7,
+        "status": "ok",
+        "http_status": 200,
+        "http_requests": 1,
+        "retries": [],
+        "latency_ms": 816.8,
+        "total_latency_ms": 816.9,
+        "usage": {
+          "prompt_tokens": 3199,
+          "completion_tokens": 14,
+          "total_tokens": 3213,
+          "reported_cost_usd": 0.0
+        },
+        "cost_usd": 0.0,
+        "finish_reason": "tool_calls",
+        "returned_model": "baidu/ernie-5.5-flash-preview:free",
+        "tool_calls_returned": 1,
+        "tool": "advance_day"
+      },
+      {
+        "seq": 8,
+        "status": "ok",
+        "http_status": 200,
+        "http_requests": 1,
+        "retries": [],
+        "latency_ms": 1146.0,
+        "total_latency_ms": 1146.0,
+        "usage": {
+          "prompt_tokens": 3569,
+          "completion_tokens": 35,
+          "total_tokens": 3604,
+          "reported_cost_usd": 0.0
+        },
+        "cost_usd": 0.0,
+        "finish_reason": "tool_calls",
+        "returned_model": "baidu/ernie-5.5-flash-preview:free",
+        "tool_calls_returned": 1,
+        "tool": "advance_day"
+      },
+      {
+        "seq": 9,
+        "status": "ok",
+        "http_status": 200,
+        "http_requests": 1,
+        "retries": [],
+        "latency_ms": 974.8,
+        "total_latency_ms": 974.8,
+        "usage": {
+          "prompt_tokens": 3939,
+          "completion_tokens": 28,
+          "total_tokens": 3967,
+          "reported_cost_usd": 0.0
+        },
+        "cost_usd": 0.0,
+        "finish_reason": "tool_calls",
+        "returned_model": "baidu/ernie-5.5-flash-preview:free",
+        "tool_calls_returned": 1,
+        "tool": "advance_day"
+      }
+    ]
+  },
+  "verifier": {
+    "feasible": true,
+    "codes": []
+  },
+  "replay": {
+    "transcript_reproduced": true,
+    "differences": []
+  },
+  "scorecard": {
+    "delivered_on_time": 12,
+    "delivered_total": 12,
+    "ending_components": 0,
+    "incremental_spend": 24,
+    "service_penalties": 0,
+    "comparison_cost": 24
+  },
+  "transcript": {
+    "schema": "dyn03-transcript-1",
+    "scenario_id": "fixture-five",
+    "horizon_days": 5,
+    "granted_authority": [
+      "advance",
+      "commit",
+      "read"
+    ],
+    "limits": {
+      "max_attempts_per_day": 12,
+      "max_total_attempts": 500
+    },
+    "status": "complete",
+    "initial": {
+      "view": {
+        "clock": {
+          "current_day": 1,
+          "horizon_days": 5,
+          "days_remaining_after_today": 4,
+          "phase": "action",
+          "is_final_day": false,
+          "simulated_time": "day 1 of 5, action phase"
+        },
+        "state": {
+          "schema_version": "1.0",
+          "runtime_version": "1.0",
+          "scenario_id": "fixture-five",
+          "day": 1,
+          "horizon_days": 5,
+          "phase": "action",
+          "component_on_hand": 4,
+          "finished_on_hand": 0,
+          "produced_total": 0,
+          "delivered_total": 0,
+          "primary_arrival_day": 4,
+          "primary_received": false,
+          "alternate_arrival_day": null,
+          "alternate_received": false,
+          "recovery": null,
+          "incremental_spend": 0,
+          "penalties": 0,
+          "scheduled_production": null,
+          "notices": [
+            "Primary PO delayed from day 2 to day 4"
+          ]
+        },
+        "rules": {
+          "capacity": 4,
+          "required": 12,
+          "due_day": 3,
+          "recovery_budget": 40,
+          "daily_backlog_penalty": 10,
+          "recovery_offers": {
+            "deadline_day": 1,
+            "expedite_cost": 24,
+            "expedited_arrival_day": 2,
+            "alternate_cost": 40,
+            "alternate_arrival_day": 2,
+            "alternate_quantity": 8
+          }
+        },
+        "tools": [
+          {
+            "name": "read_state",
+            "authority": "read",
+            "arguments": [
+              "section"
+            ],
+            "granted": true,
+            "advances_time": false,
+            "commits_resources": false
+          },
+          {
+            "name": "read_recovery_offers",
+            "authority": "read",
+            "arguments": [],
+            "granted": true,
+            "advances_time": false,
+            "commits_resources": false
+          },
+          {
+            "name": "read_scorecard",
+            "authority": "read",
+            "arguments": [],
+            "granted": true,
+            "advances_time": false,
+            "commits_resources": false,
+            "available_when": "episode complete"
+          },
+          {
+            "name": "commit_recovery",
+            "authority": "commit",
+            "arguments": [
+              "choice"
+            ],
+            "granted": true,
+            "advances_time": false,
+            "commits_resources": true,
+            "choices": [
+              "maintain",
+              "expedite",
+              "alternate"
+            ],
+            "deadline_day": 1,
+            "once_only": true
+          },
+          {
+            "name": "release_production",
+            "authority": "commit",
+            "arguments": [
+              "quantity"
+            ],
+            "granted": true,
+            "advances_time": false,
+            "commits_resources": true,
+            "once_per_day": true
+          },
+          {
+            "name": "advance_day",
+            "authority": "advance",
+            "arguments": [],
+            "granted": true,
+            "advances_time": true,
+            "commits_resources": false
+          }
+        ],
+        "last_outcome": null
+      },
+      "events": [
+        {
+          "day": 1,
+          "kind": "opening_before_notice",
+          "details": {},
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "day": 1,
+          "kind": "notice",
+          "details": {
+            "original_day": 2,
+            "revised_day": 4
+          },
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "day": 1,
+          "kind": "day_open",
+          "details": {},
+          "accepted": true,
+          "reason": null
+        }
+      ]
+    },
+    "attempts": [
+      {
+        "seq": 1,
+        "day": 1,
+        "tool": "commit_recovery",
+        "arguments": {
+          "choice": "expedite"
+        },
+        "action_id": null,
+        "accepted": true,
+        "category": null,
+        "reason": null,
+        "result": {
+          "accepted": true
+        },
+        "view_before": {
+          "clock": {
+            "current_day": 1,
+            "horizon_days": 5,
+            "days_remaining_after_today": 4,
+            "phase": "action",
+            "is_final_day": false,
+            "simulated_time": "day 1 of 5, action phase"
+          },
+          "state": {
+            "schema_version": "1.0",
+            "runtime_version": "1.0",
+            "scenario_id": "fixture-five",
+            "day": 1,
+            "horizon_days": 5,
+            "phase": "action",
+            "component_on_hand": 4,
+            "finished_on_hand": 0,
+            "produced_total": 0,
+            "delivered_total": 0,
+            "primary_arrival_day": 4,
+            "primary_received": false,
+            "alternate_arrival_day": null,
+            "alternate_received": false,
+            "recovery": null,
+            "incremental_spend": 0,
+            "penalties": 0,
+            "scheduled_production": null,
+            "notices": [
+              "Primary PO delayed from day 2 to day 4"
+            ]
+          },
+          "rules": {
+            "capacity": 4,
+            "required": 12,
+            "due_day": 3,
+            "recovery_budget": 40,
+            "daily_backlog_penalty": 10,
+            "recovery_offers": {
+              "deadline_day": 1,
+              "expedite_cost": 24,
+              "expedited_arrival_day": 2,
+              "alternate_cost": 40,
+              "alternate_arrival_day": 2,
+              "alternate_quantity": 8
+            }
+          },
+          "tools": [
+            {
+              "name": "read_state",
+              "authority": "read",
+              "arguments": [
+                "section"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_recovery_offers",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_scorecard",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false,
+              "available_when": "episode complete"
+            },
+            {
+              "name": "commit_recovery",
+              "authority": "commit",
+              "arguments": [
+                "choice"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "choices": [
+                "maintain",
+                "expedite",
+                "alternate"
+              ],
+              "deadline_day": 1,
+              "once_only": true
+            },
+            {
+              "name": "release_production",
+              "authority": "commit",
+              "arguments": [
+                "quantity"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "once_per_day": true
+            },
+            {
+              "name": "advance_day",
+              "authority": "advance",
+              "arguments": [],
+              "granted": true,
+              "advances_time": true,
+              "commits_resources": false
+            }
+          ],
+          "last_outcome": null
+        },
+        "state_changes": {
+          "primary_arrival_day": [
+            4,
+            2
+          ],
+          "recovery": [
+            null,
+            "expedite"
+          ],
+          "incremental_spend": [
+            0,
+            24
+          ]
+        },
+        "events": [
+          {
+            "day": 1,
+            "kind": "recovery",
+            "details": {
+              "choice": "expedite"
+            },
+            "accepted": true,
+            "reason": null
+          }
+        ]
+      },
+      {
+        "seq": 2,
+        "day": 1,
+        "tool": "release_production",
+        "arguments": {
+          "quantity": 4
+        },
+        "action_id": null,
+        "accepted": true,
+        "category": null,
+        "reason": null,
+        "result": {
+          "accepted": true
+        },
+        "view_before": {
+          "clock": {
+            "current_day": 1,
+            "horizon_days": 5,
+            "days_remaining_after_today": 4,
+            "phase": "action",
+            "is_final_day": false,
+            "simulated_time": "day 1 of 5, action phase"
+          },
+          "state": {
+            "schema_version": "1.0",
+            "runtime_version": "1.0",
+            "scenario_id": "fixture-five",
+            "day": 1,
+            "horizon_days": 5,
+            "phase": "action",
+            "component_on_hand": 4,
+            "finished_on_hand": 0,
+            "produced_total": 0,
+            "delivered_total": 0,
+            "primary_arrival_day": 2,
+            "primary_received": false,
+            "alternate_arrival_day": null,
+            "alternate_received": false,
+            "recovery": "expedite",
+            "incremental_spend": 24,
+            "penalties": 0,
+            "scheduled_production": null,
+            "notices": [
+              "Primary PO delayed from day 2 to day 4"
+            ]
+          },
+          "rules": {
+            "capacity": 4,
+            "required": 12,
+            "due_day": 3,
+            "recovery_budget": 40,
+            "daily_backlog_penalty": 10,
+            "recovery_offers": {
+              "deadline_day": 1,
+              "expedite_cost": 24,
+              "expedited_arrival_day": 2,
+              "alternate_cost": 40,
+              "alternate_arrival_day": 2,
+              "alternate_quantity": 8
+            }
+          },
+          "tools": [
+            {
+              "name": "read_state",
+              "authority": "read",
+              "arguments": [
+                "section"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_recovery_offers",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_scorecard",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false,
+              "available_when": "episode complete"
+            },
+            {
+              "name": "commit_recovery",
+              "authority": "commit",
+              "arguments": [
+                "choice"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "choices": [
+                "maintain",
+                "expedite",
+                "alternate"
+              ],
+              "deadline_day": 1,
+              "once_only": true
+            },
+            {
+              "name": "release_production",
+              "authority": "commit",
+              "arguments": [
+                "quantity"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "once_per_day": true
+            },
+            {
+              "name": "advance_day",
+              "authority": "advance",
+              "arguments": [],
+              "granted": true,
+              "advances_time": true,
+              "commits_resources": false
+            }
+          ],
+          "last_outcome": {
+            "seq": 1,
+            "tool": "commit_recovery",
+            "accepted": true,
+            "category": null,
+            "reason": null
+          }
+        },
+        "state_changes": {
+          "scheduled_production": [
+            null,
+            4
+          ]
+        },
+        "events": [
+          {
+            "day": 1,
+            "kind": "release",
+            "details": {
+              "quantity": 4
+            },
+            "accepted": true,
+            "reason": null
+          }
+        ]
+      },
+      {
+        "seq": 3,
+        "day": 1,
+        "tool": "advance_day",
+        "arguments": {},
+        "action_id": null,
+        "accepted": true,
+        "category": null,
+        "reason": null,
+        "result": {
+          "accepted": true,
+          "closed_day": 1
+        },
+        "view_before": {
+          "clock": {
+            "current_day": 1,
+            "horizon_days": 5,
+            "days_remaining_after_today": 4,
+            "phase": "action",
+            "is_final_day": false,
+            "simulated_time": "day 1 of 5, action phase"
+          },
+          "state": {
+            "schema_version": "1.0",
+            "runtime_version": "1.0",
+            "scenario_id": "fixture-five",
+            "day": 1,
+            "horizon_days": 5,
+            "phase": "action",
+            "component_on_hand": 4,
+            "finished_on_hand": 0,
+            "produced_total": 0,
+            "delivered_total": 0,
+            "primary_arrival_day": 2,
+            "primary_received": false,
+            "alternate_arrival_day": null,
+            "alternate_received": false,
+            "recovery": "expedite",
+            "incremental_spend": 24,
+            "penalties": 0,
+            "scheduled_production": 4,
+            "notices": [
+              "Primary PO delayed from day 2 to day 4"
+            ]
+          },
+          "rules": {
+            "capacity": 4,
+            "required": 12,
+            "due_day": 3,
+            "recovery_budget": 40,
+            "daily_backlog_penalty": 10,
+            "recovery_offers": {
+              "deadline_day": 1,
+              "expedite_cost": 24,
+              "expedited_arrival_day": 2,
+              "alternate_cost": 40,
+              "alternate_arrival_day": 2,
+              "alternate_quantity": 8
+            }
+          },
+          "tools": [
+            {
+              "name": "read_state",
+              "authority": "read",
+              "arguments": [
+                "section"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_recovery_offers",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_scorecard",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false,
+              "available_when": "episode complete"
+            },
+            {
+              "name": "commit_recovery",
+              "authority": "commit",
+              "arguments": [
+                "choice"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "choices": [
+                "maintain",
+                "expedite",
+                "alternate"
+              ],
+              "deadline_day": 1,
+              "once_only": true
+            },
+            {
+              "name": "release_production",
+              "authority": "commit",
+              "arguments": [
+                "quantity"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "once_per_day": true
+            },
+            {
+              "name": "advance_day",
+              "authority": "advance",
+              "arguments": [],
+              "granted": true,
+              "advances_time": true,
+              "commits_resources": false
+            }
+          ],
+          "last_outcome": {
+            "seq": 2,
+            "tool": "release_production",
+            "accepted": true,
+            "category": null,
+            "reason": null
+          }
+        },
+        "state_changes": {
+          "day": [
+            1,
+            2
+          ],
+          "component_on_hand": [
+            4,
+            8
+          ],
+          "finished_on_hand": [
+            0,
+            4
+          ],
+          "produced_total": [
+            0,
+            4
+          ],
+          "primary_received": [
+            false,
+            true
+          ],
+          "scheduled_production": [
+            4,
+            null
+          ]
+        },
+        "events": [
+          {
+            "day": 1,
+            "kind": "day_close",
+            "details": {
+              "produced": 4,
+              "shipped": 0
+            },
+            "accepted": true,
+            "reason": null
+          },
+          {
+            "day": 2,
+            "kind": "receipt",
+            "details": {
+              "order": "primary",
+              "quantity": 8
+            },
+            "accepted": true,
+            "reason": null
+          },
+          {
+            "day": 2,
+            "kind": "opening_before_notice",
+            "details": {},
+            "accepted": true,
+            "reason": null
+          },
+          {
+            "day": 2,
+            "kind": "day_open",
+            "details": {},
+            "accepted": true,
+            "reason": null
+          }
+        ]
+      },
+      {
+        "seq": 4,
+        "day": 2,
+        "tool": "release_production",
+        "arguments": {
+          "quantity": 4
+        },
+        "action_id": null,
+        "accepted": true,
+        "category": null,
+        "reason": null,
+        "result": {
+          "accepted": true
+        },
+        "view_before": {
+          "clock": {
+            "current_day": 2,
+            "horizon_days": 5,
+            "days_remaining_after_today": 3,
+            "phase": "action",
+            "is_final_day": false,
+            "simulated_time": "day 2 of 5, action phase"
+          },
+          "state": {
+            "schema_version": "1.0",
+            "runtime_version": "1.0",
+            "scenario_id": "fixture-five",
+            "day": 2,
+            "horizon_days": 5,
+            "phase": "action",
+            "component_on_hand": 8,
+            "finished_on_hand": 4,
+            "produced_total": 4,
+            "delivered_total": 0,
+            "primary_arrival_day": 2,
+            "primary_received": true,
+            "alternate_arrival_day": null,
+            "alternate_received": false,
+            "recovery": "expedite",
+            "incremental_spend": 24,
+            "penalties": 0,
+            "scheduled_production": null,
+            "notices": [
+              "Primary PO delayed from day 2 to day 4"
+            ]
+          },
+          "rules": {
+            "capacity": 4,
+            "required": 12,
+            "due_day": 3,
+            "recovery_budget": 40,
+            "daily_backlog_penalty": 10,
+            "recovery_offers": {
+              "deadline_day": 1,
+              "expedite_cost": 24,
+              "expedited_arrival_day": 2,
+              "alternate_cost": 40,
+              "alternate_arrival_day": 2,
+              "alternate_quantity": 8
+            }
+          },
+          "tools": [
+            {
+              "name": "read_state",
+              "authority": "read",
+              "arguments": [
+                "section"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_recovery_offers",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_scorecard",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false,
+              "available_when": "episode complete"
+            },
+            {
+              "name": "commit_recovery",
+              "authority": "commit",
+              "arguments": [
+                "choice"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "choices": [
+                "maintain",
+                "expedite",
+                "alternate"
+              ],
+              "deadline_day": 1,
+              "once_only": true
+            },
+            {
+              "name": "release_production",
+              "authority": "commit",
+              "arguments": [
+                "quantity"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "once_per_day": true
+            },
+            {
+              "name": "advance_day",
+              "authority": "advance",
+              "arguments": [],
+              "granted": true,
+              "advances_time": true,
+              "commits_resources": false
+            }
+          ],
+          "last_outcome": {
+            "seq": 3,
+            "tool": "advance_day",
+            "accepted": true,
+            "category": null,
+            "reason": null
+          }
+        },
+        "state_changes": {
+          "scheduled_production": [
+            null,
+            4
+          ]
+        },
+        "events": [
+          {
+            "day": 2,
+            "kind": "release",
+            "details": {
+              "quantity": 4
+            },
+            "accepted": true,
+            "reason": null
+          }
+        ]
+      },
+      {
+        "seq": 5,
+        "day": 2,
+        "tool": "advance_day",
+        "arguments": {},
+        "action_id": null,
+        "accepted": true,
+        "category": null,
+        "reason": null,
+        "result": {
+          "accepted": true,
+          "closed_day": 2
+        },
+        "view_before": {
+          "clock": {
+            "current_day": 2,
+            "horizon_days": 5,
+            "days_remaining_after_today": 3,
+            "phase": "action",
+            "is_final_day": false,
+            "simulated_time": "day 2 of 5, action phase"
+          },
+          "state": {
+            "schema_version": "1.0",
+            "runtime_version": "1.0",
+            "scenario_id": "fixture-five",
+            "day": 2,
+            "horizon_days": 5,
+            "phase": "action",
+            "component_on_hand": 8,
+            "finished_on_hand": 4,
+            "produced_total": 4,
+            "delivered_total": 0,
+            "primary_arrival_day": 2,
+            "primary_received": true,
+            "alternate_arrival_day": null,
+            "alternate_received": false,
+            "recovery": "expedite",
+            "incremental_spend": 24,
+            "penalties": 0,
+            "scheduled_production": 4,
+            "notices": [
+              "Primary PO delayed from day 2 to day 4"
+            ]
+          },
+          "rules": {
+            "capacity": 4,
+            "required": 12,
+            "due_day": 3,
+            "recovery_budget": 40,
+            "daily_backlog_penalty": 10,
+            "recovery_offers": {
+              "deadline_day": 1,
+              "expedite_cost": 24,
+              "expedited_arrival_day": 2,
+              "alternate_cost": 40,
+              "alternate_arrival_day": 2,
+              "alternate_quantity": 8
+            }
+          },
+          "tools": [
+            {
+              "name": "read_state",
+              "authority": "read",
+              "arguments": [
+                "section"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_recovery_offers",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_scorecard",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false,
+              "available_when": "episode complete"
+            },
+            {
+              "name": "commit_recovery",
+              "authority": "commit",
+              "arguments": [
+                "choice"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "choices": [
+                "maintain",
+                "expedite",
+                "alternate"
+              ],
+              "deadline_day": 1,
+              "once_only": true
+            },
+            {
+              "name": "release_production",
+              "authority": "commit",
+              "arguments": [
+                "quantity"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "once_per_day": true
+            },
+            {
+              "name": "advance_day",
+              "authority": "advance",
+              "arguments": [],
+              "granted": true,
+              "advances_time": true,
+              "commits_resources": false
+            }
+          ],
+          "last_outcome": {
+            "seq": 4,
+            "tool": "release_production",
+            "accepted": true,
+            "category": null,
+            "reason": null
+          }
+        },
+        "state_changes": {
+          "day": [
+            2,
+            3
+          ],
+          "component_on_hand": [
+            8,
+            4
+          ],
+          "finished_on_hand": [
+            4,
+            8
+          ],
+          "produced_total": [
+            4,
+            8
+          ],
+          "scheduled_production": [
+            4,
+            null
+          ]
+        },
+        "events": [
+          {
+            "day": 2,
+            "kind": "day_close",
+            "details": {
+              "produced": 4,
+              "shipped": 0
+            },
+            "accepted": true,
+            "reason": null
+          },
+          {
+            "day": 3,
+            "kind": "opening_before_notice",
+            "details": {},
+            "accepted": true,
+            "reason": null
+          },
+          {
+            "day": 3,
+            "kind": "day_open",
+            "details": {},
+            "accepted": true,
+            "reason": null
+          }
+        ]
+      },
+      {
+        "seq": 6,
+        "day": 3,
+        "tool": "release_production",
+        "arguments": {
+          "quantity": 4
+        },
+        "action_id": null,
+        "accepted": true,
+        "category": null,
+        "reason": null,
+        "result": {
+          "accepted": true
+        },
+        "view_before": {
+          "clock": {
+            "current_day": 3,
+            "horizon_days": 5,
+            "days_remaining_after_today": 2,
+            "phase": "action",
+            "is_final_day": false,
+            "simulated_time": "day 3 of 5, action phase"
+          },
+          "state": {
+            "schema_version": "1.0",
+            "runtime_version": "1.0",
+            "scenario_id": "fixture-five",
+            "day": 3,
+            "horizon_days": 5,
+            "phase": "action",
+            "component_on_hand": 4,
+            "finished_on_hand": 8,
+            "produced_total": 8,
+            "delivered_total": 0,
+            "primary_arrival_day": 2,
+            "primary_received": true,
+            "alternate_arrival_day": null,
+            "alternate_received": false,
+            "recovery": "expedite",
+            "incremental_spend": 24,
+            "penalties": 0,
+            "scheduled_production": null,
+            "notices": [
+              "Primary PO delayed from day 2 to day 4"
+            ]
+          },
+          "rules": {
+            "capacity": 4,
+            "required": 12,
+            "due_day": 3,
+            "recovery_budget": 40,
+            "daily_backlog_penalty": 10,
+            "recovery_offers": {
+              "deadline_day": 1,
+              "expedite_cost": 24,
+              "expedited_arrival_day": 2,
+              "alternate_cost": 40,
+              "alternate_arrival_day": 2,
+              "alternate_quantity": 8
+            }
+          },
+          "tools": [
+            {
+              "name": "read_state",
+              "authority": "read",
+              "arguments": [
+                "section"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_recovery_offers",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_scorecard",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false,
+              "available_when": "episode complete"
+            },
+            {
+              "name": "commit_recovery",
+              "authority": "commit",
+              "arguments": [
+                "choice"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "choices": [
+                "maintain",
+                "expedite",
+                "alternate"
+              ],
+              "deadline_day": 1,
+              "once_only": true
+            },
+            {
+              "name": "release_production",
+              "authority": "commit",
+              "arguments": [
+                "quantity"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "once_per_day": true
+            },
+            {
+              "name": "advance_day",
+              "authority": "advance",
+              "arguments": [],
+              "granted": true,
+              "advances_time": true,
+              "commits_resources": false
+            }
+          ],
+          "last_outcome": {
+            "seq": 5,
+            "tool": "advance_day",
+            "accepted": true,
+            "category": null,
+            "reason": null
+          }
+        },
+        "state_changes": {
+          "scheduled_production": [
+            null,
+            4
+          ]
+        },
+        "events": [
+          {
+            "day": 3,
+            "kind": "release",
+            "details": {
+              "quantity": 4
+            },
+            "accepted": true,
+            "reason": null
+          }
+        ]
+      },
+      {
+        "seq": 7,
+        "day": 3,
+        "tool": "advance_day",
+        "arguments": {},
+        "action_id": null,
+        "accepted": true,
+        "category": null,
+        "reason": null,
+        "result": {
+          "accepted": true,
+          "closed_day": 3
+        },
+        "view_before": {
+          "clock": {
+            "current_day": 3,
+            "horizon_days": 5,
+            "days_remaining_after_today": 2,
+            "phase": "action",
+            "is_final_day": false,
+            "simulated_time": "day 3 of 5, action phase"
+          },
+          "state": {
+            "schema_version": "1.0",
+            "runtime_version": "1.0",
+            "scenario_id": "fixture-five",
+            "day": 3,
+            "horizon_days": 5,
+            "phase": "action",
+            "component_on_hand": 4,
+            "finished_on_hand": 8,
+            "produced_total": 8,
+            "delivered_total": 0,
+            "primary_arrival_day": 2,
+            "primary_received": true,
+            "alternate_arrival_day": null,
+            "alternate_received": false,
+            "recovery": "expedite",
+            "incremental_spend": 24,
+            "penalties": 0,
+            "scheduled_production": 4,
+            "notices": [
+              "Primary PO delayed from day 2 to day 4"
+            ]
+          },
+          "rules": {
+            "capacity": 4,
+            "required": 12,
+            "due_day": 3,
+            "recovery_budget": 40,
+            "daily_backlog_penalty": 10,
+            "recovery_offers": {
+              "deadline_day": 1,
+              "expedite_cost": 24,
+              "expedited_arrival_day": 2,
+              "alternate_cost": 40,
+              "alternate_arrival_day": 2,
+              "alternate_quantity": 8
+            }
+          },
+          "tools": [
+            {
+              "name": "read_state",
+              "authority": "read",
+              "arguments": [
+                "section"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_recovery_offers",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_scorecard",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false,
+              "available_when": "episode complete"
+            },
+            {
+              "name": "commit_recovery",
+              "authority": "commit",
+              "arguments": [
+                "choice"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "choices": [
+                "maintain",
+                "expedite",
+                "alternate"
+              ],
+              "deadline_day": 1,
+              "once_only": true
+            },
+            {
+              "name": "release_production",
+              "authority": "commit",
+              "arguments": [
+                "quantity"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "once_per_day": true
+            },
+            {
+              "name": "advance_day",
+              "authority": "advance",
+              "arguments": [],
+              "granted": true,
+              "advances_time": true,
+              "commits_resources": false
+            }
+          ],
+          "last_outcome": {
+            "seq": 6,
+            "tool": "release_production",
+            "accepted": true,
+            "category": null,
+            "reason": null
+          }
+        },
+        "state_changes": {
+          "day": [
+            3,
+            4
+          ],
+          "component_on_hand": [
+            4,
+            0
+          ],
+          "finished_on_hand": [
+            8,
+            0
+          ],
+          "produced_total": [
+            8,
+            12
+          ],
+          "delivered_total": [
+            0,
+            12
+          ],
+          "scheduled_production": [
+            4,
+            null
+          ]
+        },
+        "events": [
+          {
+            "day": 3,
+            "kind": "day_close",
+            "details": {
+              "produced": 4,
+              "shipped": 12
+            },
+            "accepted": true,
+            "reason": null
+          },
+          {
+            "day": 4,
+            "kind": "opening_before_notice",
+            "details": {},
+            "accepted": true,
+            "reason": null
+          },
+          {
+            "day": 4,
+            "kind": "day_open",
+            "details": {},
+            "accepted": true,
+            "reason": null
+          }
+        ]
+      },
+      {
+        "seq": 8,
+        "day": 4,
+        "tool": "advance_day",
+        "arguments": {},
+        "action_id": null,
+        "accepted": true,
+        "category": null,
+        "reason": null,
+        "result": {
+          "accepted": true,
+          "closed_day": 4
+        },
+        "view_before": {
+          "clock": {
+            "current_day": 4,
+            "horizon_days": 5,
+            "days_remaining_after_today": 1,
+            "phase": "action",
+            "is_final_day": false,
+            "simulated_time": "day 4 of 5, action phase"
+          },
+          "state": {
+            "schema_version": "1.0",
+            "runtime_version": "1.0",
+            "scenario_id": "fixture-five",
+            "day": 4,
+            "horizon_days": 5,
+            "phase": "action",
+            "component_on_hand": 0,
+            "finished_on_hand": 0,
+            "produced_total": 12,
+            "delivered_total": 12,
+            "primary_arrival_day": 2,
+            "primary_received": true,
+            "alternate_arrival_day": null,
+            "alternate_received": false,
+            "recovery": "expedite",
+            "incremental_spend": 24,
+            "penalties": 0,
+            "scheduled_production": null,
+            "notices": [
+              "Primary PO delayed from day 2 to day 4"
+            ]
+          },
+          "rules": {
+            "capacity": 4,
+            "required": 12,
+            "due_day": 3,
+            "recovery_budget": 40,
+            "daily_backlog_penalty": 10,
+            "recovery_offers": {
+              "deadline_day": 1,
+              "expedite_cost": 24,
+              "expedited_arrival_day": 2,
+              "alternate_cost": 40,
+              "alternate_arrival_day": 2,
+              "alternate_quantity": 8
+            }
+          },
+          "tools": [
+            {
+              "name": "read_state",
+              "authority": "read",
+              "arguments": [
+                "section"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_recovery_offers",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_scorecard",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false,
+              "available_when": "episode complete"
+            },
+            {
+              "name": "commit_recovery",
+              "authority": "commit",
+              "arguments": [
+                "choice"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "choices": [
+                "maintain",
+                "expedite",
+                "alternate"
+              ],
+              "deadline_day": 1,
+              "once_only": true
+            },
+            {
+              "name": "release_production",
+              "authority": "commit",
+              "arguments": [
+                "quantity"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "once_per_day": true
+            },
+            {
+              "name": "advance_day",
+              "authority": "advance",
+              "arguments": [],
+              "granted": true,
+              "advances_time": true,
+              "commits_resources": false
+            }
+          ],
+          "last_outcome": {
+            "seq": 7,
+            "tool": "advance_day",
+            "accepted": true,
+            "category": null,
+            "reason": null
+          }
+        },
+        "state_changes": {
+          "day": [
+            4,
+            5
+          ]
+        },
+        "events": [
+          {
+            "day": 4,
+            "kind": "day_close",
+            "details": {
+              "produced": 0,
+              "shipped": 0
+            },
+            "accepted": true,
+            "reason": null
+          },
+          {
+            "day": 5,
+            "kind": "opening_before_notice",
+            "details": {},
+            "accepted": true,
+            "reason": null
+          },
+          {
+            "day": 5,
+            "kind": "day_open",
+            "details": {},
+            "accepted": true,
+            "reason": null
+          }
+        ]
+      },
+      {
+        "seq": 9,
+        "day": 5,
+        "tool": "advance_day",
+        "arguments": {},
+        "action_id": null,
+        "accepted": true,
+        "category": null,
+        "reason": null,
+        "result": {
+          "accepted": true,
+          "closed_day": 5
+        },
+        "view_before": {
+          "clock": {
+            "current_day": 5,
+            "horizon_days": 5,
+            "days_remaining_after_today": 0,
+            "phase": "action",
+            "is_final_day": true,
+            "simulated_time": "day 5 of 5, action phase"
+          },
+          "state": {
+            "schema_version": "1.0",
+            "runtime_version": "1.0",
+            "scenario_id": "fixture-five",
+            "day": 5,
+            "horizon_days": 5,
+            "phase": "action",
+            "component_on_hand": 0,
+            "finished_on_hand": 0,
+            "produced_total": 12,
+            "delivered_total": 12,
+            "primary_arrival_day": 2,
+            "primary_received": true,
+            "alternate_arrival_day": null,
+            "alternate_received": false,
+            "recovery": "expedite",
+            "incremental_spend": 24,
+            "penalties": 0,
+            "scheduled_production": null,
+            "notices": [
+              "Primary PO delayed from day 2 to day 4"
+            ]
+          },
+          "rules": {
+            "capacity": 4,
+            "required": 12,
+            "due_day": 3,
+            "recovery_budget": 40,
+            "daily_backlog_penalty": 10,
+            "recovery_offers": {
+              "deadline_day": 1,
+              "expedite_cost": 24,
+              "expedited_arrival_day": 2,
+              "alternate_cost": 40,
+              "alternate_arrival_day": 2,
+              "alternate_quantity": 8
+            }
+          },
+          "tools": [
+            {
+              "name": "read_state",
+              "authority": "read",
+              "arguments": [
+                "section"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_recovery_offers",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false
+            },
+            {
+              "name": "read_scorecard",
+              "authority": "read",
+              "arguments": [],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": false,
+              "available_when": "episode complete"
+            },
+            {
+              "name": "commit_recovery",
+              "authority": "commit",
+              "arguments": [
+                "choice"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "choices": [
+                "maintain",
+                "expedite",
+                "alternate"
+              ],
+              "deadline_day": 1,
+              "once_only": true
+            },
+            {
+              "name": "release_production",
+              "authority": "commit",
+              "arguments": [
+                "quantity"
+              ],
+              "granted": true,
+              "advances_time": false,
+              "commits_resources": true,
+              "once_per_day": true
+            },
+            {
+              "name": "advance_day",
+              "authority": "advance",
+              "arguments": [],
+              "granted": true,
+              "advances_time": true,
+              "commits_resources": false
+            }
+          ],
+          "last_outcome": {
+            "seq": 8,
+            "tool": "advance_day",
+            "accepted": true,
+            "category": null,
+            "reason": null
+          }
+        },
+        "state_changes": {
+          "phase": [
+            "action",
+            "complete"
+          ]
+        },
+        "events": [
+          {
+            "day": 5,
+            "kind": "day_close",
+            "details": {
+              "produced": 0,
+              "shipped": 0
+            },
+            "accepted": true,
+            "reason": null
+          },
+          {
+            "day": 5,
+            "kind": "episode_complete",
+            "details": {
+              "comparison_cost": 24
+            },
+            "accepted": true,
+            "reason": null
+          }
+        ]
+      }
+    ],
+    "final_state": {
+      "schema_version": "1.0",
+      "runtime_version": "1.0",
+      "scenario_id": "fixture-five",
+      "day": 5,
+      "horizon_days": 5,
+      "phase": "complete",
+      "component_on_hand": 0,
+      "finished_on_hand": 0,
+      "produced_total": 12,
+      "delivered_total": 12,
+      "primary_arrival_day": 2,
+      "primary_received": true,
+      "alternate_arrival_day": null,
+      "alternate_received": false,
+      "recovery": "expedite",
+      "incremental_spend": 24,
+      "penalties": 0,
+      "scheduled_production": null,
+      "notices": [
+        "Primary PO delayed from day 2 to day 4"
+      ]
+    },
+    "scorecard": {
+      "delivered_on_time": 12,
+      "delivered_total": 12,
+      "ending_components": 0,
+      "incremental_spend": 24,
+      "service_penalties": 0,
+      "comparison_cost": 24
+    }
+  }
+}
