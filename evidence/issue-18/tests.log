@@ -1,0 +1,61 @@
+........................................................wrote /tmp/tmpg9l2o3ra; experience s01-fifteen-day-late-events/expedite; leaks=[]
+G1 True
+G2 True
+G3 True
+G4 True
+G5 True
+G6 True
+G7 True
+G8 True
+G9 None
+...............................................................................................................
+----------------------------------------------------------------------
+Ran 167 tests in 3.745s
+
+OK
+test_free_model_accepted_and_limits_validated (tests.test_llm_adapter.ConfigTests.test_free_model_accepted_and_limits_validated) ... ok
+test_non_free_model_refused (tests.test_llm_adapter.ConfigTests.test_non_free_model_refused) ... ok
+test_roster_config_records_decisions (tests.test_llm_adapter.ConfigTests.test_roster_config_records_decisions) ... ok
+test_scorer_role_cannot_act (tests.test_llm_adapter.ConfigTests.test_scorer_role_cannot_act) ... ok
+test_zero_priced_model_without_free_suffix_accepted_only_with_verified_pricing (tests.test_llm_adapter.ConfigTests.test_zero_priced_model_without_free_suffix_accepted_only_with_verified_pricing) ... ok
+test_free_with_usage_is_zero (tests.test_llm_adapter.CostTests.test_free_with_usage_is_zero) ... ok
+test_latency_recorded (tests.test_llm_adapter.CostTests.test_latency_recorded) ... ok
+test_missing_usage_is_unknown_not_zero (tests.test_llm_adapter.CostTests.test_missing_usage_is_unknown_not_zero) ... ok
+test_reported_cost_over_ceiling_halts (tests.test_llm_adapter.CostTests.test_reported_cost_over_ceiling_halts) ... ok
+test_reported_cost_within_ceiling_continues (tests.test_llm_adapter.CostTests.test_reported_cost_within_ceiling_continues) ... ok
+test_memory_window_bounds_request_size (tests.test_llm_adapter.FullEpisodeTests.test_memory_window_bounds_request_size) ... ok
+test_mocked_full_s01_episode_replays_and_verifies (tests.test_llm_adapter.FullEpisodeTests.test_mocked_full_s01_episode_replays_and_verifies) ... ok
+test_request_shape (tests.test_llm_adapter.FullEpisodeTests.test_request_shape) ... ok
+test_200_with_error_body_treated_as_provider_error_code (tests.test_llm_adapter.HandlingTests.test_200_with_error_body_treated_as_provider_error_code) ... ok
+test_4xx_not_retried (tests.test_llm_adapter.HandlingTests.test_4xx_not_retried) ... ok
+test_5xx_exhausts_and_network_error_retried (tests.test_llm_adapter.HandlingTests.test_5xx_exhausts_and_network_error_retried) ... ok
+test_backoff_capped_and_retry_limit_reports_failure (tests.test_llm_adapter.HandlingTests.test_backoff_capped_and_retry_limit_reports_failure) ... ok
+test_configured_context_limit_stops (tests.test_llm_adapter.HandlingTests.test_configured_context_limit_stops) ... ok
+test_content_filter_finish_reason_is_refusal (tests.test_llm_adapter.HandlingTests.test_content_filter_finish_reason_is_refusal) ... ok
+test_context_limit_http_400 (tests.test_llm_adapter.HandlingTests.test_context_limit_http_400) ... ok
+test_hidden_probe_rejected (tests.test_llm_adapter.HandlingTests.test_hidden_probe_rejected) ... ok
+test_incomplete_episode_via_call_limit (tests.test_llm_adapter.HandlingTests.test_incomplete_episode_via_call_limit) ... ok
+test_malformed_json_arguments_rejected_by_runner_not_repaired (tests.test_llm_adapter.HandlingTests.test_malformed_json_arguments_rejected_by_runner_not_repaired) ... ok
+test_malformed_response_shapes (tests.test_llm_adapter.HandlingTests.test_malformed_response_shapes) ... ok
+test_multiple_tool_calls_only_first_executed (tests.test_llm_adapter.HandlingTests.test_multiple_tool_calls_only_first_executed) ... ok
+test_no_tool_call_nudged_then_stops_without_fabricating (tests.test_llm_adapter.HandlingTests.test_no_tool_call_nudged_then_stops_without_fabricating) ... ok
+test_nudge_budget_resets_after_a_tool_call (tests.test_llm_adapter.HandlingTests.test_nudge_budget_resets_after_a_tool_call) ... ok
+test_rate_limit_retries_with_bounded_backoff_then_succeeds (tests.test_llm_adapter.HandlingTests.test_rate_limit_retries_with_bounded_backoff_then_succeeds) ... ok
+test_refusal_stops_run (tests.test_llm_adapter.HandlingTests.test_refusal_stops_run) ... ok
+test_token_limit_stops_and_missing_usage_not_invented (tests.test_llm_adapter.HandlingTests.test_token_limit_stops_and_missing_usage_not_invented) ... ok
+test_unknown_tool_and_bad_argument_values_rejected (tests.test_llm_adapter.HandlingTests.test_unknown_tool_and_bad_argument_values_rejected) ... ok
+test_module_does_not_import_world_verifier_or_baselines (tests.test_llm_adapter.NoLeakTests.test_module_does_not_import_world_verifier_or_baselines) ... ok
+test_requests_contain_only_observable_information (tests.test_llm_adapter.NoLeakTests.test_requests_contain_only_observable_information) ... ok
+test_manifest_pins_everything_and_is_stable (tests.test_llm_adapter.SchemaAndManifestTests.test_manifest_pins_everything_and_is_stable) ... ok
+test_tools_translated_to_openai_schemas (tests.test_llm_adapter.SchemaAndManifestTests.test_tools_translated_to_openai_schemas) ... ok
+test_ungranted_tools_omitted (tests.test_llm_adapter.SchemaAndManifestTests.test_ungranted_tools_omitted) ... ok
+test_authorization_header_sent_but_not_stored (tests.test_llm_adapter.SecretTests.test_authorization_header_sent_but_not_stored) ... ok
+test_credential_read_from_environment_only (tests.test_llm_adapter.SecretTests.test_credential_read_from_environment_only) ... ok
+test_key_never_in_outputs_even_if_provider_echoes_it (tests.test_llm_adapter.SecretTests.test_key_never_in_outputs_even_if_provider_echoes_it) ... ok
+test_redact_deep_and_exact_secret (tests.test_llm_adapter.SecretTests.test_redact_deep_and_exact_secret) ... ok
+test_redact_text_patterns (tests.test_llm_adapter.SecretTests.test_redact_text_patterns) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 0.098s
+
+OK

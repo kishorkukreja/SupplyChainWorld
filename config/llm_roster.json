@@ -1,0 +1,57 @@
+{
+  "schema": "llm-roster-1",
+  "provider": {
+    "name": "openrouter",
+    "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+    "api_style": "openai-chat-completions",
+    "credential_env_var": "OPENROUTER_API_KEY",
+    "credential_note": "Key is held outside the repository (sandbox proxy injects it into HTTPS requests to openrouter.ai). Code reads the variable only; it is never logged, printed or committed."
+  },
+  "spend_policy": {
+    "approved_monetary_ceiling_usd": 0.0,
+    "free_tier_only": true,
+    "rule": "Model ids are refused unless they end in ':free' or OpenRouter pricing is verified as exactly '0' for prompt and completion. Roles of kind 'actor' act through the runner; kind 'scorer' only scores. Cost is reported as 0 only for confirmed ':free' models with usage present, otherwise 'unknown'.",
+    "decided_by": "repository owner, recorded in the issue #18 worker brief"
+  },
+  "roster_checked_against": "OpenRouter /api/v1/models on 2026-11-15 (all verified entries advertise tool calling)",
+  "roles": {
+    "decision_system1": {
+      "kind": "scorer",
+      "status": "configured",
+      "model_id": "respan/span-01-lite",
+      "free_basis": "verified_zero_pricing",
+      "verified_pricing": {"prompt": "0", "completion": "0"},
+      "verified_via": "OpenRouter /api/v1/models/respan/span-01-lite/endpoints on 2026-11-15",
+      "modality": "text->decisions",
+      "supported_parameters": [],
+      "context_length": 0,
+      "connectivity": "not attempted, request format unverified",
+      "note": "Behavior-scoring model (per-behavior probabilities). Not a chat or tool-calling actor: never routed through ObservableRunner. Originally requested perplexity/pplx-decider-v1.3:free does not exist on OpenRouter; replaced by the owner with this model."
+    },
+    "general_reasoning": {
+      "kind": "actor",
+      "status": "verified",
+      "model_id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "also_verified": ["baidu/ernie-5.5-flash-preview:free", "thinkingmachines/inkling-2-small:free"]
+    },
+    "code": {
+      "kind": "actor",
+      "status": "verified",
+      "model_id": "cohere/north-mini-code:free",
+      "note": "code-oriented"
+    },
+    "multimedia": {
+      "kind": "actor",
+      "status": "verified",
+      "model_id": "nvidia/nemotron-3.5-super-vl:free",
+      "note": "accepts image/video input; S01 is text-only so this is a roster slot only"
+    }
+  },
+  "connectivity_check_roster": [
+    "baidu/ernie-5.5-flash-preview:free",
+    "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "thinkingmachines/inkling-2-small:free",
+    "cohere/north-mini-code:free",
+    "nvidia/nemotron-3.5-super-vl:free"
+  ]
+}

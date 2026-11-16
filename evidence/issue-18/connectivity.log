@@ -1,0 +1,6 @@
+respan/span-01-lite skipped   
+baidu/ernie-5.5-flash-preview:free responded  1071.5 tool_calls
+nvidia/nemotron-3-ultra-550b-a55b:free responded  1075.2 tool_calls
+thinkingmachines/inkling-2-small:free failed provider_error  
+cohere/north-mini-code:free responded  544.4 length
+nvidia/nemotron-3.5-super-vl:free responded  688.8 tool_calls
