@@ -1,0 +1,216 @@
+{
+  "case_id": "ref-16",
+  "rules_version": "1.1",
+  "purpose": "equivalence band and separate non-cost metrics",
+  "rules_exercised": [
+    "A3"
+  ],
+  "request": "Allocate component purchases for equivalence band and separate non-cost metrics; minimize landed cost subject to visible policy (rules 1.1), or submit a supported exception.",
+  "world": {
+    "schema_version": "1.1",
+    "world_id": "ref-16",
+    "seed": 16,
+    "currency": "USD",
+    "calendar": "gregorian",
+    "as_of": "2026-11-02",
+    "items": [
+      {
+        "item_id": "component",
+        "unit": "each",
+        "demand": 10,
+        "due_date": "2026-11-10",
+        "excess_allowance": 0,
+        "safety_stock": 0,
+        "critical": false,
+        "moq_excess_allowed": false,
+        "max_excess": null
+      }
+    ],
+    "stock": [],
+    "inbound": [],
+    "suppliers": [
+      {
+        "supplier_id": "A",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": "0.80"
+      },
+      {
+        "supplier_id": "B",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": "0.95"
+      },
+      {
+        "supplier_id": "C",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": "0.99"
+      }
+    ],
+    "quotes": [
+      {
+        "supplier_id": "A",
+        "item_id": "component",
+        "unit_price": "5.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": "0.40"
+      },
+      {
+        "supplier_id": "B",
+        "item_id": "component",
+        "unit_price": "5.04",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": "0.20"
+      },
+      {
+        "supplier_id": "C",
+        "item_id": "component",
+        "unit_price": "5.20",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": "0.05"
+      }
+    ],
+    "constraints": {
+      "budget": "100.00",
+      "concentration": [],
+      "approval_limit": null
+    },
+    "policy": {
+      "late_inbound_tolerance_days": 0,
+      "late_inbound_credit": "0",
+      "cost_tolerance_abs": "0.25",
+      "cost_tolerance_pct": "0.01"
+    },
+    "visibility": {
+      "classification": "public_synthetic"
+    }
+  },
+  "expected": {
+    "submission": {
+      "kind": "award",
+      "allocations": [
+        {
+          "supplier_id": "A",
+          "item_id": "component",
+          "quantity": 10
+        }
+      ],
+      "claimed_total_cost": "50.00",
+      "evidence": [
+        "Visible quotation and policy records"
+      ],
+      "flags": [],
+      "clarification_requests": []
+    },
+    "optimal_cost": "50.00",
+    "calculation": "A: 50.00 (optimum). B: 50.40, gap 0.40 <= 1% of 50.00 = 0.50, equivalent-to-optimal. C: 52.00, gap 2.00 exceeds both 0.25 and 0.50, suboptimal. Reliability and lead-time risk are reported beside cost, never combined.",
+    "expected_outcome": "award",
+    "valid_alternatives": [
+      {
+        "submission": {
+          "kind": "award",
+          "allocations": [
+            {
+              "supplier_id": "B",
+              "item_id": "component",
+              "quantity": 10
+            }
+          ],
+          "claimed_total_cost": "50.40",
+          "evidence": [
+            "Visible quotation and policy records"
+          ],
+          "flags": [],
+          "clarification_requests": []
+        },
+        "status": "equivalent_to_optimal",
+        "cost": "50.40",
+        "note": "inside band"
+      },
+      {
+        "submission": {
+          "kind": "award",
+          "allocations": [
+            {
+              "supplier_id": "C",
+              "item_id": "component",
+              "quantity": 10
+            }
+          ],
+          "claimed_total_cost": "52.00",
+          "evidence": [
+            "Visible quotation and policy records"
+          ],
+          "flags": [],
+          "clarification_requests": []
+        },
+        "status": "suboptimal",
+        "cost": "52.00",
+        "note": "best reliability but outside band; still feasible"
+      }
+    ]
+  },
+  "known_wrong": [
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "B",
+            "item_id": "component",
+            "quantity": 10
+          }
+        ],
+        "claimed_total_cost": "50.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [],
+        "clarification_requests": []
+      },
+      "reason": "claimed cost does not match B: 50.40"
+    }
+  ],
+  "review": {
+    "status": "arithmetic_checked_practitioner_pending",
+    "practitioner_signoff": false,
+    "reviewed_by_practitioner": false,
+    "awaiting_re_review": true,
+    "values_status": "PROVISIONAL, needs practitioner value",
+    "required_review": [
+      "every numeric policy value and procurement convention in this case"
+    ],
+    "source": "entirely synthetic; no external business records; owner-practitioner review is not independent"
+  }
+}
