@@ -1,0 +1,259 @@
+{
+  "case_id": "ref-01",
+  "rules_version": "1.2",
+  "purpose": "basic valid award with safety stock and late-inbound credit",
+  "rules_exercised": [
+    "C1"
+  ],
+  "request": "Allocate component purchases for basic valid award with safety stock and late-inbound credit; minimize landed cost subject to visible policy (rules 1.2), or submit a supported exception.",
+  "world": {
+    "schema_version": "1.2",
+    "world_id": "ref-01",
+    "seed": 1,
+    "currency": "USD",
+    "calendar": "gregorian",
+    "as_of": "2026-11-02",
+    "items": [
+      {
+        "item_id": "component",
+        "unit": "each",
+        "demand": 10,
+        "due_date": "2026-11-10",
+        "excess_allowance": 0,
+        "critical": false,
+        "moq_excess_allowed": false,
+        "max_excess": null,
+        "service_level": "0.95",
+        "demand_std": "1",
+        "lead_time_periods": "2",
+        "safety_stock_override": null
+      }
+    ],
+    "stock": [
+      {
+        "item_id": "component",
+        "quantity": 2,
+        "status": "usable"
+      },
+      {
+        "item_id": "component",
+        "quantity": 50,
+        "status": "held"
+      }
+    ],
+    "inbound": [
+      {
+        "item_id": "component",
+        "quantity": 1,
+        "arrival_date": "2026-11-09",
+        "status": "committed"
+      },
+      {
+        "item_id": "component",
+        "quantity": 4,
+        "arrival_date": "2026-11-13",
+        "status": "committed"
+      },
+      {
+        "item_id": "component",
+        "quantity": 50,
+        "arrival_date": "2026-11-14",
+        "status": "committed"
+      }
+    ],
+    "suppliers": [
+      {
+        "supplier_id": "A",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": "0.90"
+      },
+      {
+        "supplier_id": "B",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": "0.95"
+      }
+    ],
+    "quotes": [
+      {
+        "supplier_id": "A",
+        "item_id": "component",
+        "unit_price": "2.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "B",
+        "item_id": "component",
+        "unit_price": "3.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      }
+    ],
+    "constraints": {
+      "budget": "100.00",
+      "concentration": [],
+      "approval_limit": null
+    },
+    "policy": {
+      "late_inbound_tolerance_days": 3,
+      "late_inbound_credit": "0.50",
+      "cost_tolerance_abs": "0",
+      "cost_tolerance_reference_value": "100.00",
+      "cost_tolerance_tiers": [
+        {
+          "from_ratio": "0",
+          "pct": "0.03"
+        },
+        {
+          "from_ratio": "0.5",
+          "pct": "0.02"
+        },
+        {
+          "from_ratio": "5",
+          "pct": "0.01"
+        }
+      ],
+      "moq_excess_approval_threshold": "500.00"
+    },
+    "visibility": {
+      "classification": "public_synthetic"
+    },
+    "approvals": []
+  },
+  "expected": {
+    "submission": {
+      "kind": "award",
+      "allocations": [
+        {
+          "supplier_id": "A",
+          "item_id": "component",
+          "quantity": 8
+        }
+      ],
+      "claimed_total_cost": "16.00",
+      "evidence": [
+        "Visible quotation and policy records"
+      ],
+      "flags": [],
+      "clarification_requests": [],
+      "approval_refs": []
+    },
+    "optimal_cost": "16.00",
+    "calculation": "Safety stock = ceil(z(95%) x std x sqrt(lead)) = ceil(1.6449 x 1 x sqrt(2)) = ceil(2.3263) = 3. Net = 10 demand + 3 safety - 2 usable - 1 on-time inbound - floor(4 x 0.50) = 2 late credit (arrives 2026-11-13, exactly 3 days late: edge of the 3-day window, inclusive) = 8; the 50 held units and the 50 units 4 days late earn nothing. A: 8 x 2.00 = 16.00; B: 24.00; mixed awards only add cost.",
+    "expected_outcome": "award",
+    "valid_alternatives": [
+      {
+        "submission": {
+          "kind": "award",
+          "allocations": [
+            {
+              "supplier_id": "A",
+              "item_id": "component",
+              "quantity": 7
+            },
+            {
+              "supplier_id": "B",
+              "item_id": "component",
+              "quantity": 1
+            }
+          ],
+          "claimed_total_cost": "17.00",
+          "evidence": [
+            "Visible quotation and policy records"
+          ],
+          "flags": [],
+          "clarification_requests": [],
+          "approval_refs": []
+        },
+        "status": "suboptimal",
+        "cost": "17.00",
+        "note": "feasible mix; gap 1.00 exceeds the 3% tier band 0.48 (optimum 16.00 is below the 50.00 tier bound)"
+      }
+    ]
+  },
+  "known_wrong": [
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "A",
+            "item_id": "component",
+            "quantity": 7
+          }
+        ],
+        "claimed_total_cost": "14.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [],
+        "clarification_requests": [],
+        "approval_refs": []
+      },
+      "reason": "v1.0 net (10-2-1=7) ignores safety stock and late credit: 7 < net 8"
+    },
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "A",
+            "item_id": "component",
+            "quantity": 10
+          }
+        ],
+        "claimed_total_cost": "20.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [],
+        "clarification_requests": [],
+        "approval_refs": []
+      },
+      "reason": "ignores late credit: 10 exceeds net 8, no excess allowance"
+    }
+  ],
+  "review": {
+    "status": "arithmetic_checked_practitioner_pending",
+    "practitioner_signoff": false,
+    "reviewed_by_practitioner": false,
+    "awaiting_re_review": true,
+    "values_status": "PROVISIONAL, needs practitioner value",
+    "required_review": [
+      "every numeric policy value and procurement convention in this case"
+    ],
+    "source": "entirely synthetic; no external business records; owner-practitioner review is not independent"
+  },
+  "task": {
+    "task_id": "task-ref-01",
+    "concentration_measures": []
+  },
+  "changed_from_v1_1": [
+    "Cost tolerance is now tiered by optimum cost relative to the reference value (3% / 2% / 1%); policy.cost_tolerance_pct removed",
+    "Late-inbound tolerance default is 3 days (was 2 in ref-01, 0 elsewhere); credit 0.50",
+    "Safety stock 3 now comes from service level 0.95, std 1, lead time 2 (was a direct input of 3)",
+    "Late inbound of 4 units now arrives exactly 3 days late (edge of the 3-day window; was 2 days late in a 2-day window)"
+  ]
+}

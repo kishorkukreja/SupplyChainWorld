@@ -1,0 +1,260 @@
+{
+  "case_id": "ref-29",
+  "rules_version": "1.2",
+  "purpose": "estimate just above the approval limit escalates",
+  "rules_exercised": [
+    "C4",
+    "C6"
+  ],
+  "request": "Allocate component purchases for estimate just above the approval limit escalates; minimize landed cost subject to visible policy (rules 1.2), or submit a supported exception.",
+  "task": {
+    "task_id": "task-ref-29",
+    "concentration_measures": []
+  },
+  "changed_from_v1_1": [
+    "New: above-limit escalation by 0.40 while other complete quotes exist"
+  ],
+  "world": {
+    "schema_version": "1.2",
+    "world_id": "ref-29",
+    "seed": 29,
+    "currency": "USD",
+    "calendar": "gregorian",
+    "as_of": "2026-11-02",
+    "items": [
+      {
+        "item_id": "component",
+        "unit": "each",
+        "demand": 40,
+        "due_date": "2026-11-10",
+        "excess_allowance": 0,
+        "service_level": null,
+        "demand_std": null,
+        "lead_time_periods": null,
+        "safety_stock_override": null,
+        "critical": false,
+        "moq_excess_allowed": false,
+        "max_excess": null
+      }
+    ],
+    "stock": [],
+    "inbound": [],
+    "suppliers": [
+      {
+        "supplier_id": "A",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": null
+      },
+      {
+        "supplier_id": "B",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": null
+      },
+      {
+        "supplier_id": "C",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": null
+      }
+    ],
+    "quotes": [
+      {
+        "supplier_id": "A",
+        "item_id": "component",
+        "unit_price": "120.00",
+        "variable_freight": null,
+        "capacity": 100,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": "5.01",
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "B",
+        "item_id": "component",
+        "unit_price": "125.50",
+        "variable_freight": "0.00",
+        "capacity": 100,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "C",
+        "item_id": "component",
+        "unit_price": "127.50",
+        "variable_freight": "0.00",
+        "capacity": 100,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      }
+    ],
+    "constraints": {
+      "budget": "10000.00",
+      "concentration": [],
+      "approval_limit": "5000.00"
+    },
+    "policy": {
+      "late_inbound_tolerance_days": 3,
+      "late_inbound_credit": "0.50",
+      "cost_tolerance_abs": "0",
+      "cost_tolerance_reference_value": "100.00",
+      "cost_tolerance_tiers": [
+        {
+          "from_ratio": "0",
+          "pct": "0.03"
+        },
+        {
+          "from_ratio": "0.5",
+          "pct": "0.02"
+        },
+        {
+          "from_ratio": "5",
+          "pct": "0.01"
+        }
+      ],
+      "moq_excess_approval_threshold": "500.00"
+    },
+    "approvals": [],
+    "visibility": {
+      "classification": "public_synthetic"
+    }
+  },
+  "expected": {
+    "submission": {
+      "kind": "clarification",
+      "field": "quotes.A.component.variable_freight",
+      "disposition": "record_and_escalate",
+      "evidence": [
+        "Freight missing on A; last known gives 5,000.40 which is above the 5,000.00 approval limit; ask first and escalate."
+      ]
+    },
+    "optimal_cost": null,
+    "calculation": "Last known freight 5.01 gives line 40 x (120.00 + 5.01) = 5,000.40, above the 5,000.00 limit by 0.40, so the estimate path does not cover A. B and C are complete and could cover the need, but the gap is not awarded around: ask clarification first and escalate.",
+    "expected_outcome": "clarification",
+    "valid_alternatives": [
+      {
+        "submission": {
+          "kind": "clarification",
+          "field": "quotes.A.component.variable_freight",
+          "disposition": "record_and_escalate",
+          "evidence": [
+            "Estimate above the limit; asked for the freight and escalated."
+          ]
+        },
+        "status": "valid_exception",
+        "cost": null,
+        "note": "alternative wording"
+      }
+    ]
+  },
+  "known_wrong": [
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "B",
+            "item_id": "component",
+            "quantity": 40
+          }
+        ],
+        "claimed_total_cost": "5020.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [],
+        "clarification_requests": [],
+        "approval_refs": []
+      },
+      "reason": "awarded around the missing term although the estimate path does not apply to A"
+    },
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "A",
+            "item_id": "component",
+            "quantity": 40
+          }
+        ],
+        "claimed_total_cost": "5000.40",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [
+          "estimated:A:component"
+        ],
+        "clarification_requests": [
+          "quotes.A.component.variable_freight"
+        ],
+        "approval_refs": []
+      },
+      "reason": "estimate above the approval limit"
+    },
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "A",
+            "item_id": "component",
+            "quantity": 39
+          },
+          {
+            "supplier_id": "B",
+            "item_id": "component",
+            "quantity": 1
+          }
+        ],
+        "claimed_total_cost": "5000.89",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [
+          "estimated:A:component"
+        ],
+        "clarification_requests": [
+          "quotes.A.component.variable_freight"
+        ],
+        "approval_refs": []
+      },
+      "reason": "each line is under the limit but the missing term on A is not covered by the estimate path; ask first"
+    }
+  ],
+  "review": {
+    "status": "arithmetic_checked_practitioner_pending",
+    "practitioner_signoff": false,
+    "reviewed_by_practitioner": false,
+    "awaiting_re_review": true,
+    "values_status": "PROVISIONAL, needs practitioner value",
+    "required_review": [
+      "every numeric policy value and procurement convention in this case"
+    ],
+    "source": "entirely synthetic; no external business records; owner-practitioner review is not independent"
+  }
+}
