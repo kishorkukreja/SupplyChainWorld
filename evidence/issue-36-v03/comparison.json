@@ -1,0 +1,1291 @@
+{
+ "s03-sudden-5d": {
+  "metrics": {
+   "net_cost": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 18,
+     "expedite_on_alert": 32,
+     "alternate_on_alert": 56,
+     "combo_on_alert": 44,
+     "staged_revisit": 36
+    },
+    "best_on_this_metric_alone": [
+     "maintain"
+    ]
+   },
+   "recovery_spend": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 32,
+     "alternate_on_alert": 104,
+     "combo_on_alert": 68,
+     "staged_revisit": 36
+    },
+    "best_on_this_metric_alone": [
+     "maintain"
+    ]
+   },
+   "expedite_spend": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 32,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 16,
+     "staged_revisit": 36
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "maintain"
+    ]
+   },
+   "alternate_spend": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 104,
+     "combo_on_alert": 52,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "service_penalties": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 18,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "staged_revisit"
+    ]
+   },
+   "otif_orders_met": {
+    "dimension": "service",
+    "better": "higher",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 1,
+     "alternate_on_alert": 1,
+     "combo_on_alert": 1,
+     "staged_revisit": 1
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "staged_revisit"
+    ]
+   },
+   "on_time_units": {
+    "dimension": "service",
+    "better": "higher",
+    "values": {
+     "maintain": 4,
+     "expedite_on_alert": 12,
+     "alternate_on_alert": 12,
+     "combo_on_alert": 12,
+     "staged_revisit": 12
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "staged_revisit"
+    ]
+   },
+   "unit_days_late": {
+    "dimension": "service",
+    "better": "lower",
+    "values": {
+     "maintain": 12,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "staged_revisit"
+    ]
+   },
+   "priority_weighted_unit_days_late": {
+    "dimension": "tier impact",
+    "better": "lower",
+    "values": {
+     "maintain": 60,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "staged_revisit"
+    ]
+   },
+   "cancelled_order_value": {
+    "dimension": "downstream impact",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "pending_inbound_units": {
+    "dimension": "supply risk",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "primary_reliance_pct": {
+    "dimension": "supply risk",
+    "better": "lower",
+    "values": {
+     "maintain": 100,
+     "expedite_on_alert": 100,
+     "alternate_on_alert": 50,
+     "combo_on_alert": 66,
+     "staged_revisit": 100
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert"
+    ]
+   },
+   "ending_cover_days_floor": {
+    "dimension": "supply risk",
+    "better": "higher",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 2,
+     "combo_on_alert": 1,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert"
+    ]
+   }
+  },
+  "best_on_every_metric": [],
+  "trade_offs": "No policy is best on every metric; different metrics favour different policies. No overall winner is declared. Weighing cost against service, tier, downstream and supply-risk impact is a practitioner decision.",
+  "metrics_favouring_each_policy": {
+   "alternate_on_alert": [
+    "cancelled_order_value",
+    "ending_cover_days_floor",
+    "expedite_spend",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "primary_reliance_pct",
+    "priority_weighted_unit_days_late",
+    "service_penalties",
+    "unit_days_late"
+   ],
+   "combo_on_alert": [
+    "cancelled_order_value",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "priority_weighted_unit_days_late",
+    "service_penalties",
+    "unit_days_late"
+   ],
+   "expedite_on_alert": [
+    "alternate_spend",
+    "cancelled_order_value",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "priority_weighted_unit_days_late",
+    "service_penalties",
+    "unit_days_late"
+   ],
+   "maintain": [
+    "alternate_spend",
+    "cancelled_order_value",
+    "expedite_spend",
+    "net_cost",
+    "pending_inbound_units",
+    "recovery_spend"
+   ],
+   "staged_revisit": [
+    "alternate_spend",
+    "cancelled_order_value",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "priority_weighted_unit_days_late",
+    "service_penalties",
+    "unit_days_late"
+   ]
+  }
+ },
+ "s03-warned-delayed-10d": {
+  "metrics": {
+   "net_cost": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 30,
+     "expedite_on_alert": 32,
+     "alternate_on_alert": 104,
+     "combo_on_alert": 68,
+     "staged_revisit": 36
+    },
+    "best_on_this_metric_alone": [
+     "maintain"
+    ]
+   },
+   "recovery_spend": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 32,
+     "alternate_on_alert": 104,
+     "combo_on_alert": 68,
+     "staged_revisit": 36
+    },
+    "best_on_this_metric_alone": [
+     "maintain"
+    ]
+   },
+   "expedite_spend": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 32,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 16,
+     "staged_revisit": 36
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "maintain"
+    ]
+   },
+   "alternate_spend": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 104,
+     "combo_on_alert": 52,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "service_penalties": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 30,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "staged_revisit"
+    ]
+   },
+   "otif_orders_met": {
+    "dimension": "service",
+    "better": "higher",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 1,
+     "alternate_on_alert": 1,
+     "combo_on_alert": 1,
+     "staged_revisit": 1
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "staged_revisit"
+    ]
+   },
+   "on_time_units": {
+    "dimension": "service",
+    "better": "higher",
+    "values": {
+     "maintain": 4,
+     "expedite_on_alert": 12,
+     "alternate_on_alert": 12,
+     "combo_on_alert": 12,
+     "staged_revisit": 12
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "staged_revisit"
+    ]
+   },
+   "unit_days_late": {
+    "dimension": "service",
+    "better": "lower",
+    "values": {
+     "maintain": 20,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "staged_revisit"
+    ]
+   },
+   "priority_weighted_unit_days_late": {
+    "dimension": "tier impact",
+    "better": "lower",
+    "values": {
+     "maintain": 100,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "staged_revisit"
+    ]
+   },
+   "cancelled_order_value": {
+    "dimension": "downstream impact",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "pending_inbound_units": {
+    "dimension": "supply risk",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "primary_reliance_pct": {
+    "dimension": "supply risk",
+    "better": "lower",
+    "values": {
+     "maintain": 100,
+     "expedite_on_alert": 100,
+     "alternate_on_alert": 50,
+     "combo_on_alert": 66,
+     "staged_revisit": 100
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert"
+    ]
+   },
+   "ending_cover_days_floor": {
+    "dimension": "supply risk",
+    "better": "higher",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 2,
+     "combo_on_alert": 1,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert"
+    ]
+   }
+  },
+  "best_on_every_metric": [],
+  "trade_offs": "No policy is best on every metric; different metrics favour different policies. No overall winner is declared. Weighing cost against service, tier, downstream and supply-risk impact is a practitioner decision.",
+  "metrics_favouring_each_policy": {
+   "alternate_on_alert": [
+    "cancelled_order_value",
+    "ending_cover_days_floor",
+    "expedite_spend",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "primary_reliance_pct",
+    "priority_weighted_unit_days_late",
+    "service_penalties",
+    "unit_days_late"
+   ],
+   "combo_on_alert": [
+    "cancelled_order_value",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "priority_weighted_unit_days_late",
+    "service_penalties",
+    "unit_days_late"
+   ],
+   "expedite_on_alert": [
+    "alternate_spend",
+    "cancelled_order_value",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "priority_weighted_unit_days_late",
+    "service_penalties",
+    "unit_days_late"
+   ],
+   "maintain": [
+    "alternate_spend",
+    "cancelled_order_value",
+    "expedite_spend",
+    "net_cost",
+    "pending_inbound_units",
+    "recovery_spend"
+   ],
+   "staged_revisit": [
+    "alternate_spend",
+    "cancelled_order_value",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "priority_weighted_unit_days_late",
+    "service_penalties",
+    "unit_days_late"
+   ]
+  }
+ },
+ "s03-warned-no-delay-10d": {
+  "metrics": {
+   "net_cost": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 32,
+     "alternate_on_alert": 104,
+     "combo_on_alert": 68,
+     "staged_revisit": 16
+    },
+    "best_on_this_metric_alone": [
+     "maintain"
+    ]
+   },
+   "recovery_spend": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 32,
+     "alternate_on_alert": 104,
+     "combo_on_alert": 68,
+     "staged_revisit": 16
+    },
+    "best_on_this_metric_alone": [
+     "maintain"
+    ]
+   },
+   "expedite_spend": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 32,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 16,
+     "staged_revisit": 16
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "maintain"
+    ]
+   },
+   "alternate_spend": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 104,
+     "combo_on_alert": 52,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "service_penalties": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "otif_orders_met": {
+    "dimension": "service",
+    "better": "higher",
+    "values": {
+     "maintain": 1,
+     "expedite_on_alert": 1,
+     "alternate_on_alert": 1,
+     "combo_on_alert": 1,
+     "staged_revisit": 1
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "on_time_units": {
+    "dimension": "service",
+    "better": "higher",
+    "values": {
+     "maintain": 12,
+     "expedite_on_alert": 12,
+     "alternate_on_alert": 12,
+     "combo_on_alert": 12,
+     "staged_revisit": 12
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "unit_days_late": {
+    "dimension": "service",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "priority_weighted_unit_days_late": {
+    "dimension": "tier impact",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "cancelled_order_value": {
+    "dimension": "downstream impact",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "pending_inbound_units": {
+    "dimension": "supply risk",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "primary_reliance_pct": {
+    "dimension": "supply risk",
+    "better": "lower",
+    "values": {
+     "maintain": 100,
+     "expedite_on_alert": 100,
+     "alternate_on_alert": 50,
+     "combo_on_alert": 66,
+     "staged_revisit": 100
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert"
+    ]
+   },
+   "ending_cover_days_floor": {
+    "dimension": "supply risk",
+    "better": "higher",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 2,
+     "combo_on_alert": 1,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert"
+    ]
+   }
+  },
+  "best_on_every_metric": [],
+  "trade_offs": "No policy is best on every metric; different metrics favour different policies. No overall winner is declared. Weighing cost against service, tier, downstream and supply-risk impact is a practitioner decision.",
+  "metrics_favouring_each_policy": {
+   "alternate_on_alert": [
+    "cancelled_order_value",
+    "ending_cover_days_floor",
+    "expedite_spend",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "primary_reliance_pct",
+    "priority_weighted_unit_days_late",
+    "service_penalties",
+    "unit_days_late"
+   ],
+   "combo_on_alert": [
+    "cancelled_order_value",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "priority_weighted_unit_days_late",
+    "service_penalties",
+    "unit_days_late"
+   ],
+   "expedite_on_alert": [
+    "alternate_spend",
+    "cancelled_order_value",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "priority_weighted_unit_days_late",
+    "service_penalties",
+    "unit_days_late"
+   ],
+   "maintain": [
+    "alternate_spend",
+    "cancelled_order_value",
+    "expedite_spend",
+    "net_cost",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "priority_weighted_unit_days_late",
+    "recovery_spend",
+    "service_penalties",
+    "unit_days_late"
+   ],
+   "staged_revisit": [
+    "alternate_spend",
+    "cancelled_order_value",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "priority_weighted_unit_days_late",
+    "service_penalties",
+    "unit_days_late"
+   ]
+  }
+ },
+ "s03-multitier-cancel-10d": {
+  "metrics": {
+   "net_cost": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 67,
+     "expedite_on_alert": 60,
+     "alternate_on_alert": 93,
+     "combo_on_alert": 76,
+     "staged_revisit": 64
+    },
+    "best_on_this_metric_alone": [
+     "expedite_on_alert"
+    ]
+   },
+   "recovery_spend": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 32,
+     "alternate_on_alert": 104,
+     "combo_on_alert": 68,
+     "staged_revisit": 36
+    },
+    "best_on_this_metric_alone": [
+     "maintain"
+    ]
+   },
+   "expedite_spend": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 32,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 16,
+     "staged_revisit": 36
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "maintain"
+    ]
+   },
+   "alternate_spend": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 104,
+     "combo_on_alert": 52,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "service_penalties": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 67,
+     "expedite_on_alert": 28,
+     "alternate_on_alert": 13,
+     "combo_on_alert": 8,
+     "staged_revisit": 28
+    },
+    "best_on_this_metric_alone": [
+     "combo_on_alert"
+    ]
+   },
+   "otif_orders_met": {
+    "dimension": "service",
+    "better": "higher",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 1,
+     "alternate_on_alert": 1,
+     "combo_on_alert": 1,
+     "staged_revisit": 1
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "staged_revisit"
+    ]
+   },
+   "on_time_units": {
+    "dimension": "service",
+    "better": "higher",
+    "values": {
+     "maintain": 4,
+     "expedite_on_alert": 12,
+     "alternate_on_alert": 8,
+     "combo_on_alert": 12,
+     "staged_revisit": 12
+    },
+    "best_on_this_metric_alone": [
+     "combo_on_alert",
+     "expedite_on_alert",
+     "staged_revisit"
+    ]
+   },
+   "unit_days_late": {
+    "dimension": "service",
+    "better": "lower",
+    "values": {
+     "maintain": 48,
+     "expedite_on_alert": 28,
+     "alternate_on_alert": 12,
+     "combo_on_alert": 8,
+     "staged_revisit": 28
+    },
+    "best_on_this_metric_alone": [
+     "combo_on_alert"
+    ]
+   },
+   "priority_weighted_unit_days_late": {
+    "dimension": "tier impact",
+    "better": "lower",
+    "values": {
+     "maintain": 80,
+     "expedite_on_alert": 28,
+     "alternate_on_alert": 12,
+     "combo_on_alert": 8,
+     "staged_revisit": 28
+    },
+    "best_on_this_metric_alone": [
+     "combo_on_alert"
+    ]
+   },
+   "cancelled_order_value": {
+    "dimension": "downstream impact",
+    "better": "lower",
+    "values": {
+     "maintain": 320,
+     "expedite_on_alert": 320,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 320
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert"
+    ]
+   },
+   "pending_inbound_units": {
+    "dimension": "supply risk",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "primary_reliance_pct": {
+    "dimension": "supply risk",
+    "better": "lower",
+    "values": {
+     "maintain": 100,
+     "expedite_on_alert": 100,
+     "alternate_on_alert": 50,
+     "combo_on_alert": 66,
+     "staged_revisit": 100
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert"
+    ]
+   },
+   "ending_cover_days_floor": {
+    "dimension": "supply risk",
+    "better": "higher",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 1,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert"
+    ]
+   }
+  },
+  "best_on_every_metric": [],
+  "trade_offs": "No policy is best on every metric; different metrics favour different policies. No overall winner is declared. Weighing cost against service, tier, downstream and supply-risk impact is a practitioner decision.",
+  "metrics_favouring_each_policy": {
+   "alternate_on_alert": [
+    "cancelled_order_value",
+    "ending_cover_days_floor",
+    "expedite_spend",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "primary_reliance_pct"
+   ],
+   "combo_on_alert": [
+    "cancelled_order_value",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "priority_weighted_unit_days_late",
+    "service_penalties",
+    "unit_days_late"
+   ],
+   "expedite_on_alert": [
+    "alternate_spend",
+    "net_cost",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units"
+   ],
+   "maintain": [
+    "alternate_spend",
+    "expedite_spend",
+    "pending_inbound_units",
+    "recovery_spend"
+   ],
+   "staged_revisit": [
+    "alternate_spend",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units"
+   ]
+  }
+ },
+ "s03-alt-cheaper-10d": {
+  "metrics": {
+   "net_cost": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 78,
+     "expedite_on_alert": 98,
+     "alternate_on_alert": 62,
+     "combo_on_alert": 74,
+     "staged_revisit": 102
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert"
+    ]
+   },
+   "recovery_spend": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 32,
+     "alternate_on_alert": 104,
+     "combo_on_alert": 68,
+     "staged_revisit": 36
+    },
+    "best_on_this_metric_alone": [
+     "maintain"
+    ]
+   },
+   "expedite_spend": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 32,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 16,
+     "staged_revisit": 36
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "maintain"
+    ]
+   },
+   "alternate_spend": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 104,
+     "combo_on_alert": 52,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "service_penalties": {
+    "dimension": "cost",
+    "better": "lower",
+    "values": {
+     "maintain": 78,
+     "expedite_on_alert": 66,
+     "alternate_on_alert": 6,
+     "combo_on_alert": 30,
+     "staged_revisit": 66
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert"
+    ]
+   },
+   "otif_orders_met": {
+    "dimension": "service",
+    "better": "higher",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "on_time_units": {
+    "dimension": "service",
+    "better": "higher",
+    "values": {
+     "maintain": 4,
+     "expedite_on_alert": 4,
+     "alternate_on_alert": 8,
+     "combo_on_alert": 8,
+     "staged_revisit": 4
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert"
+    ]
+   },
+   "unit_days_late": {
+    "dimension": "service",
+    "better": "lower",
+    "values": {
+     "maintain": 52,
+     "expedite_on_alert": 44,
+     "alternate_on_alert": 4,
+     "combo_on_alert": 20,
+     "staged_revisit": 44
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert"
+    ]
+   },
+   "priority_weighted_unit_days_late": {
+    "dimension": "tier impact",
+    "better": "lower",
+    "values": {
+     "maintain": 260,
+     "expedite_on_alert": 220,
+     "alternate_on_alert": 20,
+     "combo_on_alert": 100,
+     "staged_revisit": 220
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert"
+    ]
+   },
+   "cancelled_order_value": {
+    "dimension": "downstream impact",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "pending_inbound_units": {
+    "dimension": "supply risk",
+    "better": "lower",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 0,
+     "combo_on_alert": 0,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert",
+     "combo_on_alert",
+     "expedite_on_alert",
+     "maintain",
+     "staged_revisit"
+    ]
+   },
+   "primary_reliance_pct": {
+    "dimension": "supply risk",
+    "better": "lower",
+    "values": {
+     "maintain": 100,
+     "expedite_on_alert": 100,
+     "alternate_on_alert": 50,
+     "combo_on_alert": 66,
+     "staged_revisit": 100
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert"
+    ]
+   },
+   "ending_cover_days_floor": {
+    "dimension": "supply risk",
+    "better": "higher",
+    "values": {
+     "maintain": 0,
+     "expedite_on_alert": 0,
+     "alternate_on_alert": 2,
+     "combo_on_alert": 1,
+     "staged_revisit": 0
+    },
+    "best_on_this_metric_alone": [
+     "alternate_on_alert"
+    ]
+   }
+  },
+  "best_on_every_metric": [],
+  "trade_offs": "No policy is best on every metric; different metrics favour different policies. No overall winner is declared. Weighing cost against service, tier, downstream and supply-risk impact is a practitioner decision.",
+  "metrics_favouring_each_policy": {
+   "alternate_on_alert": [
+    "cancelled_order_value",
+    "ending_cover_days_floor",
+    "expedite_spend",
+    "net_cost",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "primary_reliance_pct",
+    "priority_weighted_unit_days_late",
+    "service_penalties",
+    "unit_days_late"
+   ],
+   "combo_on_alert": [
+    "cancelled_order_value",
+    "on_time_units",
+    "otif_orders_met",
+    "pending_inbound_units"
+   ],
+   "expedite_on_alert": [
+    "alternate_spend",
+    "cancelled_order_value",
+    "otif_orders_met",
+    "pending_inbound_units"
+   ],
+   "maintain": [
+    "alternate_spend",
+    "cancelled_order_value",
+    "expedite_spend",
+    "otif_orders_met",
+    "pending_inbound_units",
+    "recovery_spend"
+   ],
+   "staged_revisit": [
+    "alternate_spend",
+    "cancelled_order_value",
+    "otif_orders_met",
+    "pending_inbound_units"
+   ]
+  }
+ }
+}

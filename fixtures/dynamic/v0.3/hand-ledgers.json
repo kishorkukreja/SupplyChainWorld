@@ -1,0 +1,3460 @@
+{
+ "basis": "Hand-worked per-day ledgers and per-episode metrics for issue #36 (S01 v0.3), derived by scripts/generate_hand_ledgers_v03.py from the written rules in docs/acceptance/dynamic-v0.3-provisional-values.md, never from simulator or verifier output (the script imports no project code). Arrays are indexed by day 1..N. Every number is PROVISIONAL, needs practitioner value. Synthetic, not reviewed by a practitioner.",
+ "fixtures": {
+  "s03-sudden-5d": {
+   "maintain": {
+    "ledger": {
+     "received": [
+      0,
+      0,
+      0,
+      8,
+      0
+     ],
+     "produced": [
+      4,
+      0,
+      0,
+      4,
+      4
+     ],
+     "shipped": [
+      0,
+      0,
+      4,
+      4,
+      4
+     ],
+     "components_close": [
+      0,
+      0,
+      0,
+      4,
+      0
+     ],
+     "finished_close": [
+      4,
+      4,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      4,
+      8,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      12,
+      18,
+      18
+     ],
+     "spend_total": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 0,
+     "expedite_spend": 0,
+     "alternate_spend": 0,
+     "service_penalties": 18,
+     "salvage_credit": 0,
+     "net_cost": 18,
+     "ending_components": 0,
+     "otif_orders_met": 0,
+     "on_time_units": 4,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 12,
+     "priority_weighted_unit_days_late": 60,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 100,
+     "ending_cover_days_floor": 0,
+     "recovery_commitments": 0,
+     "unused_recovery_budget": 120,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 0,
+       "ordered": 12,
+       "on_time_units": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 12,
+       "penalties": 18
+      }
+     }
+    }
+   },
+   "expedite_on_alert": {
+    "ledger": {
+     "received": [
+      0,
+      8,
+      0,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      4,
+      4,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      12,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      4,
+      0,
+      0,
+      0
+     ],
+     "finished_close": [
+      4,
+      8,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "spend_total": [
+      32,
+      32,
+      32,
+      32,
+      32
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 32,
+     "expedite_spend": 32,
+     "alternate_spend": 0,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 32,
+     "ending_components": 0,
+     "otif_orders_met": 1,
+     "on_time_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "priority_weighted_unit_days_late": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 100,
+     "ending_cover_days_floor": 0,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 88,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     }
+    }
+   },
+   "alternate_on_alert": {
+    "ledger": {
+     "received": [
+      0,
+      8,
+      0,
+      8,
+      0
+     ],
+     "produced": [
+      4,
+      4,
+      4,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      12,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      4,
+      0,
+      8,
+      8
+     ],
+     "finished_close": [
+      4,
+      8,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "spend_total": [
+      104,
+      104,
+      104,
+      104,
+      104
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 104,
+     "expedite_spend": 0,
+     "alternate_spend": 104,
+     "service_penalties": 0,
+     "salvage_credit": 48,
+     "net_cost": 56,
+     "ending_components": 8,
+     "otif_orders_met": 1,
+     "on_time_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "priority_weighted_unit_days_late": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 50,
+     "ending_cover_days_floor": 2,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 16,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     }
+    }
+   },
+   "combo_on_alert": {
+    "ledger": {
+     "received": [
+      0,
+      8,
+      0,
+      4,
+      0
+     ],
+     "produced": [
+      4,
+      4,
+      4,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      12,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      4,
+      0,
+      4,
+      4
+     ],
+     "finished_close": [
+      4,
+      8,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "spend_total": [
+      68,
+      68,
+      68,
+      68,
+      68
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 68,
+     "expedite_spend": 16,
+     "alternate_spend": 52,
+     "service_penalties": 0,
+     "salvage_credit": 24,
+     "net_cost": 44,
+     "ending_components": 4,
+     "otif_orders_met": 1,
+     "on_time_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "priority_weighted_unit_days_late": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 66,
+     "ending_cover_days_floor": 1,
+     "recovery_commitments": 2,
+     "unused_recovery_budget": 52,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     }
+    }
+   },
+   "staged_revisit": {
+    "ledger": {
+     "received": [
+      0,
+      4,
+      4,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      4,
+      4,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      12,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "finished_close": [
+      4,
+      8,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "spend_total": [
+      16,
+      36,
+      36,
+      36,
+      36
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 36,
+     "expedite_spend": 36,
+     "alternate_spend": 0,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 36,
+     "ending_components": 0,
+     "otif_orders_met": 1,
+     "on_time_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "priority_weighted_unit_days_late": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 100,
+     "ending_cover_days_floor": 0,
+     "recovery_commitments": 2,
+     "unused_recovery_budget": 84,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     }
+    }
+   }
+  },
+  "s03-warned-delayed-10d": {
+   "maintain": {
+    "ledger": {
+     "received": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      8,
+      0,
+      0,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      0,
+      0,
+      0,
+      0,
+      4,
+      4,
+      0,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      0,
+      4,
+      0,
+      4,
+      4,
+      0,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0
+     ],
+     "finished_close": [
+      4,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      0,
+      4,
+      4,
+      8,
+      12,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      0,
+      12,
+      24,
+      30,
+      30,
+      30,
+      30,
+      30
+     ],
+     "spend_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 0,
+     "expedite_spend": 0,
+     "alternate_spend": 0,
+     "service_penalties": 30,
+     "salvage_credit": 0,
+     "net_cost": 30,
+     "ending_components": 0,
+     "otif_orders_met": 0,
+     "on_time_units": 4,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 20,
+     "priority_weighted_unit_days_late": 100,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 100,
+     "ending_cover_days_floor": 0,
+     "recovery_commitments": 0,
+     "unused_recovery_budget": 120,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 0,
+       "ordered": 12,
+       "on_time_units": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 20,
+       "penalties": 30
+      }
+     }
+    }
+   },
+   "expedite_on_alert": {
+    "ledger": {
+     "received": [
+      0,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      0,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "finished_close": [
+      4,
+      8,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      0,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "spend_total": [
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 32,
+     "expedite_spend": 32,
+     "alternate_spend": 0,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 32,
+     "ending_components": 0,
+     "otif_orders_met": 1,
+     "on_time_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "priority_weighted_unit_days_late": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 100,
+     "ending_cover_days_floor": 0,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 88,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     }
+    }
+   },
+   "alternate_on_alert": {
+    "ledger": {
+     "received": [
+      0,
+      0,
+      8,
+      0,
+      0,
+      8,
+      0,
+      0,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      0,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      0,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      4,
+      0,
+      0,
+      8,
+      8,
+      8,
+      8,
+      8
+     ],
+     "finished_close": [
+      4,
+      4,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      0,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "spend_total": [
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 104,
+     "expedite_spend": 0,
+     "alternate_spend": 104,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 104,
+     "ending_components": 8,
+     "otif_orders_met": 1,
+     "on_time_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "priority_weighted_unit_days_late": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 50,
+     "ending_cover_days_floor": 2,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 16,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     }
+    }
+   },
+   "combo_on_alert": {
+    "ledger": {
+     "received": [
+      0,
+      4,
+      4,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      0,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      4,
+      4,
+      4,
+      4
+     ],
+     "finished_close": [
+      4,
+      8,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      0,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "spend_total": [
+      68,
+      68,
+      68,
+      68,
+      68,
+      68,
+      68,
+      68,
+      68,
+      68
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 68,
+     "expedite_spend": 16,
+     "alternate_spend": 52,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 68,
+     "ending_components": 4,
+     "otif_orders_met": 1,
+     "on_time_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "priority_weighted_unit_days_late": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 66,
+     "ending_cover_days_floor": 1,
+     "recovery_commitments": 2,
+     "unused_recovery_budget": 52,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     }
+    }
+   },
+   "staged_revisit": {
+    "ledger": {
+     "received": [
+      0,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      0,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "finished_close": [
+      4,
+      8,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      0,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "spend_total": [
+      16,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 36,
+     "expedite_spend": 36,
+     "alternate_spend": 0,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 36,
+     "ending_components": 0,
+     "otif_orders_met": 1,
+     "on_time_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "priority_weighted_unit_days_late": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 100,
+     "ending_cover_days_floor": 0,
+     "recovery_commitments": 2,
+     "unused_recovery_budget": 84,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     }
+    }
+   }
+  },
+  "s03-warned-no-delay-10d": {
+   "maintain": {
+    "ledger": {
+     "received": [
+      0,
+      0,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      0,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      0,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "finished_close": [
+      4,
+      4,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      0,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "spend_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 0,
+     "expedite_spend": 0,
+     "alternate_spend": 0,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 0,
+     "ending_components": 0,
+     "otif_orders_met": 1,
+     "on_time_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "priority_weighted_unit_days_late": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 100,
+     "ending_cover_days_floor": 0,
+     "recovery_commitments": 0,
+     "unused_recovery_budget": 120,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     }
+    }
+   },
+   "expedite_on_alert": {
+    "ledger": {
+     "received": [
+      0,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      0,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "finished_close": [
+      4,
+      8,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      0,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "spend_total": [
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 32,
+     "expedite_spend": 32,
+     "alternate_spend": 0,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 32,
+     "ending_components": 0,
+     "otif_orders_met": 1,
+     "on_time_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "priority_weighted_unit_days_late": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 100,
+     "ending_cover_days_floor": 0,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 88,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     }
+    }
+   },
+   "alternate_on_alert": {
+    "ledger": {
+     "received": [
+      0,
+      0,
+      16,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      0,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      0,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      12,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8
+     ],
+     "finished_close": [
+      4,
+      4,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      0,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "spend_total": [
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 104,
+     "expedite_spend": 0,
+     "alternate_spend": 104,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 104,
+     "ending_components": 8,
+     "otif_orders_met": 1,
+     "on_time_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "priority_weighted_unit_days_late": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 50,
+     "ending_cover_days_floor": 2,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 16,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     }
+    }
+   },
+   "combo_on_alert": {
+    "ledger": {
+     "received": [
+      0,
+      4,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      0,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ],
+     "finished_close": [
+      4,
+      8,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      0,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "spend_total": [
+      68,
+      68,
+      68,
+      68,
+      68,
+      68,
+      68,
+      68,
+      68,
+      68
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 68,
+     "expedite_spend": 16,
+     "alternate_spend": 52,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 68,
+     "ending_components": 4,
+     "otif_orders_met": 1,
+     "on_time_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "priority_weighted_unit_days_late": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 66,
+     "ending_cover_days_floor": 1,
+     "recovery_commitments": 2,
+     "unused_recovery_budget": 52,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     }
+    }
+   },
+   "staged_revisit": {
+    "ledger": {
+     "received": [
+      0,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      0,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "finished_close": [
+      4,
+      8,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      0,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "spend_total": [
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 16,
+     "expedite_spend": 16,
+     "alternate_spend": 0,
+     "service_penalties": 0,
+     "salvage_credit": 0,
+     "net_cost": 16,
+     "ending_components": 0,
+     "otif_orders_met": 1,
+     "on_time_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 0,
+     "priority_weighted_unit_days_late": 0,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 100,
+     "ending_cover_days_floor": 0,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 104,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 12,
+       "on_time_units": 12,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      }
+     }
+    }
+   }
+  },
+  "s03-multitier-cancel-10d": {
+   "maintain": {
+    "ledger": {
+     "received": [
+      0,
+      0,
+      0,
+      0,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      0,
+      0,
+      0,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      4,
+      0,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "finished_close": [
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      4,
+      4,
+      8,
+      12,
+      12,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      33,
+      42,
+      51,
+      55,
+      59,
+      63,
+      67,
+      67
+     ],
+     "spend_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      4
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 0,
+     "expedite_spend": 0,
+     "alternate_spend": 0,
+     "service_penalties": 67,
+     "salvage_credit": 0,
+     "net_cost": 67,
+     "ending_components": 0,
+     "otif_orders_met": 0,
+     "on_time_units": 4,
+     "delivered_total": 12,
+     "cancelled_units": 4,
+     "unit_days_late": 48,
+     "priority_weighted_unit_days_late": 80,
+     "cancelled_order_value": 320,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 100,
+     "ending_cover_days_floor": 0,
+     "recovery_commitments": 0,
+     "unused_recovery_budget": 120,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 0,
+       "ordered": 8,
+       "on_time_units": 4,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 8,
+       "penalties": 24
+      },
+      "standard": {
+       "otif_orders_met": 0,
+       "ordered": 8,
+       "on_time_units": 0,
+       "delivered": 4,
+       "cancelled": 4,
+       "unit_days_late": 40,
+       "penalties": 43
+      }
+     }
+    }
+   },
+   "expedite_on_alert": {
+    "ledger": {
+     "received": [
+      0,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "finished_close": [
+      4,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      28
+     ],
+     "spend_total": [
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      4
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 32,
+     "expedite_spend": 32,
+     "alternate_spend": 0,
+     "service_penalties": 28,
+     "salvage_credit": 0,
+     "net_cost": 60,
+     "ending_components": 0,
+     "otif_orders_met": 1,
+     "on_time_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 4,
+     "unit_days_late": 28,
+     "priority_weighted_unit_days_late": 28,
+     "cancelled_order_value": 320,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 100,
+     "ending_cover_days_floor": 0,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 88,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 8,
+       "on_time_units": 8,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      },
+      "standard": {
+       "otif_orders_met": 0,
+       "ordered": 8,
+       "on_time_units": 4,
+       "delivered": 4,
+       "cancelled": 4,
+       "unit_days_late": 28,
+       "penalties": 28
+      }
+     }
+    }
+   },
+   "alternate_on_alert": {
+    "ledger": {
+     "received": [
+      0,
+      0,
+      8,
+      0,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      0,
+      4,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      8,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      4,
+      0,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ],
+     "finished_close": [
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      8,
+      12,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16
+     ],
+     "penalty_total": [
+      0,
+      0,
+      9,
+      13,
+      13,
+      13,
+      13,
+      13,
+      13,
+      13
+     ],
+     "spend_total": [
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 104,
+     "expedite_spend": 0,
+     "alternate_spend": 104,
+     "service_penalties": 13,
+     "salvage_credit": 24,
+     "net_cost": 93,
+     "ending_components": 4,
+     "otif_orders_met": 1,
+     "on_time_units": 8,
+     "delivered_total": 16,
+     "cancelled_units": 0,
+     "unit_days_late": 12,
+     "priority_weighted_unit_days_late": 12,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 50,
+     "ending_cover_days_floor": 1,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 16,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 8,
+       "on_time_units": 8,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      },
+      "standard": {
+       "otif_orders_met": 0,
+       "ordered": 8,
+       "on_time_units": 0,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 12,
+       "penalties": 13
+      }
+     }
+    }
+   },
+   "combo_on_alert": {
+    "ledger": {
+     "received": [
+      0,
+      4,
+      4,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      4,
+      4,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      12,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "finished_close": [
+      4,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      12,
+      12,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16
+     ],
+     "penalty_total": [
+      0,
+      0,
+      4,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8
+     ],
+     "spend_total": [
+      68,
+      68,
+      68,
+      68,
+      68,
+      68,
+      68,
+      68,
+      68,
+      68
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 68,
+     "expedite_spend": 16,
+     "alternate_spend": 52,
+     "service_penalties": 8,
+     "salvage_credit": 0,
+     "net_cost": 76,
+     "ending_components": 0,
+     "otif_orders_met": 1,
+     "on_time_units": 12,
+     "delivered_total": 16,
+     "cancelled_units": 0,
+     "unit_days_late": 8,
+     "priority_weighted_unit_days_late": 8,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 66,
+     "ending_cover_days_floor": 0,
+     "recovery_commitments": 2,
+     "unused_recovery_budget": 52,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 8,
+       "on_time_units": 8,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      },
+      "standard": {
+       "otif_orders_met": 0,
+       "ordered": 8,
+       "on_time_units": 4,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 8,
+       "penalties": 8
+      }
+     }
+    }
+   },
+   "staged_revisit": {
+    "ledger": {
+     "received": [
+      0,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "finished_close": [
+      4,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      28
+     ],
+     "spend_total": [
+      16,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      4
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 36,
+     "expedite_spend": 36,
+     "alternate_spend": 0,
+     "service_penalties": 28,
+     "salvage_credit": 0,
+     "net_cost": 64,
+     "ending_components": 0,
+     "otif_orders_met": 1,
+     "on_time_units": 12,
+     "delivered_total": 12,
+     "cancelled_units": 4,
+     "unit_days_late": 28,
+     "priority_weighted_unit_days_late": 28,
+     "cancelled_order_value": 320,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 100,
+     "ending_cover_days_floor": 0,
+     "recovery_commitments": 2,
+     "unused_recovery_budget": 84,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 1,
+       "ordered": 8,
+       "on_time_units": 8,
+       "delivered": 8,
+       "cancelled": 0,
+       "unit_days_late": 0,
+       "penalties": 0
+      },
+      "standard": {
+       "otif_orders_met": 0,
+       "ordered": 8,
+       "on_time_units": 4,
+       "delivered": 4,
+       "cancelled": 4,
+       "unit_days_late": 28,
+       "penalties": 28
+      }
+     }
+    }
+   }
+  },
+  "s03-alt-cheaper-10d": {
+   "maintain": {
+    "ledger": {
+     "received": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      8,
+      0
+     ],
+     "produced": [
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      4
+     ],
+     "shipped": [
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      4
+     ],
+     "components_close": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0
+     ],
+     "finished_close": [
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      12,
+      24,
+      36,
+      48,
+      60,
+      72,
+      78,
+      78
+     ],
+     "spend_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 0,
+     "expedite_spend": 0,
+     "alternate_spend": 0,
+     "service_penalties": 78,
+     "salvage_credit": 0,
+     "net_cost": 78,
+     "ending_components": 0,
+     "otif_orders_met": 0,
+     "on_time_units": 4,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 52,
+     "priority_weighted_unit_days_late": 260,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 100,
+     "ending_cover_days_floor": 0,
+     "recovery_commitments": 0,
+     "unused_recovery_budget": 120,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 0,
+       "ordered": 12,
+       "on_time_units": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 52,
+       "penalties": 78
+      }
+     }
+    }
+   },
+   "expedite_on_alert": {
+    "ledger": {
+     "received": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      8,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      4,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      4,
+      4,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0
+     ],
+     "finished_close": [
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      12,
+      24,
+      36,
+      48,
+      60,
+      66,
+      66,
+      66
+     ],
+     "spend_total": [
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32,
+      32
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 32,
+     "expedite_spend": 32,
+     "alternate_spend": 0,
+     "service_penalties": 66,
+     "salvage_credit": 0,
+     "net_cost": 98,
+     "ending_components": 0,
+     "otif_orders_met": 0,
+     "on_time_units": 4,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 44,
+     "priority_weighted_unit_days_late": 220,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 100,
+     "ending_cover_days_floor": 0,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 88,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 0,
+       "ordered": 12,
+       "on_time_units": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 44,
+       "penalties": 66
+      }
+     }
+    }
+   },
+   "alternate_on_alert": {
+    "ledger": {
+     "received": [
+      0,
+      0,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0,
+      8,
+      0
+     ],
+     "produced": [
+      4,
+      0,
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      8,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      8,
+      8
+     ],
+     "finished_close": [
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      8,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6
+     ],
+     "spend_total": [
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104,
+      104
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 104,
+     "expedite_spend": 0,
+     "alternate_spend": 104,
+     "service_penalties": 6,
+     "salvage_credit": 48,
+     "net_cost": 62,
+     "ending_components": 8,
+     "otif_orders_met": 0,
+     "on_time_units": 8,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 4,
+     "priority_weighted_unit_days_late": 20,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 50,
+     "ending_cover_days_floor": 2,
+     "recovery_commitments": 1,
+     "unused_recovery_budget": 16,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 0,
+       "ordered": 12,
+       "on_time_units": 8,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 4,
+       "penalties": 6
+      }
+     }
+    }
+   },
+   "combo_on_alert": {
+    "ledger": {
+     "received": [
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      4,
+      4,
+      0
+     ],
+     "produced": [
+      4,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      8,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      4
+     ],
+     "finished_close": [
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      8,
+      8,
+      8,
+      8,
+      8,
+      12,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      6,
+      12,
+      18,
+      24,
+      30,
+      30,
+      30,
+      30
+     ],
+     "spend_total": [
+      68,
+      68,
+      68,
+      68,
+      68,
+      68,
+      68,
+      68,
+      68,
+      68
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 68,
+     "expedite_spend": 16,
+     "alternate_spend": 52,
+     "service_penalties": 30,
+     "salvage_credit": 24,
+     "net_cost": 74,
+     "ending_components": 4,
+     "otif_orders_met": 0,
+     "on_time_units": 8,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 20,
+     "priority_weighted_unit_days_late": 100,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 66,
+     "ending_cover_days_floor": 1,
+     "recovery_commitments": 2,
+     "unused_recovery_budget": 52,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 0,
+       "ordered": 12,
+       "on_time_units": 8,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 20,
+       "penalties": 30
+      }
+     }
+    }
+   },
+   "staged_revisit": {
+    "ledger": {
+     "received": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      8,
+      0,
+      0
+     ],
+     "produced": [
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      4,
+      0
+     ],
+     "shipped": [
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      4,
+      4,
+      0
+     ],
+     "components_close": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0
+     ],
+     "finished_close": [
+      4,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "delivered_total": [
+      0,
+      0,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      12,
+      12
+     ],
+     "penalty_total": [
+      0,
+      0,
+      12,
+      24,
+      36,
+      48,
+      60,
+      66,
+      66,
+      66
+     ],
+     "spend_total": [
+      16,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36
+     ],
+     "cancelled_total": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    "metrics": {
+     "recovery_spend": 36,
+     "expedite_spend": 36,
+     "alternate_spend": 0,
+     "service_penalties": 66,
+     "salvage_credit": 0,
+     "net_cost": 102,
+     "ending_components": 0,
+     "otif_orders_met": 0,
+     "on_time_units": 4,
+     "delivered_total": 12,
+     "cancelled_units": 0,
+     "unit_days_late": 44,
+     "priority_weighted_unit_days_late": 220,
+     "cancelled_order_value": 0,
+     "undelivered_at_end": 0,
+     "pending_inbound_units": 0,
+     "primary_reliance_pct": 100,
+     "ending_cover_days_floor": 0,
+     "recovery_commitments": 2,
+     "unused_recovery_budget": 84,
+     "tiers": {
+      "key": {
+       "otif_orders_met": 0,
+       "ordered": 12,
+       "on_time_units": 4,
+       "delivered": 12,
+       "cancelled": 0,
+       "unit_days_late": 44,
+       "penalties": 66
+      }
+     }
+    }
+   }
+  }
+ }
+}
