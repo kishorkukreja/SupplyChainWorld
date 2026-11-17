@@ -1,0 +1,265 @@
+{
+  "case_id": "ref-12",
+  "rules_version": "1.2",
+  "purpose": "safety stock drives a purchase when stock exceeds demand",
+  "rules_exercised": [
+    "C1"
+  ],
+  "request": "Allocate component purchases for safety stock drives a purchase when stock exceeds demand; minimize landed cost subject to visible policy (rules 1.2), or submit a supported exception.",
+  "world": {
+    "schema_version": "1.2",
+    "world_id": "ref-12",
+    "seed": 12,
+    "currency": "USD",
+    "calendar": "gregorian",
+    "as_of": "2026-11-02",
+    "items": [
+      {
+        "item_id": "X",
+        "unit": "each",
+        "demand": 5,
+        "due_date": "2026-11-10",
+        "excess_allowance": 0,
+        "critical": false,
+        "moq_excess_allowed": false,
+        "max_excess": null,
+        "service_level": "0.95",
+        "demand_std": "1",
+        "lead_time_periods": "2",
+        "safety_stock_override": null
+      },
+      {
+        "item_id": "Y",
+        "unit": "each",
+        "demand": 2,
+        "due_date": "2026-11-10",
+        "excess_allowance": 0,
+        "critical": false,
+        "moq_excess_allowed": false,
+        "max_excess": null,
+        "service_level": null,
+        "demand_std": null,
+        "lead_time_periods": null,
+        "safety_stock_override": null
+      }
+    ],
+    "stock": [
+      {
+        "item_id": "X",
+        "quantity": 6,
+        "status": "usable"
+      }
+    ],
+    "inbound": [],
+    "suppliers": [
+      {
+        "supplier_id": "A",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": null
+      },
+      {
+        "supplier_id": "B",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": null
+      }
+    ],
+    "quotes": [
+      {
+        "supplier_id": "A",
+        "item_id": "X",
+        "unit_price": "1.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "B",
+        "item_id": "X",
+        "unit_price": "1.50",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "A",
+        "item_id": "Y",
+        "unit_price": "2.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "B",
+        "item_id": "Y",
+        "unit_price": "1.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      }
+    ],
+    "constraints": {
+      "budget": "100.00",
+      "concentration": [],
+      "approval_limit": null
+    },
+    "policy": {
+      "late_inbound_tolerance_days": 3,
+      "late_inbound_credit": "0.50",
+      "cost_tolerance_abs": "0",
+      "cost_tolerance_reference_value": "100.00",
+      "cost_tolerance_tiers": [
+        {
+          "from_ratio": "0",
+          "pct": "0.03"
+        },
+        {
+          "from_ratio": "0.5",
+          "pct": "0.02"
+        },
+        {
+          "from_ratio": "5",
+          "pct": "0.01"
+        }
+      ],
+      "moq_excess_approval_threshold": "500.00"
+    },
+    "visibility": {
+      "classification": "public_synthetic"
+    },
+    "approvals": []
+  },
+  "expected": {
+    "submission": {
+      "kind": "award",
+      "allocations": [
+        {
+          "supplier_id": "A",
+          "item_id": "X",
+          "quantity": 2
+        },
+        {
+          "supplier_id": "B",
+          "item_id": "Y",
+          "quantity": 2
+        }
+      ],
+      "claimed_total_cost": "4.00",
+      "evidence": [
+        "Visible quotation and policy records"
+      ],
+      "flags": [],
+      "clarification_requests": [],
+      "approval_refs": []
+    },
+    "optimal_cost": "4.00",
+    "calculation": "X: safety stock = ceil(1.6449 x 1 x sqrt(2)) = 3; net = 5 + 3 - 6 = 2 (v1.0 would buy 0). Y: net 2. X cheapest at A (1.00): 2.00. Y cheapest at B (1.00): 2.00. Both suppliers charge nothing fixed. Total 4.00 is the optimum.",
+    "expected_outcome": "award",
+    "valid_alternatives": [
+      {
+        "submission": {
+          "kind": "award",
+          "allocations": [
+            {
+              "supplier_id": "A",
+              "item_id": "X",
+              "quantity": 2
+            },
+            {
+              "supplier_id": "A",
+              "item_id": "Y",
+              "quantity": 2
+            }
+          ],
+          "claimed_total_cost": "6.00",
+          "evidence": [
+            "Visible quotation and policy records"
+          ],
+          "flags": [],
+          "clarification_requests": [],
+          "approval_refs": []
+        },
+        "status": "suboptimal",
+        "cost": "6.00",
+        "note": "feasible: Y at the dearer supplier"
+      }
+    ]
+  },
+  "known_wrong": [
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "B",
+            "item_id": "Y",
+            "quantity": 2
+          }
+        ],
+        "claimed_total_cost": "2.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [],
+        "clarification_requests": [],
+        "approval_refs": []
+      },
+      "reason": "omits safety-stock purchase of X (v1.0 net 0)"
+    }
+  ],
+  "review": {
+    "status": "arithmetic_checked_practitioner_pending",
+    "practitioner_signoff": false,
+    "reviewed_by_practitioner": false,
+    "awaiting_re_review": true,
+    "values_status": "PROVISIONAL, needs practitioner value",
+    "required_review": [
+      "every numeric policy value and procurement convention in this case"
+    ],
+    "source": "entirely synthetic; no external business records; owner-practitioner review is not independent"
+  },
+  "task": {
+    "task_id": "task-ref-12",
+    "concentration_measures": []
+  },
+  "changed_from_v1_1": [
+    "Cost tolerance is now tiered by optimum cost relative to the reference value (3% / 2% / 1%); policy.cost_tolerance_pct removed",
+    "Late-inbound tolerance default is 3 days (was 2 in ref-01, 0 elsewhere); credit 0.50",
+    "Safety stock of X now from service level 0.95, std 1, lead time 2"
+  ]
+}

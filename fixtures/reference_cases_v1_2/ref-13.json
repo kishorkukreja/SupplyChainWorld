@@ -1,0 +1,290 @@
+{
+  "case_id": "ref-13",
+  "rules_version": "1.2",
+  "purpose": "quantity-share concentration only",
+  "rules_exercised": [
+    "C7"
+  ],
+  "request": "Allocate component purchases for quantity-share concentration only; minimize landed cost subject to visible policy (rules 1.2), or submit a supported exception.",
+  "world": {
+    "schema_version": "1.2",
+    "world_id": "ref-13",
+    "seed": 13,
+    "currency": "USD",
+    "calendar": "gregorian",
+    "as_of": "2026-11-02",
+    "items": [
+      {
+        "item_id": "P",
+        "unit": "each",
+        "demand": 4,
+        "due_date": "2026-11-10",
+        "excess_allowance": 0,
+        "critical": false,
+        "moq_excess_allowed": false,
+        "max_excess": null,
+        "service_level": null,
+        "demand_std": null,
+        "lead_time_periods": null,
+        "safety_stock_override": null
+      },
+      {
+        "item_id": "Q",
+        "unit": "each",
+        "demand": 4,
+        "due_date": "2026-11-10",
+        "excess_allowance": 0,
+        "critical": false,
+        "moq_excess_allowed": false,
+        "max_excess": null,
+        "service_level": null,
+        "demand_std": null,
+        "lead_time_periods": null,
+        "safety_stock_override": null
+      }
+    ],
+    "stock": [],
+    "inbound": [],
+    "suppliers": [
+      {
+        "supplier_id": "A",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": null
+      },
+      {
+        "supplier_id": "B",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": null
+      }
+    ],
+    "quotes": [
+      {
+        "supplier_id": "A",
+        "item_id": "P",
+        "unit_price": "1.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "A",
+        "item_id": "Q",
+        "unit_price": "1.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "B",
+        "item_id": "P",
+        "unit_price": "1.20",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "B",
+        "item_id": "Q",
+        "unit_price": "1.50",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      }
+    ],
+    "constraints": {
+      "budget": "100.00",
+      "concentration": [
+        {
+          "measure": "quantity_share",
+          "limit": "0.50",
+          "item_ids": [
+            "P",
+            "Q"
+          ]
+        }
+      ],
+      "approval_limit": null
+    },
+    "policy": {
+      "late_inbound_tolerance_days": 3,
+      "late_inbound_credit": "0.50",
+      "cost_tolerance_abs": "0",
+      "cost_tolerance_reference_value": "100.00",
+      "cost_tolerance_tiers": [
+        {
+          "from_ratio": "0",
+          "pct": "0.03"
+        },
+        {
+          "from_ratio": "0.5",
+          "pct": "0.02"
+        },
+        {
+          "from_ratio": "5",
+          "pct": "0.01"
+        }
+      ],
+      "moq_excess_approval_threshold": "500.00"
+    },
+    "visibility": {
+      "classification": "public_synthetic"
+    },
+    "approvals": []
+  },
+  "expected": {
+    "submission": {
+      "kind": "award",
+      "allocations": [
+        {
+          "supplier_id": "A",
+          "item_id": "Q",
+          "quantity": 4
+        },
+        {
+          "supplier_id": "B",
+          "item_id": "P",
+          "quantity": 4
+        }
+      ],
+      "claimed_total_cost": "8.80",
+      "evidence": [
+        "Visible quotation and policy records"
+      ],
+      "flags": [],
+      "clarification_requests": [],
+      "approval_refs": []
+    },
+    "optimal_cost": "8.80",
+    "calculation": "Total units 8; quantity share limit 0.50 (declared measure: quantity only) so each supplier takes at most 4 units. B should take the item where its premium is smaller: P (+0.20/unit) not Q (+0.50). A Q4 = 4.00, B P4 = 4.80, total 8.80. B holds 4.80/8.80 of spend but spend share is not declared for this task.",
+    "expected_outcome": "award",
+    "valid_alternatives": [
+      {
+        "submission": {
+          "kind": "award",
+          "allocations": [
+            {
+              "supplier_id": "A",
+              "item_id": "P",
+              "quantity": 2
+            },
+            {
+              "supplier_id": "A",
+              "item_id": "Q",
+              "quantity": 2
+            },
+            {
+              "supplier_id": "B",
+              "item_id": "P",
+              "quantity": 2
+            },
+            {
+              "supplier_id": "B",
+              "item_id": "Q",
+              "quantity": 2
+            }
+          ],
+          "claimed_total_cost": "9.40",
+          "evidence": [
+            "Visible quotation and policy records"
+          ],
+          "flags": [],
+          "clarification_requests": [],
+          "approval_refs": []
+        },
+        "status": "suboptimal",
+        "cost": "9.40",
+        "note": "balanced by item, feasible"
+      }
+    ]
+  },
+  "known_wrong": [
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "A",
+            "item_id": "P",
+            "quantity": 4
+          },
+          {
+            "supplier_id": "A",
+            "item_id": "Q",
+            "quantity": 2
+          },
+          {
+            "supplier_id": "B",
+            "item_id": "Q",
+            "quantity": 2
+          }
+        ],
+        "claimed_total_cost": "9.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [],
+        "clarification_requests": [],
+        "approval_refs": []
+      },
+      "reason": "A holds 6 of 8 units (0.75)"
+    }
+  ],
+  "review": {
+    "status": "arithmetic_checked_practitioner_pending",
+    "practitioner_signoff": false,
+    "reviewed_by_practitioner": false,
+    "awaiting_re_review": true,
+    "values_status": "PROVISIONAL, needs practitioner value",
+    "required_review": [
+      "every numeric policy value and procurement convention in this case"
+    ],
+    "source": "entirely synthetic; no external business records; owner-practitioner review is not independent"
+  },
+  "task": {
+    "task_id": "task-ref-13",
+    "concentration_measures": [
+      "quantity_share"
+    ]
+  },
+  "changed_from_v1_1": [
+    "Cost tolerance is now tiered by optimum cost relative to the reference value (3% / 2% / 1%); policy.cost_tolerance_pct removed",
+    "Late-inbound tolerance default is 3 days (was 2 in ref-01, 0 elsewhere); credit 0.50",
+    "Task declares quantity_share (non-default measure); spend_share stays the default for all other cases"
+  ]
+}

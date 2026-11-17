@@ -1,0 +1,244 @@
+{
+  "case_id": "ref-15",
+  "rules_version": "1.2",
+  "purpose": "spend-share concentration including the fixed charge",
+  "rules_exercised": [
+    "C7",
+    "C8"
+  ],
+  "request": "Allocate component purchases for spend-share concentration including the fixed charge; minimize landed cost subject to visible policy (rules 1.2), or submit a supported exception.",
+  "world": {
+    "schema_version": "1.2",
+    "world_id": "ref-15",
+    "seed": 15,
+    "currency": "USD",
+    "calendar": "gregorian",
+    "as_of": "2026-11-02",
+    "items": [
+      {
+        "item_id": "component",
+        "unit": "each",
+        "demand": 4,
+        "due_date": "2026-11-10",
+        "excess_allowance": 0,
+        "critical": false,
+        "moq_excess_allowed": false,
+        "max_excess": null,
+        "service_level": null,
+        "demand_std": null,
+        "lead_time_periods": null,
+        "safety_stock_override": null
+      }
+    ],
+    "stock": [],
+    "inbound": [],
+    "suppliers": [
+      {
+        "supplier_id": "A",
+        "fixed_charge": "1.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": null
+      },
+      {
+        "supplier_id": "B",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": null
+      }
+    ],
+    "quotes": [
+      {
+        "supplier_id": "A",
+        "item_id": "component",
+        "unit_price": "1.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "B",
+        "item_id": "component",
+        "unit_price": "1.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      }
+    ],
+    "constraints": {
+      "budget": "100.00",
+      "concentration": [
+        {
+          "measure": "spend_share",
+          "limit": "0.60",
+          "item_ids": null
+        }
+      ],
+      "approval_limit": null
+    },
+    "policy": {
+      "late_inbound_tolerance_days": 3,
+      "late_inbound_credit": "0.50",
+      "cost_tolerance_abs": "0",
+      "cost_tolerance_reference_value": "100.00",
+      "cost_tolerance_tiers": [
+        {
+          "from_ratio": "0",
+          "pct": "0.03"
+        },
+        {
+          "from_ratio": "0.5",
+          "pct": "0.02"
+        },
+        {
+          "from_ratio": "5",
+          "pct": "0.01"
+        }
+      ],
+      "moq_excess_approval_threshold": "500.00"
+    },
+    "visibility": {
+      "classification": "public_synthetic"
+    },
+    "approvals": []
+  },
+  "expected": {
+    "submission": {
+      "kind": "award",
+      "allocations": [
+        {
+          "supplier_id": "A",
+          "item_id": "component",
+          "quantity": 2
+        },
+        {
+          "supplier_id": "B",
+          "item_id": "component",
+          "quantity": 2
+        }
+      ],
+      "claimed_total_cost": "5.00",
+      "evidence": [
+        "Visible quotation and policy records"
+      ],
+      "flags": [],
+      "clarification_requests": [],
+      "approval_refs": []
+    },
+    "optimal_cost": "5.00",
+    "calculation": "Spend includes the fixed charge. A2+B2: A spend 2+1=3.00, B 2.00, total 5.00; A share 0.60 meets the 0.60 limit exactly (3.00 <= 0.60*5.00). A1+B3: A 2.00, B 3.00 total 5.00 also valid. A4: 4+1=5.00 but share 1.00; B4: 4.00 share 1.00 breach. Optimum 5.00.",
+    "expected_outcome": "award",
+    "valid_alternatives": [
+      {
+        "submission": {
+          "kind": "award",
+          "allocations": [
+            {
+              "supplier_id": "A",
+              "item_id": "component",
+              "quantity": 1
+            },
+            {
+              "supplier_id": "B",
+              "item_id": "component",
+              "quantity": 3
+            }
+          ],
+          "claimed_total_cost": "5.00",
+          "evidence": [
+            "Visible quotation and policy records"
+          ],
+          "flags": [],
+          "clarification_requests": [],
+          "approval_refs": []
+        },
+        "status": "optimal",
+        "cost": "5.00",
+        "note": "valid tie"
+      }
+    ]
+  },
+  "known_wrong": [
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "A",
+            "item_id": "component",
+            "quantity": 4
+          }
+        ],
+        "claimed_total_cost": "5.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [],
+        "clarification_requests": [],
+        "approval_refs": []
+      },
+      "reason": "concentration breach: single supplier holds 100%"
+    },
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "A",
+            "item_id": "component",
+            "quantity": 3
+          },
+          {
+            "supplier_id": "B",
+            "item_id": "component",
+            "quantity": 1
+          }
+        ],
+        "claimed_total_cost": "5.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [],
+        "clarification_requests": [],
+        "approval_refs": []
+      },
+      "reason": "A holds 4.00 of 5.00 = 0.80"
+    }
+  ],
+  "review": {
+    "status": "arithmetic_checked_practitioner_pending",
+    "practitioner_signoff": false,
+    "reviewed_by_practitioner": false,
+    "awaiting_re_review": true,
+    "values_status": "PROVISIONAL, needs practitioner value",
+    "required_review": [
+      "every numeric policy value and procurement convention in this case"
+    ],
+    "source": "entirely synthetic; no external business records; owner-practitioner review is not independent"
+  },
+  "task": {
+    "task_id": "task-ref-15",
+    "concentration_measures": []
+  },
+  "changed_from_v1_1": [
+    "Cost tolerance is now tiered by optimum cost relative to the reference value (3% / 2% / 1%); policy.cost_tolerance_pct removed",
+    "Late-inbound tolerance default is 3 days (was 2 in ref-01, 0 elsewhere); credit 0.50"
+  ]
+}
