@@ -1,0 +1,248 @@
+{
+  "case_id": "ref-16",
+  "rules_version": "1.2",
+  "purpose": "equivalence band and separate non-cost metrics",
+  "rules_exercised": [
+    "C3"
+  ],
+  "request": "Allocate component purchases for equivalence band and separate non-cost metrics; minimize landed cost subject to visible policy (rules 1.2), or submit a supported exception.",
+  "world": {
+    "schema_version": "1.2",
+    "world_id": "ref-16",
+    "seed": 16,
+    "currency": "USD",
+    "calendar": "gregorian",
+    "as_of": "2026-11-02",
+    "items": [
+      {
+        "item_id": "component",
+        "unit": "each",
+        "demand": 10,
+        "due_date": "2026-11-10",
+        "excess_allowance": 0,
+        "critical": false,
+        "moq_excess_allowed": false,
+        "max_excess": null,
+        "service_level": null,
+        "demand_std": null,
+        "lead_time_periods": null,
+        "safety_stock_override": null
+      }
+    ],
+    "stock": [],
+    "inbound": [],
+    "suppliers": [
+      {
+        "supplier_id": "A",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": "0.80"
+      },
+      {
+        "supplier_id": "B",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": "0.95"
+      },
+      {
+        "supplier_id": "C",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": "0.99"
+      }
+    ],
+    "quotes": [
+      {
+        "supplier_id": "A",
+        "item_id": "component",
+        "unit_price": "5.00",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": "0.40"
+      },
+      {
+        "supplier_id": "B",
+        "item_id": "component",
+        "unit_price": "5.04",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": "0.20"
+      },
+      {
+        "supplier_id": "C",
+        "item_id": "component",
+        "unit_price": "5.20",
+        "variable_freight": "0.00",
+        "capacity": 10,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": "0.05"
+      }
+    ],
+    "constraints": {
+      "budget": "100.00",
+      "concentration": [],
+      "approval_limit": null
+    },
+    "policy": {
+      "late_inbound_tolerance_days": 3,
+      "late_inbound_credit": "0.50",
+      "cost_tolerance_abs": "0.25",
+      "cost_tolerance_reference_value": "100.00",
+      "cost_tolerance_tiers": [
+        {
+          "from_ratio": "0",
+          "pct": "0.03"
+        },
+        {
+          "from_ratio": "0.5",
+          "pct": "0.02"
+        },
+        {
+          "from_ratio": "5",
+          "pct": "0.01"
+        }
+      ],
+      "moq_excess_approval_threshold": "500.00"
+    },
+    "visibility": {
+      "classification": "public_synthetic"
+    },
+    "approvals": []
+  },
+  "expected": {
+    "submission": {
+      "kind": "award",
+      "allocations": [
+        {
+          "supplier_id": "A",
+          "item_id": "component",
+          "quantity": 10
+        }
+      ],
+      "claimed_total_cost": "50.00",
+      "evidence": [
+        "Visible quotation and policy records"
+      ],
+      "flags": [],
+      "clarification_requests": [],
+      "approval_refs": []
+    },
+    "optimal_cost": "50.00",
+    "calculation": "A: 50.00 (optimum, exactly at the 50.00 tier bound, so the 2% tier applies: band 1.00). B: 50.40, gap 0.40 is above the absolute band 0.25 but within 2% of 50.00 = 1.00, so equivalent-to-optimal. C: 52.00, gap 2.00 exceeds both 0.25 and 1.00, suboptimal. Reliability and lead-time risk are reported beside cost, never combined.",
+    "expected_outcome": "award",
+    "valid_alternatives": [
+      {
+        "submission": {
+          "kind": "award",
+          "allocations": [
+            {
+              "supplier_id": "B",
+              "item_id": "component",
+              "quantity": 10
+            }
+          ],
+          "claimed_total_cost": "50.40",
+          "evidence": [
+            "Visible quotation and policy records"
+          ],
+          "flags": [],
+          "clarification_requests": [],
+          "approval_refs": []
+        },
+        "status": "equivalent_to_optimal",
+        "cost": "50.40",
+        "note": "inside the 2% tier band (1.00)"
+      },
+      {
+        "submission": {
+          "kind": "award",
+          "allocations": [
+            {
+              "supplier_id": "C",
+              "item_id": "component",
+              "quantity": 10
+            }
+          ],
+          "claimed_total_cost": "52.00",
+          "evidence": [
+            "Visible quotation and policy records"
+          ],
+          "flags": [],
+          "clarification_requests": [],
+          "approval_refs": []
+        },
+        "status": "suboptimal",
+        "cost": "52.00",
+        "note": "best reliability but outside band; still feasible"
+      }
+    ]
+  },
+  "known_wrong": [
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "B",
+            "item_id": "component",
+            "quantity": 10
+          }
+        ],
+        "claimed_total_cost": "50.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [],
+        "clarification_requests": [],
+        "approval_refs": []
+      },
+      "reason": "claimed cost does not match B: 50.40"
+    }
+  ],
+  "review": {
+    "status": "arithmetic_checked_practitioner_pending",
+    "practitioner_signoff": false,
+    "reviewed_by_practitioner": false,
+    "awaiting_re_review": true,
+    "values_status": "PROVISIONAL, needs practitioner value",
+    "required_review": [
+      "every numeric policy value and procurement convention in this case"
+    ],
+    "source": "entirely synthetic; no external business records; owner-practitioner review is not independent"
+  },
+  "task": {
+    "task_id": "task-ref-16",
+    "concentration_measures": []
+  },
+  "changed_from_v1_1": [
+    "Cost tolerance is now tiered by optimum cost relative to the reference value (3% / 2% / 1%); policy.cost_tolerance_pct removed",
+    "Late-inbound tolerance default is 3 days (was 2 in ref-01, 0 elsewhere); credit 0.50",
+    "Fractional band now 2% (optimum exactly at the 50.00 tier bound) instead of a fixed 1%"
+  ]
+}

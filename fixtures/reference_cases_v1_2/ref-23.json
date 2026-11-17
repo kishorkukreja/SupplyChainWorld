@@ -1,0 +1,252 @@
+{
+  "case_id": "ref-23",
+  "rules_version": "1.2",
+  "purpose": "service-level safety stock rounded up",
+  "rules_exercised": [
+    "C1"
+  ],
+  "request": "Allocate component purchases for service-level safety stock rounded up; minimize landed cost subject to visible policy (rules 1.2), or submit a supported exception.",
+  "task": {
+    "task_id": "task-ref-23",
+    "concentration_measures": []
+  },
+  "changed_from_v1_1": [
+    "New: service-level safety stock at 97.5% (z 1.9600) with a fractional result rounded up"
+  ],
+  "world": {
+    "schema_version": "1.2",
+    "world_id": "ref-23",
+    "seed": 23,
+    "currency": "USD",
+    "calendar": "gregorian",
+    "as_of": "2026-11-02",
+    "items": [
+      {
+        "item_id": "component",
+        "unit": "each",
+        "demand": 2,
+        "due_date": "2026-11-10",
+        "excess_allowance": 0,
+        "service_level": "0.975",
+        "demand_std": "2.5",
+        "lead_time_periods": "4",
+        "safety_stock_override": null,
+        "critical": false,
+        "moq_excess_allowed": false,
+        "max_excess": null
+      }
+    ],
+    "stock": [
+      {
+        "item_id": "component",
+        "quantity": 1,
+        "status": "usable"
+      }
+    ],
+    "inbound": [],
+    "suppliers": [
+      {
+        "supplier_id": "A",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": null
+      },
+      {
+        "supplier_id": "B",
+        "fixed_charge": "0.00",
+        "fixed_charge_basis": "flat",
+        "fixed_charge_table": [],
+        "reliability_score": null
+      }
+    ],
+    "quotes": [
+      {
+        "supplier_id": "A",
+        "item_id": "component",
+        "unit_price": "2.00",
+        "variable_freight": "0.00",
+        "capacity": 14,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      },
+      {
+        "supplier_id": "B",
+        "item_id": "component",
+        "unit_price": "3.00",
+        "variable_freight": "0.00",
+        "capacity": 14,
+        "moq": 1,
+        "multiple": 1,
+        "qualified": true,
+        "valid_from": "2026-01-01",
+        "valid_to": "2026-12-31",
+        "arrival_date": "2026-11-09",
+        "last_known_unit_price": null,
+        "last_known_variable_freight": null,
+        "lead_time_risk": null
+      }
+    ],
+    "constraints": {
+      "budget": "100.00",
+      "concentration": [],
+      "approval_limit": null
+    },
+    "policy": {
+      "late_inbound_tolerance_days": 3,
+      "late_inbound_credit": "0.50",
+      "cost_tolerance_abs": "0",
+      "cost_tolerance_reference_value": "100.00",
+      "cost_tolerance_tiers": [
+        {
+          "from_ratio": "0",
+          "pct": "0.03"
+        },
+        {
+          "from_ratio": "0.5",
+          "pct": "0.02"
+        },
+        {
+          "from_ratio": "5",
+          "pct": "0.01"
+        }
+      ],
+      "moq_excess_approval_threshold": "500.00"
+    },
+    "approvals": [],
+    "visibility": {
+      "classification": "public_synthetic"
+    }
+  },
+  "expected": {
+    "submission": {
+      "kind": "award",
+      "allocations": [
+        {
+          "supplier_id": "A",
+          "item_id": "component",
+          "quantity": 11
+        }
+      ],
+      "claimed_total_cost": "22.00",
+      "evidence": [
+        "Visible quotation and policy records"
+      ],
+      "flags": [],
+      "clarification_requests": [],
+      "approval_refs": []
+    },
+    "optimal_cost": "22.00",
+    "calculation": "Safety stock = ceil(z(97.5%) x std x sqrt(lead)) = ceil(1.9600 x 2.5 x sqrt(4)) = ceil(9.8) = 10. Net = 2 demand + 10 safety - 1 usable = 11. A11 = 22.00; B11 = 33.00; A10+B1 = 23.00 (gap 1.00 > 3% tier band 0.66). Optimum 22.00.",
+    "expected_outcome": "award",
+    "valid_alternatives": [
+      {
+        "submission": {
+          "kind": "award",
+          "allocations": [
+            {
+              "supplier_id": "A",
+              "item_id": "component",
+              "quantity": 10
+            },
+            {
+              "supplier_id": "B",
+              "item_id": "component",
+              "quantity": 1
+            }
+          ],
+          "claimed_total_cost": "23.00",
+          "evidence": [
+            "Visible quotation and policy records"
+          ],
+          "flags": [],
+          "clarification_requests": [],
+          "approval_refs": []
+        },
+        "status": "suboptimal",
+        "cost": "23.00",
+        "note": "feasible mix; gap 1.00 exceeds the 3% tier band 0.66"
+      }
+    ]
+  },
+  "known_wrong": [
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "A",
+            "item_id": "component",
+            "quantity": 10
+          }
+        ],
+        "claimed_total_cost": "20.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [],
+        "clarification_requests": [],
+        "approval_refs": []
+      },
+      "reason": "floor instead of ceiling: safety stock 9 gives net 10, below the true net 11"
+    },
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "A",
+            "item_id": "component",
+            "quantity": 1
+          }
+        ],
+        "claimed_total_cost": "2.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [],
+        "clarification_requests": [],
+        "approval_refs": []
+      },
+      "reason": "ignores safety stock: net 1 instead of 11"
+    },
+    {
+      "submission": {
+        "kind": "award",
+        "allocations": [
+          {
+            "supplier_id": "A",
+            "item_id": "component",
+            "quantity": 12
+          }
+        ],
+        "claimed_total_cost": "24.00",
+        "evidence": [
+          "Visible quotation and policy records"
+        ],
+        "flags": [],
+        "clarification_requests": [],
+        "approval_refs": []
+      },
+      "reason": "excess of 1 over net 11 with no allowance"
+    }
+  ],
+  "review": {
+    "status": "arithmetic_checked_practitioner_pending",
+    "practitioner_signoff": false,
+    "reviewed_by_practitioner": false,
+    "awaiting_re_review": true,
+    "values_status": "PROVISIONAL, needs practitioner value",
+    "required_review": [
+      "every numeric policy value and procurement convention in this case"
+    ],
+    "source": "entirely synthetic; no external business records; owner-practitioner review is not independent"
+  }
+}
