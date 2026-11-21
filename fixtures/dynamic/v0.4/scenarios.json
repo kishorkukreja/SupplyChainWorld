@@ -1,0 +1,396 @@
+{
+ "basis": "Synthetic S01 v0.4 family fixtures (issue #36, round 3). EVERY number is PROVISIONAL, needs practitioner value. Not reviewed by a practitioner. Penalty rate for percent_of_value is in basis points (150 = 1.5% per day). Alternate-supplier unit cost is the premium over the primary unit cost only; the base purchase cost of a recovery lot is cost-neutral and alternate-bought surplus earns no salvage (unresolved assumption, see docs/acceptance/dynamic-v0.4-provisional-values.md).",
+ "fixtures": [
+  {
+   "fixture_id": "s04-sudden-5d",
+   "horizon_days": 5,
+   "disruption_class": "sudden",
+   "scenario": {
+    "opening_components": 4,
+    "daily_capacity": 4,
+    "primary_quantity": 8,
+    "alternate_max_units": 8,
+    "recovery_budget": 40,
+    "base_unit_cost": 10,
+    "part_class": "standard",
+    "salvage_pct_by_class": {
+     "standard": 60,
+     "custom": 0
+    },
+    "scenario_id": "s04-sudden-5d",
+    "signal_day": null,
+    "signal_level": null,
+    "primary_promised_day": 2,
+    "notice_day": 1,
+    "delay_outcome": "delay",
+    "delayed_arrival_day": 4,
+    "expedite_card": [
+     [
+      1,
+      40,
+      2
+     ],
+     [
+      2,
+      50,
+      3
+     ]
+    ],
+    "alternate_card": [
+     [
+      1,
+      30,
+      2
+     ],
+     [
+      2,
+      40,
+      3
+     ]
+    ],
+    "tiers": [
+     {
+      "tier": "key",
+      "weight": 5,
+      "on_shortfall": "backlog",
+      "cancel_days_after_due": null
+     }
+    ],
+    "orders": [
+     {
+      "order_id": "O1",
+      "tier": "key",
+      "quantity": 12,
+      "due_day": 3,
+      "unit_value": 100,
+      "penalty_type": "percent_of_value",
+      "penalty_rate": 150,
+      "penalty_cap_pct": 20
+     }
+    ]
+   }
+  },
+  {
+   "fixture_id": "s04-warned-delayed-10d",
+   "horizon_days": 10,
+   "disruption_class": "warned",
+   "scenario": {
+    "opening_components": 4,
+    "daily_capacity": 4,
+    "primary_quantity": 8,
+    "alternate_max_units": 8,
+    "recovery_budget": 40,
+    "base_unit_cost": 10,
+    "part_class": "custom",
+    "salvage_pct_by_class": {
+     "standard": 60,
+     "custom": 0
+    },
+    "scenario_id": "s04-warned-delayed-10d",
+    "signal_day": 1,
+    "signal_level": "medium",
+    "primary_promised_day": 3,
+    "notice_day": 2,
+    "delay_outcome": "delay",
+    "delayed_arrival_day": 6,
+    "expedite_card": [
+     [
+      1,
+      40,
+      2
+     ],
+     [
+      2,
+      50,
+      3
+     ],
+     [
+      3,
+      60,
+      4
+     ]
+    ],
+    "alternate_card": [
+     [
+      1,
+      30,
+      3
+     ],
+     [
+      2,
+      40,
+      4
+     ],
+     [
+      3,
+      50,
+      5
+     ]
+    ],
+    "tiers": [
+     {
+      "tier": "key",
+      "weight": 5,
+      "on_shortfall": "backlog",
+      "cancel_days_after_due": null
+     }
+    ],
+    "orders": [
+     {
+      "order_id": "O1",
+      "tier": "key",
+      "quantity": 12,
+      "due_day": 4,
+      "unit_value": 100,
+      "penalty_type": "percent_of_value",
+      "penalty_rate": 150,
+      "penalty_cap_pct": 20
+     }
+    ]
+   }
+  },
+  {
+   "fixture_id": "s04-warned-no-delay-10d",
+   "horizon_days": 10,
+   "disruption_class": "warned",
+   "scenario": {
+    "opening_components": 4,
+    "daily_capacity": 4,
+    "primary_quantity": 8,
+    "alternate_max_units": 8,
+    "recovery_budget": 40,
+    "base_unit_cost": 10,
+    "part_class": "custom",
+    "salvage_pct_by_class": {
+     "standard": 60,
+     "custom": 0
+    },
+    "scenario_id": "s04-warned-no-delay-10d",
+    "signal_day": 1,
+    "signal_level": "medium",
+    "primary_promised_day": 3,
+    "notice_day": 2,
+    "delay_outcome": "none",
+    "delayed_arrival_day": null,
+    "expedite_card": [
+     [
+      1,
+      40,
+      2
+     ],
+     [
+      2,
+      50,
+      3
+     ],
+     [
+      3,
+      60,
+      4
+     ]
+    ],
+    "alternate_card": [
+     [
+      1,
+      30,
+      3
+     ],
+     [
+      2,
+      40,
+      4
+     ],
+     [
+      3,
+      50,
+      5
+     ]
+    ],
+    "tiers": [
+     {
+      "tier": "key",
+      "weight": 5,
+      "on_shortfall": "backlog",
+      "cancel_days_after_due": null
+     }
+    ],
+    "orders": [
+     {
+      "order_id": "O1",
+      "tier": "key",
+      "quantity": 12,
+      "due_day": 4,
+      "unit_value": 100,
+      "penalty_type": "percent_of_value",
+      "penalty_rate": 150,
+      "penalty_cap_pct": 20
+     }
+    ]
+   }
+  },
+  {
+   "fixture_id": "s04-multitier-cancel-10d",
+   "horizon_days": 10,
+   "disruption_class": "sudden",
+   "scenario": {
+    "opening_components": 4,
+    "daily_capacity": 4,
+    "primary_quantity": 8,
+    "alternate_max_units": 8,
+    "recovery_budget": 40,
+    "base_unit_cost": 10,
+    "part_class": "standard",
+    "salvage_pct_by_class": {
+     "standard": 60,
+     "custom": 0
+    },
+    "scenario_id": "s04-multitier-cancel-10d",
+    "signal_day": null,
+    "signal_level": null,
+    "primary_promised_day": 2,
+    "notice_day": 1,
+    "delay_outcome": "delay",
+    "delayed_arrival_day": 5,
+    "expedite_card": [
+     [
+      1,
+      40,
+      2
+     ],
+     [
+      2,
+      50,
+      3
+     ],
+     [
+      3,
+      60,
+      4
+     ]
+    ],
+    "alternate_card": [
+     [
+      1,
+      30,
+      3
+     ],
+     [
+      2,
+      40,
+      4
+     ],
+     [
+      3,
+      50,
+      5
+     ]
+    ],
+    "tiers": [
+     {
+      "tier": "key",
+      "weight": 5,
+      "on_shortfall": "backlog",
+      "cancel_days_after_due": null
+     },
+     {
+      "tier": "standard",
+      "weight": 1,
+      "on_shortfall": "cancel_after",
+      "cancel_days_after_due": 6
+     }
+    ],
+    "orders": [
+     {
+      "order_id": "K1",
+      "tier": "key",
+      "quantity": 8,
+      "due_day": 3,
+      "unit_value": 100,
+      "penalty_type": "fixed_per_unit",
+      "penalty_rate": 6,
+      "penalty_cap_pct": 20
+     },
+     {
+      "order_id": "S1",
+      "tier": "standard",
+      "quantity": 8,
+      "due_day": 3,
+      "unit_value": 80,
+      "penalty_type": "percent_of_value",
+      "penalty_rate": 150,
+      "penalty_cap_pct": 20
+     }
+    ]
+   }
+  },
+  {
+   "fixture_id": "s04-alt-cheaper-10d",
+   "horizon_days": 10,
+   "disruption_class": "sudden",
+   "scenario": {
+    "opening_components": 4,
+    "daily_capacity": 4,
+    "primary_quantity": 8,
+    "alternate_max_units": 8,
+    "recovery_budget": 40,
+    "base_unit_cost": 10,
+    "part_class": "standard",
+    "salvage_pct_by_class": {
+     "standard": 60,
+     "custom": 0
+    },
+    "scenario_id": "s04-alt-cheaper-10d",
+    "signal_day": null,
+    "signal_level": null,
+    "primary_promised_day": 2,
+    "notice_day": 1,
+    "delay_outcome": "delay",
+    "delayed_arrival_day": 9,
+    "expedite_card": [
+     [
+      1,
+      40,
+      8
+     ],
+     [
+      2,
+      50,
+      8
+     ]
+    ],
+    "alternate_card": [
+     [
+      1,
+      30,
+      3
+     ],
+     [
+      2,
+      40,
+      4
+     ]
+    ],
+    "tiers": [
+     {
+      "tier": "key",
+      "weight": 5,
+      "on_shortfall": "backlog",
+      "cancel_days_after_due": null
+     }
+    ],
+    "orders": [
+     {
+      "order_id": "O1",
+      "tier": "key",
+      "quantity": 12,
+      "due_day": 3,
+      "unit_value": 100,
+      "penalty_type": "percent_of_value",
+      "penalty_rate": 150,
+      "penalty_cap_pct": 20
+     }
+    ]
+   }
+  }
+ ]
+}
