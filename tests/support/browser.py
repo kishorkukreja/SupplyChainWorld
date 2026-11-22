@@ -116,10 +116,10 @@ class BrowserTestCase(unittest.TestCase):
         response = self.page.goto(f'{self._server.base_url}/{relative_path}')
         self.assertTrue(response and response.ok, f'{relative_path} did not load: {response and response.status}')
 
-    def screenshot(self, name):
-        """Save a REAL full-page screenshot and return its path (never synthesized)."""
+    def screenshot(self, name, full_page=True):
+        """Save a REAL screenshot (full page by default) and return its path (never synthesized)."""
         path = OUTPUT_DIR / f'{name}.png'
-        self.page.screenshot(path=str(path), full_page=True)
+        self.page.screenshot(path=str(path), full_page=full_page)
         self.assertGreater(path.stat().st_size, 1000, 'screenshot looks empty')
         return path
 

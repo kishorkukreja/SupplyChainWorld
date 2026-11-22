@@ -1,0 +1,5 @@
+Command: SCW_REQUIRE_BROWSER=1 SCW_CHROMIUM_PATH=<chromium> PYTHONHASHSEED=0 PYTHONPATH=src python -m unittest discover -s tests -v (Python 3.13 sandbox)
+Result: Ran 840 tests in 336.805s, OK (skipped=12)
+Wall time measured on this machine: 338 s (baseline before the audit: about 45 s). CI duration is not guessed.
+The 12 skips are v0.4 and v0.5 verifier tests that need fixes D2 to D6, which are open there because
+dynamic_verifier_v4.py is frozen by the first diagnostic run manifest. They are skips, not passes.

@@ -307,10 +307,14 @@ def scripted_policy(policy):
     if policy not in ('maintain', 'expedite', 'alternate'):
         raise ValueError('unknown policy')
 
+    tried = {'recovery': False}   # a refused recovery (for example over budget) is not retried forever
+
     def agent(view):
         state, rules = view['state'], view['rules']
         offers = rules.get('recovery_offers')
-        if state['notices'] and state['recovery'] is None and offers and state['day'] <= offers['deadline_day']:
+        if state['notices'] and state['recovery'] is None and offers and state['day'] <= offers['deadline_day'] \
+                and not tried['recovery']:
+            tried['recovery'] = True
             return {'tool': 'commit_recovery', 'arguments': {'choice': policy}}
         if state['scheduled_production'] is None:
             quantity = min(rules['capacity'], state['component_on_hand'], rules['required'] - state['produced_total'])

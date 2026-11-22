@@ -44,7 +44,7 @@ _STATE_KEYS = ('schema_version', 'scenario_id', 'day', 'phase', 'component_on_ha
                'finished_on_hand', 'produced_total', 'delivered_total',
                'primary_arrival_day', 'primary_received', 'alternate_arrival_day',
                'alternate_received', 'recovery', 'incremental_spend', 'penalties',
-               'scheduled_production')
+               'scheduled_production', 'horizon_days', 'notices')
 _SELF_REPORT_KEYS = ('passed', 'pass', 'valid', 'verified', 'ok', 'checked', 'status')
 
 
@@ -67,6 +67,16 @@ class Report:
 
 
 def _config(raw):
+    """Validate a scenario. Anything malformed surfaces as ScenarioError, never as a bare TypeError or KeyError."""
+    try:
+        return _config_unchecked(raw)
+    except ScenarioError:
+        raise
+    except (TypeError, KeyError, AttributeError, IndexError) as exc:
+        raise ScenarioError(f'malformed scenario: {type(exc).__name__}: {exc}') from exc
+
+
+def _config_unchecked(raw):
     if is_dataclass(raw) and not isinstance(raw, type):
         raw = asdict(raw)
     if not isinstance(raw, dict):
@@ -129,7 +139,9 @@ class _Ledger:
                 'primary_received': self.primary_in, 'alternate_arrival_day': self.alt_day,
                 'alternate_received': self.alt_in, 'recovery': self.recovery,
                 'incremental_spend': self.spend, 'penalties': self.pen,
-                'scheduled_production': self.sched}
+                'scheduled_production': self.sched, 'horizon_days': self.h,
+                'notices': ([f"Primary PO delayed from day {self.c['initially_promised_day']} to day {self.c['delayed_arrival_day']}"]
+                            if self.noticed else [])}
 
     def emit(self, kind, details, accepted=True):
         self.events.append({'day': self.day, 'kind': kind, 'details': details,
@@ -150,12 +162,14 @@ class _Ledger:
             self.row_receipts += c['alternate_quantity']
             self.receipts.append((self.day, 'alternate', c['alternate_quantity']))
             self.emit('receipt', {'order': 'alternate', 'quantity': c['alternate_quantity']})
+        self.emit('opening_before_notice', {})
         if c['disruption_enabled'] and self.day == c['delay_notice_day']:
             self.noticed = True
             self.notice_day = self.day
             self.primary_day = c['delayed_arrival_day']
             self.emit('notice', {'original_day': c['initially_promised_day'],
                                  'revised_day': c['delayed_arrival_day']})
+        self.emit('day_open', {})
 
     # Each legality check returns a violation code or None. Order is not significant.
     def check_recovery(self, choice):
@@ -231,6 +245,7 @@ class _Ledger:
 
 def _diff(expected, claimed):
     out = []
+    claimed = claimed if isinstance(claimed, dict) else {}     # a non-mapping state is a mismatch, not a crash
     for key in _STATE_KEYS:
         if expected.get(key) != (claimed or {}).get(key, '<missing>'):
             out.append(f"state.{key}: expected {expected.get(key)!r}, claimed {(claimed or {}).get(key, '<missing>')!r}")
@@ -266,6 +281,50 @@ def _conservation(cfg, claimed, violations):
             _add(violations, 'malformed_event', day, 'claimed state lacks required numeric fields')
 
 
+_OPENING = ('opening_before_notice', 'day_open')
+
+
+def _check_opening(led, claimed, violations):
+    """Opening records must match the ledger's opening states (they were previously not looked at at all)."""
+    exp = [e for e in led.events if e['kind'] in _OPENING]
+    got = [e for e in claimed if e.get('kind') in _OPENING]
+    for i in range(max(len(exp), len(got))):
+        if i >= len(got):
+            _add(violations, 'missing_event', exp[i]['day'], f"expected {exp[i]['kind']} on day {exp[i]['day']} is absent")
+            continue
+        if i >= len(exp):
+            _add(violations, 'unexpected_event', got[i].get('day'), f"recorded {got[i].get('kind')} has no basis in the ledger")
+            continue
+        x, y = exp[i], got[i]
+        if x['kind'] != y.get('kind') or x['day'] != y.get('day') or y.get('accepted') is not True:
+            _add(violations, 'ledger_mismatch', x['day'],
+                 f"opening record {i} ({x['kind']}): expected {x['kind']} on day {x['day']}, claimed {y.get('kind')} on day {y.get('day')}")
+            continue
+        for problem in _diff(x['state'], y.get('state')):
+            _add(violations, 'ledger_mismatch', x['day'], f"opening record {i} ({x['kind']}): {problem}")
+
+
+def _check_order(led, claimed, violations):
+    """Records of the compared kinds must appear in the order the ledger produces them (a pure reordering was silent)."""
+    known = set(_COMPARED) | set(_OPENING)
+    exp = [e['kind'] for e in led.events if e['kind'] in known]
+    got = [e.get('kind') for e in claimed if isinstance(e.get('kind'), str) and e.get('kind') in known]
+    if exp != got:
+        _add(violations, 'ledger_mismatch', None, 'records are out of order compared with the ledger')
+
+
+def _clean_actions(actions, violations):
+    """Keep dict entries (a non-mapping `arguments` or `result` counts as empty, so it is not an accepted command);
+    report entries that are not mappings at all instead of crashing on them."""
+    clean = []
+    for a in actions:
+        if isinstance(a, dict):
+            clean.append({**a, **{k: {} for k in ('arguments', 'result') if a.get(k) is not None and not isinstance(a.get(k), dict)}})
+        else:
+            _add(violations, 'malformed_event', None, 'action log entries must be mappings')
+    return clean
+
+
 def verify_episode(scenario, history, *, horizon_days, scorecard=None, actions=None):
     """Check a recorded episode against the written rules.
 
@@ -282,6 +341,10 @@ def verify_episode(scenario, history, *, horizon_days, scorecard=None, actions=N
     claimed = [e for e in history if isinstance(e, dict)]
     if len(claimed) != len(history):
         _add(violations, 'malformed_event', None, 'non-mapping entries in history')
+    for i, e in enumerate(claimed):
+        if e.get('details') is not None and not isinstance(e.get('details'), dict):
+            _add(violations, 'malformed_event', e.get('day'), 'event details must be a mapping')
+            claimed[i] = {**e, 'details': {}}
     for e in claimed:
         for key in _SELF_REPORT_KEYS:
             if key in e and key not in ignored:
@@ -363,6 +426,9 @@ def verify_episode(scenario, history, *, horizon_days, scorecard=None, actions=N
             code = 'receipt_timing_or_quantity' if x['kind'] == 'receipt' else 'ledger_mismatch'
             _add(violations, code, x['day'], f"event {i} ({x['kind']}): {p}")
     _conservation(cfg, claimed, violations)
+    _check_opening(led, claimed, violations)
+    if not violations:
+        _check_order(led, claimed, violations)
 
     # Derived metrics. None means the configured horizon never observed the quantity.
     closed = len(led.rows)
@@ -403,6 +469,7 @@ def verify_episode(scenario, history, *, horizon_days, scorecard=None, actions=N
                     _add(violations, 'scorecard_mismatch', None,
                          f"{key}: derived {derived.get(key, '<absent>')!r}, claimed {scorecard.get(key, '<missing>')!r}")
     if actions is not None:
+        actions = _clean_actions(actions, violations)
         mine = [(e.get('day'), e['kind'], (e.get('details') or {}).get('choice', (e.get('details') or {}).get('quantity')))
                 for e in claimed if e.get('kind') in ('recovery', 'release') and e.get('accepted') is True]
         theirs = [(a.get('day'), a.get('kind'), (a.get('arguments') or {}).get('choice', (a.get('arguments') or {}).get('quantity')))
