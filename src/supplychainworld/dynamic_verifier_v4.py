@@ -27,8 +27,10 @@ _SCENARIO_FIELDS = ('scenario_id', 'opening_components', 'daily_capacity', 'prim
 _COMMANDS = ('recovery', 'release', 'day_close', 'close_day')
 _COMPARED = ('receipt', 'signal', 'notice', 'recovery', 'release', 'day_close', 'close_day', 'episode_complete')
 _SCALARS = ('day', 'phase', 'component_on_hand', 'finished_on_hand', 'produced_total', 'delivered_total',
-            'cancelled_total', 'incremental_spend', 'penalties', 'salvage_credit', 'scheduled_production')
-_ORDER_KEYS = ('order_id', 'delivered', 'cancelled', 'status', 'penalty_total', 'on_time_units')
+            'cancelled_total', 'incremental_spend', 'penalties', 'salvage_credit', 'scheduled_production',
+            'horizon_days', 'open_demand', 'scenario_id')
+_ORDER_KEYS = ('order_id', 'tier', 'quantity', 'due_day', 'delivered', 'cancelled', 'status', 'penalty_total',
+               'unit_days_late', 'days_short', 'on_time_units')
 _SELF_REPORT_KEYS = ('passed', 'pass', 'valid', 'verified', 'ok', 'checked', 'status')
 SIGNAL_TEXT = 'Possible delay on the primary PO (qualitative level, not a commitment)'
 SIGNAL_LEVELS = ('low', 'medium', 'high')
@@ -59,6 +61,16 @@ def _isint(v, lo=0):
 
 
 def _config(raw):
+    """Validate a scenario. Anything malformed surfaces as ScenarioError, never as a bare TypeError or KeyError."""
+    try:
+        return _config_unchecked(raw)
+    except ScenarioError:
+        raise
+    except (TypeError, KeyError, AttributeError, IndexError) as exc:
+        raise ScenarioError(f'malformed scenario: {type(exc).__name__}: {exc}') from exc
+
+
+def _config_unchecked(raw):
     if not isinstance(raw, dict):
         if hasattr(raw, 'to_dict'):
             raw = raw.to_dict()
@@ -157,7 +169,8 @@ class _Ledger:
         return {'day': self.day, 'phase': self.phase, 'component_on_hand': self.comp, 'finished_on_hand': self.fin,
                 'produced_total': self.produced, 'delivered_total': self.delivered, 'cancelled_total': self.cancelled,
                 'incremental_spend': self.spend, 'penalties': self.pen, 'salvage_credit': self.salvage,
-                'scheduled_production': self.sched,
+                'scheduled_production': self.sched, 'horizon_days': self.h, 'open_demand': self.demand(),
+                'scenario_id': self.c['scenario_id'],
                 'lots': [dict(x) for x in self.lots],
                 'orders': [{k: o[k] for k in _ORDER_KEYS} for o in self.ord],
                 'commitments': [dict(x) for x in self.commits],
@@ -176,6 +189,7 @@ class _Ledger:
                 self.comp += lot['quantity']
                 self.row_receipts += lot['quantity']
                 self.emit('receipt', {'lot': lot['lot_id'], 'source': lot['source'], 'quantity': lot['quantity']})
+        self.emit('opening_before_notice', {})
         if c['signal_day'] == self.day:
             self.signals.append({'day': self.day, 'level': c['signal_level'], 'text': SIGNAL_TEXT})
             self.emit('signal', {'level': c['signal_level']})
@@ -192,6 +206,7 @@ class _Ledger:
                 text = f"Primary PO confirmed on time for day {d['promised_day']}"
             self.notices.append({'day': self.day, **d, 'text': text})
             self.emit('notice', d)
+        self.emit('day_open', {})
 
     # ---- offers (price and arrival are read from the rate card for the commit day)
     def offer(self, choice):
@@ -459,6 +474,53 @@ def _flat(prefix, node, out):
         out[prefix] = node
 
 
+_OPENING = ('opening_before_notice', 'day_open')
+
+
+def _check_opening(led, claimed, violations):
+    """Opening records must match the ledger's opening states (they were previously not looked at at all)."""
+    exp = [e for e in led.events if e['kind'] in _OPENING]
+    got = [e for e in claimed if e.get('kind') in _OPENING]
+    for i in range(max(len(exp), len(got))):
+        if i >= len(got):
+            _add(violations, 'missing_event', exp[i]['day'], f"expected {exp[i]['kind']} on day {exp[i]['day']} is absent")
+            continue
+        if i >= len(exp):
+            _add(violations, 'unexpected_event', got[i].get('day'), f"recorded {got[i].get('kind')} has no basis in the ledger")
+            continue
+        x, y = exp[i], got[i]
+        label = f"opening record {i} ({x['kind']})"
+        if x['kind'] != y.get('kind') or x['day'] != y.get('day') or y.get('accepted') is not True:
+            _add(violations, 'ledger_mismatch', x['day'],
+                 f"{label}: expected {x['kind']} on day {x['day']}, claimed {y.get('kind')} on day {y.get('day')}")
+            continue
+        before = len(violations)
+        _diff(x['state'], y.get('state'), violations, x['day'], label)
+        for v in violations[before:]:       # a cascade from an earlier tamper must not add the specific money codes
+            if v['code'] in ('penalty_mismatch', 'spend_mismatch'):
+                v['code'] = 'ledger_mismatch'
+
+
+def _check_order(led, claimed, violations):
+    """Records of the compared kinds must appear in the order the ledger produces them (a pure reordering was silent)."""
+    known = set(_COMPARED) | set(_OPENING)
+    exp = [e['kind'] for e in led.events if e['kind'] in known]
+    got = [e.get('kind') for e in claimed if isinstance(e.get('kind'), str) and e.get('kind') in known]
+    if exp != got:
+        _add(violations, 'ledger_mismatch', None, 'records are out of order compared with the ledger')
+
+
+def _clean_actions(actions, violations):
+    """Keep well-formed action-log entries; report the others instead of crashing on them."""
+    clean = []
+    for a in actions:
+        if isinstance(a, dict) and all(a.get(k) is None or isinstance(a.get(k), dict) for k in ('arguments', 'result')):
+            clean.append(a)
+        else:
+            _add(violations, 'malformed_event', None, 'action log entries must be mappings with mapping arguments and result')
+    return clean
+
+
 def verify_episode(scenario, history, *, horizon_days, scorecard=None, actions=None):
     """Check a recorded episode against the written rules (see module docstring)."""
     cfg = _config(scenario)
@@ -468,6 +530,10 @@ def verify_episode(scenario, history, *, horizon_days, scorecard=None, actions=N
     claimed = [e for e in history if isinstance(e, dict)]
     if len(claimed) != len(history):
         _add(violations, 'malformed_event', None, 'non-mapping entries in history')
+    for i, e in enumerate(claimed):
+        if e.get('details') is not None and not isinstance(e.get('details'), dict):
+            _add(violations, 'malformed_event', e.get('day'), 'event details must be a mapping')
+            claimed[i] = {**e, 'details': {}}
     for e in claimed:
         for key in _SELF_REPORT_KEYS:
             if key in e and key not in ignored:
@@ -556,6 +622,9 @@ def verify_episode(scenario, history, *, horizon_days, scorecard=None, actions=N
             _add(violations, 'ledger_mismatch', x['day'], f"{label}: accepted expected {x['accepted']}, claimed {y.get('accepted')}")
         _diff(x['state'], y.get('state'), violations, x['day'], label)
     _conservation(cfg, claimed, violations)
+    _check_opening(led, claimed, violations)
+    if not violations:
+        _check_order(led, claimed, violations)
 
     closed = len(led.rows)
     due_days = {o['order_id']: o['due_day'] for o in cfg['orders']}
@@ -577,6 +646,7 @@ def verify_episode(scenario, history, *, horizon_days, scorecard=None, actions=N
                     _add(violations, 'scorecard_mismatch', None,
                          f"{key}: derived {a.get(key, '<absent>')!r}, claimed {b.get(key, '<missing>')!r}")
     if actions is not None:
+        actions = _clean_actions(actions, violations)
         pick = lambda d: (d.get('choice'), d.get('quantity'), d.get('commit_id')) if 'choice' in d else d.get('quantity')  # noqa: E731
         mine = [(e.get('day'), e['kind'], pick(e.get('details') or {})) for e in claimed
                 if e.get('kind') in ('recovery', 'release') and e.get('accepted') is True]
