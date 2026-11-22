@@ -1,0 +1,139 @@
+{
+ "fuzz": {
+  "v0.5": {
+   "damaged_scenarios": 1000,
+   "garbage_histories": 1000,
+   "garbage_histories_accepted_as_complete_feasible": 0,
+   "garbage_histories_reported": 689,
+   "malformed_tool_calls": 1000,
+   "scenarios_accepted_by_simulator": 6,
+   "scenarios_refused_by_verifier": 974,
+   "scenarios_refused_cleanly": 994,
+   "tool_calls_rejected": 1000,
+   "tool_calls_state_changed": 0,
+   "verifier_history_crashes": 311,
+   "verifier_scenario_crashes": 1
+  },
+  "v0.6": {
+   "damaged_scenarios": 1000,
+   "garbage_histories": 1000,
+   "garbage_histories_accepted_as_complete_feasible": 0,
+   "garbage_histories_reported": 1000,
+   "malformed_tool_calls": 1000,
+   "scenarios_accepted_by_simulator": 6,
+   "scenarios_refused_by_verifier": 984,
+   "scenarios_refused_cleanly": 994,
+   "tool_calls_rejected": 1000,
+   "tool_calls_state_changed": 0
+  }
+ },
+ "guard": {
+  "calls": 1016,
+  "trips": 0
+ },
+ "mutation": {
+  "v0.5": {
+   "action_log_killed": 487,
+   "action_log_mutants": 487,
+   "by_operation": {
+    "change_kind": {
+     "killed": 513,
+     "mutants": 548
+    },
+    "change_number": {
+     "killed": 267,
+     "mutants": 438
+    },
+    "drop": {
+     "killed": 233,
+     "mutants": 530
+    },
+    "duplicate": {
+     "killed": 247,
+     "mutants": 530
+    },
+    "flip_accepted": {
+     "killed": 270,
+     "mutants": 514
+    },
+    "shift_day": {
+     "killed": 270,
+     "mutants": 559
+    },
+    "swap_adjacent": {
+     "killed": 100,
+     "mutants": 459
+    },
+    "swap_far": {
+     "killed": 473,
+     "mutants": 596
+    }
+   },
+   "episodes": 25,
+   "history_killed": 2373,
+   "history_mutants": 4174,
+   "neutral_not_counted": 663,
+   "scorecard_killed": 500,
+   "scorecard_mutants": 500,
+   "survivors": {
+    "change_number on day_open": 69,
+    "change_number on opening_before_notice": 72,
+    "drop on day_open": 145,
+    "drop on opening_before_notice": 152,
+    "duplicate on day_open": 151,
+    "duplicate on opening_before_notice": 132,
+    "flip_accepted on day_open": 130,
+    "flip_accepted on opening_before_notice": 114,
+    "shift_day on day_open": 146,
+    "shift_day on opening_before_notice": 143,
+    "swap_adjacent on day_close": 99,
+    "swap_adjacent on opening_before_notice": 153
+   }
+  },
+  "v0.6": {
+   "action_log_killed": 484,
+   "action_log_mutants": 484,
+   "by_operation": {
+    "change_kind": {
+     "killed": 582,
+     "mutants": 582
+    },
+    "change_number": {
+     "killed": 448,
+     "mutants": 448
+    },
+    "drop": {
+     "killed": 536,
+     "mutants": 536
+    },
+    "duplicate": {
+     "killed": 553,
+     "mutants": 553
+    },
+    "flip_accepted": {
+     "killed": 512,
+     "mutants": 512
+    },
+    "shift_day": {
+     "killed": 517,
+     "mutants": 517
+    },
+    "swap_adjacent": {
+     "killed": 407,
+     "mutants": 407
+    },
+    "swap_far": {
+     "killed": 614,
+     "mutants": 614
+    }
+   },
+   "episodes": 25,
+   "history_killed": 4169,
+   "history_mutants": 4169,
+   "neutral_not_counted": 688,
+   "scorecard_killed": 500,
+   "scorecard_mutants": 500,
+   "survivors": {}
+  }
+ }
+}
