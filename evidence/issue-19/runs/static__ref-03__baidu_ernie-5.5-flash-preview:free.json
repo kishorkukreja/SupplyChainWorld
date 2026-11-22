@@ -1,0 +1,58 @@
+{
+ "case_id": "ref-03",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2198,
+ "completion_tokens": 1879,
+ "usage_complete": true,
+ "latency_ms_total": 10401.0,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "allocations": [
+   {
+    "item_id": "component",
+    "quantity": 4,
+    "supplier_id": "A"
+   },
+   {
+    "item_id": "component",
+    "quantity": 1,
+    "supplier_id": "B"
+   }
+  ],
+  "approval_refs": [],
+  "claimed_total_cost": "6.00",
+  "clarification_requests": [],
+  "evidence": [
+   "Safety stock: service_level 0.95, z=1.6449, s^2 >= (1.6449*1)^2*1 = 2.7057 -> s=2",
+   "Net requirement = max(0, 4 demand + 2 safety - 1 usable stock - 0 inbound - 0 late credit) = 5",
+   "Both quotes eligible: qualified, within validity, arrival 2026-11-09 <= due 2026-11-10",
+   "Supplier A legal order sizes (multiple 2, moq 3, cap 10): 4,6,8,10; Supplier B legal sizes 1..10",
+   "excess_allowance=0 and moq_excess_allowed=false -> must buy exactly 5 units",
+   "Cheapest feasible: A=4 (4x1.00) + B=1 (1x2.00) = 5 units, total cost 6.00"
+  ],
+  "flags": [],
+  "kind": "award"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "6.00",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

@@ -1,0 +1,57 @@
+{
+ "case_id": "ref-13",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2466,
+ "completion_tokens": 1064,
+ "usage_complete": true,
+ "latency_ms_total": 8953.8,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "allocations": [
+   {
+    "item_id": "P",
+    "quantity": 4,
+    "supplier_id": "B"
+   },
+   {
+    "item_id": "Q",
+    "quantity": 4,
+    "supplier_id": "A"
+   }
+  ],
+  "approval_refs": [],
+  "claimed_total_cost": "8.80",
+  "clarification_requests": [],
+  "evidence": [
+   "Net requirement is 4 units for P and 4 units for Q; no stock or inbound supply is available.",
+   "All quotes are qualified, valid, and arrive on or before the due date.",
+   "The quantity_share concentration limit of 0.50 over P and Q requires no supplier to exceed 4 of the 8 total units.",
+   "Minimum-cost feasible allocation: B supplies 4 P at 1.20 each and A supplies 4 Q at 1.00 each.",
+   "Total cost = 4 x 1.20 + 4 x 1.00 = 8.80, within the 100.00 budget."
+  ],
+  "flags": [],
+  "kind": "award"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "8.80",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

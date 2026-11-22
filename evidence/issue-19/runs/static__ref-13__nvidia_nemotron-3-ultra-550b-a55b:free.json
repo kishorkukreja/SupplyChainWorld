@@ -1,0 +1,58 @@
+{
+ "case_id": "ref-13",
+ "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2967,
+ "completion_tokens": 1771,
+ "usage_complete": true,
+ "latency_ms_total": 29749.9,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "award",
+  "allocations": [
+   {
+    "supplier_id": "A",
+    "item_id": "Q",
+    "quantity": 4
+   },
+   {
+    "supplier_id": "B",
+    "item_id": "P",
+    "quantity": 4
+   }
+  ],
+  "claimed_total_cost": "8.80",
+  "evidence": [
+   "Net requirement P=4, Q=4 (demand 4 each, no stock, no inbound, no safety stock)",
+   "All four quotes eligible: qualified, within validity, arrival 2026-11-09 <= due 2026-11-10",
+   "Concentration limit: quantity_share 0.50 over P,Q => max 4 units per supplier (total 8 units)",
+   "Supplier A cheaper for both items (1.00 vs B's 1.20 for P, 1.50 for Q)",
+   "Optimal: A supplies 4 Q (cost 4.00), B supplies 4 P (cost 4.80), total 8.80",
+   "A share 4/8=0.50, B share 4/8=0.50, within limit"
+  ],
+  "flags": [],
+  "clarification_requests": [],
+  "approval_refs": []
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "8.80",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

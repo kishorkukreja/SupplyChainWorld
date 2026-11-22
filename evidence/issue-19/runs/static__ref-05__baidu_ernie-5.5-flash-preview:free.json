@@ -1,0 +1,52 @@
+{
+ "case_id": "ref-05",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2321,
+ "completion_tokens": 801,
+ "usage_complete": true,
+ "latency_ms_total": 7667.2,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "allocations": [
+   {
+    "item_id": "component",
+    "quantity": 4,
+    "supplier_id": "B"
+   }
+  ],
+  "approval_refs": [],
+  "claimed_total_cost": "8.00",
+  "clarification_requests": [],
+  "evidence": [
+   "Net requirement for component = 4 (demand 4, no stock, no inbound, no safety stock).",
+   "Supplier A quote is not qualified, so ineligible.",
+   "Suppliers B and C are both eligible at 2.00/unit with 0.00 freight and 0.00 fixed charge.",
+   "Allocating all 4 units to B meets the net requirement exactly at minimum cost 8.00.",
+   "Total cost 8.00 is within budget 100.00; no concentration constraints apply."
+  ],
+  "flags": [],
+  "kind": "award"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "8.00",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

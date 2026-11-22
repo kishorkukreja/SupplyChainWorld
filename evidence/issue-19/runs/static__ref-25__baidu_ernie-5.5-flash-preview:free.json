@@ -1,0 +1,51 @@
+{
+ "case_id": "ref-25",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2316,
+ "completion_tokens": 814,
+ "usage_complete": true,
+ "latency_ms_total": 7601.1,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "allocations": [
+   {
+    "item_id": "component",
+    "quantity": 10,
+    "supplier_id": "A"
+   }
+  ],
+  "approval_refs": [],
+  "claimed_total_cost": "49.00",
+  "clarification_requests": [],
+  "evidence": [
+   "Net requirement for component = 10 (demand 10, no safety stock, no stock/inbound).",
+   "All three quotes eligible; A is cheapest at 4.90/unit with capacity 10 and moq 1.",
+   "Award 10 units to A = 10 x 4.90 = 49.00, within budget 200.00 and capacity.",
+   "No concentration constraints; fixed charges are 0.00."
+  ],
+  "flags": [],
+  "kind": "award"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "49.00",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

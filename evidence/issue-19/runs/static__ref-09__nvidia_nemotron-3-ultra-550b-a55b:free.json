@@ -1,0 +1,41 @@
+{
+ "case_id": "ref-09",
+ "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2625,
+ "completion_tokens": 1588,
+ "usage_complete": true,
+ "latency_ms_total": 24583.5,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "clarification",
+  "field": "quotes.A.component.variable_freight",
+  "disposition": "record_and_escalate",
+  "evidence": [
+   "Supplier A quote for component has missing variable_freight with no last_known_variable_freight available for estimation",
+   "Supplier B quote for component has missing unit_price with no last_known_unit_price available for estimation",
+   "Net requirement is 4 units, no complete quotes available to cover demand"
+  ]
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "clarification",
+  "expected_kind": "clarification",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": null,
+  "optimality": null,
+  "objective_gap": null,
+  "objective_gap_pct": null
+ }
+}

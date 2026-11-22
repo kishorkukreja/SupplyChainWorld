@@ -1,0 +1,41 @@
+{
+ "case_id": "ref-09",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2183,
+ "completion_tokens": 2362,
+ "usage_complete": true,
+ "latency_ms_total": 15596.5,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "disposition": "record_and_escalate",
+  "evidence": [
+   "Net requirement for component is 4.",
+   "Eligible quote A for component has null variable_freight and no last_known_variable_freight, so the estimate path is unavailable.",
+   "Eligible quote B for component has null unit_price and no last_known_unit_price, so no award is acceptable."
+  ],
+  "field": "quotes.A.component.variable_freight",
+  "kind": "clarification"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "clarification",
+  "expected_kind": "clarification",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": null,
+  "optimality": null,
+  "objective_gap": null,
+  "objective_gap_pct": null
+ }
+}

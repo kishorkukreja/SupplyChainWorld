@@ -1,0 +1,48 @@
+{
+ "case_id": "ref-01",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2755,
+ "completion_tokens": 2172,
+ "usage_complete": true,
+ "latency_ms_total": 15922.9,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "award",
+  "allocations": [
+   {
+    "supplier_id": "A",
+    "item_id": "component",
+    "quantity": 8
+   }
+  ],
+  "claimed_total_cost": "16.00",
+  "evidence": "[\"Net requirement = max(0, 10 demand + 3 safety stock - 2 usable stock - 1 inbound by due date - 2 late credit) = 8; held stock of 50 excluded\"], [\"Safety stock: z=1.6449 for 95%, s*s >= (1.6449*1)^2*2 = 5.41139202, smallest whole s = 3\"], [\"Late credit: 4 units arriving 2026-11-13 (3 days after due date, within tolerance 3) x 0.50 = 2 units; 2026-11-14 arrival too late\"], [\"Quotes A and B both eligible (qualified, valid 2026-01-01..2026-12-31, arrival 2026-11-09 <= due 2026-11-10); A costs 2.00/unit vs B 3.00/unit\"], [\"Buy 8 from A: 8 x 2.00 = 16.00 plus flat fixed charge 0.00 = 16.00 <= budget 100.00; no concentration constraints apply\"], [\"Buying exactly net requirement 8 with excess_allowance 0 and moq_excess_allowed false, so no moq_excess flag needed\"]]",
+  "flags": [],
+  "clarification_requests": [],
+  "approval_refs": []
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": false,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": false,
+  "hard_failures": [
+   "schema_validation"
+  ],
+  "feasible": false,
+  "independent_cost": null,
+  "optimality": null,
+  "objective_gap": null,
+  "objective_gap_pct": null
+ }
+}

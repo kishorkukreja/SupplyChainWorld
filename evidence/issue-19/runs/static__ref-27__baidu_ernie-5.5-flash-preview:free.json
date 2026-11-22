@@ -1,0 +1,53 @@
+{
+ "case_id": "ref-27",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2317,
+ "completion_tokens": 800,
+ "usage_complete": true,
+ "latency_ms_total": 7773.5,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "allocations": [
+   {
+    "item_id": "component",
+    "quantity": 2,
+    "supplier_id": "A"
+   }
+  ],
+  "approval_refs": [],
+  "claimed_total_cost": "499.00",
+  "clarification_requests": [],
+  "evidence": [
+   "Net requirement for component = 2 (demand 2, no stock, no inbound, safety stock 0).",
+   "Supplier A quote is eligible: qualified, valid 2026-01-01..2026-12-31, arrival 2026-11-09 on or before due date 2026-11-10.",
+   "Order of 2 units from A is legal: multiple 1, moq 1, capacity 10.",
+   "Excess allowance is 0, so exactly 2 units bought; no excess.",
+   "Total cost = 2 x (249.50 + 0.00) + 0.00 fixed charge = 499.00, within budget 2000.00.",
+   "A is the lowest-cost eligible quote (249.50 vs 254.49 and 254.50)."
+  ],
+  "flags": [],
+  "kind": "award"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "499.00",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

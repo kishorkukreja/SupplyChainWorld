@@ -1,0 +1,48 @@
+{
+ "case_id": "ref-07",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2781,
+ "completion_tokens": 904,
+ "usage_complete": true,
+ "latency_ms_total": 9706.3,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "award",
+  "allocations": [
+   {
+    "supplier_id": "A",
+    "item_id": "component",
+    "quantity": 4
+   }
+  ],
+  "claimed_total_cost": "4.04",
+  "evidence": [
+   "Net requirement for component = 4 (demand 4, no usable stock, no inbound, safety stock 0). Quote A is the cheapest eligible quote at landed unit cost 1.005 + 0.005 = 1.010; 4 units cost exactly 4.04, which is within the budget of 4.04 and equals the net requirement with no excess."
+  ],
+  "flags": [],
+  "clarification_requests": [],
+  "approval_refs": []
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "4.040",
+  "optimality": "optimal",
+  "objective_gap": "0.000",
+  "objective_gap_pct": "0.0"
+ }
+}

@@ -1,0 +1,51 @@
+{
+ "case_id": "ref-21",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2160,
+ "completion_tokens": 1056,
+ "usage_complete": true,
+ "latency_ms_total": 9380.2,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "allocations": [
+   {
+    "item_id": "component",
+    "quantity": 4,
+    "supplier_id": "A"
+   }
+  ],
+  "approval_refs": [],
+  "claimed_total_cost": "4.0164",
+  "clarification_requests": [],
+  "evidence": [
+   "Net requirement for component is 4: demand 4 plus safety stock 0 minus usable stock 0, inbound 0, and late-inbound credit 0.",
+   "Supplier A's quote is eligible: qualified, valid on 2026-11-02, arrival 2026-11-09 on or before due date 2026-11-10, with unit price 1.0041 and variable freight 0.00.",
+   "Buying 4 units from Supplier A meets the net requirement exactly, respects MOQ 1, multiple 1, and capacity 10, and has no excess because excess_allowance is 0 and moq_excess_allowed is false.",
+   "Total landed cost is 4 x (1.0041 + 0.00) + fixed charge 0.00 = 4.0164, which is within the budget of 4.02 and is lower than using Supplier B at 1.0045."
+  ],
+  "flags": [],
+  "kind": "award"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "4.0164",
+  "optimality": "optimal",
+  "objective_gap": "0.0000",
+  "objective_gap_pct": "0"
+ }
+}

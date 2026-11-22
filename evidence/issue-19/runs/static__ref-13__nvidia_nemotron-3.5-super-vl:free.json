@@ -1,0 +1,53 @@
+{
+ "case_id": "ref-13",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2967,
+ "completion_tokens": 2226,
+ "usage_complete": true,
+ "latency_ms_total": 16508.0,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "award",
+  "allocations": [
+   {
+    "supplier_id": "A",
+    "item_id": "Q",
+    "quantity": 4
+   },
+   {
+    "supplier_id": "B",
+    "item_id": "P",
+    "quantity": 4
+   }
+  ],
+  "claimed_total_cost": "8.80",
+  "evidence": [
+   "Net requirement P=4 and Q=4 (no usable stock, no inbound, no safety stock). All four quotes are eligible (qualified, valid at as_of 2026-11-02, arrival 2026-11-09 before due 2026-11-10) with complete pricing. Quantity share cap is 50% of 8 total units = 4 units per supplier over P and Q, so the 8 un"
+  ],
+  "flags": [],
+  "clarification_requests": [],
+  "approval_refs": []
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "8.80",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

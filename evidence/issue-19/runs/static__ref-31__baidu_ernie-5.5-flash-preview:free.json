@@ -1,0 +1,56 @@
+{
+ "case_id": "ref-31",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2207,
+ "completion_tokens": 1435,
+ "usage_complete": true,
+ "latency_ms_total": 10102.5,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "allocations": [
+   {
+    "item_id": "component",
+    "quantity": 20,
+    "supplier_id": "A"
+   }
+  ],
+  "approval_refs": [
+   "APR-7"
+  ],
+  "claimed_total_cost": "6000.00",
+  "clarification_requests": [],
+  "evidence": [
+   "Net requirement = 18 (demand 18, no usable stock, no inbound, no safety stock).",
+   "Eligible quotes: A (300.00/unit, moq 20, multiple 20, capacity 40) and B (310.00/unit, moq 10, multiple 10, capacity 20); both arrive 2026-11-09 before due date 2026-11-10.",
+   "Smallest reachable total at or above 18 is 20 units; A alone at 20 units costs 6000.00, cheaper than B alone (6200.00) or any mix.",
+   "MOQ excess = 2 units (bought 20 - net 18 - allowance 0); excess value = 2 x 6000.00/20 = 600.00 > 500.00 threshold, so approval APR-7 is cited.",
+   "Total cost 6000.00 (goods 6000.00 + fixed charge 0.00) is within budget 20000.00; no concentration constraints apply."
+  ],
+  "flags": [
+   "moq_excess:component"
+  ],
+  "kind": "award"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "6000.00",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

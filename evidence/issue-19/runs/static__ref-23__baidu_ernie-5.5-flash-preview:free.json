@@ -1,0 +1,53 @@
+{
+ "case_id": "ref-23",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2201,
+ "completion_tokens": 722,
+ "usage_complete": true,
+ "latency_ms_total": 7525.1,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "allocations": [
+   {
+    "item_id": "component",
+    "quantity": 11,
+    "supplier_id": "A"
+   }
+  ],
+  "approval_refs": [],
+  "claimed_total_cost": "22.00",
+  "clarification_requests": [],
+  "evidence": [
+   "Safety stock: z=1.9600 for service level 0.975; (1.96*2.5)^2*4 = 96.04, smallest whole s with s^2 >= 96.04 is 10.",
+   "Net requirement = max(0, 2 + 10 - 1 usable - 0 inbound - 0 late credit) = 11.",
+   "Both quotes qualified, in validity window, arrival 2026-11-09 <= due 2026-11-10; capacity 14, moq 1, multiple 1.",
+   "excess_allowance 0 and moq_excess_allowed false, so buy exactly 11.",
+   "Cheapest legal award: 11 x 2.00 from A = 22.00; fixed charge 0.00; total 22.00 <= budget 100.00.",
+   "No concentration constraints; no missing commercial terms; no approvals needed."
+  ],
+  "flags": [],
+  "kind": "award"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "22.00",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

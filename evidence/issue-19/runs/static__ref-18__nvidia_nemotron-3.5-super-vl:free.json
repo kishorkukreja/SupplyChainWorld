@@ -1,0 +1,39 @@
+{
+ "case_id": "ref-18",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2476,
+ "completion_tokens": 1057,
+ "usage_complete": true,
+ "latency_ms_total": 11633.1,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "clarification",
+  "field": "quotes.A.component.variable_freight",
+  "disposition": "record_and_escalate",
+  "evidence": [
+   "Item component net requirement is 4 (demand 4, no usable stock, no inbound on/before due date, no safety stock). The only eligible quote (supplier A, item component, qualified, valid, arrival 2026-11-09 on/before due 2026-11-10) has null variable_freight. The item is critical, so the last-known-vari"
+  ]
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "clarification",
+  "expected_kind": "clarification",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": null,
+  "optimality": null,
+  "objective_gap": null,
+  "objective_gap_pct": null
+ }
+}
