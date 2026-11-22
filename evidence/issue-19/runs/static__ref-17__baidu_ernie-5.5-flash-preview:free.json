@@ -1,0 +1,54 @@
+{
+ "case_id": "ref-17",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2189,
+ "completion_tokens": 1806,
+ "usage_complete": true,
+ "latency_ms_total": 13183.8,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "allocations": [
+   {
+    "item_id": "component",
+    "quantity": 4,
+    "supplier_id": "A"
+   }
+  ],
+  "approval_refs": [],
+  "claimed_total_cost": "9.00",
+  "clarification_requests": [
+   "quotes.A.component.variable_freight"
+  ],
+  "evidence": [
+   "Net requirement for component is 4.",
+   "Supplier A quote is eligible and estimated landed unit cost is 2.25 using last known variable freight 0.25.",
+   "Order 4 units from A meets requirement exactly and costs 9.00, within budget 100.00."
+  ],
+  "flags": [
+   "estimated:A:component"
+  ],
+  "kind": "award"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "9.00",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

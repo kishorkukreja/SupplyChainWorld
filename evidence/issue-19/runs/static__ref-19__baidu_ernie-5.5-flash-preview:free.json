@@ -1,0 +1,40 @@
+{
+ "case_id": "ref-19",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2057,
+ "completion_tokens": 1291,
+ "usage_complete": true,
+ "latency_ms_total": 10603.3,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "disposition": "record_and_escalate",
+  "evidence": [
+   "Quote A for component has a missing variable_freight term.",
+   "Using last_known_variable_freight 10.00 gives estimated unit cost 130.00; minimum required quantity 40 gives line value 5200.00, which is above approval_limit 5000.00."
+  ],
+  "field": "quotes.A.component.variable_freight",
+  "kind": "clarification"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "clarification",
+  "expected_kind": "clarification",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": null,
+  "optimality": null,
+  "objective_gap": null,
+  "objective_gap_pct": null
+ }
+}

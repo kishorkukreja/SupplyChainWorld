@@ -1,0 +1,42 @@
+{
+ "case_id": "ref-18",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2056,
+ "completion_tokens": 500,
+ "usage_complete": true,
+ "latency_ms_total": 6750.2,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "disposition": "record_and_escalate",
+  "evidence": [
+   "Net requirement for component = max(0, 4 + 0 - 0 - 0 - 0) = 4 (no stock, no inbound, no safety stock data).",
+   "Only quote A/component is eligible (qualified, valid 2026-01-01..2026-12-31, arrival 2026-11-09 <= due 2026-11-10), but its variable_freight is null.",
+   "Item component is critical, so the last-known-value estimate path is not permitted; no award is acceptable until the missing freight term is clarified.",
+   "Requested term: quotes.A.component.variable_freight (last known value 0.25 available for reference)."
+  ],
+  "field": "quotes.A.component.variable_freight",
+  "kind": "clarification"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "clarification",
+  "expected_kind": "clarification",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": null,
+  "optimality": null,
+  "objective_gap": null,
+  "objective_gap_pct": null
+ }
+}

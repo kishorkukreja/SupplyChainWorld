@@ -1,0 +1,39 @@
+{
+ "case_id": "ref-19",
+ "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2483,
+ "completion_tokens": 1170,
+ "usage_complete": true,
+ "latency_ms_total": 17563.0,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "clarification",
+  "field": "quotes.A.component.variable_freight",
+  "disposition": "record_and_escalate",
+  "evidence": [
+   "Item component has net requirement 40 units. Eligible quote from supplier A has missing variable_freight (null) with last_known_variable_freight 10.00. Estimated line value for 40 units at (120.00 + 10.00) = 5200.00 exceeds approval_limit 5000.00. Per rule 5, estimate path not allowed; clarification"
+  ]
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "clarification",
+  "expected_kind": "clarification",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": null,
+  "optimality": null,
+  "objective_gap": null,
+  "objective_gap_pct": null
+ }
+}

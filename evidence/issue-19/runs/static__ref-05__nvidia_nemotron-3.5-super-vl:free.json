@@ -1,0 +1,51 @@
+{
+ "case_id": "ref-05",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2790,
+ "completion_tokens": 1289,
+ "usage_complete": true,
+ "latency_ms_total": 11618.7,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "award",
+  "allocations": [
+   {
+    "supplier_id": "B",
+    "item_id": "component",
+    "quantity": 4
+   }
+  ],
+  "claimed_total_cost": "8.00",
+  "evidence": [
+   "Net requirement for component = 4 (demand 4 + safety stock 0 - usable stock 0 - inbound on/before due 0 - late-inbound credit 0)",
+   "Quote A ineligible: qualified=false",
+   "Eligible quotes: B $2.00/unit and C $2.00/unit, both qualified, valid 2026-01-01..2026-12-31, arrival 2026-11-09 <= due 2026-11-10",
+   "Award 4 units to B at $2.00/unit = $8.00 goods + $0.00 fixed = $8.00 total, within budget $100.00; no concentration constraints apply"
+  ],
+  "flags": [],
+  "clarification_requests": [],
+  "approval_refs": []
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "8.00",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

@@ -1,0 +1,69 @@
+{
+ "fixture_id": "s04-warned-no-delay-10d",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "requests_used": 5,
+ "manifest_sha256": "e04887ac3f0f4ebb0682d4d3951e06d305d3a4bc1fef5f617e3d92422470569c",
+ "status": "agent_stopped",
+ "completed": false,
+ "attempts": 0,
+ "valid_actions": 0,
+ "invalid_actions": 0,
+ "agent_errors": 0,
+ "invalid_by_category": {},
+ "tool_use": {},
+ "recovery_commitments": [],
+ "verifier_feasible": true,
+ "hard_violation_codes": [],
+ "replay_reproduced": true,
+ "observation_leaks": [],
+ "metrics": null,
+ "telemetry": {
+  "model_calls": 3,
+  "http_requests": 5,
+  "retries": 2,
+  "usage_complete": true,
+  "prompt_tokens": 6051,
+  "completion_tokens": 12288,
+  "total_tokens": 18339,
+  "latency_ms_total": 88296.7,
+  "cost_usd": 0.0,
+  "stop_reason": "no_tool_call",
+  "failure": {
+   "error_class": "no_tool_call",
+   "message": "model did not call a tool after nudges"
+  }
+ },
+ "calls": [
+  {
+   "finish_reason": "length",
+   "status": "no_tool_call",
+   "tool": null,
+   "latency_ms": 24189.0,
+   "retries": 2,
+   "tokens": 6103,
+   "error_class": null,
+   "returned_model": "nvidia/nemotron-3.5-super-vl:free"
+  },
+  {
+   "finish_reason": "length",
+   "status": "no_tool_call",
+   "tool": null,
+   "latency_ms": 34653.4,
+   "retries": 0,
+   "tokens": 6118,
+   "error_class": null,
+   "returned_model": "nvidia/nemotron-3.5-super-vl:free"
+  },
+  {
+   "finish_reason": "length",
+   "status": "no_tool_call",
+   "tool": null,
+   "latency_ms": 29454.3,
+   "retries": 0,
+   "tokens": 6118,
+   "error_class": null,
+   "returned_model": "nvidia/nemotron-3.5-super-vl:free"
+  }
+ ],
+ "leak_flags": []
+}

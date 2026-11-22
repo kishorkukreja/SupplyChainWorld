@@ -1,0 +1,55 @@
+{
+ "case_id": "ref-17",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2635,
+ "completion_tokens": 2290,
+ "usage_complete": true,
+ "latency_ms_total": 18182.6,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "award",
+  "allocations": [
+   {
+    "supplier_id": "A",
+    "item_id": "component",
+    "quantity": 4
+   }
+  ],
+  "claimed_total_cost": "9.00",
+  "evidence": [
+   "Net requirement for component = 4 (demand 4; no usable stock or inbound; safety stock 0 since service_level/demand_std/lead_time_periods are unset)",
+   "Quote A eligible: qualified, valid 2026-01-01..2026-12-31, arrival 2026-11-09 before due 2026-11-10; variable_freight missing but item non-critical, last_known_variable_freight 0.25 available, line value 4 x 2.25 = 9.00 <= approval_limit 5000.00, so estimate path covers it; estimated unit cost 2.25",
+   "Quote B eligible: unit cost 2.30; A is cheaper per unit with no fixed charges",
+   "Order 4 units from A: multiple 1, within MOQ 1 and capacity 10; total 9.00 <= budget 100.00; no concentration constraints apply"
+  ],
+  "flags": [
+   "estimated:A:component"
+  ],
+  "clarification_requests": [
+   "quotes.A.component.variable_freight"
+  ],
+  "approval_refs": []
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "9.00",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

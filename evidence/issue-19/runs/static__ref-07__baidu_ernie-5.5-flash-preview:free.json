@@ -1,0 +1,53 @@
+{
+ "case_id": "ref-07",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2315,
+ "completion_tokens": 1307,
+ "usage_complete": true,
+ "latency_ms_total": 9730.8,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "allocations": [
+   {
+    "item_id": "component",
+    "quantity": 4,
+    "supplier_id": "A"
+   }
+  ],
+  "approval_refs": [],
+  "claimed_total_cost": "4.04",
+  "clarification_requests": [],
+  "evidence": [
+   "Net requirement for component = max(0, 4 demand + 0 safety - 0 usable stock - 0 inbound - 0 late credit) = 4 units",
+   "All three quotes (A, B, C) are qualified, within validity, and arrive 2026-11-09 on/before due date 2026-11-10; all have complete commercial terms",
+   "Landed unit costs: A = 1.005+0.005 = 1.010; B = 2.00+0.00 = 2.000; C = 1.01+0.00 = 1.010",
+   "Cheapest feasible award buys 4 units at 1.010 each; allocated all 4 to supplier A",
+   "Total cost = 4 x 1.010 + 0 fixed charge = 4.04, within budget 4.04",
+   "No excess (bought 4 = net requirement 4), no concentration constraints, no fixed charges"
+  ],
+  "flags": [],
+  "kind": "award"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "4.040",
+  "optimality": "optimal",
+  "objective_gap": "0.000",
+  "objective_gap_pct": "0.0"
+ }
+}

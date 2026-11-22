@@ -1,0 +1,43 @@
+{
+ "case_id": "ref-32",
+ "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2642,
+ "completion_tokens": 2728,
+ "usage_complete": true,
+ "latency_ms_total": 34744.4,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "clarification",
+  "field": "approvals.moq_excess.component",
+  "disposition": "record_and_escalate",
+  "evidence": [
+   "Net requirement for component is 18 units",
+   "Eligible quotes: A (MOQ 20, multiple 20) and B (MOQ 10, multiple 10)",
+   "Smallest legal order at or above net requirement is 20 units (excess 2)",
+   "Excess value: $600 (supplier A) or $620 (supplier B), both exceed MOQ excess approval threshold $500",
+   "No approval record exists for component in approvals array"
+  ]
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "clarification",
+  "expected_kind": "clarification",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": null,
+  "optimality": null,
+  "objective_gap": null,
+  "objective_gap_pct": null
+ }
+}

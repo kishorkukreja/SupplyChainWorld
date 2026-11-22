@@ -1,0 +1,53 @@
+{
+ "case_id": "ref-11",
+ "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2716,
+ "completion_tokens": 1572,
+ "usage_complete": true,
+ "latency_ms_total": 20232.1,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "award",
+  "allocations": [
+   {
+    "supplier_id": "A",
+    "item_id": "component",
+    "quantity": 3
+   }
+  ],
+  "claimed_total_cost": "6.00",
+  "evidence": [
+   "Net requirement for component is 3 (demand 6 minus late-inbound credit 3 from inbound on 2026-11-11 and 2026-11-13 within 3-day tolerance at 50% credit)",
+   "Supplier A quote eligible (qualified, valid, arrives 2026-11-09 on or before due date 2026-11-10) at unit cost 2.00",
+   "Supplier B quote eligible but higher unit cost 3.00",
+   "Order 3 from A meets net requirement exactly, respects MOQ 1, multiple 1, capacity 10, excess_allowance 0",
+   "Total cost 3 * (2.00 + 0.00) + 0 fixed charge = 6.00 within budget 100.00",
+   "No concentration constraints, no missing commercial terms, no approvals needed"
+  ],
+  "flags": [],
+  "clarification_requests": [],
+  "approval_refs": []
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "6.00",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

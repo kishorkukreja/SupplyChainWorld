@@ -1,0 +1,48 @@
+{
+ "case_id": "ref-25",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2784,
+ "completion_tokens": 1442,
+ "usage_complete": true,
+ "latency_ms_total": 12618.8,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "award",
+  "allocations": [
+   {
+    "supplier_id": "A",
+    "item_id": "component",
+    "quantity": 10
+   }
+  ],
+  "claimed_total_cost": "49.00",
+  "evidence": "[\"Net requirement for component = 10 (demand 10, no usable stock, no inbound, safety stock 0 since service_level/demand_std/lead_time_periods are null)\"], [\"All three quotes are eligible (qualified, valid 2026-01-01..2026-12-31 as of 2026-11-02, arrival 2026-11-09 \u2264 due 2026-11-10)\"], [\"Supplier A is cheapest at unit cost 4.90 and can cover the full need of 10 within capacity 10, moq 1, multiple 1\"], [\"Total cost = 10 x 4.90 + flat fixed charge 0.00 = 49.00, within budget 200.00; no concentration constraints apply\"], [\"Buying exactly 10 meets net requirement with zero excess; excess_allowance is 0 and moq_excess_allowed is false, so no excess is permitted or needed\"]]",
+  "flags": [],
+  "clarification_requests": [],
+  "approval_refs": []
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": false,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": false,
+  "hard_failures": [
+   "schema_validation"
+  ],
+  "feasible": false,
+  "independent_cost": null,
+  "optimality": null,
+  "objective_gap": null,
+  "objective_gap_pct": null
+ }
+}

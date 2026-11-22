@@ -1,0 +1,57 @@
+{
+ "case_id": "ref-15",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2646,
+ "completion_tokens": 2819,
+ "usage_complete": true,
+ "latency_ms_total": 29813.0,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "award",
+  "allocations": [
+   {
+    "supplier_id": "A",
+    "item_id": "component",
+    "quantity": 2
+   },
+   {
+    "supplier_id": "B",
+    "item_id": "component",
+    "quantity": 2
+   }
+  ],
+  "claimed_total_cost": "5.00",
+  "evidence": [
+   "Net requirement for component = 4 (demand 4 + safety stock 0 - usable stock 0 - inbound 0 - late credit 0).",
+   "Both quotes A and B are eligible: qualified, as_of 2026-11-02 within 2026-01-01..2026-12-31, arrival 2026-11-09 on/before due 2026-11-10, unit price and freight present.",
+   "Award buys exactly 4 units (A 2, B 2), meeting net requirement with excess 0 <= excess_allowance 0; each order is a multiple of 1 within moq 1 and capacity 10.",
+   "Total cost = 2x(1.00+0.00) + 1.00 flat fixed (A) + 2x(1.00+0.00) + 0.00 flat fixed (B) = 5.00 <= budget 100.00.",
+   "Spend share: A = 3.00/5.00 = 0.60 <= 0.60; B = 2.00/5.00 = 0.40 <= 0.60, satisfying concentration."
+  ],
+  "flags": [],
+  "clarification_requests": [],
+  "approval_refs": []
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "5.00",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}
