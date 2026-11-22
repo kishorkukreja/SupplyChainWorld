@@ -1,0 +1,50 @@
+{
+ "case_id": "ref-01",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2286,
+ "completion_tokens": 1367,
+ "usage_complete": true,
+ "latency_ms_total": 10158.3,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "allocations": [
+   {
+    "item_id": "component",
+    "quantity": 8,
+    "supplier_id": "A"
+   }
+  ],
+  "approval_refs": [],
+  "claimed_total_cost": "16.00",
+  "clarification_requests": [],
+  "evidence": [
+   "Net requirement = 10 demand + 3 safety stock - 2 usable stock - 1 on-time inbound - 2 late-inbound credit = 8.",
+   "Supplier A quote is eligible at 2.00 per unit with zero freight; ordering 8 units meets the net requirement exactly.",
+   "Total cost = 8 x 2.00 = 16.00, within the 100.00 budget."
+  ],
+  "flags": [],
+  "kind": "award"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "16.00",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

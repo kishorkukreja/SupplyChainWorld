@@ -1,0 +1,37 @@
+{
+ "case_id": "ref-10",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2629,
+ "completion_tokens": 1183,
+ "usage_complete": true,
+ "latency_ms_total": 11411.4,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "infeasible",
+  "evidence": [
+   "Item component: net requirement is 4 (demand 3 + safety stock 1 - usable stock 0 - inbound 0 - late-inbound credit 0), but the sum of the largest legal order sizes over eligible quotes is 3 (supplier A capacity 2 + supplier B capacity 1), so eligible order capacity is less than the net requirement."
+  ]
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "infeasible",
+  "expected_kind": "infeasible",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": null,
+  "optimality": null,
+  "objective_gap": null,
+  "objective_gap_pct": null
+ }
+}

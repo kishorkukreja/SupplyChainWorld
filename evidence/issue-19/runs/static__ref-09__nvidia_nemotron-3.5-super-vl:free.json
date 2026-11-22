@@ -1,0 +1,50 @@
+{
+ "case_id": "ref-09",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2625,
+ "completion_tokens": 2110,
+ "usage_complete": true,
+ "latency_ms_total": 16761.7,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "clarification",
+  "field": "quotes.A.component.variable_freight",
+  "disposition": "record_and_escalate",
+  "evidence": [
+   "Net requirement for component = 4 (demand 4 + safety stock 0 - usable stock 0 - inbound on/before due 0 - late-inbound credit 0).",
+   "Eligible quote A/component has unit_price 1.00 but variable_freight is null and last_known_variable_freight is null, so the last-known estimate path is unavailable.",
+   "Eligible quote B/component has variable_freight 0.00 but unit_price is null and last_known_unit_price is null, so the last-known estimate path is unavailable.",
+   "The item has a positive net requirement and eligible quotes carry missing terms not coverable by estimation, so no award is acceptable even though other quotes exist; quote terms must be clarified first."
+  ],
+  "clarification_requests": [
+   "quotes.A.component.variable_freight",
+   "quotes.B.component.unit_price"
+  ],
+  "approval_refs": [],
+  "allocations": []
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": false,
+  "kind": "clarification",
+  "expected_kind": "clarification",
+  "outcome_matches": true,
+  "accepted": false,
+  "hard_failures": [
+   "schema_validation"
+  ],
+  "feasible": false,
+  "independent_cost": null,
+  "optimality": null,
+  "objective_gap": null,
+  "objective_gap_pct": null
+ }
+}

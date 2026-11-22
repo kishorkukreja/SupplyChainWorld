@@ -15,7 +15,7 @@ from hypothesis import assume, given, settings, strategies as st
 import support  # noqa: F401
 from support import fuzz
 from support.mutations import semantic_key
-from support.s01_versions import (VERSIONS, V1, V2, V3, V4, drive, fixture_or_generated, fixture_scenario, informed_call,
+from support.s01_versions import (VERSIONS, V1, V2, V3, V4, V5, drive, fixture_or_generated, fixture_scenario, informed_call,
                                   SCENARIO_STRATEGIES, scripted_transcript)
 
 EXPECTED_ERRORS = (ValueError, KeyError, TypeError, StopIteration)
@@ -130,6 +130,7 @@ RunnerFuzz_v01 = make_runner_cases(V1)
 RunnerFuzz_v02 = make_runner_cases(V2)
 RunnerFuzz_v03 = make_runner_cases(V3)
 RunnerFuzz_v04 = make_runner_cases(V4)
+RunnerFuzz_v05 = make_runner_cases(V5)
 
 
 # ----------------------------------------------------------------------------- early-warning twins
@@ -215,6 +216,7 @@ EarlyWarningTwins_v01 = make_twin_cases(V1)
 EarlyWarningTwins_v02 = make_twin_cases(V2)
 EarlyWarningTwins_v03 = make_twin_cases(V3)
 EarlyWarningTwins_v04 = make_twin_cases(V4)
+EarlyWarningTwins_v05 = make_twin_cases(V5)
 
 
 class ExactOnceBoundary(unittest.TestCase):
@@ -383,6 +385,7 @@ ScenarioFuzz_v01 = make_scenario_fuzz(V1)
 ScenarioFuzz_v02 = make_scenario_fuzz(V2)
 ScenarioFuzz_v03 = make_scenario_fuzz(V3)
 ScenarioFuzz_v04 = make_scenario_fuzz(V4)
+ScenarioFuzz_v05 = make_scenario_fuzz(V5)
 
 
 class ConstructorFuzz(unittest.TestCase):
@@ -482,6 +485,7 @@ RecordFuzz_v01 = make_record_fuzz(V1)
 RecordFuzz_v02 = make_record_fuzz(V2)
 RecordFuzz_v03 = make_record_fuzz(V3)
 RecordFuzz_v04 = make_record_fuzz(V4)
+RecordFuzz_v05 = make_record_fuzz(V5)
 
 
 class CrossVersionFeed(unittest.TestCase):

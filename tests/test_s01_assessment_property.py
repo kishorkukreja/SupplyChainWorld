@@ -22,11 +22,11 @@ from hypothesis import assume, given, settings, strategies as st
 
 import support  # noqa: F401
 from support.s01_assess import Conventions, V2_CONVENTIONS, V34_CONVENTIONS, assess, option_call
-from support.s01_versions import V1, V2, V3, V4, fixture_scenario, greedy_release, v1_scenarios
+from support.s01_versions import V1, V2, V3, V4, V5, fixture_scenario, greedy_release, v1_scenarios
 
 STATS = {}
 OPTIONS = ('maintain', 'expedite_max', 'alternate_max')
-CONV = {'v0.2': V2_CONVENTIONS, 'v0.3': V34_CONVENTIONS, 'v0.4': V34_CONVENTIONS}
+CONV = {'v0.2': V2_CONVENTIONS, 'v0.3': V34_CONVENTIONS, 'v0.4': V34_CONVENTIONS, 'v0.5': V34_CONVENTIONS}
 
 
 _CACHE = {}
@@ -155,6 +155,7 @@ def make_cases(v):
 Assessment_v02 = make_cases(V2)
 Assessment_v03 = make_cases(V3)
 Assessment_v04 = make_cases(V4)
+Assessment_v05 = make_cases(V5)
 
 
 class ConventionsAreNotInTheObservation(unittest.TestCase):

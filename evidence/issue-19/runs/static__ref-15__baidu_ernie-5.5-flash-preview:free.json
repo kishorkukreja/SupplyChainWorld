@@ -1,0 +1,57 @@
+{
+ "case_id": "ref-15",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2200,
+ "completion_tokens": 2152,
+ "usage_complete": true,
+ "latency_ms_total": 13618.9,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "allocations": [
+   {
+    "item_id": "component",
+    "quantity": 2,
+    "supplier_id": "A"
+   },
+   {
+    "item_id": "component",
+    "quantity": 2,
+    "supplier_id": "B"
+   }
+  ],
+  "approval_refs": [],
+  "claimed_total_cost": "5.00",
+  "clarification_requests": [],
+  "evidence": [
+   "Net requirement for component is 4: demand 4, no usable stock, no inbound, no safety stock.",
+   "Both quotes are eligible: qualified, valid on 2026-11-02, arrival 2026-11-09 on or before due date 2026-11-10.",
+   "Allocation buys exactly 4 units: A 2 units and B 2 units, with no excess.",
+   "Total cost = A goods 2.00 + A fixed charge 1.00 + B goods 2.00 + B fixed charge 0.00 = 5.00.",
+   "Spend shares: A spend 3.00 / total 5.00 = 0.60; B spend 2.00 / total 5.00 = 0.40; both within the 0.60 limit."
+  ],
+  "flags": [],
+  "kind": "award"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "5.00",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

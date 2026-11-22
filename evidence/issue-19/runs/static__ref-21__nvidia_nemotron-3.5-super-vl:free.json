@@ -1,0 +1,48 @@
+{
+ "case_id": "ref-21",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2595,
+ "completion_tokens": 1033,
+ "usage_complete": true,
+ "latency_ms_total": 9525.7,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "award",
+  "allocations": [
+   {
+    "supplier_id": "A",
+    "item_id": "component",
+    "quantity": 4
+   }
+  ],
+  "claimed_total_cost": "4.0164",
+  "evidence": [
+   "Net requirement for component = 4 (demand 4, no usable stock, no inbound, safety stock 0). Quote A is eligible (qualified, valid, arrival 2026-11-09 before due 2026-11-10) at 1.0041/unit plus 0.00 freight, cheaper than B at 1.0045. Awarding 4 units to A meets the requirement exactly with no excess ("
+  ],
+  "flags": [],
+  "clarification_requests": [],
+  "approval_refs": []
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "4.0164",
+  "optimality": "optimal",
+  "objective_gap": "0.0000",
+  "objective_gap_pct": "0"
+ }
+}

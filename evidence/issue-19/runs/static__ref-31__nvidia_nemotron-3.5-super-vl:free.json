@@ -1,0 +1,52 @@
+{
+ "case_id": "ref-31",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2663,
+ "completion_tokens": 2067,
+ "usage_complete": true,
+ "latency_ms_total": 18721.1,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "award",
+  "allocations": [
+   {
+    "supplier_id": "A",
+    "item_id": "component",
+    "quantity": 20
+   }
+  ],
+  "claimed_total_cost": "6000.00",
+  "evidence": [
+   "Net requirement = 18 (demand 18, no usable stock, no inbound, safety stock 0). Quote A eligible (qualified, valid, arrival 2026-11-09 <= due 2026-11-10): legal sizes 20 or 40. Quote B eligible: legal sizes 10 or 20. Smallest reachable total >= 18 is 20, so buying 20 from A is MOQ excess allowed; fla"
+  ],
+  "flags": [
+   "moq_excess:component"
+  ],
+  "clarification_requests": [],
+  "approval_refs": [
+   "APR-7"
+  ]
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "6000.00",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

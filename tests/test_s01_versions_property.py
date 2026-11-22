@@ -14,7 +14,7 @@ from hypothesis import given, settings, strategies as st
 
 import support  # noqa: F401
 from support.regression import record_on_failure
-from support.s01_versions import (VERSIONS, drive, fixture_or_generated, greedy_release, informed_call, V1, V2, V3, V4)
+from support.s01_versions import (VERSIONS, drive, fixture_or_generated, greedy_release, informed_call, V1, V2, V3, V4, V5)
 
 
 # ----------------------------------------------------------------------------- invariants
@@ -362,6 +362,7 @@ Properties_v01 = make_cases(V1)
 Properties_v02 = make_cases(V2)
 Properties_v03 = make_cases(V3)
 Properties_v04 = make_cases(V4)
+Properties_v05 = make_cases(V5)
 
 
 class ScriptedPolicyProperties(unittest.TestCase):

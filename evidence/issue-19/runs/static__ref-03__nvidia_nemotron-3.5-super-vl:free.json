@@ -1,0 +1,57 @@
+{
+ "case_id": "ref-03",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2642,
+ "completion_tokens": 2070,
+ "usage_complete": true,
+ "latency_ms_total": 15510.3,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "award",
+  "allocations": [
+   {
+    "supplier_id": "A",
+    "item_id": "component",
+    "quantity": 4
+   },
+   {
+    "supplier_id": "B",
+    "item_id": "component",
+    "quantity": 1
+   }
+  ],
+  "claimed_total_cost": "6.00",
+  "evidence": [
+   "Safety stock = 2 (smallest whole s with s*s >= (1.6449*1)^2*1 = 2.70569601)",
+   "Net requirement = demand 4 + safety stock 2 - usable stock 1 = 5",
+   "Quotes A and B eligible: qualified, valid 2026-01-01..2026-12-31, arrival 2026-11-09 <= due 2026-11-10",
+   "Award A 4 units (multiple of 2, within moq 3/capacity 10) + B 1 unit (multiple of 1, within moq 1/capacity 10) = exactly 5 units, no excess",
+   "Cost = 4*1.00 + 1*2.00 + fixed charges 0.00 = 6.00 <= budget 100.00; cheapest feasible exact-5 combination (A alone cannot reach 5, B alone costs 10.00)"
+  ],
+  "flags": [],
+  "clarification_requests": [],
+  "approval_refs": []
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "award",
+  "expected_kind": "award",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": "6.00",
+  "optimality": "optimal",
+  "objective_gap": "0.00",
+  "objective_gap_pct": "0"
+ }
+}

@@ -1,0 +1,404 @@
+{
+ "schema": "eval19-manifest-1",
+ "issue": "kishorkukreja/SupplyChainWorld#19",
+ "purpose": "Small diagnostic on free OpenRouter models: find task, grader, harness and model defects. Not a benchmark, not a leaderboard, no claim about general ability, no support for training value.",
+ "preregistered_before_any_model_attempt": true,
+ "readiness_decision": "Issue #17 comment 2026-11-22: GO for development-set model evaluation with limits; owner-practitioner, not an independent review; every number provisional; covers a small free-model diagnostic only, not teacher collection, training, benchmark or capability claims.",
+ "spend": {
+  "approved_ceiling_usd": 0.0,
+  "free_only": true,
+  "guard": "llm_adapter.AdapterConfig refuses any model id not ending in :free (or verified zero pricing); cost is 0 only for :free models with usage present, else unknown"
+ },
+ "credential": "OPENROUTER_API_KEY read from the environment only (sandbox proxy injects it); never printed, logged or stored",
+ "roster": {
+  "core": [
+   "baidu/ernie-5.5-flash-preview:free",
+   "nvidia/nemotron-3-ultra-550b-a55b:free",
+   "nvidia/nemotron-3.5-super-vl:free"
+  ],
+  "core_basis": "actor models that returned a tool call in the issue #18 connectivity check (evidence/issue-18/connectivity.json)",
+  "conditional": [
+   "cohere/north-mini-code:free",
+   "thinkingmachines/inkling-2-small:free"
+  ],
+  "conditional_rule": "One probe request each, no retries, max_tokens 4096, one trivial tool (ping). Included in the roster only if the reply contains a tool call. thinkingmachines/inkling-2-small returned HTTP 403 outside agentic harnesses in #18; it is included only if the probe now returns a tool call. cohere/north-mini-code produced no tool call at max_tokens 64 in #18; the probe uses the larger cap.",
+  "scorer_not_used": "respan/span-01-lite is a scorer (kind scorer): it never acts and is not called here",
+  "model_versions": "OpenRouter model ids exactly as listed; the provider returned-model field is recorded per call; no further version is exposed"
+ },
+ "development_set": {
+  "s01_v0.4": {
+   "scenarios": [
+    {
+     "fixture_id": "s04-sudden-5d",
+     "horizon_days": 5,
+     "disruption_class": "sudden"
+    },
+    {
+     "fixture_id": "s04-warned-delayed-10d",
+     "horizon_days": 10,
+     "disruption_class": "warned"
+    },
+    {
+     "fixture_id": "s04-warned-no-delay-10d",
+     "horizon_days": 10,
+     "disruption_class": "warned"
+    },
+    {
+     "fixture_id": "s04-multitier-cancel-10d",
+     "horizon_days": 10,
+     "disruption_class": "sudden"
+    },
+    {
+     "fixture_id": "s04-alt-cheaper-10d",
+     "horizon_days": 10,
+     "disruption_class": "sudden"
+    }
+   ],
+   "fixture_file_sha256": {
+    "fixtures/dynamic/v0.4/scenarios.json": "6f76b85e128a527138b24bbbeff63abfa7699fd3ec06064393b4cc2d34471a45"
+   },
+   "repeats": "Design intent: up to 3 repeats per scenario per model. Infeasible under the 250 request cap (one repeat of all 5 scenarios is roughly 90 to 150 requests per model). Preregistered instead: ONE attempt per scenario per model, run in the order below until the S01 request allowance is spent. Unrun episodes are reported as not run. No variance or consistency claim is made.",
+   "queue_order": "for scenario in order: for model in roster order (episode skipped if the model is stopped or the remaining S01 allowance is below 2 x horizon requests)",
+   "scripted_baselines": [
+    "maintain",
+    "expedite_on_alert",
+    "alternate_on_alert",
+    "combo_on_alert",
+    "staged_revisit"
+   ]
+  },
+  "static_v1.2": {
+   "family_size": 33,
+   "selection_rule": "Frozen selection rule: every non-award case (clarification and infeasible), plus every second award case in\nsorted case-id order starting with the first (positions 0, 2, 4, ...). Deterministic, no randomness.",
+   "selected_case_ids": [
+    "ref-01",
+    "ref-03",
+    "ref-05",
+    "ref-07",
+    "ref-09",
+    "ref-10",
+    "ref-11",
+    "ref-13",
+    "ref-15",
+    "ref-17",
+    "ref-18",
+    "ref-19",
+    "ref-21",
+    "ref-23",
+    "ref-25",
+    "ref-27",
+    "ref-29",
+    "ref-30",
+    "ref-31",
+    "ref-32"
+   ],
+   "n": 20,
+   "selected_expected_outcomes": {
+    "award": 13,
+    "clarification": 6,
+    "infeasible": 1
+   },
+   "fixture_dir_sha256": "25a6c433cbf9cf8bd7effbf5bd4ce476fc74c8079f80e9003d9192d3beee7379",
+   "repeats": "one attempt per case per model (a second request only to nudge a missing or malformed tool call)",
+   "sealed_test_partition": "none exists for these families; not touched"
+  }
+ },
+ "tool_profile": {
+  "s01": {
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "read_state",
+      "description": "Read the visible plant state (optionally one section). Does not advance time.",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "section": {
+         "type": "string",
+         "enum": [
+          "all",
+          "clock",
+          "state",
+          "rules"
+         ],
+         "description": "which part of the visible view to read"
+        }
+       },
+       "required": [],
+       "additionalProperties": false
+      }
+     }
+    },
+    {
+     "type": "function",
+     "function": {
+      "name": "read_recovery_offers",
+      "description": "Read currently visible supply recovery offers, if any. Does not advance time.",
+      "parameters": {
+       "type": "object",
+       "properties": {},
+       "required": [],
+       "additionalProperties": false
+      }
+     }
+    },
+    {
+     "type": "function",
+     "function": {
+      "name": "read_scorecard",
+      "description": "Read the scorecard. Only available once the episode is complete.",
+      "parameters": {
+       "type": "object",
+       "properties": {},
+       "required": [],
+       "additionalProperties": false
+      }
+     }
+    },
+    {
+     "type": "function",
+     "function": {
+      "name": "commit_recovery",
+      "description": "Irreversibly buy a recovery lot. choice is expedite (move the primary lot earlier) or alternate (a new supplier lot); quantity is in units. May be called more than once; cost and arrival follow the rate card for the current day; must fit the remaining recovery budget.",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "choice": {
+         "type": "string",
+         "enum": [
+          "expedite",
+          "alternate"
+         ],
+         "description": "recovery option"
+        },
+        "quantity": {
+         "type": "integer",
+         "minimum": 1,
+         "description": "units to buy in this recovery lot"
+        }
+       },
+       "required": [
+        "choice",
+        "quantity"
+       ],
+       "additionalProperties": false
+      }
+     }
+    },
+    {
+     "type": "function",
+     "function": {
+      "name": "release_production",
+      "description": "Schedule today's production run (once per day): quantity of components to convert into finished goods when the day closes, at most the daily capacity and the components on hand.",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "quantity": {
+         "type": "integer",
+         "minimum": 0,
+         "description": "units to release into production today"
+        }
+       },
+       "required": [
+        "quantity"
+       ],
+       "additionalProperties": false
+      }
+     }
+    },
+    {
+     "type": "function",
+     "function": {
+      "name": "advance_day",
+      "description": "Close today and advance simulated time by one day.",
+      "parameters": {
+       "type": "object",
+       "properties": {},
+       "required": [],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "authority": "read, commit, advance (all granted); one tool call per reply; parallel tool calls off; only the first tool call of a reply is executed",
+   "blinding": "the world state exposes a scenario_id naming the outcome class (for example warned-delayed); every observation shown to a model replaces it with an opaque alias"
+  },
+  "static": {
+   "tools": [
+    {
+     "type": "function",
+     "function": {
+      "name": "submit_decision",
+      "description": "Submit the final decision for the task: an award, a clarification request, or an infeasibility finding. Call once.",
+      "parameters": {
+       "type": "object",
+       "properties": {
+        "kind": {
+         "type": "string",
+         "enum": [
+          "award",
+          "clarification",
+          "infeasible"
+         ]
+        },
+        "allocations": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "supplier_id": {
+            "type": "string"
+           },
+           "item_id": {
+            "type": "string"
+           },
+           "quantity": {
+            "type": "integer",
+            "minimum": 0
+           }
+          },
+          "required": [
+           "supplier_id",
+           "item_id",
+           "quantity"
+          ],
+          "additionalProperties": false
+         }
+        },
+        "claimed_total_cost": {
+         "type": "string"
+        },
+        "evidence": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "flags": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "clarification_requests": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "approval_refs": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "field": {
+         "type": "string"
+        },
+        "disposition": {
+         "type": "string",
+         "enum": [
+          "record_and_escalate"
+         ]
+        }
+       },
+       "required": [
+        "kind",
+        "evidence"
+       ],
+       "additionalProperties": false
+      }
+     }
+    }
+   ],
+   "authority": "one submit_decision call; no read tools; the model sees only the visible world and the rules text"
+  }
+ },
+ "prompts": {
+  "s01_system_prompt": "You run a small plant's supply recovery and production for a fixed number of simulated days, using tools. Each message shows the current visible state, the visible rules (including any recovery offers with their rate cards and the remaining recovery budget), the clock and the outcome of your last tool call. Use only that information. Call exactly one tool per reply and do not reply in prose. The state is already included after every call, so you rarely need the read tools. Time moves only when you call advance_day. Each day you may schedule production once with release_production (quantity within daily capacity and components on hand) and then you call advance_day. commit_recovery buys a recovery lot (choice expedite or alternate, quantity in units); it can be called more than once while offers are shown, cannot be undone, costs and arrives according to the rate card for the current day, and must fit the remaining recovery budget. Orders have due days, penalties and priority tiers shown in the rules. Do what you judge best for the plant, weighing recovery spend, late-delivery penalties, order priority and supply risk. Keep acting until the episode phase is complete.",
+  "static_system_prompt": "You are a procurement analyst for a discrete manufacturer. You get ONE task: a visible world (JSON: items, stock, inbound supply, suppliers, supplier quotes, constraints, policy, approval records) and you must either decide a supplier allocation or, when the rules below do not allow an award, submit an exception. Use only the world shown. Answer by calling submit_decision exactly once. All arithmetic is exact decimal arithmetic: never round money, and never treat a missing price or freight as zero.\n\nRules (version 1.2, all numbers in the world are provisional working values):\n\n1. Net requirement per item = max(0, demand + safety stock - usable stock - inbound arriving on or before the item due_date - late-inbound credit).\n   - Only stock with status \"usable\" counts; held stock never counts.\n   - Safety stock: if safety_stock_override is set use it. Otherwise, if service_level, demand_std and lead_time_periods are given, safety stock is the smallest whole number s with s*s >= (z*demand_std)^2 * lead_time_periods, where z is 1.2816 for service level 0.90, 1.6449 for 0.95, 1.9600 for 0.975 and 2.3263 for 0.99. Otherwise it is 0.\n   - Late-inbound credit: inbound arriving 1 to policy.late_inbound_tolerance_days days after the due_date (inclusive) counts floor(quantity * policy.late_inbound_credit) units. Later arrivals count nothing.\n2. A quote is eligible only if qualified is true, as_of lies within valid_from..valid_to inclusive, and its arrival_date is on or before the item due_date.\n3. An order for a supplier and item must be 0 or a whole multiple of the quote multiple, at least moq and at most capacity. Use each supplier-item pair at most once.\n4. Buy at least the net requirement of every item. Buying more than net requirement + excess_allowance is not allowed, except for MOQ excess: if the item has moq_excess_allowed true and the total bought equals the smallest total at or above the net requirement that is reachable with one legal order size (or none) per eligible quote of that item, it is allowed and you must add the flag \"moq_excess:<item_id>\". If the excess value (excess units x the item goods value / units bought, where excess units = bought - net requirement - excess_allowance) is above policy.moq_excess_approval_threshold, you must also cite in approval_refs the approval_id of a granted record in the world's approvals for that item. At or below the threshold the flag alone is enough. If MOQ forces excess above the allowance and no approval record for the item is in the world, the supported answer is a clarification with field \"approvals.moq_excess.<item_id>\". If max_excess is set, bought - net requirement must not exceed it.\n5. Missing commercial terms. A quote may have a null unit_price or variable_freight. An estimate on the last_known_unit_price / last_known_variable_freight is allowed only when the item is not critical, both terms are available after substituting the last known values, and the line value (quantity x (price + freight)) is at or below constraints.approval_limit (a null limit means no estimate). An estimated line must carry the flag \"estimated:<supplier_id>:<item_id>\" and list every missing field in clarification_requests as \"quotes.<supplier_id>.<item_id>.unit_price\" and/or \"quotes.<supplier_id>.<item_id>.variable_freight\". Ask clarification first: if an eligible quote of an item with a positive net requirement has a missing term and the estimate path does not cover it (item critical, no last known value, no approval limit, or min(capacity, max(net requirement, moq)) x estimated unit cost above the limit), then NO award is acceptable, even if other complete quotes could cover the need. The answer is kind \"clarification\" with field \"quotes.<supplier_id>.<item_id>.<unit_price or variable_freight>\" and disposition \"record_and_escalate\".\n6. Total cost = sum over order lines of quantity x (unit_price + variable_freight) plus, for each supplier that receives any quantity, its fixed charge: for fixed_charge_basis \"flat\" the fixed_charge; for \"order_units\" or \"goods_value\" the charge of the highest fixed_charge_table tier whose from_measure is at or below that supplier's total ordered units (or goods value). claimed_total_cost must equal this total exactly. The total must not exceed constraints.budget.\n7. Concentration rules in constraints.concentration: \"spend_share\": no supplier's spend (its goods plus its fixed charge) may exceed limit x total cost. \"quantity_share\": over the listed item_ids, no supplier's units may exceed limit x total units. \"per_item_share\": for each listed item (all items if none listed), no supplier's units of that item may exceed limit x the units bought of that item.\n8. Objective: among allowed awards, minimize total cost. Answers within a small tolerance of the optimum are treated as equivalent, but cost minimization is still the goal.\n9. Infeasible: if for some item the sum, over its eligible quotes, of the largest legal order size is less than the net requirement, no award can meet the need. Submit kind \"infeasible\" with evidence stating, for each short item, that the eligible order capacity is less than the net requirement (use the words \"capacity\" and \"less than\" and give both numbers).\n\nSubmission (arguments of submit_decision):\n- Award: kind \"award\", allocations [{supplier_id, item_id, quantity}], claimed_total_cost (string), evidence (non-empty list of short strings), flags, clarification_requests, approval_refs (lists, possibly empty).\n- Clarification: kind \"clarification\", field (the missing quote term or approval request), disposition \"record_and_escalate\", evidence (non-empty).\n- Infeasible: kind \"infeasible\", evidence (non-empty, see rule 9).\nDo not include any other keys.",
+  "static_request": "Allocate component purchases for the visible world. Minimize landed cost subject to the visible policy and the rules in the system message, or submit a supported exception.",
+  "static_user_message": "static_request + the case world as compact JSON (world object only: no expected, purpose, task, review, calculation or known_wrong fields)",
+  "no_tuning_rule": "Prompts, tools and limits are frozen at this commit. They are not tuned to individual failures. A genuine harness bug may be fixed and the affected runs rerun, with the fix, the reason and the before/after both disclosed."
+ },
+ "limits": {
+  "total_request_cap": 250,
+  "cap_counts": "every HTTP request including retries and probes",
+  "phase_caps": {
+   "probe": 4,
+   "static": "25 x number of rostered models",
+   "s01": "total cap minus probe cap minus static cap"
+  },
+  "s01_per_episode": {
+   "max_model_calls": "6 x horizon_days",
+   "max_total_tokens": 400000,
+   "max_output_tokens": 4096,
+   "memory_window_exchanges": 8,
+   "max_consecutive_non_tool_replies": 2,
+   "temperature": 0.0,
+   "timeout_seconds": 90
+  },
+  "static_per_case": {
+   "max_logical_calls": 2,
+   "max_output_tokens": 4096,
+   "temperature": 0.0,
+   "timeout_seconds": 120
+  },
+  "throttle": "at least 3.5 seconds between any two requests"
+ },
+ "retry_rules": {
+  "retry_on": [
+   "HTTP 429",
+   "HTTP 5xx",
+   "network error"
+  ],
+  "max_retries_per_logical_call": 2,
+  "backoff": "exponential, base 5 s, cap 30 s, honors Retry-After up to the cap",
+  "no_retry": "4xx other than 429, refusals, context limit",
+  "breaker": "a model is stopped for the rest of the run after 6 consecutive HTTP 429 responses or 2 consecutive HTTP 403 responses with no 200 in between; the stop and its reason are reported; it is never faked or retried later"
+ },
+ "grading": {
+  "s01": "independent verifier dynamic_verifier_v4.verify_episode on the recorded history, claimed scorecard and action log; replay_v4 on a fresh world; check_observations_for_leaks on every observation shown",
+  "static": "independent checker verification_v12.verify with the case expected outcome, reference cost and task measures (used only by the grader)",
+  "actors_vs_scorers": "only models of kind actor act; the respan scorer is not used"
+ },
+ "baselines": {
+  "s01": "five scripted policies (maintain, expedite_on_alert, alternate_on_alert, combo_on_alert, staged_revisit) on the same scenarios, metrics side by side; they read the same visible view; they are not LLMs",
+  "static": "reference solver (exhaustive search, solve_reference) and greedy heuristic (solve_heuristic) run on the same visible World object, graded by the same checker. Permitted compute differs: the reference solver enumerates exhaustively, the heuristic is greedy, models get one answer with no tools."
+ },
+ "metrics": {
+  "note": "Reported separately, never combined into one score: S01 cost (net_cost, recovery_spend, penalties), service (otif_orders_met, on_time_units, unit_days_late), tier impact, downstream (cancelled value), supply risk. Static: schema validity, outcome kind, hard failures, feasibility, objective gap label, exception handling.",
+  "per_model": [
+   "completion",
+   "valid vs invalid actions",
+   "hard violations (verifier codes / checker failures)",
+   "feasible results",
+   "cost vs scripted baselines (separate from service and risk)",
+   "clarification/escalation behavior (static)",
+   "replay integrity (S01)",
+   "retries and failures",
+   "latency",
+   "tokens",
+   "provider cost (0 for :free)"
+  ],
+  "no_single_score": true,
+  "no_leaderboard": true
+ },
+ "failure_triage": "Each failure is classified as task, grader, harness or model defect from inspected evidence (the recorded record, the checker output, the prompt text). Triage after the freeze does not change prompts.",
+ "recommendation_rule": "go/repair/stop for teacher collection (#20) is a judgment from the findings; training-use terms for every free model are UNCHECKED and nothing here supports training value.",
+ "harness_sha256": {
+  "src/supplychainworld/eval19.py": "fb4a7a3b7dd439f241626dc4d6101bf2ee3d4442454a78f22d6759ddafda92dc",
+  "src/supplychainworld/llm_adapter.py": "16b25c81f87d581a70f41de2a26d31c4e8681cf7edf39e4a64f0322438e56002",
+  "scripts/run_eval19.py": "adc55725b3abb391d9dfa931085e27e3b2e3dc659206f7d8de955cf31730abd9",
+  "src/supplychainworld/verification_v12.py": "34b15b8f185de8555236c11ff1f3724f07d01a041c35906d234523ff2858b9fc",
+  "src/supplychainworld/solvers_v12.py": "63319f111f1114f9a15401b8206d8a191863e614b51080d8f036dc44f95d7fdd",
+  "src/supplychainworld/dynamic_verifier_v4.py": "41f2f36074ae025b29c68e717bfac5f2074fbec4dcc1fcec9e154ebcd91d45d9",
+  "src/supplychainworld/dynamic_v4.py": "8bfbde37c9d065a80e771dfa871dc9b808b41ce9fe735294369103ca3bfb0d1f",
+  "src/supplychainworld/agent_runner_v4.py": "6c9a48c09c9269ef64c9cda22a69e9fb0cc085f8e8bc7eda58aebea4afbca628",
+  "config/llm_roster.json": "232ed46e228c73ed2a865dc8cc8fcb66d6d0ed10c9cb5f5a65c1c8add9539fac"
+ },
+ "git_head_at_freeze": "45451982308378b2c9d0f7a29a7faca4a41cb34e",
+ "frozen_at_utc": "2026-11-22T01:03:22Z",
+ "manifest_sha256": "a746a81a0cc5c0c911ef85f3d6f328f932e2b6db381a8b3a389f5fc44dac18b2"
+}

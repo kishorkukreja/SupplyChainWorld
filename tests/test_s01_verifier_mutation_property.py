@@ -15,7 +15,7 @@ from hypothesis import given, settings, strategies as st
 
 import support  # noqa: F401
 from support.mutations import mutate_actions, mutate_history, mutate_scorecard, semantic_key
-from support.s01_versions import VERSIONS, V1, V2, V3, V4, drive, fixture_or_generated
+from support.s01_versions import VERSIONS, V1, V2, V3, V4, V5, drive, fixture_or_generated
 
 
 def rejected(v, scenario, history, horizon, **kw):
@@ -93,6 +93,7 @@ VerifierMutation_v01 = make_cases(V1)
 VerifierMutation_v02 = make_cases(V2)
 VerifierMutation_v03 = make_cases(V3)
 VerifierMutation_v04 = make_cases(V4)
+VerifierMutation_v05 = make_cases(V5)
 
 
 if __name__ == '__main__':

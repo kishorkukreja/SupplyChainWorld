@@ -1,0 +1,43 @@
+{
+ "case_id": "ref-19",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2483,
+ "completion_tokens": 1732,
+ "usage_complete": true,
+ "latency_ms_total": 13144.9,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "clarification",
+  "field": "quotes.A.component.variable_freight",
+  "disposition": "record_and_escalate",
+  "evidence": [
+   "Item component net requirement is 40 (demand 40, no usable stock, no inbound, safety stock 0).",
+   "Eligible quote A/component (qualified, as_of 2026-11-02 within 2026-01-01..2026-12-31, arrival 2026-11-09 before due 2026-11-10) has missing variable_freight.",
+   "Item is not critical and last_known_variable_freight is 10.00, giving estimated unit cost 120.00 + 10.00 = 130.00.",
+   "Estimate path is blocked: min(capacity 100, max(net requirement 40, moq 1)) x estimated unit cost 130.00 = 5200.00 exceeds approval_limit 5000.00.",
+   "Rule 5: no award is acceptable; clarification requested for quotes.A.component.variable_freight."
+  ]
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "clarification",
+  "expected_kind": "clarification",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": null,
+  "optimality": null,
+  "objective_gap": null,
+  "objective_gap_pct": null
+ }
+}

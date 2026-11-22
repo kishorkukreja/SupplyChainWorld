@@ -1,0 +1,38 @@
+{
+ "case_id": "ref-10",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2188,
+ "completion_tokens": 642,
+ "usage_complete": true,
+ "latency_ms_total": 6461.3,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "evidence": [
+   "component: safety stock = 1 (smallest whole s with s*s >= (1.6449*0.5)^2*1 = 0.6764), net requirement = max(0, 3 + 1 - 0 - 0 - 0) = 4",
+   "component: eligible order capacity is 3 (A max 2 + B max 1), which is less than the net requirement of 4"
+  ],
+  "kind": "infeasible"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "infeasible",
+  "expected_kind": "infeasible",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": null,
+  "optimality": null,
+  "objective_gap": null,
+  "objective_gap_pct": null
+ }
+}

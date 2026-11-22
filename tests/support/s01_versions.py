@@ -17,9 +17,10 @@ from supplychainworld import agent_runner as r1, agent_runner_v2 as r2, agent_ru
 from supplychainworld import dynamic as d1, dynamic_v2 as d2, dynamic_v3 as d3, dynamic_v4 as d4
 from supplychainworld import dynamic_verifier as vf1, dynamic_verifier_v2 as vf2
 from supplychainworld import dynamic_verifier_v3 as vf3, dynamic_verifier_v4 as vf4
+from supplychainworld import agent_runner_v5 as r5, dynamic_v5 as d5, dynamic_verifier_v5 as vf5
 
 ROOT = Path(__file__).resolve().parents[2]
-TAGS = ('v0.1', 'v0.2', 'v0.3', 'v0.4')
+TAGS = ('v0.1', 'v0.2', 'v0.3', 'v0.4', 'v0.5')
 
 
 def _fixtures(path):
@@ -93,7 +94,11 @@ V4 = Version('v0.4', scenario_cls=d4.ScenarioV4, world_cls=d4.OperationalWorldV4
              replay=r4.replay_v4, scripted=r4.scripted_policy_v4, policies=r4.POLICIES_V4, verify=vf4.verify_episode,
              fixtures_path='fixtures/dynamic/v0.4/scenarios.json', hidden_keys=_HID2,
              leaks=vf4.check_observations_for_leaks, multi_commit=True)
-VERSIONS = {'v0.1': V1, 'v0.2': V2, 'v0.3': V3, 'v0.4': V4}
+V5 = Version('v0.5', scenario_cls=d5.ScenarioV5, world_cls=d5.OperationalWorldV5, runner_cls=r5.ObservableRunnerV5,
+             replay=r5.replay_v5, scripted=r5.scripted_policy_v5, policies=r5.POLICIES_V5, verify=vf5.verify_episode,
+             fixtures_path='fixtures/dynamic/v0.5/scenarios.json', hidden_keys=_HID2,
+             leaks=vf5.check_observations_for_leaks, multi_commit=True)
+VERSIONS = {'v0.1': V1, 'v0.2': V2, 'v0.3': V3, 'v0.4': V4, 'v0.5': V5}
 
 
 def fixture_scenario(version, fixture):
@@ -213,7 +218,15 @@ def v3_scenarios(draw):
     return scenario, c['horizon']
 
 
-SCENARIO_STRATEGIES = {'v0.1': v1_scenarios(), 'v0.2': v2_scenarios(), 'v0.3': v3_scenarios(), 'v0.4': v3_scenarios()}
+def _relabel(pair):
+    scenario, horizon = pair
+    scenario = dict(scenario)
+    scenario['scenario_id'] = d5.opaque_label(scenario)
+    return scenario, horizon
+
+
+SCENARIO_STRATEGIES = {'v0.1': v1_scenarios(), 'v0.2': v2_scenarios(), 'v0.3': v3_scenarios(), 'v0.4': v3_scenarios(),
+                       'v0.5': v3_scenarios().map(_relabel)}
 
 
 def fixture_or_generated(version):

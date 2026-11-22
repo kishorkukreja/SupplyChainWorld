@@ -1,0 +1,43 @@
+{
+ "case_id": "ref-32",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2189,
+ "completion_tokens": 3066,
+ "usage_complete": true,
+ "latency_ms_total": 15231.1,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "disposition": "record_and_escalate",
+  "evidence": [
+   "Net requirement for component = 18 (demand 18; no usable stock, inbound, or safety stock).",
+   "Eligible quotes: A (300.00, moq 20, multiple 20, cap 40) and B (310.00, moq 10, multiple 10, cap 20); no legal order combination yields exactly 18.",
+   "Smallest reachable total >= 18 is 20 units, forcing MOQ excess of 2 units above excess_allowance 0.",
+   "Cheapest excess value = 2 x 300.00 = 600.00, which is above moq_excess_approval_threshold 500.00.",
+   "No granted approval record for component exists in world approvals; escalation required."
+  ],
+  "field": "approvals.moq_excess.component",
+  "kind": "clarification"
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "clarification",
+  "expected_kind": "clarification",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": null,
+  "optimality": null,
+  "objective_gap": null,
+  "objective_gap_pct": null
+ }
+}

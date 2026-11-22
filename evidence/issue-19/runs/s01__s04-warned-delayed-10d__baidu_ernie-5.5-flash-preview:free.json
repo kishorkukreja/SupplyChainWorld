@@ -1,0 +1,292 @@
+{
+ "fixture_id": "s04-warned-delayed-10d",
+ "model": "baidu/ernie-5.5-flash-preview:free",
+ "requests_used": 24,
+ "manifest_sha256": "c8d3a9f6e8d46dab54efdec1b7e9a50e9c96057fb49be9a02b586c624de8e346",
+ "status": "complete",
+ "completed": true,
+ "attempts": 21,
+ "valid_actions": 21,
+ "invalid_actions": 0,
+ "agent_errors": 0,
+ "invalid_by_category": {},
+ "tool_use": {
+  "release_production": 10,
+  "commit_recovery": 1,
+  "advance_day": 10
+ },
+ "recovery_commitments": [
+  {
+   "day": 1,
+   "choice": "expedite",
+   "quantity": 8,
+   "accepted": true,
+   "reason": null
+  }
+ ],
+ "verifier_feasible": true,
+ "hard_violation_codes": [],
+ "replay_reproduced": true,
+ "observation_leaks": [],
+ "metrics": {
+  "net_cost": 32,
+  "recovery_spend": 32,
+  "expedite_spend": 32,
+  "alternate_spend": 0,
+  "service_penalties": 0,
+  "otif_orders_met": 1,
+  "on_time_units": 12,
+  "unit_days_late": 0,
+  "priority_weighted_unit_days_late": 0,
+  "cancelled_order_value": 0,
+  "pending_inbound_units": 0,
+  "primary_reliance_pct": 100,
+  "ending_cover_days_floor": 0
+ },
+ "telemetry": {
+  "model_calls": 23,
+  "http_requests": 24,
+  "retries": 1,
+  "usage_complete": true,
+  "prompt_tokens": 174757,
+  "completion_tokens": 10015,
+  "total_tokens": 184772,
+  "latency_ms_total": 158974.9,
+  "cost_usd": 0.0,
+  "stop_reason": null,
+  "failure": null
+ },
+ "calls": [
+  {
+   "finish_reason": "length",
+   "status": "no_tool_call",
+   "tool": null,
+   "latency_ms": 23514.6,
+   "retries": 0,
+   "tokens": 5821,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "release_production",
+   "latency_ms": 5213.8,
+   "retries": 0,
+   "tokens": 1764,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "length",
+   "status": "no_tool_call",
+   "tool": null,
+   "latency_ms": 25184.3,
+   "retries": 0,
+   "tokens": 6793,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "commit_recovery",
+   "latency_ms": 8305.8,
+   "retries": 0,
+   "tokens": 3444,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "advance_day",
+   "latency_ms": 7475.2,
+   "retries": 0,
+   "tokens": 4372,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "release_production",
+   "latency_ms": 5467.8,
+   "retries": 0,
+   "tokens": 4765,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "advance_day",
+   "latency_ms": 5059.3,
+   "retries": 0,
+   "tokens": 5800,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "release_production",
+   "latency_ms": 5371.4,
+   "retries": 0,
+   "tokens": 6843,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "advance_day",
+   "latency_ms": 5995.5,
+   "retries": 0,
+   "tokens": 7878,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "release_production",
+   "latency_ms": 6595.1,
+   "retries": 0,
+   "tokens": 8893,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "advance_day",
+   "latency_ms": 4576.1,
+   "retries": 0,
+   "tokens": 9900,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "release_production",
+   "latency_ms": 5266.1,
+   "retries": 0,
+   "tokens": 9944,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "advance_day",
+   "latency_ms": 5099.4,
+   "retries": 0,
+   "tokens": 9968,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "release_production",
+   "latency_ms": 4920.4,
+   "retries": 0,
+   "tokens": 9943,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "advance_day",
+   "latency_ms": 4690.8,
+   "retries": 0,
+   "tokens": 9887,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "release_production",
+   "latency_ms": 2042.8,
+   "retries": 1,
+   "tokens": 9870,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "advance_day",
+   "latency_ms": 4665.8,
+   "retries": 0,
+   "tokens": 9833,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "release_production",
+   "latency_ms": 5138.8,
+   "retries": 0,
+   "tokens": 9859,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "advance_day",
+   "latency_ms": 4595.6,
+   "retries": 0,
+   "tokens": 9835,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "release_production",
+   "latency_ms": 4922.9,
+   "retries": 0,
+   "tokens": 9845,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "advance_day",
+   "latency_ms": 4345.5,
+   "retries": 0,
+   "tokens": 9835,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "release_production",
+   "latency_ms": 5574.7,
+   "retries": 0,
+   "tokens": 9845,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  },
+  {
+   "finish_reason": "tool_calls",
+   "status": "ok",
+   "tool": "advance_day",
+   "latency_ms": 4953.2,
+   "retries": 0,
+   "tokens": 9835,
+   "error_class": null,
+   "returned_model": "baidu/ernie-5.5-flash-preview:free"
+  }
+ ],
+ "leak_flags": []
+}

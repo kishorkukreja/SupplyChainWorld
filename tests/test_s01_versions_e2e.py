@@ -34,9 +34,10 @@ def hand_check(tag, fixture_id, policy, report, card):
     if tag == 'v0.1':
         from supplychainworld.dynamic_demo import ledger_matches_hand, scorecard_matches_expected
         return bool(ledger_matches_hand(fixture_id, policy, report)) and bool(scorecard_matches_expected(fixture_id, policy, card))
-    mod = {'v0.2': 'dynamic_demo_v2', 'v0.3': 'dynamic_demo_v3', 'v0.4': 'dynamic_demo_v4'}[tag]
+    mod = {'v0.2': 'dynamic_demo_v2', 'v0.3': 'dynamic_demo_v3', 'v0.4': 'dynamic_demo_v4', 'v0.5': 'dynamic_demo_v5'}[tag]
     demo = __import__(f'supplychainworld.{mod}', fromlist=['hand_matches'])
-    return all(demo.hand_matches(fixture_id, policy, report, card).values())
+    hand = demo.load_hand() if tag == 'v0.5' else None
+    return all(demo.hand_matches(fixture_id, policy, report, card, hand).values())
 
 
 class EveryFixtureEveryPolicy(unittest.TestCase):

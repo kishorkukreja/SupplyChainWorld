@@ -1,0 +1,57 @@
+{
+ "label": "EXPLORATORY ONLY. Not a result. Counterfactual regrade of schema-invalid static answers after mechanical repair, to separate format failures from reasoning failures. The preregistered grade is the unrepaired one.",
+ "rows": [
+  {
+   "case_id": "ref-01",
+   "model": "nvidia/nemotron-3.5-super-vl:free",
+   "repairs": [
+    "evidence string wrapped in a one-item list"
+   ],
+   "accepted_after_repair": true,
+   "hard_failures_after_repair": [],
+   "optimality": "optimal"
+  },
+  {
+   "case_id": "ref-09",
+   "model": "nvidia/nemotron-3.5-super-vl:free",
+   "repairs": [
+    "removed extra key clarification_requests",
+    "removed extra key approval_refs",
+    "removed extra key allocations"
+   ],
+   "accepted_after_repair": true,
+   "hard_failures_after_repair": [],
+   "optimality": null
+  },
+  {
+   "case_id": "ref-25",
+   "model": "nvidia/nemotron-3.5-super-vl:free",
+   "repairs": [
+    "evidence string wrapped in a one-item list"
+   ],
+   "accepted_after_repair": true,
+   "hard_failures_after_repair": [],
+   "optimality": "optimal"
+  },
+  {
+   "case_id": "ref-29",
+   "model": "nvidia/nemotron-3.5-super-vl:free",
+   "repairs": [
+    "evidence string wrapped in a one-item list"
+   ],
+   "accepted_after_repair": true,
+   "hard_failures_after_repair": [],
+   "optimality": null
+  },
+  {
+   "case_id": "ref-30",
+   "model": "baidu/ernie-5.5-flash-preview:free",
+   "repairs": [
+    "removed extra key clarification_requests"
+   ],
+   "accepted_after_repair": true,
+   "hard_failures_after_repair": [],
+   "optimality": null
+  }
+ ]
+}

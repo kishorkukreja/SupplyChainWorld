@@ -1,0 +1,42 @@
+{
+ "case_id": "ref-32",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2642,
+ "completion_tokens": 2283,
+ "usage_complete": true,
+ "latency_ms_total": 16377.6,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "clarification",
+  "field": "approvals.moq_excess.component",
+  "disposition": "record_and_escalate",
+  "evidence": [
+   "Net requirement for component = 18 (demand 18, no usable stock, no inbound, safety stock 0).",
+   "The smallest legal order at or above the net requirement is 20 units (supplier A: multiple 20, moq 20; supplier B: multiple 10, moq 10 can also reach 20), so MOQ excess of 2 units over the 0 excess_allowance is unavoidable.",
+   "Excess value = 2 excess units x (20 units x 300.00 / 20 units) = 600.00, which exceeds the moq_excess_approval_threshold of 500.00.",
+   "No granted approval record for component exists in the world's approvals, so the MOQ-excess award cannot be supported without approvals.moq_excess.component."
+  ]
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": true,
+  "kind": "clarification",
+  "expected_kind": "clarification",
+  "outcome_matches": true,
+  "accepted": true,
+  "hard_failures": [],
+  "feasible": true,
+  "independent_cost": null,
+  "optimality": null,
+  "objective_gap": null,
+  "objective_gap_pct": null
+ }
+}

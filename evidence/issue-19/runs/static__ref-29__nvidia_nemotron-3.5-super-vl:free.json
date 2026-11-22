@@ -1,0 +1,39 @@
+{
+ "case_id": "ref-29",
+ "model": "nvidia/nemotron-3.5-super-vl:free",
+ "status": "submitted",
+ "failure": null,
+ "logical_calls": 1,
+ "http_requests": 1,
+ "retries": 0,
+ "prompt_tokens": 2799,
+ "completion_tokens": 2214,
+ "usage_complete": true,
+ "latency_ms_total": 16115.0,
+ "cost_usd": 0.0,
+ "finish_reasons": [
+  "tool_calls"
+ ],
+ "submission": {
+  "kind": "clarification",
+  "field": "quotes.A.component.variable_freight",
+  "disposition": "record_and_escalate",
+  "evidence": "Item component net requirement = 40 (demand 40, no usable stock, no inbound, safety stock 0). Quote A is eligible (qualified, valid 2026-01-01..2026-12-31, arrival 2026-11-09 before due 2026-11-10) but variable_freight is null. Item is not critical and last_known_variable_freight is 5.01, so an estimated unit cost of 120.00 + 5.01 = 125.01 is available, but the estimate path requires min(capacity, max(net requirement, moq)) x estimated unit cost <= approval limit: min(100, max(40, 1)) x 125.01 = 40 x 125.01 = 5000.40, which is above the approval limit 5000.00. Per rule 5, no award is acceptable until the missing term is clarified, even though complete quotes B and C exist."
+ },
+ "grade": {
+  "graded": true,
+  "schema_valid": false,
+  "kind": "clarification",
+  "expected_kind": "clarification",
+  "outcome_matches": true,
+  "accepted": false,
+  "hard_failures": [
+   "schema_validation"
+  ],
+  "feasible": false,
+  "independent_cost": null,
+  "optimality": null,
+  "objective_gap": null,
+  "objective_gap_pct": null
+ }
+}
