@@ -1,0 +1,14 @@
+{
+ "experience": "s06-warned-delayed-10d / staged_revisit",
+ "sections_required": [
+  "# What the agent saw and did",
+  "## The situation",
+  "## The rules the agent was told",
+  "## Day by day",
+  "## The result"
+ ],
+ "actions_in_record": 22,
+ "problems": [],
+ "what_this_shows": "A STRUCTURAL check of experience-record.md: every section is present, every action has a plain-language line, no raw internal ids, Python object text or private field names appear.",
+ "what_this_does_not_show": "It does not show that a person finds the record readable, clear or useful. No person has been asked."
+}
