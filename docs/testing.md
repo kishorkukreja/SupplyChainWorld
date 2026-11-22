@@ -74,3 +74,10 @@ Test types: P = property (Hypothesis), F = fuzz, E = end-to-end, B = browser, U 
 | S01.6 | | | | |
 
 Status of this template: EMPTY. Nothing has been mapped yet; the worked example tests only demonstrate the pattern on the S01 v0.1 modules and do not close any criterion.
+
+## Issue #19 fixes (next diagnostic run)
+
+- S01 v0.5 (`dynamic_v5`, `fixtures/dynamic/v0.5/`): the world shows only an opaque scenario label; same rules and numbers as v0.4.
+- Stated rules: `agent_runner_v5.RULES` is the single list of every enforced rule; the eval19_v2 prompt and tool descriptions are built from it; `tests/test_eval19_v2.py` maps every rejection reason in the source to a stated sentence.
+- Strict static answers: `schemas_v121` (one exact shape per kind, no repair); eval19_v2 offers one tool per kind.
+- Next run harness: `eval19_v2.py` and `scripts/run_eval19_v2.py` (manifest `eval19-manifest-2`, draft until the owner commits it). The first run harness is frozen.
