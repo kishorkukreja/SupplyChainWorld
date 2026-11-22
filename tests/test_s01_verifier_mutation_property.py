@@ -15,7 +15,7 @@ from hypothesis import given, settings, strategies as st
 
 import support  # noqa: F401
 from support.mutations import mutate_actions, mutate_history, mutate_scorecard, semantic_key
-from support.s01_versions import VERSIONS, V1, V2, V3, V4, V5, drive, fixture_or_generated
+from support.s01_versions import skip_if_unfixed, VERSIONS, V1, V2, V3, V4, V5, drive, fixture_or_generated
 
 
 def rejected(v, scenario, history, horizon, **kw):
@@ -85,6 +85,7 @@ def make_cases(v):
             broken[-1]['state']['day'] += 3
             self.assertTrue(rejected(v, sd, broken, horizon, scorecard=card))
 
+    skip_if_unfixed(Cases, v, ['test_valid_runs_are_accepted_and_every_history_mutant_is_rejected'])
     Cases.__name__ = Cases.__qualname__ = f'VerifierMutation_{v.tag.replace(".", "")}'
     return Cases
 

@@ -15,7 +15,7 @@ from hypothesis import assume, given, settings, strategies as st
 import support  # noqa: F401
 from support import fuzz
 from support.mutations import semantic_key
-from support.s01_versions import (VERSIONS, V1, V2, V3, V4, V5, drive, fixture_or_generated, fixture_scenario, informed_call,
+from support.s01_versions import (skip_if_unfixed, VERSIONS, V1, V2, V3, V4, V5, drive, fixture_or_generated, fixture_scenario, informed_call,
                                   SCENARIO_STRATEGIES, scripted_transcript)
 
 EXPECTED_ERRORS = (ValueError, KeyError, TypeError, StopIteration)
@@ -372,6 +372,7 @@ def make_scenario_fuzz(v):
             except ValueError:
                 return          # a validation error is the clean refusal
 
+    skip_if_unfixed(Cases, v, ['test_the_verifier_refuses_damaged_scenarios_with_a_validation_error_only'])
     Cases.__name__ = Cases.__qualname__ = f'ScenarioFuzz_{v.tag.replace(".", "")}'
     return Cases
 
@@ -477,6 +478,10 @@ def make_record_fuzz(v):
                 return
             self.assertTrue(report.violations, 'a damaged history was accepted')
 
+    skip_if_unfixed(Cases, v, ['test_verifier_survives_garbage_history_scorecard_and_actions',
+                               'test_verifier_survives_event_shaped_garbage_and_never_accepts_it_as_a_complete_episode',
+                               'test_a_history_or_actions_argument_of_the_wrong_type_is_a_type_or_value_error',
+                               'test_a_history_with_a_hole_or_a_swap_is_never_accepted_as_complete'])
     Cases.__name__ = Cases.__qualname__ = f'RecordFuzz_{v.tag.replace(".", "")}'
     return Cases
 

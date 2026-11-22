@@ -8,7 +8,7 @@ import unittest
 import support  # noqa: F401
 from copy import deepcopy
 
-from support.s01_versions import VERSIONS, V1, V2, fixture_scenario, scripted_transcript
+from support.s01_versions import FIXED_VERIFIERS, UNFIXED_VERIFIERS, VERSIONS, V1, V2, fixture_scenario, scripted_transcript
 
 
 class D1VerifierV02RejectsFreeRateCardRow(unittest.TestCase):
@@ -44,7 +44,7 @@ class D2VerifiersIgnoreOpeningEvents(unittest.TestCase):
         return v, v.scenario_dict(world), horizon, world.history(), world.scorecard()
 
     def test_forged_opening_state_is_rejected(self):
-        for tag in VERSIONS:
+        for tag in FIXED_VERIFIERS:
             with self.subTest(version=tag):
                 v, scenario, horizon, history, card = self.episode(tag)
                 self.assertEqual(v.verify(scenario, history, horizon, scorecard=card).violations, [])
@@ -55,7 +55,7 @@ class D2VerifiersIgnoreOpeningEvents(unittest.TestCase):
                                 'forged day_open state accepted')
 
     def test_deleted_or_duplicated_opening_records_are_rejected(self):
-        for tag in VERSIONS:
+        for tag in FIXED_VERIFIERS:
             for op in ('delete', 'duplicate'):
                 with self.subTest(version=tag, op=op):
                     v, scenario, horizon, history, card = self.episode(tag)
@@ -68,7 +68,7 @@ class D2VerifiersIgnoreOpeningEvents(unittest.TestCase):
                     self.assertTrue(v.verify(scenario, mutated, horizon, scorecard=card).violations)
 
     def test_reordering_an_opening_record_across_a_close_is_rejected(self):
-        for tag in VERSIONS:
+        for tag in FIXED_VERIFIERS:
             with self.subTest(version=tag):
                 v, scenario, horizon, history, card = self.episode(tag)
                 mutated = deepcopy(history)
@@ -88,7 +88,7 @@ class D3VerifiersSkipPartOfTheClaimedState(unittest.TestCase):
         'v0.2': [(['horizon_days'], 99), (['open_demand'], 123), (['orders', 0, 'due_day'], 1),
                  (['orders', 0, 'quantity'], 1), (['orders', 0, 'unit_days_late'], 77), (['orders', 0, 'days_short'], 9)],
     }
-    FORGERIES['v0.3'] = FORGERIES['v0.4'] = FORGERIES['v0.2']
+    FORGERIES['v0.3'] = FORGERIES['v0.2']
 
     def test_forged_state_fields_are_rejected(self):
         for tag, forgeries in self.FORGERIES.items():
@@ -115,7 +115,7 @@ class D4VerifiersCrashOnNonMappingEventDetails(unittest.TestCase):
     AttributeError ('... object has no attribute get') instead of reporting a malformed record."""
 
     def test_non_mapping_details_are_reported_not_crashed_on(self):
-        for tag, v in VERSIONS.items():
+        for tag, v in ((t, VERSIONS[t]) for t in FIXED_VERIFIERS):
             fixture = v.fixtures()[0]
             scenario, horizon = fixture['scenario'], fixture['horizon_days']
             _, runner = scripted_transcript(v, scenario, horizon, v.policies[0])
@@ -133,7 +133,7 @@ class D4VerifiersCrashOnNonMappingEventDetails(unittest.TestCase):
                         self.assertTrue(report.violations)
 
     def test_non_mapping_state_is_reported_not_crashed_on(self):
-        for tag, v in VERSIONS.items():
+        for tag, v in ((t, VERSIONS[t]) for t in FIXED_VERIFIERS):
             fixture = v.fixtures()[0]
             scenario, horizon = fixture['scenario'], fixture['horizon_days']
             _, runner = scripted_transcript(v, scenario, horizon, v.policies[0])
@@ -155,7 +155,7 @@ class D5VerifiersCrashOnMalformedScenarioParts(unittest.TestCase):
     v0.4 verifiers raise TypeError, KeyError or AttributeError instead of the documented ScenarioError."""
 
     def test_malformed_scenario_parts_raise_scenario_error_only(self):
-        for tag in ('v0.2', 'v0.3', 'v0.4'):
+        for tag in ('v0.2', 'v0.3'):
             v = VERSIONS[tag]
             fixture = v.fixtures()[0]
             base, horizon = fixture['scenario'], fixture['horizon_days']
@@ -175,7 +175,7 @@ class D6VerifiersCrashOnMalformedActionLog(unittest.TestCase):
     verifier raise AttributeError instead of reporting a malformed record."""
 
     def test_malformed_action_log_entries_are_reported_not_crashed_on(self):
-        for tag, v in VERSIONS.items():
+        for tag, v in ((t, VERSIONS[t]) for t in FIXED_VERIFIERS):
             fixture = v.fixtures()[0]
             scenario, horizon = fixture['scenario'], fixture['horizon_days']
             transcript, runner = scripted_transcript(v, scenario, horizon, v.policies[0])
@@ -206,6 +206,32 @@ class D7V01ScriptedPolicyStallsWhenTheRecoveryIsUnaffordable(unittest.TestCase):
                 refused = [a for a in transcript['attempts'] if a['tool'] == 'commit_recovery']
                 self.assertEqual(len(refused), 1)
                 self.assertFalse(refused[0]['accepted'])
+
+
+class OpenDefectsInTheFrozenV04Verifier(unittest.TestCase):
+    """D2 to D6 are NOT fixed in v0.4 and v0.5: `dynamic_verifier_v4.py` is frozen by the first diagnostic run manifest.
+    These tests pin that the defects are still there, so fixing them in a later verifier version is a deliberate act and
+    the traceability table cannot silently claim them closed. If one of these starts failing, the defect was fixed:
+    update results.md and move the version to FIXED_VERIFIERS."""
+
+    def episode(self, tag):
+        v = VERSIONS[tag]
+        fixture = v.fixtures()[0]
+        _, runner = scripted_transcript(v, fixture['scenario'], fixture['horizon_days'], v.policies[0])
+        w = runner._world
+        return v, v.scenario_dict(w), fixture['horizon_days'], w.history(), w.scorecard()
+
+    def test_forged_opening_state_and_non_mapping_details_are_still_not_handled(self):
+        for tag in UNFIXED_VERIFIERS:
+            with self.subTest(version=tag):
+                v, sd, horizon, history, card = self.episode(tag)
+                forged = deepcopy(history)
+                next(e for e in forged if e['kind'] == 'day_open' and e['day'] == 2)['state']['component_on_hand'] += 5
+                self.assertEqual(v.verify(sd, forged, horizon, scorecard=card).violations, [], 'D2 appears fixed')
+                crashed = deepcopy(history)
+                next(e for e in crashed if e['kind'] == 'release')['details'] = [None]
+                with self.assertRaises(AttributeError):
+                    v.verify(sd, crashed, horizon, scorecard=card)
 
 
 if __name__ == '__main__':

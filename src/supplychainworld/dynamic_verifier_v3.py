@@ -497,13 +497,14 @@ def _check_order(led, claimed, violations):
 
 
 def _clean_actions(actions, violations):
-    """Keep well-formed action-log entries; report the others instead of crashing on them."""
+    """Keep dict entries (a non-mapping `arguments` or `result` counts as empty, so it is not an accepted command);
+    report entries that are not mappings at all instead of crashing on them."""
     clean = []
     for a in actions:
-        if isinstance(a, dict) and all(a.get(k) is None or isinstance(a.get(k), dict) for k in ('arguments', 'result')):
-            clean.append(a)
+        if isinstance(a, dict):
+            clean.append({**a, **{k: {} for k in ('arguments', 'result') if a.get(k) is not None and not isinstance(a.get(k), dict)}})
         else:
-            _add(violations, 'malformed_event', None, 'action log entries must be mappings with mapping arguments and result')
+            _add(violations, 'malformed_event', None, 'action log entries must be mappings')
     return clean
 
 
