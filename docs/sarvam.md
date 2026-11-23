@@ -8,7 +8,7 @@ Owner decision 2026-11-23: Sarvam gets its own adapter (cap first set at INR 100
 hard cap of INR 10000 across all Sarvam models in a run. `llm_adapter.py` is not edited (the first diagnostic's manifest hashes it),
 and it still refuses every non-free OpenRouter id (a test checks this).
 
-**Proposed wording for CLAUDE.md (not applied; the owner decides):** replace "No paid model calls. Free-tier models only, with a $0
+**Wording now applied in CLAUDE.md (owner decision 2026-11-23); previously proposed text:** replace "No paid model calls. Free-tier models only, with a $0
 ceiling, through the existing adapter." with "OpenRouter: free-tier models only, $0 ceiling, through `llm_adapter`. Sarvam: paid,
 through `sarvam_adapter` only, with a hard cap of INR 10000 per run, stated in the committed test plan before any call."
 
