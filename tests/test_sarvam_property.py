@@ -2,6 +2,7 @@
 import json
 import os
 import tempfile
+import threading
 import unittest
 
 from hypothesis import given, settings, strategies as st
@@ -98,6 +99,103 @@ class SpendProperties(unittest.TestCase):
         self.assertAlmostEqual(spend.spent_inr, sa.price_inr(model, 0, billed), places=7)
         self.assertEqual(tr(request(model, 10, max_tokens))[0], 402)
         self.assertEqual(len(n), 1)
+
+
+def worst_for(model, chars, max_tokens):
+    return sa.price_inr(model, len(request(model, chars, max_tokens)['body']) / sa.CHARS_PER_TOKEN_WORST, max_tokens)
+
+
+class BillingUnknownIsCountedAtTheWorstCase(unittest.TestCase):
+    """Review finding: a timeout, a 5xx or an unreadable 200 may still have been billed; only a 4xx refusal proves it was not."""
+
+    @given(st.sampled_from(MODELS), st.integers(0, 5000), st.integers(1, 2048),
+           st.sampled_from([0, 500, 502, 503, 504]))
+    def test_a_timeout_or_server_error_is_charged_at_the_worst_case(self, model, chars, max_tokens, status):
+        spend = sa.SarvamSpend(1000.0)
+        tr = sa.SarvamTransport(lambda r: (status, {}, b''), spend)
+        self.assertEqual(tr(request(model, chars, max_tokens))[0], status)
+        self.assertAlmostEqual(spend.spent_inr, worst_for(model, chars, max_tokens), places=7)
+        self.assertEqual(spend.log[0]['basis'], 'unknown_billing_worst_case')
+
+    @given(st.sampled_from(MODELS), st.sampled_from([400, 401, 403, 404, 413, 422, 429]))
+    def test_a_4xx_refusal_is_not_charged(self, model, status):
+        spend = sa.SarvamSpend(1000.0)
+        tr = sa.SarvamTransport(lambda r: (status, {}, b'{}'), spend)
+        tr(request(model))
+        self.assertEqual(spend.spent_inr, 0.0)
+        self.assertEqual(spend.log[0]['basis'], 'rejected_not_billed')
+
+    @given(st.sampled_from(MODELS), st.sampled_from([b'', b'not json', b'[]', b'{"error": {"code": 500}}']))
+    def test_an_unreadable_200_is_charged_at_the_worst_case(self, model, raw):
+        spend = sa.SarvamSpend(1000.0)
+        sa.SarvamTransport(lambda r: (200, {}, raw), spend)(request(model, 100, 50))
+        self.assertAlmostEqual(spend.spent_inr, worst_for(model, 100, 50), places=7)
+
+    def test_repeated_timeouts_use_up_the_allowance_and_then_nothing_more_is_sent(self):
+        spend, sent = sa.SarvamSpend(0.5), []
+        tr = sa.SarvamTransport(lambda r: (sent.append(1), (0, {}, b''))[1], spend)
+        for _ in range(200):
+            tr(request('sarvam-105b', 2000, 1000))
+        self.assertLessEqual(spend.spent_inr, 0.5)
+        n = len(sent)
+        self.assertGreater(n, 0)
+        self.assertEqual(tr(request('sarvam-105b', 2000, 1000))[0], 402)
+        self.assertEqual(len(sent), n)
+
+
+class ReservationsAreAtomicAndDurable(unittest.TestCase):
+    """Review findings: admission must be atomic across concurrent calls, and a reservation must be on disk before dispatch."""
+
+    def test_two_concurrent_calls_cannot_both_be_admitted_past_the_cap(self):
+        worst = worst_for('sarvam-105b', 1000, 1000)
+        spend = sa.SarvamSpend(worst * 1.5)
+        in_base, release, results = threading.Event(), threading.Event(), []
+
+        def base(req):
+            in_base.set()
+            release.wait(5)
+            return reply(1000, 1000)
+        tr = sa.SarvamTransport(base, spend)
+        t1 = threading.Thread(target=lambda: results.append(tr(request('sarvam-105b', 1000, 1000))[0]))
+        t1.start()
+        self.assertTrue(in_base.wait(5))
+        results.append(tr(request('sarvam-105b', 1000, 1000))[0])   # admitted only if the first one's worst case was not reserved
+        release.set()
+        t1.join(5)
+        self.assertEqual(sorted(results), [200, 402])
+        self.assertLessEqual(spend.spent_inr, spend.cap_inr)
+
+    @settings(max_examples=40)
+    @given(st.sampled_from(MODELS), st.integers(0, 3000), st.integers(1, 1024))
+    def test_the_reservation_is_on_disk_before_the_request_leaves_and_survives_a_crash(self, model, chars, max_tokens):
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, 'spend.jsonl')
+            spend = sa.SarvamSpend(1000.0, path)
+            seen = []
+
+            def base(req):
+                with open(path) as fh:
+                    seen.extend(json.loads(line) for line in fh)
+                raise RuntimeError('process died after the provider accepted the request')
+            with self.assertRaises(RuntimeError):
+                sa.SarvamTransport(base, spend)(request(model, chars, max_tokens))
+            self.assertEqual([r['kind'] for r in seen], ['reserve'])
+            worst = worst_for(model, chars, max_tokens)
+            self.assertAlmostEqual(spend.spent_inr, worst, places=7)
+            again = sa.SarvamSpend(1000.0, path)       # a restart still counts the unresolved reservation
+            self.assertAlmostEqual(again.spent_inr, worst, places=7)
+            self.assertEqual(again.calls, 0)
+            self.assertEqual(len(again.reserved), 1)
+
+    def test_a_settled_call_leaves_no_open_reservation_and_a_restart_matches(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, 'spend.jsonl')
+            spend = sa.SarvamSpend(1000.0, path)
+            sa.SarvamTransport(lambda r: reply(50, 20), spend)(request('glm5.3-flash', 100, 200))
+            self.assertEqual(spend.reserved, {})
+            again = sa.SarvamSpend(1000.0, path)
+            self.assertEqual(again.reserved, {})
+            self.assertAlmostEqual(again.spent_inr, sa.price_inr('glm5.3-flash', 50, 20), places=8)
 
 
 class RulesStillHold(unittest.TestCase):

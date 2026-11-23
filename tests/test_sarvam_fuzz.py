@@ -55,8 +55,12 @@ class HostileResponses(unittest.TestCase):
                                                                          'messages': []}).encode()})
         self.assertEqual(len(out), 3)
         self.assertGreaterEqual(spend.spent_inr, before)
-        if out[0] == 200 and spend.calls:
-            usage = json.loads(out[2]).get('usage')
+        if out[0] == 200:
+            try:
+                usage = json.loads(out[2]).get('usage')
+            except (ValueError, AttributeError):
+                usage = None   # an unreadable answer is passed through as it came, and was charged at the worst case
+                self.assertGreater(spend.spent_inr, before)
             if isinstance(usage, dict) and 'cost_inr' in usage:
                 self.assertGreaterEqual(usage['cost_inr'], 0)
         if spend.spent_inr >= spend.cap_inr:

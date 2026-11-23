@@ -60,46 +60,79 @@ class SarvamConfig(la.AdapterConfig):
         self.cap_inr = float(cap_inr)
 
 
+STOP_EVENTS = ('credits_exhausted', 'cap_reached', 'provider_exceeded_limits')
+
+
 class SarvamSpend:
-    """Running total in INR across every Sarvam call of a run. Rebuilt from its ledger so a restart cannot exceed the cap."""
+    """Running total in INR across every Sarvam call of a run.
+
+    Every dispatched call is first RESERVED at its worst-case price, atomically, and the reservation is written to the ledger before
+    the request leaves. It is later SETTLED at the priced usage. A reservation that never settles (a crash, a timeout) stays counted
+    at its worst case, including after a restart, so a restart cannot exceed the cap. `spent_inr` is settled plus reserved."""
 
     def __init__(self, cap_inr=CAP_INR, ledger_path=None):
         if not isinstance(cap_inr, (int, float)) or isinstance(cap_inr, bool) or not 0 < cap_inr <= CAP_INR:
             raise ValueError(f'cap_inr must be above 0 and at most {CAP_INR}')
         self.cap_inr, self.ledger_path = float(cap_inr), ledger_path
-        self.spent_inr, self.calls, self.exhausted, self.log = 0.0, 0, None, []
+        self.settled_inr, self.reserved, self.calls, self.exhausted, self.log, self._next = 0.0, {}, 0, None, [], 1
         self._lock = threading.Lock()
         if ledger_path:
             try:
                 with open(ledger_path) as fh:
                     for line in fh:
                         rec = json.loads(line)
-                        self.spent_inr += rec['cost_inr']
-                        self.calls += 1
-                        if rec.get('event') in ('credits_exhausted', 'cap_reached', 'provider_exceeded_limits'):
-                            self.exhausted = rec['event']
+                        if rec['kind'] == 'reserve':
+                            self.reserved[rec['id']] = rec['worst_inr']
+                            self._next = max(self._next, rec['id'] + 1)
+                        else:
+                            self.reserved.pop(rec.get('id'), None)
+                            self.settled_inr += rec['cost_inr']
+                            self.calls += 1
+                            if rec.get('event') in STOP_EVENTS:
+                                self.exhausted = rec['event']
             except FileNotFoundError:
                 pass
 
-    def room_for(self, worst_inr):
-        return self.exhausted is None and self.spent_inr + worst_inr <= self.cap_inr
+    @property
+    def spent_inr(self):
+        return self.settled_inr + sum(self.reserved.values())
+
+    def _write(self, rec):
+        if self.ledger_path:
+            with open(self.ledger_path, 'a') as fh:
+                fh.write(json.dumps(rec) + '\n')
+
+    def reserve(self, model, worst_inr):
+        """Atomically claim `worst_inr` of the allowance. Returns a reservation id, or None when there is no room."""
+        with self._lock:
+            if self.exhausted is not None or self.spent_inr + worst_inr > self.cap_inr:
+                return None
+            rid, self._next = self._next, self._next + 1
+            self.reserved[rid] = round(worst_inr, 8)
+            self._write({'kind': 'reserve', 'id': rid, 'model': model, 'worst_inr': self.reserved[rid]})
+            return rid
+
+    def settle(self, rid, model, cost_inr, basis, prompt_tokens=None, completion_tokens=None, event=None):
+        """Replace a reservation with what the call is counted at. `rid` None records a direct charge."""
+        rec = {'kind': 'settle', 'id': rid, 'seq': None, 'model': model, 'cost_inr': round(cost_inr, 8), 'basis': basis,
+               'prompt_tokens': prompt_tokens, 'completion_tokens': completion_tokens}
+        with self._lock:
+            self.reserved.pop(rid, None)
+            self.settled_inr += rec['cost_inr']
+            self.calls += 1
+            rec['seq'] = self.calls
+            if event:
+                rec['event'] = event
+            elif self.spent_inr >= self.cap_inr:
+                rec['event'] = 'cap_reached'
+            if rec.get('event') in STOP_EVENTS:
+                self.exhausted = rec['event']
+            self.log.append(rec)
+            self._write(rec)
+        return rec
 
     def record(self, model, cost_inr, basis, prompt_tokens=None, completion_tokens=None, event=None):
-        rec = {'seq': self.calls + 1, 'model': model, 'cost_inr': round(cost_inr, 8), 'basis': basis,
-               'prompt_tokens': prompt_tokens, 'completion_tokens': completion_tokens}
-        if event:
-            rec['event'] = event
-            self.exhausted = event
-        with self._lock:
-            self.spent_inr += rec['cost_inr']
-            self.calls += 1
-            if self.spent_inr >= self.cap_inr and self.exhausted is None:
-                self.exhausted = rec['event'] = rec.get('event') or 'cap_reached'
-            self.log.append(rec)
-            if self.ledger_path:
-                with open(self.ledger_path, 'a') as fh:
-                    fh.write(json.dumps(rec) + '\n')
-        return rec
+        return self.settle(None, model, cost_inr, basis, prompt_tokens, completion_tokens, event)
 
 
 def _count(v):
@@ -129,22 +162,27 @@ class SarvamTransport:
             return self._refuse(400, 'sarvam transport: max_tokens missing or invalid; not sent')
         prompt_chars = len(request['body'])
         worst = price_inr(model, prompt_chars / CHARS_PER_TOKEN_WORST, max_tokens)
-        if not self.spend.room_for(worst):
+        rid = self.spend.reserve(model, worst)
+        if rid is None:
             return self._refuse(402, 'sarvam spend cap: a call could pass the cap or credits are exhausted; not sent')
         for field in DROPPED_REQUEST_FIELDS:
             body.pop(field, None)
         sent = dict(request, body=json.dumps(body).encode())
+        # If the base transport raises, the reservation stays counted at its worst case: the call may have been billed.
         status, headers, raw = self.base(sent)
         if status == 402:
-            self.spend.record(model, 0.0, 'provider_402', event='credits_exhausted')
+            self.spend.settle(rid, model, 0.0, 'provider_402', event='credits_exhausted')
             return status, headers, raw
-        if status != 200:
+        if 400 <= status < 500:  # the provider refused the request: affirmative evidence that nothing was generated or billed
+            self.spend.settle(rid, model, 0.0, 'rejected_not_billed')
             return status, headers, raw
         try:
-            data = json.loads(raw.decode('utf-8', 'replace'))
+            data = json.loads(raw.decode('utf-8', 'replace')) if status == 200 else None
         except ValueError:
             data = None
-        if not isinstance(data, dict) or 'error' in data and not data.get('choices'):
+        if status != 200 or not isinstance(data, dict) or 'error' in data and not data.get('choices'):
+            # a timeout (status 0), a 5xx, or a 200 we cannot read: the call may have been billed, so count the worst case
+            self.spend.settle(rid, model, worst, 'unknown_billing_worst_case')
             return status, headers, raw
         usage = data.get('usage') if isinstance(data.get('usage'), dict) else {}
         pt, ct = _count(usage.get('prompt_tokens')), _count(usage.get('completion_tokens'))
@@ -155,7 +193,7 @@ class SarvamTransport:
         # The cap holds as long as the provider bills no more than the request allowed. If it reports more, count what it
         # reports and stop every later call, so the overshoot is at most this one call and is visible in the ledger.
         over = basis == 'usage' and (ct > max_tokens or pt > prompt_chars / CHARS_PER_TOKEN_WORST)
-        self.spend.record(model, cost, 'usage_exceeds_request_limits' if over else basis, pt, ct,
+        self.spend.settle(rid, model, cost, 'usage_exceeds_request_limits' if over else basis, pt, ct,
                           event='provider_exceeded_limits' if over else None)
         usage = dict(usage, cost=cost / USD_INR, cost_inr=cost, cost_basis='estimated from pinned INR price table')
         data['usage'] = usage
@@ -169,7 +207,8 @@ def agent_manifest_fields(config):
         'spend': {'cap_inr': config.cap_inr, 'currency': 'INR', 'free_only': False, 'free_basis': config.free_basis,
                   'price_table_inr_per_million_input_output': {k: list(v) for k, v in PRICES_INR_PER_M.items()},
                   'gst_factor': GST_FACTOR, 'worst_case_chars_per_token': CHARS_PER_TOKEN_WORST,
-                  'cost_rule': 'estimated from reported token counts and the pinned table; worst case charged when usage is missing; '
+                  'cost_rule': 'estimated from reported token counts and the pinned table; each call is reserved at its worst case before it is sent; '
+                               'worst case is kept when usage is missing, on a timeout or 5xx, or after a crash; HTTP 4xx refusals are not charged; '
                                'PROVISIONAL prices; the cap is shared by all Sarvam calls of the run'},
         'credential': {'env_var': CREDENTIAL_ENV, 'logged': False}}
 

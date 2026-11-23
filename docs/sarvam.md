@@ -27,8 +27,12 @@ through `sarvam_adapter` only, with a hard cap of INR 1000 per run, stated in th
 
 - Costs are ESTIMATES from a pinned table, PROVISIONAL: read from docs.sarvam.ai on 2026-11-23, listed without GST, so GST (18 percent)
   is added, and cached-input discounts are ignored. Re-read the pricing page before the run and update the table in a new commit.
-- Worst case before every call: one token per request byte plus the full `max_tokens` output. Missing or junk usage is charged at the
-  worst case, never at zero.
+- Worst case before every call: one token per request byte plus the full `max_tokens` output. Each call RESERVES its worst case
+  atomically (so concurrent calls cannot both pass) and the reservation is written to the ledger before the request is sent. It is
+  settled at the priced usage afterwards. A reservation that never settles (a crash or kill) stays counted at its worst case after a
+  restart.
+- Charged at the worst case, never at zero: missing or junk usage, a timeout, a 5xx, an unreadable 200. Not charged: an HTTP 4xx
+  refusal (the provider rejected the request). Every retry is a new reservation.
 - If a provider ever reports more tokens than the request allowed, that call is counted, every later call is refused, and the ledger
   records `provider_exceeded_limits`. The cap is exact only for a provider that respects `max_tokens`.
 
