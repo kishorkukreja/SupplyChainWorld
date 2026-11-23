@@ -156,7 +156,7 @@ class SarvamTransport:
             max_tokens = body.get('max_tokens')
         except (ValueError, KeyError, TypeError):
             return self._refuse(400, 'sarvam transport: request body is not a chat request; not sent')
-        if model not in PRICES_INR_PER_M:
+        if not isinstance(model, str) or model not in PRICES_INR_PER_M:
             return self._refuse(403, 'sarvam transport: model not in the price table; not sent')
         if _count(max_tokens) is None or max_tokens < 1:
             return self._refuse(400, 'sarvam transport: max_tokens missing or invalid; not sent')

@@ -18,10 +18,19 @@ junk_numbers = st.one_of(st.integers(-5, 10 ** 12), st.floats(allow_nan=True, al
 
 
 class HostileRequests(unittest.TestCase):
+    def test_pinned_regression_a_model_that_is_a_list_or_object_is_refused_not_a_crash(self):
+        # found by CI fuzz on 2026-11-23: body {"model": []} raised TypeError (unhashable) instead of a clean 403
+        for model in ([], {}, [1], {'a': 1}, 7, 1.5, True):
+            sent = []
+            tr = sa.SarvamTransport(lambda r: (sent.append(r), (200, {}, b'{}'))[1], sa.SarvamSpend(100.0))
+            status, _, raw = tr({'url': sa.ENDPOINT, 'headers': {}, 'body': json.dumps({'model': model, 'max_tokens': 5}).encode()})
+            self.assertEqual(status, 403, model)
+            self.assertEqual(sent, [])
+
     @settings(max_examples=150)
     @given(st.one_of(st.binary(max_size=60), st.text(max_size=60).map(str.encode),
                      json_blobs.map(lambda b: json.dumps(b).encode()),
-                     st.fixed_dictionaries({'model': st.one_of(st.sampled_from(MODELS), st.text(max_size=8), st.none()),
+                     st.fixed_dictionaries({'model': st.one_of(st.sampled_from(MODELS), st.text(max_size=8), st.none(), json_blobs),
                                             'max_tokens': junk_numbers}).map(lambda d: json.dumps(d, allow_nan=True).encode())))
     def test_a_bad_request_is_refused_with_a_clean_status_and_never_reaches_the_provider(self, body):
         spend, sent = sa.SarvamSpend(100.0), []
