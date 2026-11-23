@@ -1,6 +1,6 @@
 # Langfuse tracing (version 1)
 
-Status: code and offline tests only. No trace has been sent to a live Langfuse project yet. Tracing is OFF by default.
+Status: one mocked S01 episode (no model calls, $0) was sent to Langfuse cloud, fetched back and audited on 2026-11-22: 21 observations (1 agent, 10 generation, 10 tool), 20 scores, no keys and no hidden scenario fields in the payload. Tracing is OFF by default.
 
 ## What it does
 
@@ -47,4 +47,5 @@ only means changing `LANGFUSE_BASE_URL`.
 - Sent after the run, so Langfuse timestamps are export time. Real latency is in each generation's metadata.
 - Each generation shows the messages the adapter sent: system prompt, initial observation and the last 8 exchanges (assistant tool call, then tool result). Rebuilt from the saved record, so the JSON text is equivalent but not byte-identical.
 - Model calls and tool calls are paired by order, which holds in the mocked runs. A run with extra model calls (nudges) would show fewer generations than tools, and the nudge text is not in the shown messages.
-- Not yet checked against a live Langfuse project, and the Langfuse best-practices audit of a real trace (fetch it back and audit) is still to do.
+- The audit used Langfuse's best-practices page and the Langfuse skill's baseline table. Fetch-back uses the v2 observations and v3 scores endpoints (the older trace and score endpoints are removed on Langfuse Cloud).
+- The trace has no user id (there is no user), and prompts are not linked to Langfuse prompt management.
