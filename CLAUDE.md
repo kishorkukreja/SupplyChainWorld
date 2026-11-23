@@ -28,7 +28,7 @@ Rules that follow:
 
 - Add new versions beside old ones (for example `*_v4`); do not edit earlier versions, fixtures or evidence.
 - Label every unconfirmed business number PROVISIONAL, needs practitioner value. Practitioner review so far is owner review, not independent.
-- No paid model calls. Free-tier models only, with a $0 ceiling, through the existing adapter. Never print, log or commit credentials.
+- OpenRouter: free-tier models only, with a $0 ceiling, through the existing adapter (`llm_adapter`). Sarvam is paid, through `sarvam_adapter` only, with a hard cap of INR 10000 per run, stated in the committed test plan before any call. No other paid model calls. Never print, log or commit credentials.
 - Keep sealed or private evaluation data, answer keys and hidden scenario parameters out of anything an agent or model can see, and keep a no-leak test for each new view.
 - Run the suite with `PYTHONPATH=src python -m unittest discover -s tests` (Python 3.12 in CI). Browser tests and Hypothesis tests are part of the default suite once the dev dependencies are installed.
 - Each issue gets its own branch and PR to `main`; merge only with green CI and a review of the diff, secrets and blast radius.

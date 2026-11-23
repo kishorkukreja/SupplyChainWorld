@@ -1,0 +1,548 @@
+{
+ "credentials": {
+  "openrouter": "OPENROUTER_API_KEY, injected by the sandbox proxy; the script reads it only from the environment",
+  "sarvam": "SARVAM_API_KEY from the environment; never printed, logged, stored or committed"
+ },
+ "episodes_by_provider": {
+  "openrouter": 30,
+  "sarvam": 30
+ },
+ "episodes_total": 60,
+ "fixture_sha256": {
+  "fixtures/dynamic/v0.6/hand-ledgers.json": "fd63a7c29b533d783523ff615c4a09c91bc69d854ed259620387c349993c48b5",
+  "fixtures/dynamic/v0.6/scenarios.json": "6ae814e7373bb643120a461ce1a97f981f7545982dc610a1951fba7fe3fd6c47"
+ },
+ "generated_at_utc": "2026-11-23T01:04:10Z",
+ "git_head_at_generation": "c2833ae1eb3c589ca9ed7383f4b486b248dfe221",
+ "harness_sha256": {
+  "config/eval19_v3_roster.json": "a7ada09779a4e8d34a11352a9b69d9df664c9ebf3b654011a22100d9e4c0d392",
+  "scripts/run_eval19_v3.py": "049e7f37c700fb6f6c1e1f17e9f5ce8c64f79531fea75001be9e73829a8d9658",
+  "src/supplychainworld/agent_runner_v6.py": "ab22cb7b3d22740e0d6b0f32171e539993104e37b1ff61f97a6ecda6f04d5f54",
+  "src/supplychainworld/dynamic_demo_v6.py": "20d1ed429a3974929e7048e79d23c79e31cff6fa0ee176f5baa79a592c7d0a96",
+  "src/supplychainworld/dynamic_v6.py": "74e08f3c40c3f2bd3905347dd1a961a42e493c79d860a9c1d7221afd3359caf8",
+  "src/supplychainworld/dynamic_verifier_v6.py": "1729a1b8026df80c4b6ae0d97d8d302fe90e22e02a1f960ddb1926f52afa05ce",
+  "src/supplychainworld/eval19.py": "fb4a7a3b7dd439f241626dc4d6101bf2ee3d4442454a78f22d6759ddafda92dc",
+  "src/supplychainworld/eval19_v2.py": "266ed1d9c9b51c9649b2275cc76401afc37f767ebd8a7a6edf045a87d945af7c",
+  "src/supplychainworld/eval19_v3.py": "a1ed794056c663b4d34a762204a30f3aa17ebf35b4f73a1c3950d5ad20661618",
+  "src/supplychainworld/eval19_v3_run.py": "d1136ca4e127a1bca0938f21c1ba7957d14ab760366d332644a5a31fbc89da66",
+  "src/supplychainworld/llm_adapter.py": "16b25c81f87d581a70f41de2a26d31c4e8681cf7edf39e4a64f0322438e56002",
+  "src/supplychainworld/sarvam_adapter.py": "c3e55f8b6bb9909c9885f579379a012175972014214964cb1d6a487aa8522f77",
+  "src/supplychainworld/tracing.py": "cebcb5c6bcd66a8a98424a482a0cef8b51a2c97f7dbea6310e4637e6a3233dff"
+ },
+ "harness_version": "eval19-3",
+ "limits": {
+  "breaker": "a model is stopped for the rest of the run after 6 consecutive HTTP 429 or 2 consecutive HTTP 403 responses; stops are reported, never hidden or retried later",
+  "daily_limits": "OpenRouter free models have daily request limits that are NOT checked here. A model that hits them is stopped by the breaker and its remaining episodes are reported as not run. The run is resumable, so the owner may continue it on another day; the order and caps do not change.",
+  "request_caps": {
+   "counts": "every HTTP request including retries",
+   "openrouter": 2000,
+   "sarvam": 2000
+  },
+  "retry": {
+   "max_retries_per_logical_call": 2,
+   "on": [
+    "HTTP 429",
+    "HTTP 5xx",
+    "network error"
+   ]
+  },
+  "s01_per_episode": {
+   "max_consecutive_non_tool_replies": 2,
+   "max_model_calls": "6 x horizon_days",
+   "max_output_tokens": 4096,
+   "max_total_tokens": 400000,
+   "memory_window_exchanges": 8,
+   "temperature": 0.0,
+   "timeout_seconds": 90
+  },
+  "throttle": "at least 3.5 seconds between any two requests on a route",
+  "worst_case_model_calls": {
+   "openrouter": 1620,
+   "sarvam": 1620
+  }
+ },
+ "models": [
+  {
+   "id": "baidu/ernie-5.5-flash-preview:free",
+   "label": "Ernie 5.5 flash preview",
+   "provider": "openrouter"
+  },
+  {
+   "id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+   "label": "Nemotron 3 Ultra",
+   "provider": "openrouter"
+  },
+  {
+   "id": "google/gemma-4-31b-it:free",
+   "label": "Gemma 4 31B",
+   "provider": "openrouter"
+  },
+  {
+   "id": "sarvam-105b",
+   "label": "Sarvam 105B",
+   "provider": "sarvam"
+  },
+  {
+   "id": "glm5.3-flash",
+   "label": "GLM 5.3 flash",
+   "provider": "sarvam"
+  },
+  {
+   "id": "deepseekv4.1-flash-1017",
+   "label": "DeepSeek V4.1 flash",
+   "provider": "sarvam"
+  }
+ ],
+ "no_tuning_rule": "Prompts, tools and limits are frozen at this commit. They are not tuned to individual failures. A genuine harness bug may be fixed and the affected runs rerun, with the fix, the reason and before and after both disclosed.",
+ "not_checked_before_the_run": [
+  "whether Sarvam accepts the tool-call request shape and returns token usage (the check subcommand does this, in a session that has the key)",
+  "whether reasoning tokens are included in completion_tokens on the Sarvam models",
+  "OpenRouter free-model daily limits",
+  "training-use terms of every provider (Sarvam, Nemotron, Ernie, Gemma): nothing here supports training use"
+ ],
+ "owner_decisions": [
+  "2026-11-23: eval19-3 S01 run goes before the Harbor setup",
+  "2026-11-23: Sarvam has its own adapter; the $0 rule applies to OpenRouter only",
+  "2026-11-23: Sarvam hard cap INR 10000 for the whole run",
+  "2026-11-23: GLM is glm5.3-flash unless the owner asks for the full glm5.3",
+  "2026-11-23: 2 repeats per scenario per model"
+ ],
+ "plan_sha256": "66b2fd6b2bb73eddcdd6df837c418bdc0c3c6c9bac2e11dc7cc6c8dabd7c7599",
+ "purpose": "Diagnostic on the S01 v0.6 world with six models: find task, grader, harness and model defects, and see how the independent checker marks real runs. Not a benchmark, not a leaderboard, no claim about general model ability, no support for training value.",
+ "queue": [
+  {
+   "fixture_id": "s06-sudden-5d",
+   "model": "baidu/ernie-5.5-flash-preview:free",
+   "provider": "openrouter",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-sudden-5d",
+   "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+   "provider": "openrouter",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-sudden-5d",
+   "model": "google/gemma-4-31b-it:free",
+   "provider": "openrouter",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-sudden-5d",
+   "model": "sarvam-105b",
+   "provider": "sarvam",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-sudden-5d",
+   "model": "glm5.3-flash",
+   "provider": "sarvam",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-sudden-5d",
+   "model": "deepseekv4.1-flash-1017",
+   "provider": "sarvam",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-warned-delayed-10d",
+   "model": "baidu/ernie-5.5-flash-preview:free",
+   "provider": "openrouter",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-warned-delayed-10d",
+   "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+   "provider": "openrouter",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-warned-delayed-10d",
+   "model": "google/gemma-4-31b-it:free",
+   "provider": "openrouter",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-warned-delayed-10d",
+   "model": "sarvam-105b",
+   "provider": "sarvam",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-warned-delayed-10d",
+   "model": "glm5.3-flash",
+   "provider": "sarvam",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-warned-delayed-10d",
+   "model": "deepseekv4.1-flash-1017",
+   "provider": "sarvam",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-warned-no-delay-10d",
+   "model": "baidu/ernie-5.5-flash-preview:free",
+   "provider": "openrouter",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-warned-no-delay-10d",
+   "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+   "provider": "openrouter",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-warned-no-delay-10d",
+   "model": "google/gemma-4-31b-it:free",
+   "provider": "openrouter",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-warned-no-delay-10d",
+   "model": "sarvam-105b",
+   "provider": "sarvam",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-warned-no-delay-10d",
+   "model": "glm5.3-flash",
+   "provider": "sarvam",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-warned-no-delay-10d",
+   "model": "deepseekv4.1-flash-1017",
+   "provider": "sarvam",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-multitier-cancel-10d",
+   "model": "baidu/ernie-5.5-flash-preview:free",
+   "provider": "openrouter",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-multitier-cancel-10d",
+   "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+   "provider": "openrouter",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-multitier-cancel-10d",
+   "model": "google/gemma-4-31b-it:free",
+   "provider": "openrouter",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-multitier-cancel-10d",
+   "model": "sarvam-105b",
+   "provider": "sarvam",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-multitier-cancel-10d",
+   "model": "glm5.3-flash",
+   "provider": "sarvam",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-multitier-cancel-10d",
+   "model": "deepseekv4.1-flash-1017",
+   "provider": "sarvam",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-alt-cheaper-10d",
+   "model": "baidu/ernie-5.5-flash-preview:free",
+   "provider": "openrouter",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-alt-cheaper-10d",
+   "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+   "provider": "openrouter",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-alt-cheaper-10d",
+   "model": "google/gemma-4-31b-it:free",
+   "provider": "openrouter",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-alt-cheaper-10d",
+   "model": "sarvam-105b",
+   "provider": "sarvam",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-alt-cheaper-10d",
+   "model": "glm5.3-flash",
+   "provider": "sarvam",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-alt-cheaper-10d",
+   "model": "deepseekv4.1-flash-1017",
+   "provider": "sarvam",
+   "repeat": 1
+  },
+  {
+   "fixture_id": "s06-sudden-5d",
+   "model": "baidu/ernie-5.5-flash-preview:free",
+   "provider": "openrouter",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-sudden-5d",
+   "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+   "provider": "openrouter",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-sudden-5d",
+   "model": "google/gemma-4-31b-it:free",
+   "provider": "openrouter",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-sudden-5d",
+   "model": "sarvam-105b",
+   "provider": "sarvam",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-sudden-5d",
+   "model": "glm5.3-flash",
+   "provider": "sarvam",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-sudden-5d",
+   "model": "deepseekv4.1-flash-1017",
+   "provider": "sarvam",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-warned-delayed-10d",
+   "model": "baidu/ernie-5.5-flash-preview:free",
+   "provider": "openrouter",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-warned-delayed-10d",
+   "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+   "provider": "openrouter",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-warned-delayed-10d",
+   "model": "google/gemma-4-31b-it:free",
+   "provider": "openrouter",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-warned-delayed-10d",
+   "model": "sarvam-105b",
+   "provider": "sarvam",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-warned-delayed-10d",
+   "model": "glm5.3-flash",
+   "provider": "sarvam",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-warned-delayed-10d",
+   "model": "deepseekv4.1-flash-1017",
+   "provider": "sarvam",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-warned-no-delay-10d",
+   "model": "baidu/ernie-5.5-flash-preview:free",
+   "provider": "openrouter",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-warned-no-delay-10d",
+   "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+   "provider": "openrouter",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-warned-no-delay-10d",
+   "model": "google/gemma-4-31b-it:free",
+   "provider": "openrouter",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-warned-no-delay-10d",
+   "model": "sarvam-105b",
+   "provider": "sarvam",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-warned-no-delay-10d",
+   "model": "glm5.3-flash",
+   "provider": "sarvam",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-warned-no-delay-10d",
+   "model": "deepseekv4.1-flash-1017",
+   "provider": "sarvam",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-multitier-cancel-10d",
+   "model": "baidu/ernie-5.5-flash-preview:free",
+   "provider": "openrouter",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-multitier-cancel-10d",
+   "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+   "provider": "openrouter",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-multitier-cancel-10d",
+   "model": "google/gemma-4-31b-it:free",
+   "provider": "openrouter",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-multitier-cancel-10d",
+   "model": "sarvam-105b",
+   "provider": "sarvam",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-multitier-cancel-10d",
+   "model": "glm5.3-flash",
+   "provider": "sarvam",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-multitier-cancel-10d",
+   "model": "deepseekv4.1-flash-1017",
+   "provider": "sarvam",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-alt-cheaper-10d",
+   "model": "baidu/ernie-5.5-flash-preview:free",
+   "provider": "openrouter",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-alt-cheaper-10d",
+   "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+   "provider": "openrouter",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-alt-cheaper-10d",
+   "model": "google/gemma-4-31b-it:free",
+   "provider": "openrouter",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-alt-cheaper-10d",
+   "model": "sarvam-105b",
+   "provider": "sarvam",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-alt-cheaper-10d",
+   "model": "glm5.3-flash",
+   "provider": "sarvam",
+   "repeat": 2
+  },
+  {
+   "fixture_id": "s06-alt-cheaper-10d",
+   "model": "deepseekv4.1-flash-1017",
+   "provider": "sarvam",
+   "repeat": 2
+  }
+ ],
+ "queue_order": "for repeat in 1..R: for scenario in the order above: for model in the roster order",
+ "repeats": 2,
+ "review_status": "owner review only, not independent practitioner review; every business number is PROVISIONAL, needs practitioner value",
+ "run_schema": "eval19-3-run-1",
+ "scenarios": [
+  {
+   "disruption_class": "sudden",
+   "fixture_id": "s06-sudden-5d",
+   "horizon_days": 5
+  },
+  {
+   "disruption_class": "warned",
+   "fixture_id": "s06-warned-delayed-10d",
+   "horizon_days": 10
+  },
+  {
+   "disruption_class": "warned",
+   "fixture_id": "s06-warned-no-delay-10d",
+   "horizon_days": 10
+  },
+  {
+   "disruption_class": "sudden",
+   "fixture_id": "s06-multitier-cancel-10d",
+   "horizon_days": 10
+  },
+  {
+   "disruption_class": "sudden",
+   "fixture_id": "s06-alt-cheaper-10d",
+   "horizon_days": 10
+  }
+ ],
+ "schema": "eval19-3-plan-1",
+ "spend": {
+  "openrouter": {
+   "ceiling_usd": 0.0,
+   "rule": "free-tier only: llm_adapter refuses any id that does not end in :free"
+  },
+  "sarvam": {
+   "currency": "INR",
+   "gst_factor": 1.18,
+   "hard_cap_inr": 10000.0,
+   "price_table_inr_per_million_input_output": {
+    "deepseekv4.1-flash-1017": [
+     14.0,
+     55.0
+    ],
+    "glm5.3-flash": [
+     13.5,
+     45.0
+    ],
+    "sarvam-105b": [
+     10.0,
+     25.0
+    ]
+   },
+   "rule": "every call reserves its worst case before it is sent; unknown billing is counted at the worst case; the run stops when a call could pass the cap",
+   "shared_by": "all Sarvam models in the run",
+   "status": "PROVISIONAL, prices read 2026-11-23, re-read the pricing page before the run"
+  }
+ },
+ "status": "PLAN. Commit this file on its own, with nothing else in the commit, BEFORE any model call. A plan committed after a call is not a pre-registration. The run script refuses to start unless this file is committed and unchanged.",
+ "tracing": {
+  "on_only_if": "SCW_LANGFUSE=1 and the Langfuse keys and host are set; a tracing failure never costs a finished run",
+  "source_of_truth": "the private run files, not Langfuse",
+  "tool": "Langfuse, post-hoc export of each finished episode through tracing.trace_episode"
+ },
+ "world_and_grading": {
+  "grading": "independent checker dynamic_verifier_v6.verify_episode on the recorded history, claimed scorecard and action log; replay_v6 on a fresh world; check_observations_for_leaks on every observation shown",
+  "metrics": "reported separately and never combined into one score: completion, valid and invalid actions, hard violations, feasibility, replay, cost, service, tier impact, tokens, latency, retries, provider cost",
+  "no_leaderboard": true,
+  "no_single_score": true,
+  "prompt": "eval19_v3.S01_SYSTEM_PROMPT_V3 and tool descriptions built from agent_runner_v6.RULES_V6, unchanged and frozen",
+  "world": "S01 v0.6 (opaque scenario label, conventions block in the rules, exact-once purchases)"
+ }
+}
