@@ -199,8 +199,8 @@ class ReservationsAreAtomicAndDurable(unittest.TestCase):
 
 
 class RulesStillHold(unittest.TestCase):
-    def test_the_prices_are_positive_and_the_cap_ceiling_is_one_thousand_rupees(self):
-        self.assertEqual(sa.CAP_INR, 1000.0)
+    def test_the_prices_are_positive_and_the_cap_ceiling_is_ten_thousand_rupees(self):
+        self.assertEqual(sa.CAP_INR, 10000.0)
         for pin, pout in sa.PRICES_INR_PER_M.values():
             self.assertGreater(pin, 0)
             self.assertGreater(pout, 0)
@@ -219,13 +219,13 @@ class RulesStillHold(unittest.TestCase):
             with self.assertRaises(sa.SarvamModelNotAllowed):
                 sa.SarvamConfig(model)
 
-    def test_the_cap_cannot_be_zero_negative_boolean_or_above_one_thousand(self):
-        for bad in (0, -1, True, 1000.01, None, 'x', float('nan')):
+    def test_the_cap_cannot_be_zero_negative_boolean_or_above_ten_thousand(self):
+        for bad in (0, -1, True, 10000.01, None, 'x', float('nan')):
             with self.assertRaises(ValueError):
                 sa.SarvamConfig('sarvam-105b', cap_inr=bad)
             with self.assertRaises(ValueError):
                 sa.SarvamSpend(bad)
-        sa.SarvamConfig('sarvam-105b', cap_inr=1000)
+        sa.SarvamConfig("sarvam-105b", cap_inr=10000)
 
 
 if __name__ == '__main__':

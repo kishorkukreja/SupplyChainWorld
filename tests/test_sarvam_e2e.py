@@ -57,7 +57,7 @@ class SarvamEpisodes(unittest.TestCase):
         m = raw['manifest']
         self.assertEqual(m['provider'], 'sarvam')
         self.assertFalse(m['spend']['free_only'])
-        self.assertEqual(m['spend']['cap_inr'], 1000.0)
+        self.assertEqual(m['spend']['cap_inr'], 10000.0)
         self.assertEqual(m['credential']['env_var'], 'SARVAM_API_KEY')
         self.assertIn('PROVISIONAL', m['spend']['cost_rule'])
 

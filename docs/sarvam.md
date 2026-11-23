@@ -4,18 +4,18 @@ Status: code and mocked tests only. No call has been made to Sarvam. `SARVAM_API
 
 ## Decision this implements
 
-Owner decision 2026-11-23: Sarvam gets its own adapter. The $0 free-only rule stays for OpenRouter. Sarvam calls are paid, with one
-hard cap of INR 1000 across all Sarvam models in a run. `llm_adapter.py` is not edited (the first diagnostic's manifest hashes it),
+Owner decision 2026-11-23: Sarvam gets its own adapter (cap first set at INR 1000, then raised to INR 10000 the same day). The $0 free-only rule stays for OpenRouter. Sarvam calls are paid, with one
+hard cap of INR 10000 across all Sarvam models in a run. `llm_adapter.py` is not edited (the first diagnostic's manifest hashes it),
 and it still refuses every non-free OpenRouter id (a test checks this).
 
 **Proposed wording for CLAUDE.md (not applied; the owner decides):** replace "No paid model calls. Free-tier models only, with a $0
 ceiling, through the existing adapter." with "OpenRouter: free-tier models only, $0 ceiling, through `llm_adapter`. Sarvam: paid,
-through `sarvam_adapter` only, with a hard cap of INR 1000 per run, stated in the committed test plan before any call."
+through `sarvam_adapter` only, with a hard cap of INR 10000 per run, stated in the committed test plan before any call."
 
 ## How it works
 
 - `SarvamConfig`: an `AdapterConfig` that accepts only models in a pinned price table: `sarvam-105b`, `glm5.3-flash`,
-  `deepseekv4.1-flash-1017`. The cap must be above 0 and at most INR 1000.
+  `deepseekv4.1-flash-1017`. The cap must be above 0 and at most INR 10000.
 - `SarvamTransport`: a base transport. Wrap it in `eval19.Guard` like the OpenRouter one, so request caps, throttle, leak scan and
   ledger are unchanged. It drops `parallel_tool_calls`, refuses any call whose worst-case price could pass the cap, prices each answer
   from reported tokens, writes the estimate into `usage.cost` so the agent's own budget check works, and stops for good on HTTP 402.

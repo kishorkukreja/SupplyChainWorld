@@ -1,7 +1,7 @@
 """Sarvam provider support for the S01 model run (adapter version 2, beside `llm_adapter`, which stays frozen).
 
 Why this exists: `llm_adapter` accepts only free OpenRouter models, and that $0 rule is kept for OpenRouter. Sarvam is a paid API
-(owner decision 2026-11-23: its own adapter, a hard cap of INR 1000 across all Sarvam calls). Nothing here relaxes the OpenRouter rule.
+(owner decision 2026-11-23: its own adapter, a hard cap of INR 10000 across all Sarvam calls). Nothing here relaxes the OpenRouter rule.
 
 How it fits: `SarvamConfig` is an `AdapterConfig` for an allowed Sarvam model id. `SarvamTransport` is a BASE transport. Wrap it in
 `eval19.Guard` exactly as the OpenRouter transport is wrapped, so request caps, throttle, leak scan and ledger are unchanged.
@@ -20,7 +20,7 @@ from . import llm_adapter as la
 
 ENDPOINT = 'https://api.sarvam.ai/v2/chat/completions'
 CREDENTIAL_ENV = 'SARVAM_API_KEY'
-CAP_INR = 1000.0
+CAP_INR = 10000.0
 USD_INR = 85.0                 # pinned only to express the cap in the USD field the agent already checks; it cancels out
 GST_FACTOR = 1.18              # PROVISIONAL: listed prices exclude GST
 CHARS_PER_TOKEN_WORST = 1.0    # worst-case prompt size estimate: one token per byte of the request body
