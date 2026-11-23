@@ -103,17 +103,34 @@ def build_trace_plan(raw, grade, *, run_label='', environment='development', pri
     """Plain-data plan for one episode. Raises TraceLeakError if any of `private_strings` would be sent."""
     t, manifest = raw['transcript'], raw['manifest']
     attempts, calls, observed = t['attempts'], raw['telemetry']['calls'], raw['observed']
+    window = int((manifest.get('memory_policy') or {}).get('window_exchanges') or 8)
+
+    def assistant(a):
+        # OpenAI message format: a tool call renders as a card only inside an assistant message's tool_calls,
+        # with the arguments as a JSON-encoded string and an id that the tool result repeats.
+        return {'role': 'assistant', 'content': None,
+                'tool_calls': [{'id': 'call-%s' % a['seq'], 'type': 'function',
+                                'function': {'name': a['tool'] or 'invalid', 'arguments': json.dumps(a['arguments'])}}]}
+
+    def seen_before(i):
+        """What the model was shown at step i: system prompt, initial observation, last `window` exchanges."""
+        msgs = [{'role': 'system', 'content': manifest['system_prompt']}]
+        if observed:
+            msgs.append({'role': 'user', 'content': 'Initial observation: ' + json.dumps({'observation': observed[0]})})
+        for j in range(max(0, i - window), i):
+            msgs.append(assistant(attempts[j]))
+            if j + 1 < len(observed):
+                msgs.append({'role': 'tool', 'tool_call_id': 'call-%s' % attempts[j]['seq'],
+                             'content': json.dumps(observed[j + 1])})
+        return msgs
+
     children = []
     for i, a in enumerate(attempts):
         call = calls[i] if i < len(calls) else None
-        view = observed[i] if i < len(observed) else None
         if call is not None:
-            msgs = [{'role': 'user', 'content': json.dumps(view, sort_keys=True)}] if view is not None else []
-            if i == 0:
-                msgs.insert(0, {'role': 'system', 'content': manifest['system_prompt']})
             children.append({
-                'type': 'generation', 'name': 'choose-action', 'model': raw['model'], 'input': msgs,
-                'output': {'tool': a['tool'], 'arguments': a['arguments']},
+                'type': 'generation', 'name': 'choose-action', 'model': raw['model'], 'input': seen_before(i),
+                'output': assistant(a),
                 'usage_details': _usage(call),
                 'cost_details': {'total': call['cost_usd']} if isinstance(call.get('cost_usd'), (int, float)) else None,
                 'level': None if call.get('status') in (None, 'ok') else 'ERROR',
@@ -121,11 +138,12 @@ def build_trace_plan(raw, grade, *, run_label='', environment='development', pri
                              'latency_ms': call.get('latency_ms'), 'http_status': call.get('http_status'),
                              'retries': len(call.get('retries') or [])}})
         children.append({
-            'type': 'tool', 'name': 'call-' + (a['tool'] or 'invalid'), 'input': a['arguments'],
+            'type': 'tool', 'name': 'apply-tool-call', 'input': a['arguments'],
             'output': {'accepted': a['accepted'], 'category': a['category'], 'reason': a['reason'],
                        'state_changes': a.get('state_changes'), 'events': a.get('events')},
             'level': None if a['accepted'] else 'WARNING', 'status_message': None if a['accepted'] else a['reason'],
-            'metadata': {'seq': a['seq'], 'day': a['day'], 'action_id': a['action_id']}})
+            'metadata': {'seq': a['seq'], 'day': a['day'], 'action_id': a['action_id'], 'tool': a['tool'] or 'invalid',
+                         'tool_call_id': 'call-%s' % a['seq']}})
     trace_id = trace_id_for(raw, run_label)
     tags = ['s01', 'harness:' + str(manifest['harness_version']), 'status:' + str(t['status'])]
     if grade['observation_leaks']:

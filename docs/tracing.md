@@ -13,8 +13,8 @@ checker or adapter, so it cannot change a run, a verdict or a replay. The saved 
 | Trace | One per episode, named `run-s01-episode`. The id comes from the recorded run, so exporting twice does not duplicate. |
 | Session | The run label (for example one eval run), so all episodes of a run group together. |
 | `agent` observation | The episode: fixture, horizon, initial observation, final status and checker facts. |
-| `generation` | One per model call: model, the observation shown, the tool call chosen, tokens, cost, latency in metadata. |
-| `tool` | One per tool call: arguments, accepted or refused, the reason and category, state changes and events. |
+| `generation` | One per model call: model, the messages shown (system prompt, initial observation, last 8 exchanges), the tool call chosen as an assistant message, tokens, cost, latency in metadata. |
+| `tool` | One per tool call, always named `apply-tool-call` (the tool name is in metadata): arguments, accepted or refused, the reason and category, state changes and events. |
 | Scores | One per checker fact (feasible, replay reproduced, leak-free, violations, invalid actions, each metric). Never blended. Metric scores say PROVISIONAL. |
 
 ## Turning it on
@@ -45,6 +45,6 @@ only means changing `LANGFUSE_BASE_URL`.
 ## Known limits
 
 - Sent after the run, so Langfuse timestamps are export time. Real latency is in each generation's metadata.
-- Each generation shows the observation of that step and the system prompt on the first step. The model's earlier exchanges (memory window of 8) are the preceding steps of the same trace.
-- Model calls and tool calls are paired by order, which holds in the mocked runs. A run with extra model calls (nudges) would show fewer generations than tools.
+- Each generation shows the messages the adapter sent: system prompt, initial observation and the last 8 exchanges (assistant tool call, then tool result). Rebuilt from the saved record, so the JSON text is equivalent but not byte-identical.
+- Model calls and tool calls are paired by order, which holds in the mocked runs. A run with extra model calls (nudges) would show fewer generations than tools, and the nudge text is not in the shown messages.
 - Not yet checked against a live Langfuse project, and the Langfuse best-practices audit of a real trace (fetch it back and audit) is still to do.

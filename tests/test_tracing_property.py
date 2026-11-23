@@ -57,6 +57,29 @@ class PlanProperties(unittest.TestCase):
             self.assertEqual(a['root']['type'], 'agent')
             self.assertEqual(len(a['trace_id']), 32)
 
+    def test_generations_use_openai_messages_stable_names_and_matching_tool_call_ids(self):
+        for policy, raw, grade in self.eps:
+            plan = tr.build_trace_plan(raw, grade)
+            attempts = raw['transcript']['attempts']
+            for c in plan['children']:
+                self.assertIn(c['name'], ('choose-action', 'apply-tool-call'), policy)
+                if c['type'] == 'generation':
+                    msg = c['output']
+                    self.assertEqual(msg['role'], 'assistant')
+                    call = msg['tool_calls'][0]
+                    self.assertIsInstance(call['function']['arguments'], str)
+                    json.loads(call['function']['arguments'])
+                    self.assertEqual(call['id'], 'call-%s' % c['metadata']['seq'])
+                    roles = [m['role'] for m in c['input']]
+                    self.assertEqual(roles[:2], ['system', 'user'])
+                    self.assertLessEqual(roles.count('assistant'), 8)
+                    # every tool result in the shown window answers a tool call that is also shown
+                    shown = {t['id'] for m in c['input'] if m['role'] == 'assistant' for t in m['tool_calls']}
+                    self.assertTrue({m['tool_call_id'] for m in c['input'] if m['role'] == 'tool'} <= shown)
+                else:
+                    self.assertEqual(c['metadata']['tool_call_id'], 'call-%s' % c['metadata']['seq'])
+            self.assertEqual(len([c for c in plan['children'] if c['type'] == 'tool']), len(attempts))
+
     def test_trace_ids_follow_the_run_not_the_export(self):
         ids = set()
         for _, raw, grade in self.eps:
