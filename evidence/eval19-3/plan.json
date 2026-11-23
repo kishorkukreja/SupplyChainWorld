@@ -12,8 +12,8 @@
   "fixtures/dynamic/v0.6/hand-ledgers.json": "fd63a7c29b533d783523ff615c4a09c91bc69d854ed259620387c349993c48b5",
   "fixtures/dynamic/v0.6/scenarios.json": "6ae814e7373bb643120a461ce1a97f981f7545982dc610a1951fba7fe3fd6c47"
  },
- "generated_at_utc": "2026-11-23T00:55:42Z",
- "git_head_at_generation": "13c3385fc7c2f3dbfd641af930d7a6a855e84cae",
+ "generated_at_utc": "2026-11-23T01:04:10Z",
+ "git_head_at_generation": "c2833ae1eb3c589ca9ed7383f4b486b248dfe221",
  "harness_sha256": {
   "config/eval19_v3_roster.json": "a7ada09779a4e8d34a11352a9b69d9df664c9ebf3b654011a22100d9e4c0d392",
   "scripts/run_eval19_v3.py": "049e7f37c700fb6f6c1e1f17e9f5ce8c64f79531fea75001be9e73829a8d9658",
@@ -26,7 +26,7 @@
   "src/supplychainworld/eval19_v3.py": "a1ed794056c663b4d34a762204a30f3aa17ebf35b4f73a1c3950d5ad20661618",
   "src/supplychainworld/eval19_v3_run.py": "d1136ca4e127a1bca0938f21c1ba7957d14ab760366d332644a5a31fbc89da66",
   "src/supplychainworld/llm_adapter.py": "16b25c81f87d581a70f41de2a26d31c4e8681cf7edf39e4a64f0322438e56002",
-  "src/supplychainworld/sarvam_adapter.py": "06a064f46a36f187e28bc114a728ef18606b3b012c023fa1d1b61d941c0a1400",
+  "src/supplychainworld/sarvam_adapter.py": "c3e55f8b6bb9909c9885f579379a012175972014214964cb1d6a487aa8522f77",
   "src/supplychainworld/tracing.py": "cebcb5c6bcd66a8a98424a482a0cef8b51a2c97f7dbea6310e4637e6a3233dff"
  },
  "harness_version": "eval19-3",
@@ -107,7 +107,7 @@
   "2026-11-23: GLM is glm5.3-flash unless the owner asks for the full glm5.3",
   "2026-11-23: 2 repeats per scenario per model"
  ],
- "plan_sha256": "e00b3e1166bf478e19ccc1c6e5c2bc84d534b791c2df608d0737dd3b16f3a0b1",
+ "plan_sha256": "66b2fd6b2bb73eddcdd6df837c418bdc0c3c6c9bac2e11dc7cc6c8dabd7c7599",
  "purpose": "Diagnostic on the S01 v0.6 world with six models: find task, grader, harness and model defects, and see how the independent checker marks real runs. Not a benchmark, not a leaderboard, no claim about general model ability, no support for training value.",
  "queue": [
   {
